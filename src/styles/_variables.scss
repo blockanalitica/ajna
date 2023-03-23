@@ -1,0 +1,123 @@
+$fa-font-path: "../fonts/font-awesome" !default;
+
+$gray: #a0a0a3;
+$less-dark: #191923;
+$dark: #12121a;
+$gray-200: $gray !default;
+$primary: #00d395 !default;
+$secondary: #4a4a5a !default;
+$darker-border-color: #32323e;
+
+$spacer: 1rem;
+
+$white: #ffffff;
+$body-color: #d9d9d9 !default;
+$body-bg: $dark !default;
+
+$link-color: $primary !default;
+$link-hover-color: $primary;
+
+$headings-color: $white !default;
+$headings-font-weight: 500 !default;
+$text-muted: $gray;
+$content-color: $body-color !default;
+$border-color: $secondary !default;
+$border-radius: 0.75rem !default;
+
+$font-weight-base: 300 !default;
+$small-font-size: 0.8rem !default;
+
+$ba-nav-color: $gray;
+$ba-nav-active-bg: $less-dark;
+$ba-nav-active-color: $white;
+
+$input-color: $gray-200 !default;
+$input-bg: #000000 !default;
+$input-disabled-bg: $body-bg !default;
+$input-group-addon-bg: $body-bg !default;
+$input-border-width: 1px !default;
+$input-border-color: $border-color !default;
+
+$custom-select-bg: $body-bg !default;
+
+$form-switch-color: $body-color;
+$form-check-input-border: 1px solid $body-color !default;
+
+$nav-tabs-link-active-color: $body-color !default;
+$nav-tabs-link-active-bg: rgba(7, 10, 14, 0.7);
+$nav-tabs-border-width: 0;
+
+$navbar-dark-color: $ba-nav-color !default;
+$navbar-dark-hover-color: $primary !default;
+
+$breadcrumb-bg: transparent !default;
+$breadcrumb-active-color: $body-color !default;
+
+$pagination-bg: transparent !default;
+$pagination-border-width: 0 !default;
+$pagination-border-color: transparent !default;
+$pagination-hover-bg: transparent !default;
+$pagination-disabled-bg: transparent !default;
+$pagination-active-bg: transparent !default;
+$pagination-color: white !default;
+$pagination-active-color: $primary !default;
+$pagination-focus-bg: transparent !default;
+$pagination-focus-outline: none !default;
+$pagination-focus-box-shadow: none !default;
+
+$card-bg: $less-dark;
+// $card-border-color: $border-color;
+$card-border-color: $less-dark;
+$card-border-radius: 1rem;
+
+$progress-bg: $dark !default;
+
+$modal-content-bg: $dark;
+$modal-content-border-radius: 1.25rem !default;
+$modal-content-border-width: 0 !default;
+
+$input-btn-padding-x: 1rem;
+$input-btn-padding-y: 0.5rem;
+
+$btn-close-color: $white !default;
+$btn-close-opacity: 1 !default;
+$btn-close-hover-opacity: 0.75 !default;
+$btn-close-width: 0.8rem !default;
+$btn-close-height: 0.8rem !default;
+
+$table-border-width: 1px;
+$table-border-color: #404c60 !default;
+$table-group-separator-color: #404c60 !default;
+$table-hover-bg: rgba($gray, 0.15) !default;
+
+$dropdown-bg: $secondary;
+$dropdown-header-color: $ba-nav-color !default;
+$dropdown-link-color: $body-color !default;
+$dropdown-link-hover-bg: $primary !default;
+$dropdown-link-hover-color: $dark !default;
+$dropdown-divider-bg: $border-color !default;
+$dropdown-border-color: $border-color !default;
+$dropdown-border-width: 0 !default;
+$dropdown-link-active-bg: $primary !default;
+$dropdown-link-active-color: $dark !default;
+$dropdown-padding-y: 1rem !default;
+
+$badge-color: $body-color !default;
+
+$success: #27ae69;
+$danger: #ff371d;
+$warning: #ffc107;
+
+$big-text: 1.5rem;
+$normal-text: 1.2rem;
+$small-text: 0.8rem;
+
+$grid-breakpoints: (
+  xxs: 0,
+  xs: 320px,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+) !default;
