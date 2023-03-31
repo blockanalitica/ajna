@@ -13,13 +13,14 @@ import {
 } from "reactstrap";
 import baLogo from "../../images/logo-light.svg";
 import ErrorPage from "../../pages/error/ErrorPage.js";
+import Homepage from "../../pages/Homepage.js";
 import styles from "./Layout.module.scss";
 
 function Layout(props) {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
   const toggleNavbar = () => setIsNavbarOpen(!isNavbarOpen);
 
-  const v1GoerliRoutes = []
+  const v1GoerliRoutes = [{ path: "/homepage", element: <Homepage /> }]
 
   return (
     <>

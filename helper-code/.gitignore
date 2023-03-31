@@ -20,3 +20,6 @@ npm-debug.log*
 !.yarn/releases
 
 .idea/
+
+
+package-lock.json
