@@ -71,11 +71,11 @@ const Navbar = () => (
                   </div>
                   <div className="hidden md:block">
                     <div className="ml-4 flex items-center md:ml-6">
-                      <button
+                      <button  
                         type="button"
-                        className="rounded-full bg-gray-800 px-5 py-3 text-white hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                        className="m-4 p-1 rounded-full bg-gradient-to-r from-ajna-special-from to-ajna-special-to"
                       >
-                        Launch App &gt;
+                        <span className="block px-4 py-2 font-semibold rounded-full text-white bg-black hover:bg-transparent">Launch App &gt;</span>
                       </button>
 
                     </div>
