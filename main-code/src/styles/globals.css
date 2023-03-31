@@ -2,6 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Rubik_Regular";
+  src: url("../../public/assets/Fonts/Rubik/Rubik-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Rubik_Italic";
+  src: url("../../public/assets/Fonts/Rubik/Rubik-Italic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Syncopate_Regular";
+  src: url("../../public/assets/Fonts/Syncopate/Syncopate-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Syncopate_Bold";
+  src: url("../../public/assets/Fonts/Syncopate/Syncopate-Bold.ttf") format("truetype");
+}
+
+
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
@@ -97,11 +118,19 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+  font-family: 'Rubik_Regular', sans-serif;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+h1 {
+  font-family: 'Syncopate_Bold', sans-serif;
+
+  font-size: 48px;
+  line-height: 70px;
 }
 
 @media (prefers-color-scheme: dark) {

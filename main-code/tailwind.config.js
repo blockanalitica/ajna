@@ -11,9 +11,6 @@ module.exports = {
   theme: {
     extend: {},
     colors: {
-/*
-
-*/
       /* basic colors */
       'white': '#FFFFFF',
       'black': '#000000',
@@ -71,13 +68,14 @@ module.exports = {
       'ajna-yellow': '#F6C361',
       'ajna-lavender-light': '#D2C8EF',
       'ajna-plum': '#B5179E',
-      'ajna-special': 'linear-gradient(79.28deg, #B5189F 7.96%, #3C0080 92.04%)',
       'ajna-special-from': '#B5189F',
       'ajna-special-to': '#3C0080',
       'ajna-green': '#2A9340',
       'ajna-teal': '#37FCFB',
       'ajna-aqua': '#37FCFB',
-      'ajna-spectrum': 'linear-gradient(90deg, #8AFAB6 0%, #65D0E9 19.79%, #642DD2 48.96%, #B45CD6 76.04%, #F8D19D 100%)',
+      'ajna-spectrum-from': '#8AFAB6',   
+      'ajna-spectrum-via': '#642DD2',   
+      'ajna-spectrum-to': '#F8D19D',   
       /* gray */
       'gray-1': '#F3F4F6',
       'gray-2': '#E8E8ED',
@@ -103,6 +101,10 @@ module.exports = {
       'gray-22': '#1A1B23',
       'gray-23': '#121217',
       'gray-24': '#09090C',
+    },
+    fontFamily: {
+      'rubik': ['Rubik_Regular', 'Inter', 'sans-serif'],
+      'mono': ['Fira Code', 'monospace'],
     },
   },
   plugins: [],

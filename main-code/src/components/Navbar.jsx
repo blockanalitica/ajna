@@ -73,11 +73,10 @@ const Navbar = () => (
                     <div className="ml-4 flex items-center md:ml-6">
                       <button  
                         type="button"
-                        className="m-4 p-1 rounded-full bg-gradient-to-r from-ajna-special-from to-ajna-special-to"
+                        className="m-4 p-1 rounded-full font-rubik bg-gradient-to-r from-ajna-special-from to-ajna-special-to"
                       >
                         <span className="block px-4 py-2 font-semibold rounded-full text-white bg-black hover:bg-transparent">Launch App &gt;</span>
                       </button>
-
                     </div>
                   </div>
                   <div className="-mr-2 flex md:hidden">
