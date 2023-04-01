@@ -2,6 +2,7 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const user = {
   name: 'Tom Cook',
@@ -30,22 +31,22 @@ const Navbar = () => (
         <Disclosure as="nav" className="bg-black">
           {({ open }) => (
             <>
-              <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+              <div className="mx-auto max-w-9xl px-4 sm:px-6 lg:px-8">
                 <div className="flex h-32 items-center justify-between">
                   <div className="flex items-center">
                     <div className="flex-shrink-0">
-                      <img
-                        className="h-8 w-8"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                        alt="Your Company"
+                      <Link
+                        href="/"
+                        alt="ajna"
+                        className="font-bold"
+                      >
+                      <Image
+                        src="/assets/Images/Logos/AJNA-Logo-LG.svg"
+                        width={150}
+                        height={700}
+                        alt="Ajna Logo"
                       />
-                    </div>
-                    <div>
-                        <Link
-                          href="/"
-                          alt="ajna"
-                          className="font-bold"
-                        >AJNA</Link>
+                      </Link>
                     </div>
                   </div>
                   <div className="flex items-center">
@@ -59,7 +60,7 @@ const Navbar = () => (
                               item.current
                                 ? ' text-white'
                                 : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                              'rounded-md px-3 py-2 text-sm font-medium'
+                              'rounded-md px-4 py-2 text-xl font-medium'
                             )}
                             aria-current={item.current ? 'page' : undefined}
                           >
@@ -73,9 +74,11 @@ const Navbar = () => (
                     <div className="ml-4 flex items-center md:ml-6">
                       <button  
                         type="button"
-                        className="m-4 p-1 rounded-full font-rubik bg-gradient-to-r from-ajna-special-from to-ajna-special-to"
+                        className="m-4 p-0.5 rounded-full font-rubik bg-gradient-to-r from-ajna-special-from to-ajna-special-to"
                       >
-                        <span className="block px-4 py-2 font-semibold rounded-full text-white bg-black hover:bg-transparent">Launch App &gt;</span>
+                        <span className="block px-8 py-4 font-semibold rounded-full text-white text-xl bg-black hover:bg-transparent">
+                          Launch App &gt;
+                        </span>
                       </button>
                     </div>
                   </div>

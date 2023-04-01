@@ -9,7 +9,14 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      lineHeight: {
+        '20': '4rem',
+      },
+      maxWidth: {
+        '9xl': '96rem',
+      },
+    },
     colors: {
       /* basic colors */
       'white': '#FFFFFF',
@@ -104,7 +111,7 @@ module.exports = {
     },
     fontFamily: {
       'rubik': ['Rubik_Regular', 'Inter', 'sans-serif'],
-      'mono': ['Fira Code', 'monospace'],
+      'syncopate': ['Syncopate_Bold', 'monospace'],
     },
   },
   plugins: [],
