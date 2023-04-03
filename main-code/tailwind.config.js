@@ -11,7 +11,7 @@ module.exports = {
   theme: {
     extend: {
       lineHeight: {
-        '20': '4rem',
+        '20': '5rem',
       },
       maxWidth: {
         '9xl': '96rem',

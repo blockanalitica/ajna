@@ -4,18 +4,6 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import Image from 'next/image'
 
-const user = {
-  name: 'Tom Cook',
-  email: 'tom@example.com',
-  imageUrl:
-    'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-}
-const navigation = [
-  { name: 'Markets', href: '#', current: true },
-  { name: 'Grants', href: '#', current: false },
-  { name: 'Docs', href: '#', current: false },
-  { name: 'FAQ', href: '#', current: false },
-]
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
   { name: 'Settings', href: '#' },
@@ -25,7 +13,7 @@ const userNavigation = [
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
-const Navbar = () => (
+const Navbar = ( {navigation} ) => (
   <>
       <div className="min-h-full">
         <Disclosure as="nav" className="bg-black">
@@ -58,7 +46,7 @@ const Navbar = () => (
                             href={item.href}
                             className={classNames(
                               item.current
-                                ? ' text-white'
+                                ? ' text-ajna-aqua'
                                 : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                               'rounded-md px-4 py-2 text-xl font-medium'
                             )}
@@ -72,14 +60,14 @@ const Navbar = () => (
                   </div>
                   <div className="hidden md:block">
                     <div className="ml-4 flex items-center md:ml-6">
-                      <button  
-                        type="button"
+                      <Link 
+                        href="/pools"
                         className="m-4 p-0.5 rounded-full font-rubik bg-gradient-to-r from-ajna-special-from to-ajna-special-to"
                       >
                         <span className="block px-8 py-4 font-semibold rounded-full text-white text-xl bg-black hover:bg-transparent">
                           Launch App &gt;
                         </span>
-                      </button>
+                      </Link>
                     </div>
                   </div>
                   <div className="-mr-2 flex md:hidden">
