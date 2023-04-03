@@ -1,37 +1,62 @@
-import TagComp from "../tags/Tag";
+import TagComp from "../tags/TagComp";
 
 const MiningCard = () => (
-<div className="max-w-sm p-6 bg-gray-23 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-    <div className="flex justify-between">
-        <div className="rounded-full p-2 bg-white">
-        .</div>
-        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+<div className=" p-8 bg-gray-23 rounded-2xl shadow dark:bg-gray-800 dark:border-gray-700">
+    <div className="flex justify-between  items-center py-3">
+        <div className=" flex justify-normal items-center px-5">
+            <div className="rounded-full z-30 p-5 bg-white" />
+            <div className="rounded-full p-5 bg-gray-12" />
+        </div>
+        <h5 className="text-2xl font-syncopate font-bold tracking-tight text-gray-900 dark:text-white">
             ETH / DAI
         </h5>
         <a
         href="#"
+        className="font-rubik flex justify-normal items-center px-5 text-4xl"
         >
-            ...
+            <div className="rounded-full p-0.5 mx-1 bg-white" />
+            <div className="rounded-full p-0.5 mx-1 bg-white" />
+            <div className="rounded-full p-0.5 mx-1 bg-white" />
         </a>
     </div>
-    <div className="flex-auto">
-        <div>
-            <div>1.0</div>
-            <div>ETH</div>
-            <div>Colateral</div>
-        </div>
-        <div>
-            <div>1.0</div>
-            <div>DAI</div>
-            <TagComp title="Quote"/>
+    <div className="flex-auto py-3">
+        <div className="flex justify-between items-center">
+            <div className="text-center flex flex-col items-center">
+                <div className="text-4xl font-bold">1.0</div>
+                <div className="flex justify-normal items-center">
+                    <div className="text-gray-10 font-bold">ETH</div>
+                    <TagComp className="mx-2" title="Collateral"/>
+                </div>
+            </div>
+            <div className="text-center text-5xl px-5">
+                /
+            </div>
+            <div className="text-center flex flex-col items-center">
+                <div className="text-4xl font-bold">1,235.29</div>
+                <div className="flex justify-normal items-center">
+                    <div className="text-gray-10 mx-2 font-bold">DAI</div>
+                    <TagComp className="mx-2" title="Quote"/>
+                </div>
+            </div>
         </div>
     </div>
-    <div className="flex-auto"></div>
-
-    <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-    <a href="#" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-        Read more
-    </a>
+    <div className="flex-auto py-3">
+        <hr className="text-gray-10"/>
+    </div>
+    <div className="flex-auto py-3">
+        <div className="flex justify-between py-3">
+            <p className="text-gray-10">Total value locked</p>
+            <p>$1,000,000.00</p>
+        </div>
+        <div className="flex justify-between py-3">
+            <p className="text-gray-10">APR</p>
+            <p>2.70%</p>
+        </div>
+        <div className="flex justify-between py-3">
+            <p className="text-gray-10">Ajna Burned in Auction</p>
+            <p className="text-right">957 🔥</p>
+        </div>
+    </div>
 </div>
 )
 
