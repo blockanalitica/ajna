@@ -1,7 +1,7 @@
 import TagComp from "../tags/TagComp";
 
 const MiningCard = () => (
-<div className=" p-8 bg-gray-23 rounded-2xl shadow dark:bg-gray-800 dark:border-gray-700">
+<div className=" m-4 p-8 bg-gray-23 rounded-3xl shadow dark:bg-gray-800 dark:border-gray-700">
     <div className="flex justify-between  items-center py-3">
         <div className=" flex justify-normal items-center px-5">
             <div className="rounded-full z-30 p-5 bg-white" />
