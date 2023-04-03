@@ -1,3 +1,4 @@
+import PrimaryButton from '@/components/button/PrimaryButton';
 import MiningCard from '@/components/card/MiningCard';
 import styles from '../styles';
 
@@ -20,9 +21,7 @@ const Hero = () => (
             The protocol consists of <span className="text-purple-7">pools</span> with lenders and borrowers.
             </p>
           <div className="py-7">
-            <button href="#" className="rounded-full bg-purple-7 hover:bg-purple-8 inline-flex items-center justify-center px-12 py-6 mr-3 text-lg font-medium text-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
-                Market Pools
-            </button>
+            <PrimaryButton title="Market Pools" location="/pools" />
             <a href="#" className="inline-flex items-center justify-center px-9 py-3 text-lg font-medium text-center text-gray-900 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
                 Whitepaper
             </a>             

@@ -1,4 +1,5 @@
 import { Footer, Navbar } from '@/components';
+import { PoolsSection } from '@/sections';
 
 const navigation_app = [
     { name: 'Pools', href: '/pools', current: true },
@@ -12,6 +13,7 @@ const Pools = () => {
       <div className="bg-black overflow-hidden">
         <Navbar navigation={navigation_app}/>
         <h1 className="text-white">Pools</h1>
+        <PoolsSection />
         <Footer />
       </div>
     );
