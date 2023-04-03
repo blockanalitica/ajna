@@ -1,8 +1,9 @@
+import PrimaryButton from "../button/PrimaryButton";
 import TagComp from "../tags/TagComp";
 
 const MiningCard = () => (
-<div className=" m-4 p-8 bg-gray-23 rounded-3xl shadow dark:bg-gray-800 dark:border-gray-700">
-    <div className="flex justify-between  items-center py-3">
+<div className=" m-4 p-8 bg-gray-23 flex flex-col items-center rounded-3xl shadow dark:bg-gray-800 dark:border-gray-700">
+    <div className="flex justify-between items-center py-3">
         <div className=" flex justify-normal items-center px-5">
             <div className="rounded-full z-30 p-5 bg-white" />
             <div className="rounded-full p-5 bg-gray-12" />
@@ -23,7 +24,7 @@ const MiningCard = () => (
         <div className="flex justify-between items-center">
             <div className="text-center flex flex-col items-center">
                 <div className="text-4xl font-bold">1.0</div>
-                <div className="flex justify-normal items-center">
+                <div className="flex py-3 justify-normal items-center">
                     <div className="text-gray-10 font-bold">ETH</div>
                     <TagComp className="mx-2" title="Collateral"/>
                 </div>
@@ -33,7 +34,7 @@ const MiningCard = () => (
             </div>
             <div className="text-center flex flex-col items-center">
                 <div className="text-4xl font-bold">1,235.29</div>
-                <div className="flex justify-normal items-center">
+                <div className="flex py-3 justify-normal items-center">
                     <div className="text-gray-10 mx-2 font-bold">DAI</div>
                     <TagComp className="mx-2" title="Quote"/>
                 </div>
@@ -56,6 +57,9 @@ const MiningCard = () => (
             <p className="text-gray-10">Ajna Burned in Auction</p>
             <p className="text-right">957 🔥</p>
         </div>
+    </div>
+    <div className="flex-auto py-3">
+        <PrimaryButton title="Pool Details ->" location="/pools/ETH-DAI" />
     </div>
 </div>
 )

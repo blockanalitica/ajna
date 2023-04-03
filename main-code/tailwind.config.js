@@ -79,7 +79,7 @@ module.exports = {
       'ajna-special-to': '#3C0080',
       'ajna-green': '#2A9340',
       'ajna-teal': '#37FCFB',
-      'ajna-aqua': '#37FCFB',
+      'ajna-aqua': '#8AC7DB',
       'ajna-spectrum-from': '#8AFAB6',   
       'ajna-spectrum-via': '#642DD2',   
       'ajna-spectrum-to': '#F8D19D',   

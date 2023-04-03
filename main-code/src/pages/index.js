@@ -1,5 +1,5 @@
 import { Footer, Navbar } from '@/components';
-import { Hero } from '../sections';
+import { FAQSection, Hero } from '../sections';
 
 const navigation_home = [
   { name: 'Pools', href: '/pools', current: false },
@@ -12,6 +12,7 @@ const Home = () => (
   <div className="bg-black overflow-hidden">
     <Navbar navigation={navigation_home}/>
     <Hero />
+    <FAQSection />
     <Footer />
   </div>
 );
