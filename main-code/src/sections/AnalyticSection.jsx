@@ -18,7 +18,7 @@ const AnalyticSection = () => (
     <div className="grid max-w-screen-2xl px-4 py-8 lg:py-16 ">      
       <div className=" grid grid-cols-1 sm:grid-cols-1 md:grid-cols-5 lg:grid-cols-5 xl:grid-cols-5 gap-7">
         {analytics.map((item) => (
-            <AnalyticCard title={item.title} subtitle={item.subtitle} />
+            <AnalyticCard key={item.name} title={item.title} subtitle={item.subtitle} />
         ))}
       </div>                
     </div>

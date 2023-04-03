@@ -15,6 +15,7 @@ const Pools = () => {
         <h1 className="text-white">Pools</h1>
         <AnalyticSection />
         <PoolsSection />
+        
         <Footer />
       </div>
     );
