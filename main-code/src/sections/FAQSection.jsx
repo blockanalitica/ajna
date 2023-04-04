@@ -46,9 +46,6 @@ const FAQSection = () => {
                 <AccordionTile key={index} question={item.question} answer={item.answer}/>
               )
           })}
-      
-
-
       </div>
     </div>
   )
