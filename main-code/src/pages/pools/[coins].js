@@ -1,5 +1,6 @@
 import { Footer, Navbar } from "@/components";
 import { SearchSection } from "@/sections";
+import { GraphSection } from "@/sections";
 
 const navigation_app = [
     { name: 'Pools', href: '/pools', current: true },
@@ -12,7 +13,8 @@ const Coins = () => {
     return (
       <div className="bg-black overflow-hidden">
         <Navbar navigation={navigation_app}/>
-        <SearchSection />
+        <SearchSection showMiddleButton={false} />
+        <GraphSection />
         <Footer />
       </div>
     );
