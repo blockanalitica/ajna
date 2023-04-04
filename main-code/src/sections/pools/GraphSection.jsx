@@ -1,22 +1,17 @@
+import InfoPlusAnalyticsCard from "@/components/card/InfoPlusAnalyticsCard"
 import MainBarGraph from "@/components/graph/MainBarGraph"
 
 const GraphSection = () => (
-    <>
-    <div className="flex flex-col bg-black border border-gray-20 p-6 rounded-3xl">
-        <h3 className="text-2xl font-syncopate uppercase text-white">Total tokens locked</h3>
-        <div className="flex flex-row justify-between items-center">
-            <div> ETH  </div>
-            <div> 15.31M </div>
+    <section className="mx-auto max-w-9xl p-10">
+    <div className="grid grid-cols-3 gap-6 ">
+        <div className="">
+            <InfoPlusAnalyticsCard />
         </div>
-        <div className="flex flex-row justify-between items-center">
-            <div> DAI  </div>
-            <div> 15.31M </div>
+        <div className="col-span-2">
+            <MainBarGraph />
         </div>
     </div>
-    <div className="flex flex-col justify-between bg-black border border-gray-20 p-6 rounded-3xl">
-        <MainBarGraph />
-    </div>
-    </>
+    </section>
 )
 
 

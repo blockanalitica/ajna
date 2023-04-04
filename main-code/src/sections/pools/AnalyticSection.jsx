@@ -1,7 +1,7 @@
 import PrimaryButton from '@/components/button/PrimaryButton';
 import AnalyticCard from '@/components/card/AnalyticCard';
 import MiningCard from '@/components/card/MiningCard';
-import styles from '../styles';
+import styles from '../../styles';
 
 const analytics = [
     { title: '1.5%', subtitle: 'Lending APR' },
