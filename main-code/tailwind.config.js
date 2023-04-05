@@ -14,7 +14,7 @@ module.exports = {
         '20': '5rem',
       },
       maxWidth: {
-        '9xl': '96rem',
+        '9xl': '80rem',
       },
     },
     colors: {

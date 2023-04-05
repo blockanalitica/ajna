@@ -1,14 +1,9 @@
 import { Fragment } from 'react'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Disclosure, } from '@headlessui/react'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import Image from 'next/image'
-
-const userNavigation = [
-  { name: 'Your Profile', href: '#' },
-  { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '#' },
-]
+import DropDownButton from './button/DropDownButton'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -30,8 +25,8 @@ const Navbar = ( {navigation} ) => (
                       >
                       <Image
                         src="/assets/Images/Logos/AJNA-Logo-LG.svg"
-                        width={150}
-                        height={700}
+                        width={130}
+                        height={50}
                         alt="Ajna Logo"
                       />
                       </Link>
@@ -48,7 +43,7 @@ const Navbar = ( {navigation} ) => (
                               item.current
                                 ? ' text-ajna-aqua'
                                 : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                              'rounded-md px-4 py-2 text-xl font-medium'
+                              'rounded-md px-4 py-2 text-l font-medium'
                             )}
                             aria-current={item.current ? 'page' : undefined}
                           >
@@ -60,14 +55,7 @@ const Navbar = ( {navigation} ) => (
                   </div>
                   <div className="hidden md:block">
                     <div className="ml-4 flex items-center md:ml-6">
-                      <Link 
-                        href="/pools"
-                        className="m-4 p-0.5 rounded-full font-rubik bg-gradient-to-r from-ajna-special-from to-ajna-special-to"
-                      >
-                        <span className="block px-8 py-4 font-semibold rounded-full text-white text-xl bg-black hover:bg-transparent">
-                          Launch App &gt;
-                        </span>
-                      </Link>
+                      <DropDownButton />
                     </div>
                   </div>
                   <div className="-mr-2 flex md:hidden">
@@ -100,20 +88,6 @@ const Navbar = ( {navigation} ) => (
                       {item.name}
                     </Disclosure.Button>
                   ))}
-                </div>
-                <div className="border-t border-gray-700 pt-4 pb-3">
-                  <div className="mt-3 space-y-1 px-2">
-                    {userNavigation.map((item) => (
-                      <Disclosure.Button
-                        key={item.name}
-                        as="a"
-                        href={item.href}
-                        className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
-                      >
-                        {item.name}
-                      </Disclosure.Button>
-                    ))}
-                  </div>
                 </div>
               </Disclosure.Panel>
             </>

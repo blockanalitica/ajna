@@ -19,7 +19,6 @@ const Coins = () => {
         <AnalyticSection />
         <MiniGraphSection />
         <Subtitle subtitle="Transactions" />
-        
         <Footer />
       </div>
     );
