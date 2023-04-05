@@ -29,7 +29,7 @@ const DropDownButton = () => {
     className="absolute rounded-lg right-0 z-10 w-56 mt-4 origin-top-right ">
         <ul className="py-2 text-sm rounded-xl shadow-xl shadow-black text-white bg-gray-22 " >
           { NetworkOptions.map((item, key) => (
-            <li>
+            <li key={key}>
               <Link 
               href={item.href} 
               className="block rounded-lg px-4 py-2 hover:text-gray-7"
