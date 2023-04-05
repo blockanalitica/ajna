@@ -15,7 +15,7 @@ const Navbar = ( {navigation} ) => (
           {({ open }) => (
             <>
               <div className="mx-auto max-w-9xl px-4 sm:px-6 lg:px-8">
-                <div className="flex h-32 items-center justify-between">
+                <div className="flex mt-8 items-center justify-between">
                   <div className="flex items-center">
                     <div className="flex-shrink-0">
                       <Link
@@ -90,9 +90,11 @@ const Navbar = ( {navigation} ) => (
                   ))}
                 </div>
               </Disclosure.Panel>
-              <div className="flex justify-end space-y-1 px-2">
+
+              <div className="flex justify-end space-y-1 px-2 md:hidden">
                 <DropDownButton />
               </div>
+              
             </>
           )}
         </Disclosure>
