@@ -1,15 +1,10 @@
-import PrimaryButton from '@/components/button/PrimaryButton';
-import MiningCard from '@/components/card/MiningCard';
-import TagComp from '@/components/tags/TagComp';
-import Link from 'next/link';
+const TransactionsSection = () => {
+  const { poolId } = useParams();
+  const { data: pool } = usePool(poolId);
+  const { data: transactions } = usePoolTransactions(poolId);
 
-const PoolsSection = () => (
+  return (
     <>
-  <section className="mx-auto max-w-9xl px-4 sm:px-6 lg:px-8">
-      <h1 className=" py-5 mb-4 text-xl md:text-1xl xl:text-2xl">
-        Top Pools 
-      </h1>
-      
       <div className="relative overflow-x-auto border rounded-2xl border-gray-20 py-5 px-5">
         <div className='relative overflow-x-auto shadow-md rounded-2xl'>
           <table className="table-auto w-full text-left">
@@ -42,17 +37,9 @@ const PoolsSection = () => (
 
         </div>
       </div>
-
-
-      <h1 className=" py-5 mb-4 text-xl md:text-1xl xl:text-2xl">
-        Top Pools 
-      </h1>
-      <div className=" grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
-        <MiningCard />
-        <MiningCard />
-      </div>
-</section>
     </>
-);
+  );
+}
 
-export default PoolsSection;
+
+export default TransactionsSection;

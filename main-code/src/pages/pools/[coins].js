@@ -1,5 +1,5 @@
 import { Footer, Navbar } from "@/components";
-import { AnalyticSection, GraphSection, SearchSection } from '@/sections';
+import { AnalyticSection, GraphSection, SearchSection, MiniGraphSection, Subtitle } from '@/sections';
 
 
 const navigation_app = [
@@ -15,7 +15,11 @@ const Coins = () => {
         <Navbar navigation={navigation_app}/>
         <SearchSection showMiddleButton={false} />
         <GraphSection />
+        <Subtitle subtitle="Info" />
         <AnalyticSection />
+        <MiniGraphSection />
+        <Subtitle subtitle="Transactions" />
+        
         <Footer />
       </div>
     );
