@@ -1,9 +1,9 @@
-import { Fragment } from 'react'
-import { Disclosure, } from '@headlessui/react'
+import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import Image from 'next/image'
 import DropDownButton from './button/DropDownButton'
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -36,7 +36,7 @@ const Navbar = ( {navigation} ) => (
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4">
                         {navigation.map((item) => (
-                          <a
+                          <Link
                             key={item.name}
                             href={item.href}
                             className={classNames(
@@ -48,7 +48,7 @@ const Navbar = ( {navigation} ) => (
                             aria-current={item.current ? 'page' : undefined}
                           >
                             {item.name}
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     </div>
@@ -77,7 +77,7 @@ const Navbar = ( {navigation} ) => (
                   {navigation.map((item) => (
                     <Disclosure.Button
                       key={item.name}
-                      as="a"
+                      as="Link"
                       href={item.href}
                       className={classNames(
                         item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
@@ -90,6 +90,9 @@ const Navbar = ( {navigation} ) => (
                   ))}
                 </div>
               </Disclosure.Panel>
+              <div className="flex justify-end space-y-1 px-2">
+                <DropDownButton />
+              </div>
             </>
           )}
         </Disclosure>

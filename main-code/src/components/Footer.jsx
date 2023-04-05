@@ -1,3 +1,5 @@
+import Image from 'next/image';
+import Link from 'next/link';
 import styles from '../styles';
 
 const Footer = () => (
@@ -6,10 +8,17 @@ const Footer = () => (
     <div className="mx-auto w-full max-w-screen-xl px-4 py-10 lg:py-20">
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
-              <a href="https://flowbite.com/" className="flex items-center">
-                  <img src="https://flowbite.com/docs/images/logo.svg" className="h-8 mr-3" alt="FlowBite Logo" />
-                  <span className="self-center text-2xl font-semibold whitespace-nowrap ">AJNA</span>
-              </a>
+              <Link 
+                href="/" 
+                className="flex items-center">
+                  <Image 
+                    href="/assets/Images/Logos/AJNA-logo-white-circle.svg" 
+                    alt="Ajna Logo"
+                    src="/assets/Images/Logos/AJNA-logo-white-circle.svg"
+                    width={150}
+                    height={50}
+                   />
+              </Link>
               <p className="mt-2 text-sm text-gray-8">Borrow and lend against any asset in your entire portfolio</p>
           </div>
           <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-4">

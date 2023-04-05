@@ -27,7 +27,7 @@ const DropDownButton = () => {
     <div 
     style={{ display: open?"block":"none" }}
     className="absolute rounded-lg right-0 z-10 w-56 mt-4 origin-top-right ">
-        <ul className="py-2 text-sm rounded-xl text-white bg-gray-22 " >
+        <ul className="py-2 text-sm rounded-xl shadow-xl shadow-black text-white bg-gray-22 " >
           { NetworkOptions.map((item, key) => (
             <li>
               <Link 
