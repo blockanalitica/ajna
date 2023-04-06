@@ -1,12 +1,12 @@
 import PrimaryButton from "../button/PrimaryButton";
+import CryptoIcon from "../icon/CryptoIcon";
 import TagComp from "../tags/TagComp";
 
 const MiningCard = () => (
 <div className=" m-4 p-8 bg-gray-23 flex flex-col items-center rounded-3xl shadow dark:bg-gray-800 dark:border-gray-700">
     <div className="flex justify-between items-center py-3">
         <div className=" flex justify-normal items-center px-5">
-            <div className="rounded-full z-30 p-5 bg-white" />
-            <div className="rounded-full p-5 bg-gray-12" />
+            <CryptoIcon name="DAI" size="50"/>
         </div>
         <h5 className="text-2xl font-syncopate font-bold tracking-tight text-gray-900 dark:text-white">
             ETH / DAI
