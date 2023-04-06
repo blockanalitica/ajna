@@ -1,6 +1,7 @@
+import { joinClassNames } from "@/utils/helperFunc";
 import React, { useState } from "react";
 
-function SwitchDisplays({ displayOptions, active, setActive }) {
+function SwitchDisplays({ displayOptions, active, setActive, className="px-3 py-1" }) {
     /*
     const [active, setActive] = useState(displayOptions[0].key);
 
@@ -14,13 +15,13 @@ function SwitchDisplays({ displayOptions, active, setActive }) {
 
   return (
     <div className="flex items-center">
-      <ul className="flex  bg-gray-18 rounded-xl " >
+      <ul className="flex bg-gray-23 rounded-xl" >
         {displayOptions.map((option) => (
           <li
             key={option.key}
-            className= {option.key === active ? 
-                "cursor-pointer bg-primary-8 rounded-xl px-3 py-1 text-center" : 
-                "cursor-pointer px-3 py-1 mr-2 text-center"}
+            className= {joinClassNames(option.key === active ? 
+                "cursor-pointer bg-primary-8 rounded-xl text-center" : 
+                "cursor-pointer mr-2 text-center", "cursor-pointer", className)}
             onClick={() => setActive(option.key)}
           >
             {option.value}

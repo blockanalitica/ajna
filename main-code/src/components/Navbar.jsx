@@ -7,7 +7,7 @@ import { joinClassNames } from '@/utils/helperFunc' // This is a custom function
 
 const Navbar = ( {navigation} ) => (
   <>
-      <div className="min-h-full">
+      <div className="min-h-full mt-10">
         <Disclosure as="nav" className="">
           {({ open }) => (
             <>

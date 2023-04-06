@@ -13,7 +13,7 @@ const analytics = [
   
 
 const AnalyticSection = () => (
-  <section className="mx-auto max-w-9xl py-2 px-4 sm:px-6 lg:px-8">
+  <section className="mx-auto max-w-9xl py-10 px-4 sm:px-6 lg:px-8">
       <div className=" grid grid-cols-1 sm:grid-cols-1 md:grid-cols-5 lg:grid-cols-5 xl:grid-cols-5 gap-7">
         {analytics.map((item, key) => (
             <AnalyticCard key={key} title={item.title} subtitle={item.subtitle} />
