@@ -90,13 +90,13 @@ const Footer = () => (
       <div className="sm:flex sm:items-center sm:justify-between">
           <div>
             <span className="text-sm text-gray-13 sm:text-center ">
-              <a href="https://flowbite.com/" className="hover:underline">
+              <Link href="/" alt="Ajna" className="px-2 hover:underline">
               $AJNA 
-              </a>
+              </Link>
               |  © 2023 Ajna Finance. All rights reserved.  |  Made with love by  
               
             </span>
-            <span className="text-purple-4">
+            <span className="px-2 text-purple-4">
             Ajna Labs LLC 
             </span>
           </div>
