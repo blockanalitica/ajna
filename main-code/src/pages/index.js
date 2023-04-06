@@ -2,6 +2,7 @@ import { FAQSection, Hero } from '../sections';
 
 const Home = () => (
   <>
+
     <Hero />
     <FAQSection />
   </>

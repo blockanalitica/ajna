@@ -1,5 +1,6 @@
 import Navbar from './Navbar'
 import Footer from './Footer'
+import Background from './Background'
 
 const navigation_app = [
     { name: 'Pools', href: '/pools', current: false },
@@ -10,13 +11,12 @@ const navigation_app = [
 
 export default function Layout({ children }) {
   return (
-    <div className="bg-black overflow-hidden">
+    <Background>
       <Navbar navigation={navigation_app}/>
       <div className="py-10">
-      <main>{children}</main>
-
+        <main>{children}</main>
       </div>
       <Footer />
-    </div>
+    </Background>
   )
 }

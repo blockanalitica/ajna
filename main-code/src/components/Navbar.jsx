@@ -11,7 +11,7 @@ function classNames(...classes) {
 const Navbar = ( {navigation} ) => (
   <>
       <div className="min-h-full">
-        <Disclosure as="nav" className="bg-black">
+        <Disclosure as="nav" className="">
           {({ open }) => (
             <>
               <div className="mx-auto max-w-9xl px-4 sm:px-6 lg:px-8">
