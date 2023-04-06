@@ -19,6 +19,10 @@ module.exports = {
       maxWidth: {
         '9xl': '80rem',
       },
+      gridTemplateColumns: {
+        // Simple first column bigger, other same size smaller
+        'first-big': '3fr repeat(3, minmax(0, 1fr))',
+      },
     },
     colors: {
       /* basic colors */

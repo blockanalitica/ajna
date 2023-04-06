@@ -3,11 +3,8 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import Image from 'next/image'
 import DropDownButton from './button/DropDownButton'
+import { joinClassNames } from '@/utils/helperFunc' // This is a custom function to join class names
 
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
 const Navbar = ( {navigation} ) => (
   <>
       <div className="min-h-full">
@@ -39,7 +36,7 @@ const Navbar = ( {navigation} ) => (
                           <Link
                             key={item.name}
                             href={item.href}
-                            className={classNames(
+                            className={joinClassNames(
                               item.current
                                 ? ' text-ajna-aqua'
                                 : 'text-gray-300 hover:bg-gray-700 hover:text-white',
@@ -78,7 +75,7 @@ const Navbar = ( {navigation} ) => (
                     <Link
                       key={item.name}
                       href={item.href}
-                      className={classNames(
+                      className={joinClassNames(
                         item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                         'block rounded-md px-3 py-2 text-base font-medium'
                       )}
