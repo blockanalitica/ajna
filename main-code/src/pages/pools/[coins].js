@@ -1,16 +1,22 @@
-import { AnalyticSection, GraphSection, SearchSection, MiniGraphSection, Subtitle } from '@/sections';
+import {
+  AnalyticSection,
+  GraphSection,
+  MiniGraphSection,
+  SearchSection,
+  Subtitle,
+} from "@/sections";
 
 const Coins = () => {
-    return (
-      <>
-        <SearchSection showMiddleButton={false} />
-        <GraphSection />
-        <Subtitle subtitle="Info" />
-        <AnalyticSection />
-        <MiniGraphSection />
-        <Subtitle subtitle="Transactions" />
-      </>
-    );
+  return (
+    <>
+      <SearchSection showTimePicker={false} />
+      <GraphSection />
+      <Subtitle subtitle="Info" />
+      <AnalyticSection />
+      <MiniGraphSection />
+      <Subtitle subtitle="Transactions" />
+    </>
+  );
 };
 
 export default Coins;

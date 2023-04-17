@@ -2,7 +2,7 @@ import SearchInput from "@/components/SearchInput/SearchInput";
 import SwitchDisplays from "@/components/switch/DisplaySwitch";
 import { useState } from "react";
 
-const SearchSection = ( {showMiddleButton = true}) => {
+const SearchSection = ( {showTimePicker = true}) => {
     const displayOptions = [
         { key: "24H", value: "24H" },
         { key: "7D", value: "7D" },
@@ -21,7 +21,7 @@ const SearchSection = ( {showMiddleButton = true}) => {
              <SearchInput />
 
         </div>
-         {showMiddleButton && 
+         {showTimePicker && 
         <div>
             <SwitchDisplays displayOptions={displayOptions} active={curentlyDisplayed} setActive={setCurrentDisplay} 
             className="px-6 py-2"
