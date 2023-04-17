@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import styles from '../styles';
 
 const Footer = () => (
 
@@ -9,19 +8,20 @@ const Footer = () => (
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
               <Link 
-                href="/" 
+                href="https://www.blockanalitica.com" 
+                target="_blank"
                 className="flex items-center">
                   <Image 
-                    href="/assets/Images/Logos/AJNA-logo-white-circle.svg" 
+                    
                     alt="Ajna Logo"
-                    src="/assets/Images/Logos/AJNA-logo-white-circle.svg"
+                    src="/assets/Images/Logos/BlockAnalitica-Logo-white.svg"
                     width={150}
                     height={50}
                    />
               </Link>
-              <p className="mt-2 text-sm text-gray-8">Borrow and lend against any asset in your entire portfolio</p>
+              
           </div>
-          <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-4">
+          {/* <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-4">
             <div>
               <h2 className="mb-6 text-sm font-semibold font-syncopate text-ajna-lavender uppercase ">HOME</h2>
               <ul className="text-rubik  font-medium">
@@ -84,7 +84,7 @@ const Footer = () => (
                     </li>
                 </ul>
             </div>
-          </div>
+          </div> */}
       </div>
       <hr className="my-6 border-gray-200 sm:mx-auto  lg:my-8" />
       <div className="sm:flex sm:items-center sm:justify-between">
@@ -93,11 +93,11 @@ const Footer = () => (
               <Link href="/" alt="Ajna" className="px-2 hover:underline">
               $AJNA 
               </Link>
-              |  © 2023 Ajna Finance. All rights reserved.  |  Made with love by  
+              |  © 2023 BlockAnalitica. All rights reserved.  |  Made with love by  
               
             </span>
-            <span className="px-2 text-purple-4">
-            Ajna Labs LLC 
+            <span className="px-2 text-white">
+            BA Labs LLC
             </span>
           </div>
           <div className="flex mt-4 space-x-6 sm:justify-center sm:mt-0">

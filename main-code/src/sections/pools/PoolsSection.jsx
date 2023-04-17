@@ -1,10 +1,8 @@
-import PrimaryButton from '@/components/button/PrimaryButton';
 import MiningCard from '@/components/card/MiningCard';
 import TableCardViewIcon from '@/components/icon/TableCardViewIcon';
 import GeneralTable from '@/components/table/GeneralTable';
 import TagComp from '@/components/tags/TagComp';
-import Link from 'next/link';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 
 const PoolsSection = () => {
