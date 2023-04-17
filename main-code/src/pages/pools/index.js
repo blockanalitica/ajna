@@ -1,4 +1,9 @@
-import { AnalyticSection, PoolsSection, SearchSection } from "@/sections";
+import {
+  AnalyticSection,
+  PoolsSection,
+  SearchSection,
+  TokensSection,
+} from "@/sections";
 
 const Pools = () => {
   return (
@@ -6,7 +11,7 @@ const Pools = () => {
       <SearchSection />
       <AnalyticSection />
       <PoolsSection />
-      <PoolsSection />
+      <TokensSection />
     </>
   );
 };

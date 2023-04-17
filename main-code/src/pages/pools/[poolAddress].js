@@ -6,10 +6,10 @@ import {
   Subtitle,
 } from "@/sections";
 
-const Coins = () => {
+const Pool = () => {
   return (
     <>
-      <SearchSection showTimePicker={false} />
+      <SearchSection showTimePicker={true} />
       <GraphSection />
       <Subtitle subtitle="Info" />
       <AnalyticSection />
@@ -19,4 +19,4 @@ const Coins = () => {
   );
 };
 
-export default Coins;
+export default Pool;

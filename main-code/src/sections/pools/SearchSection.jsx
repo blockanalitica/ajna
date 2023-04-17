@@ -17,7 +17,7 @@ const SearchSection = ( {showTimePicker = true}) => {
         <div className="flex flex-row">
            Home &gt; Pools 
         </div>
-        <div>
+        <div className="ml-40">
              <SearchInput />
 
         </div>
