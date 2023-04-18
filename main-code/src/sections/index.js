@@ -1,12 +1,13 @@
-import Hero from './Hero';
-import FAQSection from './FAQSection';
-import PoolsSection from './pools/PoolsSection';
-import AnalyticSection from './pools/AnalyticSection';
-import SearchSection from './pools/SearchSection';
-import GraphSection from './pools/GraphSection';
-import MiniGraphSection from './pools/MiniGraphSection';
-import Subtitle from './pools/Subtitle';
-import TransactionsSection from './pools/TransactionsSection';
+import FAQSection from "./FAQSection";
+import Hero from "./Hero";
+import AnalyticSection from "./pools/AnalyticSection";
+import GraphSection from "./pools/GraphSection";
+import MiniGraphSection from "./pools/MiniGraphSection";
+import PoolsSection from "./pools/PoolsSection";
+import SearchSection from "./pools/SearchSection";
+import Subtitle from "./pools/Subtitle";
+import TokensSection from "./pools/TokensSection";
+import TransactionsSection from "./pools/TransactionsSection";
 
 export {
   AnalyticSection,
@@ -18,4 +19,5 @@ export {
   MiniGraphSection,
   Subtitle,
   TransactionsSection,
+  TokensSection,
 };

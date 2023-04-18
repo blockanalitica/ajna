@@ -1,15 +1,14 @@
-import PrimaryButton from '@/components/button/PrimaryButton';
 import MiningCard from '@/components/card/MiningCard';
 import TableCardViewIcon from '@/components/icon/TableCardViewIcon';
 import GeneralTable from '@/components/table/GeneralTable';
 import TagComp from '@/components/tags/TagComp';
-import Link from 'next/link';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 
 const PoolsSection = () => {
   const TableHeader = [
-    { title: "# Collateral token / Quote Token" },
+    { title: "#" },
+    { title: "Collateral token / Quote Token" },
     { title: "APR ?" },
     { title: "Liquidity" },
     { title: "AJNA Burned" },
@@ -17,20 +16,20 @@ const PoolsSection = () => {
 
   const TableData = [
     {
-      href: "/",
-      data: ["1 DAI / USDC", <TagComp className="mx-4 my-2" title="4.25%"/>, "1.18M USD", "1,273 AJNA"],
+      href: "/pools/0x1",
+      data: ["1",  "DAI / USDC", <TagComp className="mx-4 my-2" title="4.25%"/>, "1.18M USD", "1,273 AJNA"],
     },
     {
-      href: "/",
-      data: ["1 DAI / USDC", <TagComp className="mx-4 my-2" title="4.25%"/>, "1.18M USD", "1,273 AJNA"],
+      href: "/pools/0x2",
+      data: ["1", "DAI / USDC", <TagComp className="mx-4 my-2" title="4.25%"/>, "1.18M USD", "1,273 AJNA"],
     },
     {
-      href: "/",
-      data: ["1 DAI / USDC", <TagComp className="mx-4 my-2" title="4.25%"/>, "1.18M USD", "1,273 AJNA"],
+      href: "/pools/0x3",
+      data: ["1", "DAI / USDC", <TagComp className="mx-4 my-2" title="4.25%"/>, "1.18M USD", "1,273 AJNA"],
     },
     {
-      href: "/",
-      data: ["1 DAI / USDC", <TagComp className="mx-4 my-2" title="4.25%"/>, "1.18M USD", "1,273 AJNA"],
+      href: "/pools/0x4",
+      data: ["1", "DAI / USDC", <TagComp className="mx-4 my-2" title="4.25%"/>, "1.18M USD", "1,273 AJNA"],
     }
   ]
 
@@ -51,7 +50,7 @@ const PoolsSection = () => {
     </div>
     <div>
       {showFirstDiv ? (
-          <GeneralTable tableData={TableData} tableHeader={TableHeader} colClass="grid-cols-first-big" />
+          <GeneralTable tableData={TableData} tableHeader={TableHeader} colClass="grid-cols-5" />
       ) : (
         <div className=" grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
           <MiningCard />
