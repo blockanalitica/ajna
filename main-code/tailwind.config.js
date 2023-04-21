@@ -19,6 +19,9 @@ module.exports = {
       gridTemplateColumns: {
         // Simple first column bigger, other same size smaller
         "first-big": "3fr repeat(3, minmax(0, 1fr))",
+        "table-5": ".2fr 3fr repeat(3, 1.5fr)",
+        "table-6": ".2fr 3fr 2fr repeat(3, 1fr)",
+        "table-7": ".2fr 3fr 1fr 1fr repeat(3, 1fr)",
       },
     },
     colors: {
