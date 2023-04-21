@@ -3,15 +3,15 @@ import React, { useRef, useState } from "react";
 import { UncontrolledTooltip } from "reactstrap";
 import { ReactComponent as cbethIcon } from "../../images/crypto/color/cbeth.svg";
 import { ReactComponent as compIcon } from "../../images/crypto/color/comp.svg";
+import { ReactComponent as daiIcon } from "../../images/crypto/color/dai.svg";
 import { ReactComponent as ethIcon } from "../../images/crypto/color/eth.svg";
 import { ReactComponent as linkIcon } from "../../images/crypto/color/link.svg";
 import { ReactComponent as stEthIcon } from "../../images/crypto/color/steth.svg";
 import { ReactComponent as uniIcon } from "../../images/crypto/color/uni.svg";
 import { ReactComponent as usdcIcon } from "../../images/crypto/color/usdc.svg";
 import { ReactComponent as wbtcIcon } from "../../images/crypto/color/wbtc.svg";
-import { ReactComponent as daiIcon } from "../../images/crypto/color/dai.svg";
-import { ReactComponent as etherscanIcon } from "../../images/etherscan.svg";
 import { ReactComponent as debankIcon } from "../../images/debank.svg";
+import { ReactComponent as etherscanIcon } from "../../images/etherscan.svg";
 import { ReactComponent as zapperIcon } from "../../images/zapper.svg";
 
 function CryptoIcon(props) {
@@ -28,6 +28,7 @@ function CryptoIcon(props) {
 
   const mapping = {
     DAI: daiIcon,
+    TDAI: daiIcon,
     sDAI: daiIcon,
     COMP: compIcon,
     ETH: ethIcon,
@@ -36,6 +37,7 @@ function CryptoIcon(props) {
     USDC: usdcIcon,
     WBTC: wbtcIcon,
     WETH: ethIcon,
+    TWETH: ethIcon,
     wstETH: stEthIcon,
     cbETH: cbethIcon,
     etherscan: etherscanIcon,
@@ -65,7 +67,7 @@ CryptoIcon.propTypes = {
 };
 
 CryptoIcon.defaultProps = {
-  size: "1rem",
+  size: 15,
 };
 
 export default CryptoIcon;

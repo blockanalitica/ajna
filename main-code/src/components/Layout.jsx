@@ -3,7 +3,7 @@ import Navbar from './Navbar'
 
 const navigation_app = [
     { name: 'Pools', href: '/pools', current: false },
-    { name: 'Tokens', href: '#', current: false },
+    { name: 'Tokens', href: '/tokens', current: false },
     { name: 'Auctions', href: '#', current: false },
     { name: 'Grants', href: '#', current: false },
   ]

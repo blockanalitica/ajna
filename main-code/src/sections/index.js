@@ -1,23 +1,29 @@
 import FAQSection from "./FAQSection";
 import Hero from "./Hero";
-import AnalyticSection from "./pools/AnalyticSection";
-import GraphSection from "./pools/GraphSection";
-import MiniGraphSection from "./pools/MiniGraphSection";
-import PoolsSection from "./pools/PoolsSection";
-import SearchSection from "./pools/SearchSection";
-import Subtitle from "./pools/Subtitle";
-import TokensSection from "./pools/TokensSection";
-import TransactionsSection from "./pools/TransactionsSection";
+import AnalyticSection from "./homepage/AnalyticSection";
+import GraphSection from "./homepage/GraphSection";
+import MiniGraphSection from "./homepage/MiniGraphSection";
+import SearchSection from "./homepage/SearchSection";
+import Subtitle from "./homepage/Subtitle";
+import TopPoolsSection from "./homepage/TopPoolsSection";
+import TopTokensSection from "./homepage/TopTokensSection";
+import TransactionsSection from "./homepage/TransactionsSection";
+import Pools from "./pools/Pools";
+import Token from "./token/Token";
+import Tokens from "./tokens/Tokens";
 
 export {
   AnalyticSection,
   GraphSection,
   Hero,
-  PoolsSection,
+  TopPoolsSection,
   SearchSection,
   FAQSection,
   MiniGraphSection,
   Subtitle,
   TransactionsSection,
-  TokensSection,
+  TopTokensSection,
+  Tokens,
+  Pools,
+  Token,
 };

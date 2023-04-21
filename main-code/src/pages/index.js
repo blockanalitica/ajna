@@ -1,11 +1,19 @@
-import { FAQSection, Hero } from '../sections';
+import {
+  AnalyticSection,
+  SearchSection,
+  TopPoolsSection,
+  TopTokensSection,
+} from "@/sections";
 
-const Home = () => (
-  <>
-
-    <Hero />
-    <FAQSection />
-  </>
-);
+const Home = () => {
+  return (
+    <>
+      <SearchSection />
+      <AnalyticSection />
+      <TopPoolsSection />
+      <TopTokensSection />
+    </>
+  );
+};
 
 export default Home;

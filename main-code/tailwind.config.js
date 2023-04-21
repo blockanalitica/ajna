@@ -22,6 +22,7 @@ module.exports = {
         "table-5": ".2fr 3fr repeat(3, 1.5fr)",
         "table-6": ".2fr 3fr 2fr repeat(3, 1fr)",
         "table-7": ".2fr 3fr 1fr 1fr repeat(3, 1fr)",
+        "table-8": ".1fr 2fr .8fr .8fr .8fr repeat(3, .8fr)",
       },
     },
     colors: {
