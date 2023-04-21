@@ -31,6 +31,7 @@ const CryptoIcon = ({ name, size, address, ...rest }) => {
 
   const mapping = {
     DAI: daiIcon,
+    TDAI: daiIcon,
     sDAI: daiIcon,
     COMP: compIcon,
     ETH: ethIcon,
@@ -39,6 +40,7 @@ const CryptoIcon = ({ name, size, address, ...rest }) => {
     USDC: usdcIcon,
     WBTC: wbtcIcon,
     WETH: ethIcon,
+    TWETH: ethIcon,
     wstETH: stEthIcon,
     cbETH: cbethIcon,
     AJNA: ajnaIcon,

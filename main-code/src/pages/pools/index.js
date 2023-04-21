@@ -1,19 +1,13 @@
-import {
-  AnalyticSection,
-  PoolsSection,
-  SearchSection,
-  TokensSection,
-} from "@/sections";
+import { Pools, SearchSection } from "@/sections";
 
-const Pools = () => {
+const PoolsPage = () => {
   return (
     <>
       <SearchSection />
-      <AnalyticSection />
-      <PoolsSection />
-      <TokensSection />
+      {/* <AnalyticSection /> */}
+      <Pools />
     </>
   );
 };
 
-export default Pools;
+export default PoolsPage;
