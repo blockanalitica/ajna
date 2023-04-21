@@ -2,9 +2,12 @@ import Link from "next/link";
 import PrimaryButton from "../button/PrimaryButton";
 import CryptoIcon from "../icon/CryptoIcon";
 import TagComp from "../tags/TagComp";
+import CardBackground from "./CardBackgroud";
 
 const MiningCard = () => (
-<div className=" m-4 px-2 py-2 bg-gray-23 flex flex-col rounded-3xl shadow dark:bg-gray-800 dark:border-gray-700">
+<div className="m-auto">
+
+<CardBackground>
 <div className="flex justify-between items-center py-3">
   <div className="flex justify-center items-center px-5">
     <CryptoIcon name="DAI" size="40"/>
@@ -60,6 +63,7 @@ const MiningCard = () => (
     <div className="flex-auto py-2 text-center">
         <PrimaryButton title="Pool Details ->" location="/pools/ETH-DAI" />
     </div>
+</CardBackground>
 </div>
 )
 
