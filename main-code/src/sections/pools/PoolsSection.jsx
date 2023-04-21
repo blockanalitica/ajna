@@ -1,38 +1,10 @@
 import MiningCard from '@/components/card/MiningCard';
 import TableCardViewIcon from '@/components/icon/TableCardViewIcon';
-import GeneralTable from '@/components/table/GeneralTable';
-import TagComp from '@/components/tags/TagComp';
 import { useState } from 'react';
+import PoolsTable from './PoolsTable';
 
 
 const PoolsSection = () => {
-  const TableHeader = [
-    { title: "#" },
-    { title: "Collateral token / Quote Token" },
-    { title: "APR ?" },
-    { title: "Liquidity" },
-    { title: "AJNA Burned" },
-  ];
-
-  const TableData = [
-    {
-      href: "/pools/0x1",
-      data: ["1",  "DAI / USDC", <TagComp className="mx-4 my-2" title="4.25%"/>, "1.18M USD", "1,273 AJNA"],
-    },
-    {
-      href: "/pools/0x2",
-      data: ["1", "DAI / USDC", <TagComp className="mx-4 my-2" title="4.25%"/>, "1.18M USD", "1,273 AJNA"],
-    },
-    {
-      href: "/pools/0x3",
-      data: ["1", "DAI / USDC", <TagComp className="mx-4 my-2" title="4.25%"/>, "1.18M USD", "1,273 AJNA"],
-    },
-    {
-      href: "/pools/0x4",
-      data: ["1", "DAI / USDC", <TagComp className="mx-4 my-2" title="4.25%"/>, "1.18M USD", "1,273 AJNA"],
-    }
-  ]
-
   const [showFirstDiv, setShowFirstDiv] = useState(true);
 
   const toggleDivs = () => {
@@ -50,7 +22,7 @@ const PoolsSection = () => {
     </div>
     <div>
       {showFirstDiv ? (
-          <GeneralTable tableData={TableData} tableHeader={TableHeader} colClass="grid-cols-5" />
+          <PoolsTable />
       ) : (
         <div className=" grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
           <MiningCard />
@@ -61,7 +33,6 @@ const PoolsSection = () => {
         </div>
       )}
     </div>
-
 </section>
     </>
 )};
