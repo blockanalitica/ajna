@@ -1,6 +1,6 @@
 import Link from "next/link";
 import PrimaryButton from "../button/PrimaryButton";
-import CryptoIcon from "../icon/CryptoIcon";
+import TwoOverlayingCryptoIcons from "../icon/TwoOverlayingCryptoIcons";
 import TagComp from "../tags/TagComp";
 import CardBackground from "./CardBackgroud";
 
@@ -10,8 +10,7 @@ const MiningCard = () => (
 <CardBackground>
 <div className="flex justify-between items-center py-3">
   <div className="flex justify-center items-center px-5">
-    <CryptoIcon name="DAI" size="40"/>
-    <CryptoIcon name="ETH" size="40"/>
+    <TwoOverlayingCryptoIcons icon1="ETH" icon2="DAI" size="40" />
   </div>
   <h5 className="text-xl font-syncopate font-bold tracking-tight text-gray-900 dark:text-white">
     ETH / DAI
