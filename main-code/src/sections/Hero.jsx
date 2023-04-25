@@ -1,5 +1,6 @@
 import PrimaryButton from '@/components/button/PrimaryButton';
 import MiningCard from '@/components/card/MiningCard';
+import SearchBar from '@/components/SearchInput/Search';
 
 const Hero = () => (
     <>
@@ -29,7 +30,10 @@ const Hero = () => (
       </div>
       <div className=" lg:col-span-5 px-10 lg:flex">
         <MiningCard />
-      </div>                
+      </div> 
+    </div>
+    <div className="py-10">
+      <SearchBar />
     </div>
 </section>
     </>
