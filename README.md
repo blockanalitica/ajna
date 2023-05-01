@@ -2,8 +2,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 ```bash
-yarn install
-yarn dev
+npm install
+npm run dev
 ```
 
 ### Check figma files
