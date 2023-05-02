@@ -9,7 +9,7 @@ import { joinClassNames } from "@/utils/helperFunc"; // This is a custom functio
 import Link from "next/link";
 
 const PoolsTable = () => {
-  const { data, error, isLoading } = useFetch("/v1/ethereum/pools/");
+  const { data, error, isLoading } = useFetch("/pools/");
 
   if (error) {
     return <p>Failed to load Data</p>;
