@@ -7,7 +7,7 @@ import { joinClassNames } from "@/utils/helperFunc"; // This is a custom functio
 import Link from "next/link";
 
 const TokenPoolsTable = ({address}) => {
-  const { data, error, isLoading } = useFetch(`/v1/ethereum/tokens/${address}/pools/`);
+  const { data, error, isLoading } = useFetch(`/tokens/${address}/pools/`);
   console.log(data)
 
   if (error) {
