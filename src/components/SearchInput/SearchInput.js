@@ -31,5 +31,4 @@ function SearchInput() {
     </form>
   );
 }
-
 export default SearchInput;
