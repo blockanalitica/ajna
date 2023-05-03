@@ -1,3 +1,4 @@
+
 import PoolsOptions from './PoolsOptions';
 import PoolsTable from './PoolsTable';
 import MiningCard from '@/components/card/MiningCard';
@@ -18,6 +19,7 @@ const PoolsSection = () => {
       <h1 className=" py-9 text-xl md:text-1xl xl:text-2xl">
         Top Pools 
       </h1>
+      <PoolsOptions />
       <button onClick={toggleDivs}><TableCardViewIcon cardView={ showFirstDiv } /></button>
     </div>
     <div>
