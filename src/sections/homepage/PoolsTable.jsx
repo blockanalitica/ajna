@@ -56,7 +56,7 @@ const PoolsTable = () => {
               </div>
 
               <div className="bg-gray-100 flex justify-end items-end font-bold p-4">
-                Ajna Burned?
+                Ajna Burned
               </div>
             </div>
             {results.map((item, index) => (
@@ -100,34 +100,35 @@ const PoolsTable = () => {
                         decimals={2}
                         compact
                       />
-                      <ValueChange value={100} decimals={2} compact />
+                      <ValueChange value={0} decimals={2} compact dashIfZero/>
                     </div>
                   </div>
                   <div className="flex justify-end items-end p-4">
                     <div className="flex flex-col items-end">
                       <Value value={item.pool_size} decimals={2} compact />
-                      <ValueChange value={100} decimals={2} compact />
+                      <ValueChange value={0} decimals={2} compact dashIfZero/>
                     </div>
                   </div>
                   <div className="flex justify-end items-end p-4">
                     <div className="flex flex-col items-end">
                       <Value value={item.current_debt} decimals={2} compact />
-                      <ValueChange value={100} decimals={2} compact />
+                      <ValueChange value={0} decimals={2} compact dashIfZero/>
                     </div>
                   </div>
                   <div className="flex justify-end items-end p-4">
                     <div className="flex flex-col items-end">
                       <Value
-                        value={item.pool_size}
+                        value={item.tvl}
                         decimals={2}
                         prefix={"$"}
                         compact
                       />
                       <ValueChange
-                        value={100}
+                        value={0}
                         decimals={2}
                         prefix={"$"}
                         compact
+                        dashIfZero
                       />
                     </div>
                   </div>
@@ -148,6 +149,12 @@ const PoolsTable = () => {
                         value={item.total_ajna_burned}
                         decimals={2}
                         suffix={" AJNA"}
+                      />
+                       <ValueChange
+                        value={0}
+                        decimals={2}
+                        compact
+                        dashIfZero
                       />
                     </div>
                   </div>
