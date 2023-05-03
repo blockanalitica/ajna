@@ -3,7 +3,6 @@ import Value from "@/components/value/Value";
 import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classnames from "classnames";
-import { uniqueId } from "lodash";
 import PropTypes from "prop-types";
 import {
   compact as compactNumber,
@@ -23,7 +22,6 @@ function ValueChange(props) {
     compact,
     compact100k,
     icon,
-    tooltipValue,
     small,
     big,
     iconSize,
@@ -40,8 +38,6 @@ function ValueChange(props) {
   }
 
   const rawValue = value;
-
-  const id = uniqueId("valuechange_tooltip_");
 
   let spanClass = "";
   let iconPlace = "";
@@ -89,7 +85,6 @@ function ValueChange(props) {
   value = Math.abs(value);
   const theValue = value;
   const showCompactNum = compact100k === true && value >= 100000;
-  let tooltipBox = null;
 
   const normalValue = formatToDecimals(value, decimals);
   if (hideIfZero && normalValue === "0") {
@@ -102,15 +97,6 @@ function ValueChange(props) {
     value = normalValue;
   }
 
-  // Override existing tooltipBox (if it's set) if tooltipValue is set
-  if (tooltipValue) {
-    tooltipBox = (
-      <UncontrolledTooltip placement="bottom" target={id}>
-        <Value value={tooltipValue} prefix={prefix} suffix={suffix} />
-      </UncontrolledTooltip>
-    );
-  }
-
   const { prefix: prefixPrefix, value: newValue } = resolveSmallNumbers(
     theValue,
     decimals
@@ -121,7 +107,7 @@ function ValueChange(props) {
 
   return (
     <>
-      <span className={classNames} id={id} {...rest}>
+      <span className={classNames} {...rest}>
         {iconPlace} {prefixPrefix}
         {prefix ? (
           <>
@@ -153,7 +139,6 @@ function ValueChange(props) {
           </>
         ) : null}
       </span>
-      {tooltipBox}
     </>
   );
 }
@@ -170,7 +155,6 @@ ValueChange.propTypes = {
   compact100k: PropTypes.bool.isRequired,
   icon: PropTypes.bool.isRequired,
   iconSize: PropTypes.string.isRequired,
-  tooltipValue: PropTypes.number,
   small: PropTypes.bool.isRequired,
   big: PropTypes.bool.isRequired,
 };
