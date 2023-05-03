@@ -35,7 +35,7 @@ export default function SearchBar() {
       <input
         type="text"
         placeholder="Search"
-        className="w-full px-4 py-2 rounded-full bg-gray-100 text-gray-800 search-bar"
+        className="bg-gray-24 px-4 mx-4 font-rubik rounded-full border border-gray-20 text-gray-3 text-l  focus:border-gray-15 block w-full pl-10 p-2.5 "
         value={searchTerm}
         onChange={handleSearchChange}
         onFocus={() => setIsFocused(true)}
