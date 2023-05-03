@@ -39,7 +39,7 @@ const TokensTable = () => {
                 Price
               </div>
               <div className="bg-gray-100 flex justify-end items-center font-bold p-4">
-                Total Value Locked
+                TVL
               </div>
               <div className="bg-gray-100 flex justify-end items-center font-bold p-4">
                 Pools
@@ -80,7 +80,7 @@ const TokensTable = () => {
                     />
                   </div>
                   <div className="flex justify-end items-center p-4">
-                    <Value value={1000} decimals={2} prefix={"$"} compact />
+                    <Value value={item.tvl} decimals={2} prefix={"$"} compact />
                   </div>
                   <div className="flex justify-end items-center p-4">
                     <Value value={item.pool_count} />
