@@ -20,17 +20,17 @@ const TransactionsSection = () => {
             <tbody >
               <tr className='p-2 border-b border-gray-20'>
                 <td className="px-6 py-3">1 DAI / USDC</td>
-                <td className="px-6 py-3"><TagComp className="mx-4 my-2" title="4.25%"/></td>
+                {/* <td className="px-6 py-3"><TagComp className="mx-4 my-2" title="4.25%"/></td> */}
                 <td className="px-6 py-3">1.18M USDC</td>
                 <td className="px-6 py-3">1,273 AJNA</td>
-                <td className="px-6 py-3"><Link href="/" className="rounded-full border border-purple-7 hover:bg-purple-8 px-12 py-2">Details</Link></td>
+                {/* <td className="px-6 py-3"><Link href="/" className="rounded-full border border-purple-7 hover:bg-purple-8 px-12 py-2">Details</Link></td> */}
               </tr>
               <tr className='p-2 border-b border-gray-20'>
                 <td className="px-6 py-3">1 DAI / USDC</td>
-                <td className="px-6 py-3"><TagComp className="mx-4 my-2" title="4.25%"/></td>
+                {/* <td className="px-6 py-3"><TagComp className="mx-4 my-2" title="4.25%"/></td> */}
                 <td className="px-6 py-3">1.18M USDC</td>
                 <td className="px-6 py-3">1,273 AJNA</td>
-                <td className="px-6 py-3"><Link href="/" className="rounded-full border border-purple-7 hover:bg-purple-8 px-12 py-2">Details</Link></td>
+                {/* <td className="px-6 py-3"><Link href="/" className="rounded-full border border-purple-7 hover:bg-purple-8 px-12 py-2">Details</Link></td> */}
               </tr>
             </tbody>
           </table>

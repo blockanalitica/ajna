@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  ajna-staging:
+    build:
+      context: ../../
+      dockerfile: docker/staging/Dockerfile
+    image: ajna-staging
+    ports:
+      - '3000:3000'
