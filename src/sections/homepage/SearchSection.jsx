@@ -1,5 +1,5 @@
-import SearchBar from "@/components/SearchInput/Search";
-//import SearchInput from "@/components/SearchInput/SearchInput";
+//import SearchBar from "@/components/SearchInput/Search";
+import SearchBar from "@/components/SearchInput/SearchInput";
 import SwitchDisplays from "@/components/switch/DisplaySwitch";
 import { useState } from "react";
 

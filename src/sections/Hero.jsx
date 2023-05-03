@@ -1,6 +1,5 @@
 import PrimaryButton from '@/components/button/PrimaryButton';
 import MiningCard from '@/components/card/MiningCard';
-import SearchBar from '@/components/SearchInput/Search';
 
 const Hero = () => (
     <>
