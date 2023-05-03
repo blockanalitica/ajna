@@ -1,5 +1,4 @@
 import CryptoIcon from "@/components/icon/CryptoIcon";
-import Value from "@/components/value/Value";
 import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classnames from "classnames";
@@ -18,6 +17,7 @@ function ValueChange(props) {
     decimals,
     className,
     hideIfZero,
+    dashIfZero,
     reverse,
     compact,
     compact100k,
@@ -28,13 +28,13 @@ function ValueChange(props) {
     ...rest
   } = props;
 
-  if (
-    value === undefined ||
-    value === null ||
-    isNaN(value) ||
-    (hideIfZero && value === 0)
-  ) {
-    return "";
+  if (value === undefined || value === null || isNaN(value)) {
+    if (hideIfZero && value === 0) {
+      return "";
+    }
+    if (dashIfZero && value === 0) {
+      return "-";
+    }
   }
 
   const rawValue = value;
@@ -89,6 +89,9 @@ function ValueChange(props) {
   const normalValue = formatToDecimals(value, decimals);
   if (hideIfZero && normalValue === "0") {
     return "";
+  }
+  if (dashIfZero && normalValue === "0") {
+    return "-";
   }
 
   if (compact === true || showCompactNum) {
@@ -150,6 +153,7 @@ ValueChange.propTypes = {
   decimals: PropTypes.number.isRequired,
   className: PropTypes.string,
   hideIfZero: PropTypes.bool.isRequired,
+  dashIfZero: PropTypes.bool.isRequired,
   reverse: PropTypes.bool,
   compact: PropTypes.bool.isRequired,
   compact100k: PropTypes.bool.isRequired,
@@ -162,6 +166,7 @@ ValueChange.propTypes = {
 ValueChange.defaultProps = {
   decimals: 2,
   hideIfZero: false,
+  dashIfZero: false,
   reverse: false,
   compact: false,
   compact100k: false,
