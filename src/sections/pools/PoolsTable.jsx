@@ -37,7 +37,7 @@ const PoolsTable = () => {
                 #
               </div>
               <div className="bg-gray-100 flex justify-start items-center font-bold p-4">
-                Collateral Token / Quote Token
+                Collateral / Quote
               </div>
               <div className="bg-gray-100 flex justify-end items-end font-bold p-4">
                 Collateral
@@ -100,19 +100,19 @@ const PoolsTable = () => {
                         decimals={2}
                         compact
                       />
-                      <ValueChange value={0} decimals={2} compact />
+                      <ValueChange value={0} decimals={2} compact dashIfZero />
                     </div>
                   </div>
                   <div className="flex justify-end items-end p-4">
                     <div className="flex flex-col items-end">
                       <Value value={item.pool_size} decimals={2} compact />
-                      <ValueChange value={0} decimals={2} compact />
+                      <ValueChange value={0} decimals={2} compact dashIfZero />
                     </div>
                   </div>
                   <div className="flex justify-end items-end p-4">
                     <div className="flex flex-col items-end">
                       <Value value={item.current_debt} decimals={2} compact />
-                      <ValueChange value={0} decimals={2} compact />
+                      <ValueChange value={0} decimals={2} compact dashIfZero />
                     </div>
                   </div>
                   <div className="flex justify-end items-end p-4">
@@ -128,6 +128,7 @@ const PoolsTable = () => {
                         decimals={2}
                         prefix={"$"}
                         compact
+                        dashIfZero
                       />
                     </div>
                   </div>
@@ -144,16 +145,8 @@ const PoolsTable = () => {
                   </div>
                   <div className="flex justify-end items-end p-4">
                     <div className="flex flex-col items-end">
-                      <Value
-                        value={item.total_ajna_burned}
-                        decimals={2}
-                        suffix={" AJNA"}
-                      />
-                       <ValueChange
-                        value={0}
-                        decimals={2}
-                        compact
-                      />
+                      <Value value={item.total_ajna_burned} decimals={2} />
+                      <ValueChange value={0} decimals={2} compact dashIfZero />
                     </div>
                   </div>
                 </div>
