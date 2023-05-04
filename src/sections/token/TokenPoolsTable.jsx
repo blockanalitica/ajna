@@ -6,9 +6,9 @@ import { useFetch } from "@/hooks.js";
 import { joinClassNames } from "@/utils/helperFunc"; // This is a custom function to join class names
 import Link from "next/link";
 
-const TokenPoolsTable = ({address}) => {
+const TokenPoolsTable = ({ address }) => {
   const { data, error, isLoading } = useFetch(`/tokens/${address}/pools/`);
-  console.log(data)
+  console.log(data);
 
   if (error) {
     return <p>Failed to load Data</p>;
@@ -94,23 +94,23 @@ const TokenPoolsTable = ({address}) => {
                   <div className="flex justify-end items-end p-4">
                     <div className="flex flex-col items-end">
                       <Value
-                        value={1800}
+                        value={item.collateral_token_underlying_price}
                         decimals={2}
                         compact
                       />
-                      <ValueChange value={100} decimals={2} compact />
+                      <ValueChange value={0} decimals={2} compact dashIfZero />
                     </div>
                   </div>
                   <div className="flex justify-end items-end p-4">
                     <div className="flex flex-col items-end">
                       <Value value={item.lup} decimals={2} compact />
-                      <ValueChange value={100} decimals={2} compact />
+                      <ValueChange value={0} decimals={2} compact dashIfZero />
                     </div>
                   </div>
                   <div className="flex justify-end items-end p-4">
                     <div className="flex flex-col items-end">
                       <Value value={item.htp} decimals={2} compact />
-                      <ValueChange value={100} decimals={2} compact />
+                      <ValueChange value={0} decimals={2} compact dashIfZero />
                     </div>
                   </div>
                   <div className="flex justify-end items-end p-4">
@@ -122,10 +122,11 @@ const TokenPoolsTable = ({address}) => {
                         compact
                       />
                       <ValueChange
-                        value={100}
+                        value={0}
                         decimals={2}
                         prefix={"$"}
                         compact
+                        dashIfZero
                       />
                     </div>
                   </div>
@@ -142,11 +143,8 @@ const TokenPoolsTable = ({address}) => {
                   </div>
                   <div className="flex justify-end items-end p-4">
                     <div className="flex flex-col items-end">
-                      <Value
-                        value={item.total_ajna_burned}
-                        decimals={2}
-                        suffix={" AJNA"}
-                      />
+                      <Value value={item.total_ajna_burned} decimals={2} />
+                      <ValueChange value={0} decimals={2} compact dashIfZero />
                     </div>
                   </div>
                 </div>
