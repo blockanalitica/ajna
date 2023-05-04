@@ -7,7 +7,7 @@ const TokenPage = () => {
   return (
     <>
       <SearchSection showTimePicker={true} />
-      <GraphSection />
+      {/* <GraphSection /> */}
       <Token address={tokenAddress} />
     </>
   );

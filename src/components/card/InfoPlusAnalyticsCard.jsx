@@ -2,7 +2,7 @@ import CryptoIcon from "@/components/icon/CryptoIcon";
 import Value from "@/components/value/Value";
 import SubAnalyticCard from "./SubAnalyticCard";
 
-const InforPlusAnalyticsCard = (promps) => {
+const InfoPlusAnalyticsCard = (promps) => {
     const {data} = promps;
     return (
         <div className="grid grid-cols-1 place-content-between w-full  bg-gray-20 border-gray-13 border-2 border-opacity-30 shadow-md bg-opacity-30 rounded-2xl p-7 rounded-3xl">
@@ -30,4 +30,4 @@ const InforPlusAnalyticsCard = (promps) => {
     )
 }
 
-export default InforPlusAnalyticsCard;
+export default InfoPlusAnalyticsCard;
