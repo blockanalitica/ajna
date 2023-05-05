@@ -50,16 +50,11 @@ function Value(props) {
     <>
       <span
         id={id}
-        className={classnames(
-          "d-inline-flex",
-          "align-items-center",
-          className,
-          {
-            "text-small": small,
-            "lh-sm": small,
-            "text-big": big,
-          }
-        )}
+        className={classnames("flex", className, {
+          "text-sm": small,
+          "lh-sm": small,
+          "text-big": big,
+        })}
         {...rest}
       >
         {prefixPrefix}

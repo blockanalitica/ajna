@@ -56,7 +56,7 @@ const PoolsTable = () => {
               </div>
 
               <div className="bg-gray-100 flex justify-end items-end font-bold p-4">
-                Ajna Burned
+                🔥
               </div>
             </div>
             {results.map((item, index) => (

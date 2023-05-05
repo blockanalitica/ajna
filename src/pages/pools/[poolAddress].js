@@ -1,5 +1,5 @@
 import { useFetch } from "@/hooks.js";
-import { GraphSection, SearchSection } from "@/sections";
+import { GraphSection, PoolStatsSection, SearchSection } from "@/sections";
 import { useRouter } from "next/router";
 
 const Pool = () => {
@@ -19,6 +19,7 @@ const Pool = () => {
   return (
     <>
       <SearchSection showTimePicker={true} />
+      <PoolStatsSection data={results} />
       <GraphSection data={results} />
     </>
   );

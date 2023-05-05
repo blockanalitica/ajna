@@ -8,6 +8,7 @@ import TopPoolsSection from "./homepage/TopPoolsSection";
 import TopTokensSection from "./homepage/TopTokensSection";
 import TransactionsSection from "./homepage/TransactionsSection";
 import GraphSection from "./pool/GraphSection";
+import PoolStatsSection from "./pool/PoolStatsSection";
 import Pools from "./pools/Pools";
 import Token from "./token/Token";
 import Tokens from "./tokens/Tokens";
@@ -26,4 +27,5 @@ export {
   Tokens,
   Pools,
   Token,
+  PoolStatsSection,
 };
