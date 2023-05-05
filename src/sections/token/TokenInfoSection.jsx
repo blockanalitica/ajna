@@ -25,11 +25,16 @@ const TokenInfoSection = ({ address }) => {
               value={results.lended_amount}
               decimals={2}
               compact
-              prefix={"$"}
+              suffix={results.symbol}
             />
           </span>
-          <span className="mb-2 text-sm font-bold">
-            <ValueChange value={0} decimals={2} compact prefix={"$"} />
+          <span className="mb-2 text-sm text-gray-6">
+            <Value
+              value={results.lended_amount * results.underlying_price}
+              decimals={2}
+              compact
+              prefix={"$"}
+            />
           </span>
         </div>
         <div className="px-3 py-4 flex flex-col items-center justify-center bg-gray-20 border-gray-13 border-2 border-opacity-30 shadow-md bg-opacity-30 rounded-2xl uppercase">
@@ -41,11 +46,16 @@ const TokenInfoSection = ({ address }) => {
               value={results.borrowed_amount}
               decimals={2}
               compact
-              prefix={"$"}
+              suffix={results.symbol}
             />
           </span>
-          <span className="mb-2 text-sm font-bold">
-            <ValueChange value={0} decimals={2} compact prefix={"$"} />
+          <span className="mb-2 text-sm text-gray-6">
+            <Value
+              value={results.borrowed_amount * results.underlying_price}
+              decimals={2}
+              compact
+              prefix={"$"}
+            />
           </span>
         </div>
         <div className="px-3 py-4 flex flex-col items-center justify-center bg-gray-20 border-gray-13 border-2 border-opacity-30 shadow-md bg-opacity-30 rounded-2xl uppercase">
@@ -57,11 +67,16 @@ const TokenInfoSection = ({ address }) => {
               value={results.collateral_amount}
               decimals={2}
               compact
-              prefix={"$"}
+              suffix={results.symbol}
             />
           </span>
-          <span className="mb-2 text-sm font-bold">
-            <ValueChange value={0} decimals={2} compact prefix={"$"} />
+          <span className="mb-2 text-sm text-gray-6">
+            <Value
+              value={results.collateral_amount * results.underlying_price}
+              decimals={2}
+              compact
+              prefix={"$"}
+            />
           </span>
         </div>
         <div className="px-3 py-4 flex flex-col items-center justify-center bg-gray-20 border-gray-13 border-2 border-opacity-30 shadow-md bg-opacity-30 rounded-2xl uppercase">
@@ -71,9 +86,9 @@ const TokenInfoSection = ({ address }) => {
           <span className="mb-2 text-2xl font-bold">
             <Value value={results.tvl} decimals={2} compact prefix={"$"} />
           </span>
-          <span className="mb-2 text-sm font-bold">
+          {/* <span className="mb-2 text-sm font-bold">
             <ValueChange value={0} decimals={2} compact prefix={"$"} />
-          </span>
+          </span> */}
         </div>
 
         <div className="px-3 py-4 flex flex-col items-center justify-center bg-gray-20 border-gray-13 border-2 border-opacity-30 shadow-md bg-opacity-30 rounded-2xl uppercase">
