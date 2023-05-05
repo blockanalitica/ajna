@@ -1,4 +1,4 @@
-import { GraphSection, SearchSection, Token } from "@/sections";
+import { SearchSection, Token } from "@/sections";
 import { useRouter } from "next/router";
 
 const TokenPage = () => {
@@ -7,7 +7,6 @@ const TokenPage = () => {
   return (
     <>
       <SearchSection showTimePicker={true} />
-      <GraphSection />
       <Token address={tokenAddress} />
     </>
   );

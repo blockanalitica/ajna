@@ -35,27 +35,26 @@ jobs:
           docker compose -f docker/staging/docker-compose.yml build ajna-staging
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
-  # deploy:
-  #   needs: [build-and-push]
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v3
-  #       with:
-  #         ref: main
-  #     - name: Set up Python 3.x
-  #       uses: actions/setup-python@v4
-  #       with:
-  #         python-version: 3.11.2
-  #         cache: 'pip'
-  #     - name: Install dependencies
-  #       run: |
-  #         python -m pip install --upgrade pip
-  #         pip install ecs-deploy==1.12.1
-  #     - name: Deploy new api version
-  #       env:
-  #         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  #         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  #         AWS_DEFAULT_REGION: eu-west-1
-  #       run: ecs deploy ajna-cluster asldfk --tag ${{ github.sha }} --timeout -1
-  # 
+  deploy:
+    needs: [build-and-push]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: main
+      - name: Set up Python 3.x
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11.2
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install ecs-deploy==1.12.1
+      - name: Deploy new api version
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: eu-west-1
+        run: ecs deploy ajna-cluster ajna-staging --tag ${{ github.sha }} --timeout -1
+  

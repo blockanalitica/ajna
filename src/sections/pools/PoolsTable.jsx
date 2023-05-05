@@ -37,7 +37,7 @@ const PoolsTable = () => {
                 #
               </div>
               <div className="bg-gray-100 flex justify-start items-center font-bold p-4">
-                Collateral Token / Quote Token
+                Collateral / Quote
               </div>
               <div className="bg-gray-100 flex justify-end items-end font-bold p-4">
                 Collateral
@@ -54,9 +54,8 @@ const PoolsTable = () => {
               <div className="bg-gray-100 flex justify-end items-end font-bold p-4">
                 APR
               </div>
-
               <div className="bg-gray-100 flex justify-end items-end font-bold p-4">
-                Ajna Burned
+                🔥
               </div>
             </div>
             {results.map((item, index) => (
@@ -95,24 +94,113 @@ const PoolsTable = () => {
                   </div>
                   <div className="flex justify-end items-end p-4">
                     <div className="flex flex-col items-end">
-                      <Value
-                        value={item.pledged_collateral}
-                        decimals={2}
-                        compact
-                      />
-                      <ValueChange value={0} decimals={2} compact />
+                      <div className="flex justify-start items-center">
+                        <Value
+                          value={item.pledged_collateral}
+                          decimals={2}
+                          compact
+                          suffix={item.collateral_token_symbol}
+                        />
+                        <ValueChange
+                          value={1}
+                          decimals={2}
+                          compact
+                          hideIfZero
+                          className="ml-2"
+                        />
+                      </div>
+                      <div className="flex justify-start items-center text-gray-6 text-sm">
+                        <Value
+                          value={
+                            item.pledged_collateral *
+                            item.collateral_token_underlying_price
+                          }
+                          prefix={"$"}
+                          decimals={2}
+                          compact
+                        />
+                        <ValueChange
+                          value={1}
+                          decimals={2}
+                          compact
+                          hideIfZero
+                          className="ml-2"
+                          prefix={"$"}
+                        />
+                      </div>
                     </div>
                   </div>
                   <div className="flex justify-end items-end p-4">
                     <div className="flex flex-col items-end">
-                      <Value value={item.pool_size} decimals={2} compact />
-                      <ValueChange value={0} decimals={2} compact />
+                      <div className="flex justify-start items-center">
+                        <Value
+                          value={item.pool_size}
+                          decimals={2}
+                          compact
+                          suffix={item.quote_token_symbol}
+                        />
+                        <ValueChange
+                          value={0}
+                          decimals={2}
+                          compact
+                          hideIfZero
+                          className="ml-2"
+                        />
+                      </div>
+                      <div className="flex justify-start items-center text-gray-6 text-sm">
+                        <Value
+                          value={
+                            item.pool_size * item.quote_token_underlying_price
+                          }
+                          prefix={"$"}
+                          decimals={2}
+                          compact
+                        />
+                        <ValueChange
+                          value={0}
+                          decimals={2}
+                          compact
+                          hideIfZero
+                          prefix={"$"}
+                        />
+                      </div>
                     </div>
                   </div>
                   <div className="flex justify-end items-end p-4">
                     <div className="flex flex-col items-end">
-                      <Value value={item.current_debt} decimals={2} compact />
-                      <ValueChange value={0} decimals={2} compact />
+                      <div className="flex justify-start items-center">
+                        <Value
+                          value={item.current_debt}
+                          decimals={2}
+                          compact
+                          suffix={item.quote_token_symbol}
+                        />
+                        <ValueChange
+                          value={0}
+                          decimals={2}
+                          compact
+                          hideIfZero
+                          className="ml-2"
+                        />
+                      </div>
+                      <div className="flex justify-start items-center text-gray-6 text-sm">
+                        <Value
+                          value={
+                            item.current_debt *
+                            item.quote_token_underlying_price
+                          }
+                          prefix={"$"}
+                          decimals={2}
+                          compact
+                        />
+                        <ValueChange
+                          value={0}
+                          decimals={2}
+                          compact
+                          hideIfZero
+                          prefix={"$"}
+                        />
+                      </div>
                     </div>
                   </div>
                   <div className="flex justify-end items-end p-4">
@@ -128,6 +216,7 @@ const PoolsTable = () => {
                         decimals={2}
                         prefix={"$"}
                         compact
+                        dashIfZero
                       />
                     </div>
                   </div>
@@ -144,16 +233,8 @@ const PoolsTable = () => {
                   </div>
                   <div className="flex justify-end items-end p-4">
                     <div className="flex flex-col items-end">
-                      <Value
-                        value={item.total_ajna_burned}
-                        decimals={2}
-                        suffix={" AJNA"}
-                      />
-                       <ValueChange
-                        value={0}
-                        decimals={2}
-                        compact
-                      />
+                      <Value value={item.total_ajna_burned} decimals={2} />
+                      <ValueChange value={0} decimals={2} compact dashIfZero />
                     </div>
                   </div>
                 </div>
