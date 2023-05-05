@@ -62,25 +62,15 @@ function ValueChange(props) {
     }
 
     iconPlace = (
-      <FontAwesomeIcon
-        style={{ fontSize: ".8em" }}
-        icon={faCaretDown}
-        className="me-1"
-      />
+      <FontAwesomeIcon style={{ fontSize: ".8em" }} icon={faCaretDown} />
     );
   }
 
-  const classNames = classnames(
-    spanClass,
-    className,
-    "d-inline-flex",
-    "align-items-center",
-    {
-      "text-small": small,
-      "lh-sm": small,
-      "text-big": big,
-    }
-  );
+  const classNames = classnames(spanClass, className, "flex", "items-center", {
+    "text-small": small,
+    "lh-sm": small,
+    "text-big": big,
+  });
 
   value = Math.abs(value);
   const theValue = value;
