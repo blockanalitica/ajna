@@ -1,5 +1,4 @@
 import Value from "@/components/value/Value";
-import ValueChange from "@/components/value/ValueChange";
 
 const PoolStatsSection = (promps) => {
   const results = promps.data;
@@ -19,8 +18,13 @@ const PoolStatsSection = (promps) => {
               suffix={results.quote_token_symbol}
             />
           </span>
-          <span className="mb-2 text-sm font-bold">
-            <ValueChange value={0} decimals={2} compact prefix={"$"} />
+          <span className="mb-2 text-sm text-gray-6">
+            <Value
+              value={results.pool_size * results.quote_token_underlying_price}
+              decimals={2}
+              compact
+              prefix={"$"}
+            />
           </span>
         </div>
         <div className="px-3 py-4 flex flex-col items-center justify-center bg-gray-20 border-gray-13 border-2 border-opacity-30 shadow-md bg-opacity-30 rounded-2xl uppercase">
@@ -35,8 +39,15 @@ const PoolStatsSection = (promps) => {
               suffix={results.quote_token_symbol}
             />
           </span>
-          <span className="mb-2 text-sm font-bold">
-            <ValueChange value={0} decimals={2} compact prefix={"$"} />
+          <span className="mb-2 text-sm text-gray-6">
+            <Value
+              value={
+                results.current_debt * results.quote_token_underlying_price
+              }
+              decimals={2}
+              compact
+              prefix={"$"}
+            />
           </span>
         </div>
         <div className="px-3 py-4 flex flex-col items-center justify-center bg-gray-20 border-gray-13 border-2 border-opacity-30 shadow-md bg-opacity-30 rounded-2xl uppercase">
@@ -51,8 +62,16 @@ const PoolStatsSection = (promps) => {
               suffix={results.collateral_token_symbol}
             />
           </span>
-          <span className="mb-2 text-sm font-bold">
-            <ValueChange value={0} decimals={2} compact prefix={"$"} />
+          <span className="mb-2 text-sm text-gray-6">
+            <Value
+              value={
+                results.pledged_collateral *
+                results.collateral_token_underlying_price
+              }
+              decimals={2}
+              compact
+              prefix={"$"}
+            />
           </span>
         </div>
         <div className="px-3 py-4 flex flex-col items-center justify-center bg-gray-20 border-gray-13 border-2 border-opacity-30 shadow-md bg-opacity-30 rounded-2xl uppercase">
@@ -62,9 +81,6 @@ const PoolStatsSection = (promps) => {
           <span className="mb-2 text-2xl font-bold">
             <Value value={results.lup} decimals={2} compact prefix={"$"} />
           </span>
-          <span className="mb-2 text-sm font-bold">
-            <ValueChange value={0} decimals={2} compact prefix={"$"} />
-          </span>
         </div>
 
         <div className="px-3 py-4 flex flex-col items-center justify-center bg-gray-20 border-gray-13 border-2 border-opacity-30 shadow-md bg-opacity-30 rounded-2xl uppercase">
@@ -73,9 +89,6 @@ const PoolStatsSection = (promps) => {
           </span>
           <span className="mb-2 text-2xl font-bold">
             <Value value={results.htp} decimals={2} compact prefix={"$"} />
-          </span>
-          <span className="mb-2 text-sm font-bold">
-            <ValueChange value={0} decimals={2} compact prefix={"$"} />
           </span>
         </div>
       </div>

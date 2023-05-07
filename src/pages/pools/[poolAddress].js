@@ -1,5 +1,10 @@
 import { useFetch } from "@/hooks.js";
-import { GraphSection, PoolStatsSection, SearchSection } from "@/sections";
+import {
+  BucketsSection,
+  GraphSection,
+  PoolStatsSection,
+  SearchSection,
+} from "@/sections";
 import { useRouter } from "next/router";
 
 const Pool = () => {
@@ -21,6 +26,7 @@ const Pool = () => {
       <SearchSection showTimePicker={true} />
       <PoolStatsSection data={results} />
       <GraphSection data={results} />
+      <BucketsSection address={poolAddress} />
     </>
   );
 };
