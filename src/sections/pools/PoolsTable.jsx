@@ -22,6 +22,41 @@ const PoolsTable = () => {
 
   const colClass = "grid-cols-table-8";
 
+  const tableHeader = [
+    {
+      title: "#",
+      class: "justify-start items-center"
+    },
+    {
+      title: "Collateral / Quote",
+      class: "justify-start items-center"
+    },
+    {
+      title: "Collateral",
+      class: "justify-end items-end"
+    },
+    {
+      title: "Quote",
+      class: "justify-end items-end"
+    },
+    {
+      title: "Debt",
+      class: "justify-end items-end"
+    },
+    {
+      title: "TVL",
+      class: "justify-end items-end"
+    },
+    {
+      title: "APR",
+      class: "justify-end items-end"
+    },
+    {
+      title: "🔥",
+      class: "justify-end items-end"
+    }
+  ];
+
   return (
     <div className="flex flex-col">
       <div className="relative overflow-x-auto border rounded-2xl bg-gray-20 bg-opacity-30 border-gray-13 border-opacity-30 px-5">
@@ -33,30 +68,9 @@ const PoolsTable = () => {
                 colClass
               )}
             >
-              <div className="bg-gray-100 flex justify-start items-center font-bold p-4">
-                #
-              </div>
-              <div className="bg-gray-100 flex justify-start items-center font-bold p-4">
-                Collateral / Quote
-              </div>
-              <div className="bg-gray-100 flex justify-end items-end font-bold p-4">
-                Collateral
-              </div>
-              <div className="bg-gray-100 flex justify-end items-end font-bold p-4">
-                Quote
-              </div>
-              <div className="bg-gray-100 flex justify-end items-end font-bold p-4">
-                Debt
-              </div>
-              <div className="bg-gray-100 flex justify-end items-end font-bold p-4">
-                TVL
-              </div>
-              <div className="bg-gray-100 flex justify-end items-end font-bold p-4">
-                APR
-              </div>
-              <div className="bg-gray-100 flex justify-end items-end font-bold p-4">
-                🔥
-              </div>
+              {tableHeader.map((item, index) => (
+                <div key={index} className={joinClassNames("bg-gray-100 flex font-bold p-4", item.class)}>{item.title}</div>
+              ))}
             </div>
             {results.map((item, index) => (
               <Link
