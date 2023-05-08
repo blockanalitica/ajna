@@ -7,6 +7,179 @@ import ValueChange from "@/components/value/ValueChange";
 import { useFetch } from "@/hooks.js";
 import { joinClassNames } from "@/utils/helperFunc"; // This is a custom function to join class names
 import Link from "next/link";
+import TwoOverlayingCryptoIcons from "@/components/icon/TwoOverlayingCryptoIcons";
+
+
+const index_tab = () => {
+  <div className="flex justify-start items-center p-4">
+      {index + 1}
+    </div>
+}
+
+const collateral_quote = (item) => (
+  <div className="flex justify-start items-center p-4">
+    <span className="relative flex justify-start items-center p-4">
+      <TwoOverlayingCryptoIcons icon1={item.collateral_token_symbol} icon2={item.quote_token_symbol} size={30} />
+    </span>
+    <span className="font-bold">
+      {item.collateral_token_symbol} / {item.quote_token_symbol}
+    </span>
+  </div>
+)
+
+const collateral = (item) => (
+  <div className="flex justify-end items-center p-4">
+    <div className="flex flex-col items-end">
+      <div className="flex justify-start items-center">
+        <Value
+          value={item.pledged_collateral}
+          decimals={2}
+          compact
+          suffix={item.collateral_token_symbol}
+        />
+        <ValueChange
+          value={1}
+          decimals={2}
+          compact
+          hideIfZero
+          className="ml-2"
+        />
+      </div>
+      <div className="flex justify-start items-center text-gray-6 text-sm">
+        <Value
+          value={
+            item.pledged_collateral *
+            item.collateral_token_underlying_price
+          }
+          prefix={"$"}
+          decimals={2}
+          compact
+        />
+        <ValueChange
+          value={1}
+          decimals={2}
+          compact
+          hideIfZero
+          className="ml-2"
+          prefix={"$"}
+        />
+      </div>
+    </div>
+  </div>
+)
+
+const quote = (item) => (
+<div className="flex justify-end items-center p-4">
+  <div className="flex flex-col items-end">
+    <div className="flex justify-start items-center">
+      <Value
+        value={item.pool_size}
+        decimals={2}
+        compact
+        suffix={item.quote_token_symbol}
+      />
+      <ValueChange
+        value={0}
+        decimals={2}
+        compact
+        hideIfZero
+        className="ml-2"
+      />
+    </div>
+    <div className="flex justify-start items-center text-gray-6 text-sm">
+      <Value
+        value={
+          item.pool_size * item.quote_token_underlying_price
+        }
+        prefix={"$"}
+        decimals={2}
+        compact
+      />
+      <ValueChange
+        value={0}
+        decimals={2}
+        compact
+        hideIfZero
+        prefix={"$"}
+      />
+    </div>
+  </div>
+</div>
+)
+
+const debt  = (item) => (
+<div className="flex justify-end items-center p-4">
+  <div className="flex flex-col items-end">
+    <div className="flex justify-start items-center">
+      <Value
+        value={item.current_debt}
+        decimals={2}
+        compact
+        suffix={item.quote_token_symbol}
+      />
+      <ValueChange
+        value={0}
+        decimals={2}
+        compact
+        hideIfZero
+        className="ml-2"
+      />
+    </div>
+    <div className="flex justify-start items-center text-gray-6 text-sm">
+      <Value
+        value={
+          item.current_debt *
+          item.quote_token_underlying_price
+        }
+        prefix={"$"}
+        decimals={2}
+        compact
+      />
+      <ValueChange
+        value={0}
+        decimals={2}
+        compact
+        hideIfZero
+        prefix={"$"}
+      />
+    </div>
+  </div>
+</div>
+)
+
+const tvl = (item) => (
+<div className="flex justify-end items-center p-4">
+  <div className="flex flex-col items-end">
+    <Value
+      value={item.tvl}
+      decimals={2}
+      prefix={"$"}
+      compact
+    />
+    <ValueChange
+      value={0}
+      decimals={2}
+      prefix={"$"}
+      compact
+      dashIfZero
+    />
+  </div>
+</div>
+)
+
+const apr = (item) => (
+<div className="flex justify-end items-center p-4">
+  <TagComp
+    title={
+      <Value
+        value={item.interest_rate}
+        decimals={2}
+        suffix={"%"}
+      />
+    }
+  />
+</div>
+)
 
 const PoolsTable = () => {
   const { data, error, isLoading } = useFetch("/pools/");
@@ -57,6 +230,14 @@ const PoolsTable = () => {
     }
   ];
 
+ 
+
+
+
+  const tableData = [
+    
+  ]
+
   return (
     <div className="flex flex-col">
       <div className="relative overflow-x-auto border rounded-2xl bg-gray-20 bg-opacity-30 border-gray-13 border-opacity-30 px-5">
@@ -91,22 +272,14 @@ const PoolsTable = () => {
 
                   <div className="flex justify-start items-center p-4">
                     <span className="relative flex justify-start items-center p-4">
-                      <CryptoIcon
-                        name={item.collateral_token_symbol}
-                        className="absolute left-[25%] z-10"
-                        size={30}
-                      />
-                      <CryptoIcon
-                        name={item.quote_token_symbol}
-                        className="ml-6"
-                        size={30}
-                      />
+                      <TwoOverlayingCryptoIcons icon1={item.collateral_token_symbol} icon2={item.quote_token_symbol} size={30} />
                     </span>
                     <span className="font-bold">
                       {item.collateral_token_symbol} / {item.quote_token_symbol}
                     </span>
                   </div>
-                  <div className="flex justify-end items-end p-4">
+
+                  <div className="flex justify-end items-center p-4">
                     <div className="flex flex-col items-end">
                       <div className="flex justify-start items-center">
                         <Value
@@ -144,7 +317,7 @@ const PoolsTable = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="flex justify-end items-end p-4">
+                  <div className="flex justify-end items-center p-4">
                     <div className="flex flex-col items-end">
                       <div className="flex justify-start items-center">
                         <Value
@@ -180,7 +353,7 @@ const PoolsTable = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="flex justify-end items-end p-4">
+                  <div className="flex justify-end items-center p-4">
                     <div className="flex flex-col items-end">
                       <div className="flex justify-start items-center">
                         <Value
@@ -217,7 +390,7 @@ const PoolsTable = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="flex justify-end items-end p-4">
+                  <div className="flex justify-end items-center p-4">
                     <div className="flex flex-col items-end">
                       <Value
                         value={item.tvl}
