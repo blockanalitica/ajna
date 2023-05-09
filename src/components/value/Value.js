@@ -16,6 +16,7 @@ function Value(props) {
     compact,
     compact100k,
     hideIfZero,
+    dashIfZero,
     icon,
     className,
     id,
@@ -25,7 +26,10 @@ function Value(props) {
     ...rest
   } = props;
 
-  if (value === undefined || value === null || (hideIfZero && value === 0)) {
+  if (value === undefined || value === null || (hideIfZero && value === 0) || (dashIfZero && value === 0)) {
+    if (dashIfZero && value === 0) {
+      return "-";
+    }
     return "";
   }
   let tooltip = null;
