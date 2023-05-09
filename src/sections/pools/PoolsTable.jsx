@@ -1,6 +1,5 @@
 "use client";
 
-import CryptoIcon from "@/components/icon/CryptoIcon";
 import TagComp from "@/components/tags/TagComp";
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
@@ -9,14 +8,7 @@ import { joinClassNames } from "@/utils/helperFunc"; // This is a custom functio
 import Link from "next/link";
 import TwoOverlayingCryptoIcons from "@/components/icon/TwoOverlayingCryptoIcons";
 
-
-const index_tab = () => {
-  <div className="flex justify-start items-center p-4">
-      {index + 1}
-    </div>
-}
-
-const collateral_quote = (item) => (
+const table_tab_coins_plus_title = (item) => (
   <div className="flex justify-start items-center p-4">
     <span className="relative flex justify-start items-center p-4">
       <TwoOverlayingCryptoIcons icon1={item.collateral_token_symbol} icon2={item.quote_token_symbol} size={30} />
@@ -27,6 +19,7 @@ const collateral_quote = (item) => (
   </div>
 )
 
+/*
 const collateral = (item) => (
   <div className="flex justify-end items-center p-4">
     <div className="flex flex-col items-end">
@@ -107,6 +100,54 @@ const quote = (item) => (
 </div>
 )
 
+*/
+
+const table_tab_title_coin_subtitle_val_change = ({
+  title=0, subtitle=0, icon=null,
+  title_prefix=null, subtitle_prefix=null,
+  title_val_change=0, subtitle_val_change=0,
+  title_val_change_prefix=null, subtitle_val_change_prefix=null,
+}) => (
+  <div className="flex justify-end items-center p-4">
+    <div className="flex flex-col items-end">
+      <div className="flex justify-start items-center">
+        <Value
+          value={title}
+          prefix={title_prefix}
+          decimals={2}
+          compact
+          suffix={icon}
+        />
+        <ValueChange
+          value={title_val_change}
+          decimals={2}
+          compact
+          hideIfZero
+          className="ml-2"
+          prefix={title_val_change_prefix}
+        />
+      </div>
+      <div className="flex justify-start items-center text-gray-6 text-sm">
+        <Value
+          value={subtitle}
+          prefix={subtitle_prefix}
+          decimals={2}
+          compact
+        />
+        <ValueChange
+          value={subtitle_val_change}
+          decimals={2}
+          compact
+          hideIfZero
+          prefix={subtitle_val_change_prefix}
+        />
+      </div>
+    </div>
+  </div>
+  )
+
+
+
 const debt  = (item) => (
 <div className="flex justify-end items-center p-4">
   <div className="flex flex-col items-end">
@@ -181,6 +222,23 @@ const apr = (item) => (
 </div>
 )
 
+const hot = (item) => (
+<div className="flex justify-end items-end p-4">
+  <div className="flex flex-col items-end">
+    <Value 
+      value={item.total_ajna_burned} 
+      decimals={2}
+    />
+    <ValueChange
+      value={0}
+      decimals={2}
+      compact
+      dashIfZero
+    />
+  </div>
+</div>
+)
+
 const PoolsTable = () => {
   const { data, error, isLoading } = useFetch("/pools/");
 
@@ -230,13 +288,31 @@ const PoolsTable = () => {
     }
   ];
 
- 
+  let tableData = (item) => 
+  {
+    return [
+      table_tab_coins_plus_title(item),
+      table_tab_title_coin_subtitle_val_change({
+        title: item.pledged_collateral,
+        subtitle: item.pledged_collateral * item.collateral_token_underlying_price,
+        icon: item.collateral_token_symbol,
+        title_prefix: null, subtitle_prefix: "$",
+        title_val_change: 1, subtitle_val_change: 1,
+        title_val_change_prefix: null, subtitle_val_change_prefix: "$",
+      }),
+      table_tab_title_coin_subtitle_val_change({
+        title: item.pool_size,
+        subtitle: item.pool_size * item.quote_token_underlying_price,
+        icon: item.quote_token_symbol,
+        title_prefix: null, subtitle_prefix: "$",
+      }),
+      debt(item),
+      tvl(item),
+      apr(item),
+      hot(item)
 
-
-
-  const tableData = [
-    
-  ]
+    ]
+  }
 
   return (
     <div className="flex flex-col">
@@ -269,161 +345,10 @@ const PoolsTable = () => {
                   <div className="flex justify-start items-center p-4">
                     {index + 1}
                   </div>
-
-                  <div className="flex justify-start items-center p-4">
-                    <span className="relative flex justify-start items-center p-4">
-                      <TwoOverlayingCryptoIcons icon1={item.collateral_token_symbol} icon2={item.quote_token_symbol} size={30} />
-                    </span>
-                    <span className="font-bold">
-                      {item.collateral_token_symbol} / {item.quote_token_symbol}
-                    </span>
-                  </div>
-
-                  <div className="flex justify-end items-center p-4">
-                    <div className="flex flex-col items-end">
-                      <div className="flex justify-start items-center">
-                        <Value
-                          value={item.pledged_collateral}
-                          decimals={2}
-                          compact
-                          suffix={item.collateral_token_symbol}
-                        />
-                        <ValueChange
-                          value={1}
-                          decimals={2}
-                          compact
-                          hideIfZero
-                          className="ml-2"
-                        />
-                      </div>
-                      <div className="flex justify-start items-center text-gray-6 text-sm">
-                        <Value
-                          value={
-                            item.pledged_collateral *
-                            item.collateral_token_underlying_price
-                          }
-                          prefix={"$"}
-                          decimals={2}
-                          compact
-                        />
-                        <ValueChange
-                          value={1}
-                          decimals={2}
-                          compact
-                          hideIfZero
-                          className="ml-2"
-                          prefix={"$"}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex justify-end items-center p-4">
-                    <div className="flex flex-col items-end">
-                      <div className="flex justify-start items-center">
-                        <Value
-                          value={item.pool_size}
-                          decimals={2}
-                          compact
-                          suffix={item.quote_token_symbol}
-                        />
-                        <ValueChange
-                          value={0}
-                          decimals={2}
-                          compact
-                          hideIfZero
-                          className="ml-2"
-                        />
-                      </div>
-                      <div className="flex justify-start items-center text-gray-6 text-sm">
-                        <Value
-                          value={
-                            item.pool_size * item.quote_token_underlying_price
-                          }
-                          prefix={"$"}
-                          decimals={2}
-                          compact
-                        />
-                        <ValueChange
-                          value={0}
-                          decimals={2}
-                          compact
-                          hideIfZero
-                          prefix={"$"}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex justify-end items-center p-4">
-                    <div className="flex flex-col items-end">
-                      <div className="flex justify-start items-center">
-                        <Value
-                          value={item.current_debt}
-                          decimals={2}
-                          compact
-                          suffix={item.quote_token_symbol}
-                        />
-                        <ValueChange
-                          value={0}
-                          decimals={2}
-                          compact
-                          hideIfZero
-                          className="ml-2"
-                        />
-                      </div>
-                      <div className="flex justify-start items-center text-gray-6 text-sm">
-                        <Value
-                          value={
-                            item.current_debt *
-                            item.quote_token_underlying_price
-                          }
-                          prefix={"$"}
-                          decimals={2}
-                          compact
-                        />
-                        <ValueChange
-                          value={0}
-                          decimals={2}
-                          compact
-                          hideIfZero
-                          prefix={"$"}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex justify-end items-center p-4">
-                    <div className="flex flex-col items-end">
-                      <Value
-                        value={item.tvl}
-                        decimals={2}
-                        prefix={"$"}
-                        compact
-                      />
-                      <ValueChange
-                        value={0}
-                        decimals={2}
-                        prefix={"$"}
-                        compact
-                        dashIfZero
-                      />
-                    </div>
-                  </div>
-                  <div className="flex justify-end items-center p-4">
-                    <TagComp
-                      title={
-                        <Value
-                          value={item.interest_rate}
-                          decimals={2}
-                          suffix={"%"}
-                        />
-                      }
-                    />
-                  </div>
-                  <div className="flex justify-end items-end p-4">
-                    <div className="flex flex-col items-end">
-                      <Value value={item.total_ajna_burned} decimals={2} />
-                      <ValueChange value={0} decimals={2} compact dashIfZero />
-                    </div>
-                  </div>
+                  
+                  {tableData(item).map((tab, tab_idx) => (
+                    <>{tab}</>
+                  ))}
                 </div>
               </Link>
             ))}
