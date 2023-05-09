@@ -1,6 +1,6 @@
 
 import PoolsOptions from './PoolsOptions';
-import PoolsTable from './PoolsTable';
+import PoolsTable from '@/components/table/specific/PoolsTable';
 import MiningCard from '@/components/card/MiningCard';
 import { useState } from 'react';
 import TableCardViewIcon from '@/components/icon/TableCardViewIcon';

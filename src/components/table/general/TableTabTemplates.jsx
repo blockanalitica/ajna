@@ -2,6 +2,21 @@ import TwoOverlayingCryptoIcons from "@/components/icon/TwoOverlayingCryptoIcons
 import TagComp from "@/components/tags/TagComp";
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
+import CryptoIcon from "@/components/icon/CryptoIcon";
+
+const table_tab_1coin_title = ({
+  name="Ethereum", symbol="ETH"
+}) => (
+  <div className="flex justify-start items-center p-4">
+  <CryptoIcon name={symbol} className="mr-2" size={25} />
+
+  <span className="font-bold">
+    {name}
+    <span className="text-gray-13 ml-2">({symbol})</span>
+  </span>
+</div>
+);
+
 
 const table_tab_2coins_plus_title = ({
     title1="title1", title2="title2",
@@ -81,6 +96,7 @@ const table_tab_tag = (title=0) => (
 
 
   export {
+    table_tab_1coin_title,
     table_tab_2coins_plus_title,
     table_tab_title_coin_subtitle_val_change,
     table_tab_tag

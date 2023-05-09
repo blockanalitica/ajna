@@ -1,4 +1,4 @@
-import TokenPoolsTable from "./TokenPoolsTable";
+import TokenPoolsTable from "../../components/table/specific/TokenPoolsTable";
 const TokenPoolsSection = ({address}) => {
   return (
     <>

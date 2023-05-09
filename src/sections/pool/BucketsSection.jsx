@@ -1,4 +1,4 @@
-import PoolBucketsTable from "./PoolBucketsTable";
+import PoolBucketsTable from "@/components/table/specific/PoolBucketsTable";
 const BucketsSection = ({ address }) => {
   return (
     <>
