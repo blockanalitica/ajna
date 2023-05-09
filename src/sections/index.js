@@ -1,9 +1,7 @@
 import FAQSection from "./deprecated/FAQSection";
 import Hero from "./deprecated/Hero";
 import AnalyticSection from "./homepage/AnalyticSection";
-import MiniGraphSection from "./homepage/MiniGraphSection";
 import SearchSection from "./homepage/SearchSection";
-import Subtitle from "./homepage/Subtitle";
 import TopPoolsSection from "./homepage/TopPoolsSection";
 import TopTokensSection from "./homepage/TopTokensSection";
 import BucketsSection from "./pools/poolAddress/BucketsSection";
@@ -20,8 +18,6 @@ export {
   TopPoolsSection,
   SearchSection,
   FAQSection,
-  MiniGraphSection,
-  Subtitle,
   TopTokensSection,
   Tokens,
   Pools,
