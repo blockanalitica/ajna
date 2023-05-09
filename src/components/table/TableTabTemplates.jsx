@@ -21,7 +21,7 @@ const table_tab_title_coin_subtitle_val_change = ({
     title=0, subtitle=0, icon=null,
     title_prefix=null, subtitle_prefix=null,
     title_val_change=0, subtitle_val_change=0,
-    subtitle_dash_if_zero=false,
+    subtitle_dash_if_zero=false, subtitle_hide_if_zero=false,
     title_val_change_prefix=null, subtitle_val_change_prefix=null,
     }) => (
     <div className="flex justify-end items-center p-4">
@@ -48,6 +48,7 @@ const table_tab_title_coin_subtitle_val_change = ({
             value={subtitle}
             prefix={subtitle_prefix}
             dashIfZero={subtitle_dash_if_zero}
+            hideIfZero={subtitle_hide_if_zero}
             decimals={2}
             compact
             />
