@@ -1,6 +1,6 @@
 
 import PrimaryButton from "@/components/button/PrimaryButton";
-import TokensTable from "./TokensTable";
+import TokensTable from "@/components/table/specific/TokensTable";
 const TopTokensSection = () => {
   return (
     <>

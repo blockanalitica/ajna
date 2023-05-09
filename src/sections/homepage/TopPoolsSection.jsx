@@ -1,7 +1,5 @@
 import PrimaryButton from '@/components/button/PrimaryButton';
-import MiningCard from '@/components/card/MiningCard';
-import { useState } from 'react';
-import PoolsTable from './PoolsTable';
+import PoolsTable from '@/components/table/specific/PoolsTable';
 
 
 const TopPoolsSection = () => {

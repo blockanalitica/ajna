@@ -6,7 +6,6 @@ import SearchSection from "./homepage/SearchSection";
 import Subtitle from "./homepage/Subtitle";
 import TopPoolsSection from "./homepage/TopPoolsSection";
 import TopTokensSection from "./homepage/TopTokensSection";
-import TransactionsSection from "./homepage/TransactionsSection";
 import BucketsSection from "./pools/poolAddress/BucketsSection";
 import GraphSection from "./pools/poolAddress/GraphSection";
 import PoolStatsSection from "./pools/poolAddress/PoolStatsSection";
@@ -23,7 +22,6 @@ export {
   FAQSection,
   MiniGraphSection,
   Subtitle,
-  TransactionsSection,
   TopTokensSection,
   Tokens,
   Pools,
