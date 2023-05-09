@@ -1,6 +1,5 @@
-
 import TokensTable from "@/components/table/specific/TokensTable";
-const TokensSection = () => {
+const Tokens = () => {
   return (
     <>
       <section className="mx-auto max-w-9xl px-4 mt-5 sm:px-6 lg:px-8">
@@ -13,4 +12,4 @@ const TokensSection = () => {
   );
 };
 
-export default TokensSection;
+export default Tokens;

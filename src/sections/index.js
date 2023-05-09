@@ -1,5 +1,5 @@
-import FAQSection from "./FAQSection";
-import Hero from "./Hero";
+import FAQSection from "./deprecated/FAQSection";
+import Hero from "./deprecated/Hero";
 import AnalyticSection from "./homepage/AnalyticSection";
 import MiniGraphSection from "./homepage/MiniGraphSection";
 import SearchSection from "./homepage/SearchSection";
