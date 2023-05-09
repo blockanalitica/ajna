@@ -7,160 +7,21 @@ import { useFetch } from "@/hooks.js";
 import { joinClassNames } from "@/utils/helperFunc"; // This is a custom function to join class names
 import Link from "next/link";
 import TwoOverlayingCryptoIcons from "@/components/icon/TwoOverlayingCryptoIcons";
+import GeneralTable from "@/components/table/GeneralTable";
 
-const table_tab_coins_plus_title = (item) => (
+const table_tab_coins_plus_title = ({
+  title1="title1", title2="title2",
+  icon1=null, icon2=null,
+}) => (
   <div className="flex justify-start items-center p-4">
     <span className="relative flex justify-start items-center p-4">
-      <TwoOverlayingCryptoIcons icon1={item.collateral_token_symbol} icon2={item.quote_token_symbol} size={30} />
+      <TwoOverlayingCryptoIcons icon1={icon1} icon2={icon2} size={30} />
     </span>
     <span className="font-bold">
-      {item.collateral_token_symbol} / {item.quote_token_symbol}
+      {title1} / {title2}
     </span>
   </div>
 )
-
-/*
-const collateral = (item) => (
-  <div className="flex justify-end items-center p-4">
-    <div className="flex flex-col items-end">
-      <div className="flex justify-start items-center">
-        <Value
-          value={item.pledged_collateral}
-          decimals={2}
-          compact
-          suffix={item.collateral_token_symbol}
-        />
-        <ValueChange
-          value={1}
-          decimals={2}
-          compact
-          hideIfZero
-          className="ml-2"
-        />
-      </div>
-      <div className="flex justify-start items-center text-gray-6 text-sm">
-        <Value
-          value={
-            item.pledged_collateral *
-            item.collateral_token_underlying_price
-          }
-          prefix={"$"}
-          decimals={2}
-          compact
-        />
-        <ValueChange
-          value={1}
-          decimals={2}
-          compact
-          hideIfZero
-          className="ml-2"
-          prefix={"$"}
-        />
-      </div>
-    </div>
-  </div>
-)
-
-const quote = (item) => (
-<div className="flex justify-end items-center p-4">
-  <div className="flex flex-col items-end">
-    <div className="flex justify-start items-center">
-      <Value
-        value={item.pool_size}
-        decimals={2}
-        compact
-        suffix={item.quote_token_symbol}
-      />
-      <ValueChange
-        value={0}
-        decimals={2}
-        compact
-        hideIfZero
-        className="ml-2"
-      />
-    </div>
-    <div className="flex justify-start items-center text-gray-6 text-sm">
-      <Value
-        value={
-          item.pool_size * item.quote_token_underlying_price
-        }
-        prefix={"$"}
-        decimals={2}
-        compact
-      />
-      <ValueChange
-        value={0}
-        decimals={2}
-        compact
-        hideIfZero
-        prefix={"$"}
-      />
-    </div>
-  </div>
-</div>
-)
-
-const debt  = (item) => (
-<div className="flex justify-end items-center p-4">
-  <div className="flex flex-col items-end">
-    <div className="flex justify-start items-center">
-      <Value
-        value={item.current_debt}
-        decimals={2}
-        compact
-        suffix={item.quote_token_symbol}
-      />
-      <ValueChange
-        value={0}
-        decimals={2}
-        compact
-        hideIfZero
-        className="ml-2"
-      />
-    </div>
-    <div className="flex justify-start items-center text-gray-6 text-sm">
-      <Value
-        value={
-          item.current_debt *
-          item.quote_token_underlying_price
-        }
-        prefix={"$"}
-        decimals={2}
-        compact
-      />
-      <ValueChange
-        value={0}
-        decimals={2}
-        compact
-        hideIfZero
-        prefix={"$"}
-      />
-    </div>
-  </div>
-</div>
-)
-
-const tvl = (item) => (
-<div className="flex justify-end items-center p-4">
-  <div className="flex flex-col items-end">
-    <Value
-      value={item.tvl}
-      decimals={2}
-      prefix={"$"}
-      compact
-    />
-    <ValueChange
-      value={0}
-      decimals={2}
-      prefix={"$"}
-      compact
-      dashIfZero
-    />
-  </div>
-</div>
-)
-
-*/
 
 const table_tab_title_coin_subtitle_val_change = ({
   title=0, subtitle=0, icon=null,
@@ -223,23 +84,6 @@ const table_tab_tag = (title=0) => (
 </div>
 )
 
-const hot = (item) => (
-<div className="flex justify-end items-end p-4">
-  <div className="flex flex-col items-end">
-    <Value 
-      value={item.total_ajna_burned} 
-      decimals={2}
-    />
-    <ValueChange
-      value={0}
-      decimals={2}
-      compact
-      dashIfZero
-    />
-  </div>
-</div>
-)
-
 const PoolsTable = () => {
   const { data, error, isLoading } = useFetch("/pools/");
 
@@ -250,7 +94,7 @@ const PoolsTable = () => {
     return <p>Loading....</p>;
   }
 
-  const results = data.results;
+  const tableData = data.results;
 
   const colClass = "grid-cols-table-8";
 
@@ -289,10 +133,15 @@ const PoolsTable = () => {
     }
   ];
 
-  let tableData = (item) => 
+  let rowData = (item) => 
   {
     return [
-      table_tab_coins_plus_title(item),
+      table_tab_coins_plus_title({
+        title1: item.collateral_token_symbol,
+        title2: item.quote_token_symbol,
+        icon1: item.collateral_token_symbol,
+        icon2: item.quote_token_symbol,
+      }),
       table_tab_title_coin_subtitle_val_change({
         title: item.pledged_collateral,
         subtitle: item.pledged_collateral * item.collateral_token_underlying_price,
@@ -330,6 +179,9 @@ const PoolsTable = () => {
   }
 
   return (
+    <>
+    <GeneralTable tableHeader={tableHeader} tableData={tableData} colClass={colClass} rowData={rowData} />
+    {/*
     <div className="flex flex-col">
       <div className="relative overflow-x-auto border rounded-2xl bg-gray-20 bg-opacity-30 border-gray-13 border-opacity-30 px-5">
         <div className="relative overflow-x-auto shadow-md rounded-2xl">
@@ -344,7 +196,7 @@ const PoolsTable = () => {
                 <div key={index} className={joinClassNames("bg-gray-100 flex font-bold p-4", item.class)}>{item.title}</div>
               ))}
             </div>
-            {results.map((item, index) => (
+            {tableData.map((item, index) => (
               <Link
                 key={index}
                 className="text-white cursor-pointer hover:text-gray-7"
@@ -361,7 +213,7 @@ const PoolsTable = () => {
                     {index + 1}
                   </div>
                   
-                  {tableData(item).map((tab, tab_idx) => (
+                  {rowData(item).map((tab, tab_idx) => (
                     <>{tab}</>
                   ))}
                 </div>
@@ -371,6 +223,9 @@ const PoolsTable = () => {
         </div>
       </div>
     </div>
+    */}
+
+    </>
   );
 };
 
