@@ -1,7 +1,7 @@
 import { joinClassNames } from "@/utils/helperFunc"; // This is a custom function to join class names
 import Link from "next/link";
 
-const GeneralTable = ({ tableData, tableHeader, rowData, colClass="grid-cols-4" }) => {
+const GeneralTable = ({ tableData, tableHeader, rowData, idxDisplay=false, colClass="grid-cols-4" }) => {
     return (
     <div className="flex flex-col">
       <div className="relative overflow-x-auto border rounded-2xl bg-gray-20 bg-opacity-30 border-gray-13 border-opacity-30 px-5">
@@ -29,10 +29,11 @@ const GeneralTable = ({ tableData, tableHeader, rowData, colClass="grid-cols-4" 
                     colClass
                   )}
                 >
+                  {idxDisplay && (
                   <div className="flex justify-start items-center p-4">
                     {index + 1}
                   </div>
-                  
+                  )}
                   {rowData(item).map((tab, tab_idx) => (
                     <>{tab}</>
                   ))}
