@@ -1,9 +1,22 @@
 import { useState } from "react";
 import Head from "next/head";
+import { useFetch } from "@/hooks.js";
+
+import PoolsTable from "../table/specific/PoolsTable";
+import TokenPoolsTable from "../table/specific/TokenPoolsTable";
 
 const listOfItems = ["ETH", "DAI", "ETH2", "BTC"];
 
 export default function SearchBar() {
+  const { data, error, isLoading } = useFetch("/pools/");
+
+  if (error) {
+    return <p>Failed to load Data</p>;
+  }
+  if (isLoading) {
+    return <p>Loading....</p>;
+  }
+
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredItems, setFilteredItems] = useState(listOfItems);
   const [isFocused, setIsFocused] = useState(false);
@@ -25,7 +38,8 @@ export default function SearchBar() {
           <style>
             {`body { overflow: hidden; }
             .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7); z-index: 20; }
-            .search-bar, .dropdown { position: relative; z-index: 30; }`}
+            .search-bar, .dropdown { position: relative; z-index: 30; }
+            .dropdown { top: calc(100% + 10px); left: 50%; transform: translateX(-50%); overflow-y: auto; }`}
           </style>
         )}
       </Head>
@@ -42,6 +56,7 @@ export default function SearchBar() {
         onBlur={() => setIsFocused(false)}
       />
       {isFocused && filteredItems.length > 0 && (
+        {/*
         <ul className="absolute w-full mt-1 py-1 border border-ajna-plum bg-black rounded-2xl shadow-lg dropdown">
           {filteredItems.map((item) => (
             <li
@@ -56,6 +71,11 @@ export default function SearchBar() {
             </li>
           ))}
         </ul>
+        */},
+        <div
+        className="absolute w-screen mt-1 py-1 border border-ajna-plum bg-black rounded-2xl shadow-lg dropdown">
+          <PoolsTable />
+        </div>
       )}
     </div>
   );
