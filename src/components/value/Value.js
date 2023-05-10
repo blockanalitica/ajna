@@ -105,7 +105,7 @@ Value.propTypes = {
   compact: PropTypes.bool.isRequired,
   compact100k: PropTypes.bool.isRequired,
   icon: PropTypes.bool.isRequired,
-  iconSize: PropTypes.string.isRequired,
+  iconSize: PropTypes.number.isRequired,
   small: PropTypes.bool.isRequired,
   big: PropTypes.bool.isRequired,
 };

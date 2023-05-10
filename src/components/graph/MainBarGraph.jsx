@@ -4,7 +4,7 @@ import {
     CategoryScale, Chart as ChartJS, Filler, Legend, LinearScale,
     PointElement,
     Title,
-    Tooltip
+    Tooltip,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import SwitchDisplays from '../switch/DisplaySwitch';

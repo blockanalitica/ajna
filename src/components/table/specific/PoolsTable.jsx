@@ -27,6 +27,12 @@ const PoolsTable = () => {
 
   const tableData = data.results;
 
+  const filtered_data = tableData.filter((item) =>
+      item.collateral_token_symbol.toLowerCase().includes("e")
+    );
+
+  console.log(filtered_data);
+
   const colClass = "grid-cols-table-8";
 
   const tableHeader = [

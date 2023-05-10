@@ -8,14 +8,14 @@ import TokenPoolsTable from "../table/specific/TokenPoolsTable";
 const listOfItems = ["ETH", "DAI", "ETH2", "BTC"];
 
 export default function SearchBar() {
-  const { data, error, isLoading } = useFetch("/pools/");
+  //const { data, error, isLoading } = useFetch("/pools/");
 
-  if (error) {
-    return <p>Failed to load Data</p>;
-  }
-  if (isLoading) {
-    return <p>Loading....</p>;
-  }
+  //if (error) {
+  //  return <p>Failed to load Data</p>;
+  //}
+  //if (isLoading) {
+  //  return <p>Loading....</p>;
+  //}
 
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredItems, setFilteredItems] = useState(listOfItems);

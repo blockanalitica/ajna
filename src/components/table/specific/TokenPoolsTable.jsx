@@ -19,6 +19,41 @@ const TokenPoolsTable = ({ address }) => {
 
   const results = data.results;
 
+  let tableHeader = [
+    {
+      title: "#",
+      class: "justify-start items-center",
+    },
+    {
+      title: "Collateral Token / Quote Token",
+      class: "justify-start items-center",
+    },
+    {
+      title: "Market price",
+      class: "justify-end items-center",
+    },
+    {
+      title: "LUP",
+      class: "justify-end items-center",
+    },
+    {
+      title: "HTP",
+      class: "justify-end items-center",
+    },
+    {
+      title: "TVL",
+      class: "justify-end items-center",
+    },
+    {
+      title: "APR",
+      class: "justify-end items-center",
+    },
+    {
+      title: "Volume",
+      class: "justify-end items-center",
+    },
+  ];
+
   const colClass = "grid-cols-table-8";
 
   return (
