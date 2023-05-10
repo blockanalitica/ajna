@@ -1,5 +1,6 @@
 import { joinClassNames } from "@/utils/helperFunc"; // This is a custom function to join class names
 import Link from "next/link";
+import React from "react";
 
 const GeneralTable = ({ tableData, tableHeader, rowData, idxDisplay=false, colClass="grid-cols-4" }) => {
     return (
@@ -35,7 +36,9 @@ const GeneralTable = ({ tableData, tableHeader, rowData, idxDisplay=false, colCl
                   </div>
                   )}
                   {rowData(item).map((tab, tab_idx) => (
-                    <>{tab}</>
+                    <React.Fragment key={`tab-${tab_idx}`}>
+                      {tab}
+                    </React.Fragment>
                   ))}
                 </div>
               </Link>
