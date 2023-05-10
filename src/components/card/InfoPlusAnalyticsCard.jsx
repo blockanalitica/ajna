@@ -15,7 +15,7 @@ const InfoPlusAnalyticsCard = (promps) => {
             <div className="flex flex-row justify-between items-center">
               <CryptoIcon
                 name={data.collateral_token_symbol}
-                size={20}
+                size={"20"}
                 className="mr-2"
               />{" "}
               {data.collateral_token_symbol}{" "}
@@ -39,7 +39,7 @@ const InfoPlusAnalyticsCard = (promps) => {
             <div className="flex flex-row justify-between items-center">
               <CryptoIcon
                 name={data.quote_token_symbol}
-                size={20}
+                size={"20"}
                 className="mr-2"
               />{" "}
               {data.quote_token_symbol}{" "}

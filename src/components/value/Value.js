@@ -69,7 +69,7 @@ function Value(props) {
                 <CryptoIcon
                   name={prefix}
                   className="me-1"
-                  size={small ? 15 : big ? 25 : iconSize}
+                  size={small ? "15" : big ? "25" : iconSize}
                 />
               </>
             ) : (

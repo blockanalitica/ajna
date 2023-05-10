@@ -8,7 +8,7 @@ const table_tab_1coin_title = ({
   name="Ethereum", symbol="ETH"
 }) => (
   <div className="flex justify-start items-center p-4">
-  <CryptoIcon name={symbol} className="mr-2" size={25} />
+  <CryptoIcon name={symbol} className="mr-2" size={"25"} />
 
   <span className="font-bold">
     {name}

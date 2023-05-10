@@ -26,7 +26,7 @@ const DropDownButton = () => {
         <CryptoIcon
                   name={NetworkOptions[0].icon}
                   className="me-1 mr-1"
-                  size={20}
+                  size={"20"}
                 />
                 <span className="ml-2">
                 {NetworkOptions[0].name} 
@@ -47,7 +47,7 @@ const DropDownButton = () => {
                 <CryptoIcon
                   name={item.icon}
                   className="me-1"
-                  size={20}
+                  size={"20"}
                 />
                 {item.name}
               </Link>

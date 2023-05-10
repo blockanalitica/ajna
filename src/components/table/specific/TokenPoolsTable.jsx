@@ -114,12 +114,12 @@ const TokenPoolsTable = ({ address }) => {
                       <CryptoIcon
                         name={item.collateral_token_symbol}
                         className="absolute left-[25%] z-10"
-                        size={30}
+                        size={"30"}
                       />
                       <CryptoIcon
                         name={item.quote_token_symbol}
                         className="ml-6"
-                        size={30}
+                        size={"30"}
                       />
                     </span>
                     <span className="font-bold">

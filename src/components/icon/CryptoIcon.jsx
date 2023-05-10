@@ -73,7 +73,7 @@ CryptoIcon.propTypes = {
 };
 
 CryptoIcon.defaultProps = {
-  size: 15,
+  size: "15",
 };
 
 export default CryptoIcon;
