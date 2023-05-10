@@ -5,6 +5,7 @@ import {
     PointElement,
     Title,
     Tooltip,
+    BarElement
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import SwitchDisplays from '../switch/DisplaySwitch';
@@ -17,6 +18,7 @@ ChartJS.register(
     Tooltip,
     Legend,
     Filler,
+    BarElement
 );
 
 const MainBarGraph = () => {
