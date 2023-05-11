@@ -67,30 +67,9 @@ const TokenPoolsTable = ({ address }) => {
                 colClass
               )}
             >
-              <div className="bg-gray-100 flex justify-start items-center font-bold p-4">
-                #
-              </div>
-              <div className="bg-gray-100 flex justify-start items-center font-bold p-4">
-                Collateral Token / Quote Token
-              </div>
-              <div className="bg-gray-100 flex justify-end items-end font-bold p-4">
-                Market price
-              </div>
-              <div className="bg-gray-100 flex justify-end items-end font-bold p-4">
-                LUP
-              </div>
-              <div className="bg-gray-100 flex justify-end items-end font-bold p-4">
-                HTP
-              </div>
-              <div className="bg-gray-100 flex justify-end items-end font-bold p-4">
-                TVL
-              </div>
-              <div className="bg-gray-100 flex justify-end items-end font-bold p-4">
-                APR
-              </div>
-              <div className="bg-gray-100 flex justify-end items-end font-bold p-4">
-                Volume
-              </div>
+              {tableHeader.map((item, index) => (
+                <div key={index} className={joinClassNames("bg-gray-100 flex font-bold p-4", item.class)}>{item.title}</div>
+              ))}
             </div>
             {results.map((item, index) => (
               <Link

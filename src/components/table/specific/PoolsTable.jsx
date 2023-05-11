@@ -1,12 +1,5 @@
 "use client";
-
-import TagComp from "@/components/tags/TagComp";
-import Value from "@/components/value/Value";
-import ValueChange from "@/components/value/ValueChange";
 import { useFetch } from "@/hooks.js";
-import { joinClassNames } from "@/utils/helperFunc"; // This is a custom function to join class names
-import Link from "next/link";
-import TwoOverlayingCryptoIcons from "@/components/icon/TwoOverlayingCryptoIcons";
 import GeneralTable from "@/components/table/general/GeneralTable";
 import { 
   table_tab_2coins_plus_title,

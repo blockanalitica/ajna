@@ -18,6 +18,29 @@ const BucketsTable = (promps) => {
 
   const results = data.results;
 
+  let tableHeader = [
+    {
+      title: "#",
+      class: "justify-start items-center",
+    },
+    {
+      title: "Collateral",
+      class: "justify-end items-center",
+    },
+    {
+      title: "Deposit",
+      class: "justify-end items-center",
+    },
+    {
+      title: "LPB",
+      class: "justify-end items-center",
+    },
+    {
+      title: "Exchange rate",
+      class: "justify-end items-center",
+    },
+  ];
+
   const colClass = "grid-cols-table-5-small";
 
   return (
@@ -31,21 +54,9 @@ const BucketsTable = (promps) => {
                 colClass
               )}
             >
-              <div className="bg-gray-100 flex justify-start items-center font-bold p-4">
-                #
-              </div>
-              <div className="bg-gray-100 flex justify-end items-center font-bold p-4">
-                Collateral
-              </div>
-              <div className="bg-gray-100 flex justify-end items-end font-bold p-4">
-                Deposit
-              </div>
-              <div className="bg-gray-100 flex justify-end items-end font-bold p-4">
-                LPB
-              </div>
-              <div className="bg-gray-100 flex justify-end items-end font-bold p-4">
-                Exchange rate
-              </div>
+              {tableHeader.map((item, index) => (
+                <div key={index} className={joinClassNames("bg-gray-100 flex font-bold p-4", item.class)}>{item.title}</div>
+              ))}
             </div>
             {results.map((item, index) => (
               <Link

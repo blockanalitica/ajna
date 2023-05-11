@@ -68,7 +68,7 @@ const MainBarGraph = () => {
 
     return (
         <>
-        <div className="flex flex-col justify-between bg-gray-20 border-gray-13 border-2 border-opacity-30 shadow-md bg-opacity-30 rounded-2xl p-6 rounded-3xl">
+        <div className="flex flex-col justify-between bg-gray-20 border-gray-13 border-2 border-opacity-30 shadow-md bg-opacity-30  p-6 rounded-3xl">
             <div className="flex justify-between py-2 px-3">
                 <h3 className="text-white text-xl px-3 font-light"></h3>
                 <SwitchDisplays displayOptions={displayOptions} active={curentlyDisplayed} setActive={setCurrentDisplay} />

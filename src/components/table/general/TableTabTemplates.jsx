@@ -24,7 +24,7 @@ const table_tab_2coins_plus_title = ({
   }) => (
     <div className="flex justify-start items-center p-4">
       <span className="relative flex justify-start items-center p-4">
-        <TwoOverlayingCryptoIcons icon1={icon1} icon2={icon2} size={30} />
+        <TwoOverlayingCryptoIcons icon1={icon1} icon2={icon2} size={"30"} />
       </span>
       <span className="font-bold">
         {title1} / {title2}
