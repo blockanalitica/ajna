@@ -21,6 +21,8 @@ const Pool = () => {
 
   const results = data.results;
 
+  if (results) {
+
   return (
     <>
       <SearchSection showTimePicker={true} />
@@ -29,6 +31,10 @@ const Pool = () => {
       <BucketsSection address={poolAddress} />
     </>
   );
+  }
+  else {
+    return <p>Failed to load Data</p>;
+  } 
 };
 
 export default Pool;
