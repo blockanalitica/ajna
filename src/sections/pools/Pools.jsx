@@ -1,4 +1,5 @@
 import PoolsSection from "./PoolsSection";
+
 const Pools = () => {
   return (
     <>
