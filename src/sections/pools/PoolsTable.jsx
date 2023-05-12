@@ -1,11 +1,11 @@
 "use client";
 
+import classnames from "classnames";
 import CryptoIcon from "@/components/icon/CryptoIcon";
 import TagComp from "@/components/tags/TagComp";
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
 import { useFetch } from "@/hooks.js";
-import { joinClassNames } from "@/utils/helperFunc"; // This is a custom function to join class names
 import Link from "next/link";
 
 const PoolsTable = () => {
@@ -28,7 +28,7 @@ const PoolsTable = () => {
         <div className="relative overflow-x-auto shadow-md rounded-2xl">
           <div className="shadow overflow-hidden sm:rounded-lg py-4">
             <div
-              className={joinClassNames(
+              className={classnames(
                 "grid gap-4 bg-gray-21  text-white rounded-2xl",
                 colClass
               )}
@@ -66,10 +66,7 @@ const PoolsTable = () => {
                 alt="link"
               >
                 <div
-                  className={joinClassNames(
-                    "grid px-2 border-b border-gray-20",
-                    colClass
-                  )}
+                  className={classnames("grid px-2 border-b border-gray-20", colClass)}
                 >
                   <div className="flex justify-start items-center p-4">{index + 1}</div>
 
