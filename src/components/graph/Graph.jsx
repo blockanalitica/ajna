@@ -82,14 +82,7 @@ const Graph = (props) => {
       mode: "nearest",
       axis: "xy",
     },
-    events: [
-      "mousemove",
-      "mouseout",
-      "click",
-      "touchstart",
-      "touchmove",
-      "dblclick",
-    ],
+    events: ["mousemove", "mouseout", "click", "touchstart", "touchmove", "dblclick"],
     plugins: {
       tooltip: {
         usePointStyle: true,

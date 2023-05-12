@@ -513,12 +513,12 @@ const AuctionsPage = () => {
 
   const subvalueFormatter = (value) => {
     let date;
-    if (typeof value == 'number') {
-      date = DateTime.fromMillis(value);  
+    if (typeof value == "number") {
+      date = DateTime.fromMillis(value);
     } else {
-      date = DateTime.fromISO(value);  
+      date = DateTime.fromISO(value);
     }
-    
+
     return date.toFormat("LLL dd, y");
   };
 

@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint && npm run lint:prettier",
+    "lint:prettier": "prettier --check './src/**/*.{js,jsx}'",
+    "lint:prettier-write": "prettier --write './src/**/*.{js,jsx}'"
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
@@ -34,7 +36,21 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.14",
+    "eslint-config-prettier": "^8.8.0",
     "postcss": "^8.4.21",
+    "prettier": "^2.8.8",
     "tailwindcss": "^3.2.7"
+  },
+  "prettier": {
+    "printWidth": 88
+  },
+  "eslintConfig": {
+    "extends": [
+      "next/core-web-vitals",
+      "prettier"
+    ],
+    "rules": {
+      "no-console": 1
+    }
   }
 }

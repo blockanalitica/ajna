@@ -1,5 +1,5 @@
 import TokenPoolsTable from "./TokenPoolsTable";
-const TokenPoolsSection = ({address}) => {
+const TokenPoolsSection = ({ address }) => {
   return (
     <>
       <section className="mx-auto max-w-9xl px-4 mt-5 sm:px-6 lg:px-8">

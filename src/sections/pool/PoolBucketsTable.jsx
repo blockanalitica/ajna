@@ -77,8 +77,7 @@ const BucketsTable = (promps) => {
                       <div className="flex justify-start items-center text-gray-6 text-sm">
                         <Value
                           value={
-                            item.collateral *
-                            item.collateral_token_underlying_price
+                            item.collateral * item.collateral_token_underlying_price
                           }
                           prefix={"$"}
                           decimals={2}
@@ -99,9 +98,7 @@ const BucketsTable = (promps) => {
                       </div>
                       <div className="flex justify-start items-center text-gray-6 text-sm">
                         <Value
-                          value={
-                            item.deposit * item.quote_token_underlying_price
-                          }
+                          value={item.deposit * item.quote_token_underlying_price}
                           prefix={"$"}
                           decimals={2}
                           compact
