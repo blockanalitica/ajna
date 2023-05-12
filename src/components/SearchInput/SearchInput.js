@@ -1,38 +1,31 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
-import { useFetch } from "@/hooks.js";
+import { useFetchPools } from "@/hooks.js";
 
 import PoolsTable from "@/components/table/specific/PoolsTable";
-
-const listOfItems = ["ETH", "DAI", "ETH2", "BTC"];
 
 export default function SearchBar() {
   const [searchTerm, setSearchTerm] = useState("");
   const [isFocused, setIsFocused] = useState(false);
   const [filteredPoolsData, setFilteredItems] = useState([]);
   
-  const { data, error, isLoading } = useFetch("/pools/");
+  const { tableData, msg } = useFetchPools("/pools/");
   useEffect(() => {
-    if (data && data.results) {
-      setFilteredItems(data.results);
+    if (tableData) {
+      setFilteredItems(tableData);
     }
-  }, [data]);
-  
-  if (error) {
-    return <p>Failed to load Data</p>;
+  }, [tableData]);
+
+  if (tableData === null) {
+    return <p>{msg}</p>;
   }
-  if (isLoading) {
-    return <p>Loading....</p>;
-  }
-  
-  const tableData = data.results;
 
   const handleSearchChange = (event) => {
     const newSearchTerm = event.target.value;
     setSearchTerm(newSearchTerm);
 
 
-    if (data && data.results) {
+    if (tableData) {
       const filtered = tableData.filter((item) =>
         item.collateral_token_symbol.toLowerCase().includes(newSearchTerm.toLowerCase())
       );
