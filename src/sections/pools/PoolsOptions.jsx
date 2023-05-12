@@ -20,14 +20,11 @@ const PoolsOptions = () => {
           {displayOptions.map((option) => (
             <li
               key={option.key}
-              className={classnames(
-                "cursor-pointer px-6 py-2",
-                {
-                  "cursor-pointer bg-purple-7 rounded-xl text-center":
-                    option.key === curentlyDisplayed,
-                  "cursor-pointer text-center": option.key !== curentlyDisplayed,
-                }
-              )}
+              className={classnames("cursor-pointer px-6 py-2", {
+                "cursor-pointer bg-purple-7 rounded-xl text-center":
+                  option.key === curentlyDisplayed,
+                "cursor-pointer text-center": option.key !== curentlyDisplayed,
+              })}
               onClick={() => setCurrentDisplay(option.key)}
             >
               {option.value}

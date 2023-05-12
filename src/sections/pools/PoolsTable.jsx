@@ -66,10 +66,7 @@ const PoolsTable = () => {
                 alt="link"
               >
                 <div
-                  className={classnames(
-                    "grid px-2 border-b border-gray-20",
-                    colClass
-                  )}
+                  className={classnames("grid px-2 border-b border-gray-20", colClass)}
                 >
                   <div className="flex justify-start items-center p-4">{index + 1}</div>
 

@@ -31,10 +31,7 @@ const GeneralTable = ({ tableData, tableHeader, colClass = "grid-cols-4" }) => {
                 alt="link"
               >
                 <div
-                  className={classnames(
-                    "grid px-2 border-b border-gray-20",
-                    colClass
-                  )}
+                  className={classnames("grid px-2 border-b border-gray-20", colClass)}
                 >
                   {item.data.map((item2) => (
                     <div key={item2} className="flex justify-start items-center p-4">
