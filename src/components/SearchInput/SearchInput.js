@@ -2,32 +2,35 @@ import { useState } from "react";
 import Head from "next/head";
 import { useFetch } from "@/hooks.js";
 
-import PoolsTable from "../table/specific/PoolsTable";
-import TokenPoolsTable from "../table/specific/TokenPoolsTable";
+import PoolsTable from "@/components/table/specific/PoolsTable";
 
 const listOfItems = ["ETH", "DAI", "ETH2", "BTC"];
 
 export default function SearchBar() {
-  //const { data, error, isLoading } = useFetch("/pools/");
+  const { data, error, isLoading } = useFetch("/pools/");
+  if (error) {
+    return <p>Failed to load Data</p>;
+  }
+  if (isLoading) {
+    return <p>Loading....</p>;
+  }
 
-  //if (error) {
-  //  return <p>Failed to load Data</p>;
-  //}
-  //if (isLoading) {
-  //  return <p>Loading....</p>;
-  //}
-
+  const tableData = data.results;
+  
   const [searchTerm, setSearchTerm] = useState("");
-  const [filteredItems, setFilteredItems] = useState(listOfItems);
+  const [filteredPoolsData, setFilteredItems] = useState(tableData);
   const [isFocused, setIsFocused] = useState(false);
+
+
 
   const handleSearchChange = (event) => {
     const newSearchTerm = event.target.value;
     setSearchTerm(newSearchTerm);
 
-    const filtered = listOfItems.filter((item) =>
-      item.toLowerCase().includes(newSearchTerm.toLowerCase())
+    const filtered = tableData.filter((item) =>
+      item.collateral_token_symbol.toLowerCase().includes(newSearchTerm.toLowerCase())
     );
+
     setFilteredItems(filtered);
   };
 
@@ -55,8 +58,17 @@ export default function SearchBar() {
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
       />
-      {isFocused && filteredItems.length > 0 && (
-        {/*
+      {isFocused && filteredPoolsData.length > 0 && (
+        <div className="absolute w-screen mt-1 py-1 border border-ajna-plum bg-black rounded-2xl shadow-lg dropdown">
+          <PoolsTable tableData={filteredPoolsData} />
+        </div>
+      )}
+    </div>
+  );
+}
+
+
+        /*
         <ul className="absolute w-full mt-1 py-1 border border-ajna-plum bg-black rounded-2xl shadow-lg dropdown">
           {filteredItems.map((item) => (
             <li
@@ -71,12 +83,4 @@ export default function SearchBar() {
             </li>
           ))}
         </ul>
-        */},
-        <div
-        className="absolute w-screen mt-1 py-1 border border-ajna-plum bg-black rounded-2xl shadow-lg dropdown">
-          <PoolsTable />
-        </div>
-      )}
-    </div>
-  );
-}
+        */

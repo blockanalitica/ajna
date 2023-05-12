@@ -8,23 +8,22 @@ import {
  } from "@/components/table/general/TableTabTemplates";
 
 
-const PoolsTable = () => {
-  const { data, error, isLoading } = useFetch("/pools/");
+const PoolsTable = ({tableData=null}) => {
+  console.log(tableData);
 
-  if (error) {
-    return <p>Failed to load Data</p>;
+  if (tableData == null) {
+    const { data, error, isLoading } = useFetch("/pools/");
+
+    if (error) {
+      return <p>Failed to load Data</p>;
+    }
+    if (isLoading) {
+      return <p>Loading....</p>;
+    }
+  
+  tableData = data.results;
   }
-  if (isLoading) {
-    return <p>Loading....</p>;
-  }
-
-  const tableData = data.results;
-
-  const filtered_data = tableData.filter((item) =>
-      item.collateral_token_symbol.toLowerCase().includes("e")
-    );
-
-  console.log(filtered_data);
+  
 
   const colClass = "grid-cols-table-8";
 

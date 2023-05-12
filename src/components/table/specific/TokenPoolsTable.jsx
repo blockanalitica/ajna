@@ -54,9 +54,44 @@ const TokenPoolsTable = ({ address }) => {
     },
   ];
 
+  let rowData = (item) => 
+  {
+    return [
+      table_tab_only_idx(item.bucket_index),
+      table_tab_title_coin_subtitle_val_change({
+        title: item.collateral,
+        subtitle: item.collateral * item.collateral_token_underlying_price,
+        icon: item.collateral_token_symbol,
+        title_prefix: null, subtitle_prefix: "$",
+      }),
+      table_tab_title_coin_subtitle_val_change({
+        title: item.deposit,
+        subtitle: item.deposit * item.quote_token_underlying_price,
+        icon: item.quote_token_symbol,
+        title_prefix: null, subtitle_prefix: "$",
+      }),
+      table_tab_title_coin_subtitle_val_change({
+        title: item.lpb,
+        subtitle: item.current_debt * item.quote_token_underlying_price,
+        icon: item.quote_token_symbol,
+        title_prefix: null, subtitle_prefix: "$",
+      }),
+    ]
+  }
+
   const colClass = "grid-cols-table-8";
 
+  // TODO: Fix this table
+
   return (
+    <>
+    <GeneralTable 
+      tableHeader={tableHeader} 
+      tableData={tableData} 
+      colClass={colClass} 
+      rowData={rowData}
+      idxDisplay={true}
+     />
     <div className="flex flex-col">
       <div className="relative overflow-x-auto border rounded-2xl bg-gray-20 bg-opacity-30 border-gray-13 border-opacity-30 px-5">
         <div className="relative overflow-x-auto shadow-md rounded-2xl">
@@ -168,6 +203,7 @@ const TokenPoolsTable = ({ address }) => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
