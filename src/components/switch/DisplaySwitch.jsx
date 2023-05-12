@@ -1,4 +1,4 @@
-import { joinClassNames } from "@/utils/helperFunc";
+import classnames from "classnames";
 
 function SwitchDisplays({
   displayOptions,
@@ -23,13 +23,11 @@ function SwitchDisplays({
         {displayOptions.map((option) => (
           <li
             key={option.key}
-            className={joinClassNames(
-              option.key === active
-                ? "cursor-pointer bg-primary-8 rounded-xl text-center"
-                : "cursor-pointer text-center",
-              "cursor-pointer",
-              className
-            )}
+            className={classnames(className, "cursor-pointer", {
+              "cursor-pointer bg-primary-8 rounded-xl text-center":
+                option.key === active,
+              "cursor-pointer text-center": option.key !== active,
+            })}
             onClick={() => setActive(option.key)}
           >
             {option.value}

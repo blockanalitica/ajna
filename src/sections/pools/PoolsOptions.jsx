@@ -1,4 +1,4 @@
-import { joinClassNames } from "@/utils/helperFunc";
+import classnames from "classnames";
 import { useState } from "react";
 
 const PoolsOptions = () => {
@@ -20,12 +20,13 @@ const PoolsOptions = () => {
           {displayOptions.map((option) => (
             <li
               key={option.key}
-              className={joinClassNames(
-                option.key === curentlyDisplayed
-                  ? "cursor-pointer bg-purple-7 rounded-xl text-center"
-                  : "cursor-pointer text-center",
-                "cursor-pointer",
-                "px-6 py-2"
+              className={classnames(
+                "cursor-pointer px-6 py-2",
+                {
+                  "cursor-pointer bg-purple-7 rounded-xl text-center":
+                    option.key === curentlyDisplayed,
+                  "cursor-pointer text-center": option.key !== curentlyDisplayed,
+                }
               )}
               onClick={() => setCurrentDisplay(option.key)}
             >

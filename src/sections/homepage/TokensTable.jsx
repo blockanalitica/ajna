@@ -1,7 +1,6 @@
-import CryptoIcon from "@/components/icon/CryptoIcon";
+import classnames from "classnames";
 import Value from "@/components/value/Value";
 import { useFetch } from "@/hooks.js";
-import { joinClassNames } from "@/utils/helperFunc"; // This is a custom function to join class names
 import Link from "next/link";
 
 const TokensTable = () => {
@@ -24,7 +23,7 @@ const TokensTable = () => {
         <div className="relative overflow-x-auto shadow-md rounded-2xl">
           <div className="shadow overflow-hidden sm:rounded-lg py-4">
             <div
-              className={joinClassNames(
+              className={classnames(
                 "grid gap-4 bg-gray-21  text-white rounded-2xl",
                 colClass
               )}
@@ -53,7 +52,7 @@ const TokensTable = () => {
                 alt="link"
               >
                 <div
-                  className={joinClassNames(
+                  className={classnames(
                     "grid px-2 border-b border-gray-20",
                     colClass
                   )}
