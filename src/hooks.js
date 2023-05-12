@@ -14,7 +14,7 @@ export const useFetch = (path, query) => {
 
 
 // use to call /pools/ endpoint
-export const useFetchPools = (url) => {
+export const useFetchTableData = (url) => {
   const { data, error, isLoading } = useFetch(url);
   if (error) {
     return {tableData: null, msg: "Failed to load pools data"};

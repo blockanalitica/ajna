@@ -9,17 +9,19 @@ import { joinClassNames } from "@/utils/helperFunc"; // This is a custom functio
 import Link from "next/link";
 
 
-const TokensTable = () => {
-  const { data, error, isLoading } = useFetch("/tokens/");
+const TokensTable = ({tableData=null}) => {
+  if (tableData == null) {
+    const { data, error, isLoading } = useFetch("/tokens/");
 
-  if (error) {
-    return <p>Failed to load Data</p>;
-  }
-  if (isLoading) {
-    return <p>Loading....</p>;
-  }
+    if (error) {
+      return <p>Failed to load Data</p>;
+    }
+    if (isLoading) {
+      return <p>Loading....</p>;
+    }
 
-  const tableData = data.results;
+  tableData = data.results;
+  }
 
   const tableHeader = [
     {
