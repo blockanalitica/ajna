@@ -24,7 +24,7 @@ const FancyGraph = ({
   subvalueFormatter,
   ...rest
 }) => {
-  const { value:defaultValue, subvalue:defaultSubvalue } = _getDefaultValue(
+  const { value: defaultValue, subvalue: defaultSubvalue } = _getDefaultValue(
     series,
     valueFormatter,
     subvalueFormatter
@@ -105,12 +105,7 @@ const FancyGraph = ({
     <div>
       <div className="text-2xl font-bold mb-1">{labelValue}</div>
       <div className="text-sm text-gray-6 mb-6">{labelSubvalue}</div>
-      <Graph
-        series={series}
-        options={mergedOptions}
-        plugins={plugins}
-        {...rest}
-      />
+      <Graph series={series} options={mergedOptions} plugins={plugins} {...rest} />
     </div>
   );
 };

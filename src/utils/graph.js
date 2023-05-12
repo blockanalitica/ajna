@@ -17,10 +17,7 @@ export const tooltipLabelNumber = (tooltipItem, prefix, suffix) => {
 export const tooltipLabelNumberWithPercent = (tooltipItem, prefix, suffix) => {
   let label = tooltipLabelNumber(tooltipItem, prefix, suffix);
   if (tooltipItem.parsed.y !== null) {
-    const total = tooltipItem.dataset.data.reduce(
-      (total, row) => total + row.y,
-      0
-    );
+    const total = tooltipItem.dataset.data.reduce((total, row) => total + row.y, 0);
     const percentage = round((tooltipItem.parsed.y / total) * 100);
     label += ` (${percentage}%)`;
   }
@@ -28,10 +25,7 @@ export const tooltipLabelNumberWithPercent = (tooltipItem, prefix, suffix) => {
 };
 
 export const tooltipFooterTotal = (tooltipItems, prefix, suffix) => {
-  const total = tooltipItems.reduce(
-    (total, tooltip) => total + tooltip.parsed.y,
-    0
-  );
+  const total = tooltipItems.reduce((total, tooltip) => total + tooltip.parsed.y, 0);
   return `${prefix || ""}` + compact(total, 2, true) + `${suffix || ""}`;
 };
 

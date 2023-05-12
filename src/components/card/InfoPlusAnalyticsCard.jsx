@@ -25,8 +25,7 @@ const InfoPlusAnalyticsCard = (promps) => {
               <span className="text-sm text-gray-5 ml-2">
                 <Value
                   value={
-                    data.pledged_collateral *
-                    data.collateral_token_underlying_price
+                    data.pledged_collateral * data.collateral_token_underlying_price
                   }
                   decimals={2}
                   compact
@@ -37,19 +36,11 @@ const InfoPlusAnalyticsCard = (promps) => {
           </div>
           <div className="flex flex-row justify-between items-center">
             <div className="flex flex-row justify-between items-center">
-              <CryptoIcon
-                name={data.quote_token_symbol}
-                size={20}
-                className="mr-2"
-              />{" "}
+              <CryptoIcon name={data.quote_token_symbol} size={20} className="mr-2" />{" "}
               {data.quote_token_symbol}{" "}
             </div>
             <div className="flex flex-row justify-between items-center">
-              <Value
-                value={data.pool_size - data.current_debt}
-                decimals={2}
-                compact
-              />
+              <Value value={data.pool_size - data.current_debt} decimals={2} compact />
               <span className="text-sm text-gray-5 ml-2">
                 <Value
                   value={
@@ -82,12 +73,7 @@ const InfoPlusAnalyticsCard = (promps) => {
         />
         <SubAnalyticCard
           title={
-            <Value
-              value={data.total_ajna_burned}
-              decimals={2}
-              compact
-              prefix={"🔥 "}
-            />
+            <Value value={data.total_ajna_burned} decimals={2} compact prefix={"🔥 "} />
           }
           subtitle="AJNA burned"
         />

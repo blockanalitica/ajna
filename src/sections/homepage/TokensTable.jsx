@@ -58,9 +58,7 @@ const TokensTable = () => {
                     colClass
                   )}
                 >
-                  <div className="flex justify-start items-center p-4">
-                    {index + 1}
-                  </div>
+                  <div className="flex justify-start items-center p-4">{index + 1}</div>
 
                   <div className="flex justify-start items-center p-4">
                     <CryptoIcon name={item.symbol} className="mr-2" size={25} />

@@ -8,7 +8,6 @@ import Link from "next/link";
 
 const TokenPoolsTable = ({ address }) => {
   const { data, error, isLoading } = useFetch(`/tokens/${address}/pools/`);
-  console.log(data);
 
   if (error) {
     return <p>Failed to load Data</p>;
@@ -70,9 +69,7 @@ const TokenPoolsTable = ({ address }) => {
                     colClass
                   )}
                 >
-                  <div className="flex justify-start items-center p-4">
-                    {index + 1}
-                  </div>
+                  <div className="flex justify-start items-center p-4">{index + 1}</div>
 
                   <div className="flex justify-start items-center p-4">
                     <span className="relative flex justify-start items-center p-4">
@@ -115,12 +112,7 @@ const TokenPoolsTable = ({ address }) => {
                   </div>
                   <div className="flex justify-end items-end p-4">
                     <div className="flex flex-col items-end">
-                      <Value
-                        value={item.pool_size}
-                        decimals={2}
-                        prefix={"$"}
-                        compact
-                      />
+                      <Value value={item.pool_size} decimals={2} prefix={"$"} compact />
                       <ValueChange
                         value={0}
                         decimals={2}
@@ -133,11 +125,7 @@ const TokenPoolsTable = ({ address }) => {
                   <div className="flex justify-end items-center p-4">
                     <TagComp
                       title={
-                        <Value
-                          value={item.interest_rate}
-                          decimals={2}
-                          suffix={"%"}
-                        />
+                        <Value value={item.interest_rate} decimals={2} suffix={"%"} />
                       }
                     />
                   </div>
