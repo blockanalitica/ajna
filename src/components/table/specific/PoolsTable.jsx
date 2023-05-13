@@ -9,8 +9,6 @@ import {
 
 
 const PoolsTable = ({tableData=null}) => {
-  console.log(tableData);
-
   if (tableData == null) {
     const { data, error, isLoading } = useFetch("/pools/");
 

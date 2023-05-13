@@ -1,37 +1,53 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
-import { useFetchPools } from "@/hooks.js";
+import { useFetchTableData } from "@/hooks.js";
 
 import PoolsTable from "@/components/table/specific/PoolsTable";
+import TokensTable from "@/components/table/specific/TokensTable";
 
 export default function SearchBar() {
   const [searchTerm, setSearchTerm] = useState("");
   const [isFocused, setIsFocused] = useState(false);
   const [filteredPoolsData, setFilteredItems] = useState([]);
+  const [filteredTokensData, setFilteredTokens] = useState([]);
   
-  const { tableData, msg } = useFetchPools("/pools/");
-  useEffect(() => {
-    if (tableData) {
-      setFilteredItems(tableData);
-    }
-  }, [tableData]);
+  const { tableData: tablePoolData, msg: poolMsg } = useFetchTableData("/pools/");
+  const { tableData: tableTokenData, msg: tokenMsg } = useFetchTableData("/tokens/");
 
-  if (tableData === null) {
-    return <p>{msg}</p>;
+  useEffect(() => {
+    if (tablePoolData) {
+      setFilteredItems(tablePoolData);
+    }
+    if (tableTokenData) {
+      setFilteredTokens(tableTokenData);
+    }
+  }, [tablePoolData, tableTokenData]);
+
+  if (tablePoolData === null) {
+    return <p>{poolMsg}</p>;
+  }
+  if (tableTokenData === null) {
+    return <p>{tokenMsg}</p>;
   }
 
   const handleSearchChange = (event) => {
     const newSearchTerm = event.target.value;
     setSearchTerm(newSearchTerm);
 
-
-    if (tableData) {
-      const filtered = tableData.filter((item) =>
+    if (tablePoolData) {
+      const filtered = tablePoolData.filter((item) =>
         item.collateral_token_symbol.toLowerCase().includes(newSearchTerm.toLowerCase())
       );
-      
       setFilteredItems(filtered);
     }
+
+    if (tableTokenData) {
+      const filtered = tableTokenData.filter((item) =>
+        item.name.toLowerCase().includes(newSearchTerm.toLowerCase())
+      );
+      setFilteredTokens(filtered);
+    }
+
   };
 
   return (
@@ -58,9 +74,17 @@ export default function SearchBar() {
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
       />
-      {isFocused && filteredPoolsData.length > 0 && (
+      {isFocused && (filteredPoolsData.length > 0 || filteredTokensData.length) && (
         <div className="absolute w-screen mt-1 py-1 border border-ajna-plum bg-black rounded-2xl shadow-lg dropdown">
+          <h3 className="px-4 py-2 text-gray-8 font-rubik">
+            Pools
+          </h3>
           <PoolsTable tableData={filteredPoolsData} />
+          <h3 className="px-4 py-2 text-gray-8 font-rubik">
+            Tokens
+          </h3>
+          <TokensTable tableData={filteredTokensData} />
+          
         </div>
       )}
     </div>
