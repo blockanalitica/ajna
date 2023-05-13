@@ -10,7 +10,7 @@ export default function SearchBar() {
   const [isFocused, setIsFocused] = useState(false);
   const [filteredPoolsData, setFilteredItems] = useState([]);
   const [filteredTokensData, setFilteredTokens] = useState([]);
-  
+
   const { tableData: tablePoolData, msg: poolMsg } = useFetchTableData("/pools/");
   const { tableData: tableTokenData, msg: tokenMsg } = useFetchTableData("/tokens/");
 
@@ -47,7 +47,6 @@ export default function SearchBar() {
       );
       setFilteredTokens(filtered);
     }
-
   };
 
   return (
@@ -62,9 +61,7 @@ export default function SearchBar() {
           </style>
         )}
       </Head>
-      {isFocused && (
-        <div className="overlay" onClick={() => setIsFocused(false)} />
-      )}
+      {isFocused && <div className="overlay" onClick={() => setIsFocused(false)} />}
       <input
         type="text"
         placeholder="Search pools or tokens"
@@ -76,23 +73,17 @@ export default function SearchBar() {
       />
       {isFocused && (filteredPoolsData.length > 0 || filteredTokensData.length) && (
         <div className="absolute w-screen mt-1 py-1 border border-ajna-plum bg-black rounded-2xl shadow-lg dropdown">
-          <h3 className="px-4 py-2 text-gray-8 font-rubik">
-            Pools
-          </h3>
+          <h3 className="px-4 py-2 text-gray-8 font-rubik">Pools</h3>
           <PoolsTable tableData={filteredPoolsData} />
-          <h3 className="px-4 py-2 text-gray-8 font-rubik">
-            Tokens
-          </h3>
+          <h3 className="px-4 py-2 text-gray-8 font-rubik">Tokens</h3>
           <TokensTable tableData={filteredTokensData} />
-          
         </div>
       )}
     </div>
   );
 }
 
-
-        /*
+/*
         <ul className="absolute w-full mt-1 py-1 border border-ajna-plum bg-black rounded-2xl shadow-lg dropdown">
           {filteredItems.map((item) => (
             <li

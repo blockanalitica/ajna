@@ -8,7 +8,7 @@ const Token = ({ address }) => {
     return <p>Failed to load Data</p>;
   }
   if (isLoading) {
-    return <p>Loading....</p>; 
+    return <p>Loading....</p>;
   }
 
   const item = data.results;

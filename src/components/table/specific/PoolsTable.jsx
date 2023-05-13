@@ -1,14 +1,13 @@
 "use client";
 import { useFetchTableData } from "@/hooks.js";
 import GeneralTable from "@/components/table/general/GeneralTable";
-import { 
+import {
   table_tab_2coins_plus_title,
   table_tab_title_coin_subtitle_val_change,
-  table_tab_tag
- } from "@/components/table/general/TableTabTemplates";
+  table_tab_tag,
+} from "@/components/table/general/TableTabTemplates";
 
-
-const PoolsTable = ({tableData=null}) => {
+const PoolsTable = ({ tableData = null }) => {
   const { tableData: tablePoolsData, msg } = useFetchTableData("/pools/");
 
   if (tableData === null) {
@@ -23,40 +22,39 @@ const PoolsTable = ({tableData=null}) => {
   const tableHeader = [
     {
       title: "#",
-      class: "justify-start items-center"
+      class: "justify-start items-center",
     },
     {
       title: "Collateral / Quote",
-      class: "justify-start items-center"
+      class: "justify-start items-center",
     },
     {
       title: "Collateral",
-      class: "justify-end items-center"
+      class: "justify-end items-center",
     },
     {
       title: "Quote",
-      class: "justify-end items-center"
+      class: "justify-end items-center",
     },
     {
       title: "Debt",
-      class: "justify-end items-center"
+      class: "justify-end items-center",
     },
     {
       title: "TVL",
-      class: "justify-end items-center"
+      class: "justify-end items-center",
     },
     {
       title: "APR",
-      class: "justify-end items-center"
+      class: "justify-end items-center",
     },
     {
       title: "🔥",
-      class: "justify-end items-center"
-    }
+      class: "justify-end items-center",
+    },
   ];
 
-  let rowData = (item) => 
-  {
+  let rowData = (item) => {
     return [
       table_tab_2coins_plus_title({
         title1: item.collateral_token_symbol,
@@ -68,47 +66,54 @@ const PoolsTable = ({tableData=null}) => {
         title: item.pledged_collateral,
         subtitle: item.pledged_collateral * item.collateral_token_underlying_price,
         icon: item.collateral_token_symbol,
-        title_prefix: null, subtitle_prefix: "$",
-        title_val_change: 1, subtitle_val_change: 1,
-        title_val_change_prefix: null, subtitle_val_change_prefix: "$",
+        title_prefix: null,
+        subtitle_prefix: "$",
+        title_val_change: 1,
+        subtitle_val_change: 1,
+        title_val_change_prefix: null,
+        subtitle_val_change_prefix: "$",
       }),
       table_tab_title_coin_subtitle_val_change({
         title: item.pool_size,
         subtitle: item.pool_size * item.quote_token_underlying_price,
         icon: item.quote_token_symbol,
-        title_prefix: null, subtitle_prefix: "$",
+        title_prefix: null,
+        subtitle_prefix: "$",
       }),
       table_tab_title_coin_subtitle_val_change({
         title: item.current_debt,
         subtitle: item.current_debt * item.quote_token_underlying_price,
         icon: item.quote_token_symbol,
-        title_prefix: null, subtitle_prefix: "$",
+        title_prefix: null,
+        subtitle_prefix: "$",
       }),
       table_tab_title_coin_subtitle_val_change({
         title: item.tvl,
         subtitle: 0,
-        title_prefix: "$", subtitle_prefix: null,
+        title_prefix: "$",
+        subtitle_prefix: null,
         subtitle_dash_if_zero: true,
       }),
       table_tab_tag(item.interest_rate),
       table_tab_title_coin_subtitle_val_change({
         title: item.total_ajna_burned,
         subtitle: 0,
-        title_prefix: null, subtitle_prefix: null,
+        title_prefix: null,
+        subtitle_prefix: null,
         subtitle_dash_if_zero: true,
       }),
-    ]
-  }
+    ];
+  };
 
   return (
     <>
-    <GeneralTable 
-      tableHeader={tableHeader} 
-      tableData={tableData} 
-      colClass={colClass} 
-      rowData={rowData}
-      idxDisplay={true}
-     />
+      <GeneralTable
+        tableHeader={tableHeader}
+        tableData={tableData}
+        colClass={colClass}
+        rowData={rowData}
+        idxDisplay={true}
+      />
     </>
   );
 };

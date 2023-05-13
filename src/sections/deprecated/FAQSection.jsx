@@ -1,4 +1,4 @@
-import { AccordionTile } from '@/components/accordion/AccordionTile';
+import { AccordionTile } from "@/components/accordion/AccordionTile";
 
 const FAQ = [
   {

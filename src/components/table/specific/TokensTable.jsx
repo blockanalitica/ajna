@@ -1,14 +1,14 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 import GeneralTable from "@/components/table/general/GeneralTable";
-import { 
+import {
   table_tab_1coin_title,
-  table_tab_title_coin_subtitle_val_change } from "@/components/table/general/TableTabTemplates";
+  table_tab_title_coin_subtitle_val_change,
+} from "@/components/table/general/TableTabTemplates";
 import { useFetchTableData } from "@/hooks.js";
 
-
-const TokensTable = ({tableData=null}) => {
+const TokensTable = ({ tableData = null }) => {
   const { tableData: tableTokenData, msg } = useFetchTableData("/tokens/");
-  
+
   if (tableData === null) {
     if (tableTokenData === null) {
       return <p>{msg}</p>;
@@ -42,7 +42,7 @@ const TokensTable = ({tableData=null}) => {
   let rowData = (item) => [
     table_tab_1coin_title({
       name: item.name,
-      symbol: item.symbol
+      symbol: item.symbol,
     }),
     table_tab_title_coin_subtitle_val_change({
       title: item.underlying_price,
@@ -57,24 +57,21 @@ const TokensTable = ({tableData=null}) => {
     table_tab_title_coin_subtitle_val_change({
       title: item.pool_count,
       subtitle_hide_if_zero: true,
-    })
+    }),
   ];
-
-    
 
   const colClass = "grid-cols-table-5";
 
   return (
     <>
-    <GeneralTable
-      tableHeader={tableHeader}
-      rowData={rowData}
-      tableData={tableData}
-      colClass={colClass}
-      idxDisplay={true}
+      <GeneralTable
+        tableHeader={tableHeader}
+        rowData={rowData}
+        tableData={tableData}
+        colClass={colClass}
+        idxDisplay={true}
       />
     </>
-    
   );
 };
 

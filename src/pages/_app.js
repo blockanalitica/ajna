@@ -1,5 +1,5 @@
 import "@/styles/globals.css";
-import Layout from '@/components/Layout'
+import Layout from "@/components/Layout";
 import { Settings as DTSettings } from "luxon";
 
 // Set default timezone to UTC

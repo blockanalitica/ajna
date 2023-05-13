@@ -1,4 +1,3 @@
-
 import AnalyticSection from "./homepage/AnalyticSection";
 import SearchSection from "./homepage/SearchSection";
 import TopPoolsSection from "./homepage/TopPoolsSection";
