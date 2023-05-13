@@ -1,22 +1,19 @@
+import { useEffect } from 'react';
 import GeneralTable from "@/components/table/general/GeneralTable";
 import { 
   table_tab_1coin_title,
   table_tab_title_coin_subtitle_val_change } from "@/components/table/general/TableTabTemplates";
-import { useFetch } from "@/hooks.js";
+import { useFetchTableData } from "@/hooks.js";
 
 
 const TokensTable = ({tableData=null}) => {
-  if (tableData == null) {
-    const { data, error, isLoading } = useFetch("/tokens/");
-
-    if (error) {
-      return <p>Failed to load Data</p>;
+  const { tableData: tableTokenData, msg } = useFetchTableData("/tokens/");
+  
+  if (tableData === null) {
+    if (tableTokenData === null) {
+      return <p>{msg}</p>;
     }
-    if (isLoading) {
-      return <p>Loading....</p>;
-    }
-
-  tableData = data.results;
+    tableData = tableTokenData;
   }
 
   const tableHeader = [

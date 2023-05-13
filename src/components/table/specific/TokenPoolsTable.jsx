@@ -5,6 +5,7 @@ import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
 import { useFetch } from "@/hooks.js";
 import Link from "next/link";
+import GeneralTable from "../general/GeneralTable";
 
 const TokenPoolsTable = ({ address }) => {
   const { data, error, isLoading } = useFetch(`/tokens/${address}/pools/`);

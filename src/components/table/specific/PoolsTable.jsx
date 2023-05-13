@@ -1,5 +1,5 @@
 "use client";
-import { useFetch } from "@/hooks.js";
+import { useFetchTableData } from "@/hooks.js";
 import GeneralTable from "@/components/table/general/GeneralTable";
 import { 
   table_tab_2coins_plus_title,
@@ -9,19 +9,14 @@ import {
 
 
 const PoolsTable = ({tableData=null}) => {
-  if (tableData == null) {
-    const { data, error, isLoading } = useFetch("/pools/");
+  const { tableData: tablePoolsData, msg } = useFetchTableData("/pools/");
 
-    if (error) {
-      return <p>Failed to load Data</p>;
+  if (tableData === null) {
+    if (tablePoolsData === null) {
+      return <p>{msg}</p>;
     }
-    if (isLoading) {
-      return <p>Loading....</p>;
-    }
-  
-  tableData = data.results;
+    tableData = tablePoolsData;
   }
-  
 
   const colClass = "grid-cols-table-8";
 
