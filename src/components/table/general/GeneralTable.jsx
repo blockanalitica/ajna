@@ -1,4 +1,4 @@
-import { joinClassNames } from "@/utils/helperFunc"; // This is a custom function to join class names
+import classnames from "classnames";
 import Link from "next/link";
 import React from "react";
 
@@ -9,12 +9,12 @@ const GeneralTable = ({ tableData, tableHeader, rowData, idxDisplay=false, colCl
         <div className="relative overflow-x-auto shadow-md rounded-2xl">
           <div className="shadow overflow-hidden sm:rounded-lg py-4">
             <div 
-              className={joinClassNames(
+              className={classnames(
                 "grid gap-4 bg-gray-21  text-white rounded-2xl",
                 colClass
               )}>
               {tableHeader.map((item, index) => (
-                <div key={index} className={joinClassNames("bg-gray-100 flex font-bold p-4", item.class)}>{item.title}</div>
+                <div key={index} className={classnames("bg-gray-100 flex font-bold p-4", item.class)}>{item.title}</div>
               ))}
             </div>
             {tableData.map((item, index) => (
@@ -25,7 +25,7 @@ const GeneralTable = ({ tableData, tableHeader, rowData, idxDisplay=false, colCl
                 alt="link"
               >
                 <div
-                  className={joinClassNames(
+                  className={classnames(
                     "grid px-2 border-b border-gray-20",
                     colClass
                   )}

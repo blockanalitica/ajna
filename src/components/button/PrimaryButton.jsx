@@ -1,4 +1,3 @@
-import { joinClassNames } from "@/utils/helperFunc";
 import Link from "next/link";
 
 const PrimaryButton = ({ title="title", location="/" }) => (

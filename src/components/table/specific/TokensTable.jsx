@@ -1,12 +1,8 @@
-import CryptoIcon from "@/components/icon/CryptoIcon";
 import GeneralTable from "@/components/table/general/GeneralTable";
 import { 
   table_tab_1coin_title,
   table_tab_title_coin_subtitle_val_change } from "@/components/table/general/TableTabTemplates";
-import Value from "@/components/value/Value";
 import { useFetch } from "@/hooks.js";
-import { joinClassNames } from "@/utils/helperFunc"; // This is a custom function to join class names
-import Link from "next/link";
 
 
 const TokensTable = ({tableData=null}) => {

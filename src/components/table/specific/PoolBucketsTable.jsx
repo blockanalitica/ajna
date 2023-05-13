@@ -97,7 +97,7 @@ const BucketsTable = (promps) => {
               )}
             >
               {tableHeader.map((item, index) => (
-                <div key={index} className={joinClassNames("bg-gray-100 flex font-bold p-4", item.class)}>{item.title}</div>
+                <div key={index} className={classnames("bg-gray-100 flex font-bold p-4", item.class)}>{item.title}</div>
               ))}
             </div>
             {tableData.map((item, index) => (
