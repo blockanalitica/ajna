@@ -17,6 +17,7 @@ const TopPoolsSection = () => {
     </div>
 </section>
     </>
-)};
+  );
+};
 
 export default TopPoolsSection;

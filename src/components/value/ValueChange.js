@@ -48,11 +48,7 @@ function ValueChange(props) {
       spanClass = "text-green-8";
     }
     iconPlace = (
-      <FontAwesomeIcon
-        style={{ fontSize: ".8em" }}
-        icon={faCaretUp}
-        className="me-1"
-      />
+      <FontAwesomeIcon style={{ fontSize: ".8em" }} icon={faCaretUp} className="me-1" />
     );
   } else if (value < 0) {
     if (reverse) {
@@ -61,9 +57,7 @@ function ValueChange(props) {
       spanClass = "text-red-8";
     }
 
-    iconPlace = (
-      <FontAwesomeIcon style={{ fontSize: ".8em" }} icon={faCaretDown} />
-    );
+    iconPlace = <FontAwesomeIcon style={{ fontSize: ".8em" }} icon={faCaretDown} />;
   }
 
   const classNames = classnames(spanClass, className, "flex", "items-center", {

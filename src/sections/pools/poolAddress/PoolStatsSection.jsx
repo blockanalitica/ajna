@@ -41,9 +41,7 @@ const PoolStatsSection = (promps) => {
           </span>
           <span className="mb-2 text-sm text-gray-6">
             <Value
-              value={
-                results.current_debt * results.quote_token_underlying_price
-              }
+              value={results.current_debt * results.quote_token_underlying_price}
               decimals={2}
               compact
               prefix={"$"}
@@ -65,8 +63,7 @@ const PoolStatsSection = (promps) => {
           <span className="mb-2 text-sm text-gray-6">
             <Value
               value={
-                results.pledged_collateral *
-                results.collateral_token_underlying_price
+                results.pledged_collateral * results.collateral_token_underlying_price
               }
               decimals={2}
               compact

@@ -1,4 +1,3 @@
-
 import PoolsOptions from './PoolsOptions';
 import PoolsTable from '@/components/table/specific/PoolsTable';
 import MiningCard from '@/components/card/MiningCard';

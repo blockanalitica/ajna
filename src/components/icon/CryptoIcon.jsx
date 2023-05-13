@@ -28,7 +28,6 @@ const CryptoIcon = ({ name, size, address, ...rest }) => {
     }
   }, [btnRef]);
 
-
   const mapping = {
     DAI: daiIcon,
     TDAI: daiIcon,
@@ -53,19 +52,12 @@ const CryptoIcon = ({ name, size, address, ...rest }) => {
     return name;
   }
 
-
   return (
     <>
-      <Image
-        src={Icon}
-        width={size}
-        height={size}
-        alt={name}
-        {...rest}
-       />
+      <Image src={Icon} width={size} height={size} alt={name} {...rest} />
     </>
   );
-}
+};
 
 CryptoIcon.propTypes = {
   name: PropTypes.string.isRequired,
