@@ -21,14 +21,18 @@ const Pool = () => {
 
   const results = data.results;
 
-  return (
-    <>
-      <SearchSection showTimePicker={true} />
-      <PoolStatsSection data={results} />
-      <GraphSection data={results} />
-      <BucketsSection address={poolAddress} />
-    </>
-  );
+  if (results) {
+    return (
+      <>
+        <SearchSection showTimePicker={true} />
+        <PoolStatsSection data={results} />
+        <GraphSection data={results} />
+        <BucketsSection address={poolAddress} />
+      </>
+    );
+  } else {
+    return <p>Failed to load Data</p>;
+  }
 };
 
 export default Pool;

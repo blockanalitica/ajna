@@ -1,7 +1,14 @@
 import classnames from "classnames";
 import Link from "next/link";
+import React from "react";
 
-const GeneralTable = ({ tableData, tableHeader, colClass = "grid-cols-4" }) => {
+const GeneralTable = ({
+  tableData,
+  tableHeader,
+  rowData,
+  idxDisplay = false,
+  colClass = "grid-cols-4",
+}) => {
   return (
     <div className="flex flex-col">
       <div className="relative overflow-x-auto border rounded-2xl bg-gray-20 bg-opacity-30 border-gray-13 border-opacity-30 px-5">
@@ -16,27 +23,29 @@ const GeneralTable = ({ tableData, tableHeader, colClass = "grid-cols-4" }) => {
               {tableHeader.map((item, index) => (
                 <div
                   key={index}
-                  className="bg-gray-100 flex justify-start items-center font-bold p-4"
+                  className={classnames("bg-gray-100 flex font-bold p-4", item.class)}
                 >
                   {item.title}
                 </div>
               ))}
             </div>
-
             {tableData.map((item, index) => (
               <Link
                 key={index}
                 className="text-white cursor-pointer hover:text-gray-7"
-                href={item.href}
+                href={`/pools/${item.address}`}
                 alt="link"
               >
                 <div
                   className={classnames("grid px-2 border-b border-gray-20", colClass)}
                 >
-                  {item.data.map((item2) => (
-                    <div key={item2} className="flex justify-start items-center p-4">
-                      {item2}
+                  {idxDisplay && (
+                    <div className="flex justify-start items-center p-4">
+                      {index + 1}
                     </div>
+                  )}
+                  {rowData(item).map((tab, tab_idx) => (
+                    <React.Fragment key={`tab-${tab_idx}`}>{tab}</React.Fragment>
                   ))}
                 </div>
               </Link>

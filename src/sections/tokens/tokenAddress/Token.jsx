@@ -16,7 +16,7 @@ const Token = ({ address }) => {
     <>
       <section className="mx-auto max-w-9xl px-4 mt-5 sm:px-6 lg:px-8">
         <div className="flex px-4">
-          <CryptoIcon name={item.symbol} size={30} />
+          <CryptoIcon name={item.symbol} size={"30"} />
           <h1 className="ml-4 py-9 text-xl md:text-1xl xl:text-2xl">{item.symbol}</h1>
         </div>
       </section>

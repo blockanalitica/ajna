@@ -16,6 +16,7 @@ function Value(props) {
     compact,
     compact100k,
     hideIfZero,
+    dashIfZero,
     icon,
     className,
     id,
@@ -25,7 +26,15 @@ function Value(props) {
     ...rest
   } = props;
 
-  if (value === undefined || value === null || (hideIfZero && value === 0)) {
+  if (
+    value === undefined ||
+    value === null ||
+    (hideIfZero && value === 0) ||
+    (dashIfZero && value === 0)
+  ) {
+    if (dashIfZero && value === 0) {
+      return "-";
+    }
     return "";
   }
   let tooltip = null;
@@ -65,7 +74,7 @@ function Value(props) {
                 <CryptoIcon
                   name={prefix}
                   className="me-1"
-                  size={small ? 15 : big ? 25 : iconSize}
+                  size={small ? "15" : big ? "25" : iconSize}
                 />
               </>
             ) : (
@@ -101,7 +110,7 @@ Value.propTypes = {
   compact: PropTypes.bool.isRequired,
   compact100k: PropTypes.bool.isRequired,
   icon: PropTypes.bool.isRequired,
-  iconSize: PropTypes.string.isRequired,
+  iconSize: PropTypes.number.isRequired,
   small: PropTypes.bool.isRequired,
   big: PropTypes.bool.isRequired,
 };

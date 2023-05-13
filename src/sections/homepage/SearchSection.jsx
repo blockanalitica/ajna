@@ -1,4 +1,5 @@
-import SearchInput from "@/components/SearchInput/SearchInput";
+//import SearchBar from "@/components/SearchInput/Search";
+import SearchBar from "@/components/SearchInput/SearchInput";
 import SwitchDisplays from "@/components/switch/DisplaySwitch";
 import { useState } from "react";
 
@@ -16,7 +17,7 @@ const SearchSection = ({ showTimePicker = true }) => {
     <section className="mx-auto max-w-9xl flex flex-row items-center justify-between px-10">
       <div className="flex flex-row">Home &gt; Pools</div>
       <div className="ml-40">
-        <SearchInput />
+        <SearchBar />
       </div>
       {showTimePicker && (
         <div>

@@ -5,7 +5,7 @@ import SubAnalyticCard from "./SubAnalyticCard";
 const InfoPlusAnalyticsCard = (promps) => {
   const { data } = promps;
   return (
-    <div className="grid grid-cols-1 place-content-between w-full  bg-gray-20 border-gray-13 border-2 border-opacity-30 shadow-md bg-opacity-30 rounded-2xl p-7 rounded-3xl">
+    <div className="grid grid-cols-1 place-content-between w-full  bg-gray-20 border-gray-13 border-2 border-opacity-30 shadow-md bg-opacity-30 p-7 rounded-3xl">
       <div>
         <h3 className="text-xl font-syncopate uppercase text-white mb-4">
           Total tokens locked
@@ -15,7 +15,7 @@ const InfoPlusAnalyticsCard = (promps) => {
             <div className="flex flex-row justify-between items-center">
               <CryptoIcon
                 name={data.collateral_token_symbol}
-                size={20}
+                size={"20"}
                 className="mr-2"
               />{" "}
               {data.collateral_token_symbol}{" "}

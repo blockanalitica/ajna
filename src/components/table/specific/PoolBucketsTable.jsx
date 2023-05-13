@@ -4,6 +4,11 @@ import classnames from "classnames";
 import Value from "@/components/value/Value";
 import { useFetch } from "@/hooks.js";
 import Link from "next/link";
+import GeneralTable from "../general/GeneralTable";
+
+const table_tab_only_idx = (idx) => (
+  <div className="flex justify-start items-center p-4">{idx}</div>
+);
 
 const BucketsTable = (promps) => {
   const { address } = promps;
@@ -16,11 +21,70 @@ const BucketsTable = (promps) => {
     return <p>Loading....</p>;
   }
 
-  const results = data.results;
+  const tableData = data.results;
+
+  let tableHeader = [
+    {
+      title: "#",
+      class: "justify-start items-center",
+    },
+    {
+      title: "Collateral",
+      class: "justify-end items-center",
+    },
+    {
+      title: "Deposit",
+      class: "justify-end items-center",
+    },
+    {
+      title: "LPB",
+      class: "justify-end items-center",
+    },
+    {
+      title: "Exchange rate",
+      class: "justify-end items-center",
+    },
+  ];
+
+  let rowData = (item) => {
+    return [
+      table_tab_only_idx(item.bucket_index),
+      table_tab_title_coin_subtitle_val_change({
+        title: item.collateral,
+        subtitle: item.collateral * item.collateral_token_underlying_price,
+        icon: item.collateral_token_symbol,
+        title_prefix: null,
+        subtitle_prefix: "$",
+      }),
+      table_tab_title_coin_subtitle_val_change({
+        title: item.deposit,
+        subtitle: item.deposit * item.quote_token_underlying_price,
+        icon: item.quote_token_symbol,
+        title_prefix: null,
+        subtitle_prefix: "$",
+      }),
+      table_tab_title_coin_subtitle_val_change({
+        title: item.lpb,
+        subtitle: item.current_debt * item.quote_token_underlying_price,
+        icon: item.quote_token_symbol,
+        title_prefix: null,
+        subtitle_prefix: "$",
+      }),
+    ];
+  };
 
   const colClass = "grid-cols-table-5-small";
 
   return (
+    <>
+      <GeneralTable
+        tableHeader={tableHeader}
+        tableData={tableData}
+        colClass={colClass}
+        rowData={rowData}
+        idxDisplay={false}
+      />
+      {/*
     <div className="flex flex-col">
       <div className="relative overflow-x-auto border rounded-2xl bg-gray-20 bg-opacity-30 border-gray-13 border-opacity-30 px-5">
         <div className="relative overflow-x-auto shadow-md rounded-2xl">
@@ -31,23 +95,11 @@ const BucketsTable = (promps) => {
                 colClass
               )}
             >
-              <div className="bg-gray-100 flex justify-start items-center font-bold p-4">
-                #
-              </div>
-              <div className="bg-gray-100 flex justify-end items-center font-bold p-4">
-                Collateral
-              </div>
-              <div className="bg-gray-100 flex justify-end items-end font-bold p-4">
-                Deposit
-              </div>
-              <div className="bg-gray-100 flex justify-end items-end font-bold p-4">
-                LPB
-              </div>
-              <div className="bg-gray-100 flex justify-end items-end font-bold p-4">
-                Exchange rate
-              </div>
+              {tableHeader.map((item, index) => (
+                <div key={index} className={classnames("bg-gray-100 flex font-bold p-4", item.class)}>{item.title}</div>
+              ))}
             </div>
-            {results.map((item, index) => (
+            {tableData.map((item, index) => (
               <Link
                 key={index}
                 className="text-white cursor-pointer hover:text-gray-7"
@@ -122,6 +174,8 @@ const BucketsTable = (promps) => {
         </div>
       </div>
     </div>
+    */}
+    </>
   );
 };
 
