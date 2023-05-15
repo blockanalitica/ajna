@@ -1,8 +1,6 @@
 import Image from "next/image";
 import PropTypes from "prop-types";
-import React, { useRef, useState } from "react";
-//import { UncontrolledTooltip = "reactstrap";
-//import cbethIcon from "/assets/Images/Icon/crypto/cbeth.svg";
+import React from "react";
 
 const cbethIcon = "/assets/Images/Icon/crypto/cbeth.svg";
 const compIcon = "/assets/Images/Icon/crypto/comp.svg";
@@ -18,16 +16,11 @@ const etherscanIcon = "/assets/Images/Icon/crypto/etherscan.svg";
 const debankIcon = "/assets/Images/Icon/crypto/debank.svg";
 const zapperIcon = "/assets/Images/Icon/crypto/zapper.svg";
 
+// TODO: split into 2 (CryptoIcon and Icon) where CryptoIcon will be all icons
+// from crypto folder and will be <image>, while Icon will be imported svg images
+// so that it get's rendered on the server 
+
 const CryptoIcon = ({ name, size, address, ...rest }) => {
-  const btnRef = useRef(null);
-  const [ready, setReady] = useState(false);
-
-  React.useEffect(() => {
-    if (btnRef.current) {
-      setReady(true);
-    }
-  }, [btnRef]);
-
   const mapping = {
     DAI: daiIcon,
     TDAI: daiIcon,

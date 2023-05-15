@@ -14,7 +14,7 @@ module.exports = {
         20: "5rem",
       },
       maxWidth: {
-        "9xl": "80rem",
+        80: "80rem",
       },
       gridTemplateColumns: {
         // Simple first column bigger, other same size smaller
@@ -118,6 +118,7 @@ module.exports = {
       "gray-23": "#121217",
       "gray-24": "#09090C",
       "gray-25": "#2D2D2D",
+      "gray-dark": "#1C1C1C",
     },
     fontFamily: {
       rubik: ["Rubik_Regular", "Inter", "sans-serif"],

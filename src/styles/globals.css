@@ -35,10 +35,9 @@ body {
 }
 
 body {
-  background-image: url('/assets/wallpaper.jpg') !important;
+  background-image: url('/assets/wallpaper.png') !important;
   background-position: top center !important;
   background-repeat: no-repeat !important;
-  background-size: contain !important;
   color: #fff;
   background-color: black;
   font-family: 'Rubik_Regular', sans-serif;
