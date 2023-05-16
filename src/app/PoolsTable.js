@@ -8,7 +8,7 @@ import ValueChange from "@/components/value/ValueChange";
 import { useFetch } from "@/hooks.js";
 import Link from "next/link";
 
-// TODO: make it async and suspens it for the url fetch 
+// TODO: make it async and suspens it for the url fetch
 const PoolsTable = () => {
   const { data, error, isLoading } = useFetch("/pools/");
 
@@ -25,12 +25,12 @@ const PoolsTable = () => {
 
   return (
     <div className="flex flex-col">
-      <div className="relative overflow-x-auto border rounded-2xl bg-gray-20 bg-opacity-30 border-gray-13 border-opacity-30 px-5">
-        <div className="relative overflow-x-auto shadow-md rounded-2xl">
+      <div className="relative overflow-x-auto border rounded-3xl bg-gray-20 bg-opacity-30 border-gray-13 border-opacity-30 px-5">
+        <div className="relative overflow-x-auto shadow-md rounded-3xl">
           <div className="shadow overflow-hidden sm:rounded-lg py-4">
             <div
               className={classnames(
-                "grid gap-4 bg-gray-21  text-white rounded-2xl",
+                "grid gap-4 bg-gray-21  text-white rounded-3xl",
                 colClass
               )}
             >

@@ -22,11 +22,13 @@ const Navbar = () => {
       <div className="flex items-center justify-between">
         <Link href="/">
           <Image
-            src="/assets/Images/Logos/AJNA-Logo-LG.svg"
-            width={130}
-            height={50}
+            src="/assets/images/logos/AJNA-Logo-LG.svg"
+            width="130"
+            height="24"
             alt="Ajna"
-        />
+            className="h-auto"
+            priority
+          />
         </Link>
         <div className="hidden md:flex space-x-4">
           {navigation.map((item) => (
@@ -37,7 +39,6 @@ const Navbar = () => {
                 "text-ajna-aqua": item.current,
                 "text-gray-300 hover:bg-gray-700 hover:text-white": !item.current,
               })}
-              aria-current={item.current ? "page" : undefined}
             >
               {item.name}
             </Link>
@@ -50,7 +51,7 @@ const Navbar = () => {
           {/* Mobile menu button */}
           <button
             className="inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring- focus:ring-offset-2 focus:ring-offset-gray-800"
-            // onClick={() => setOpen(!isOpen)}
+            onClick={() => setOpen(!isOpen)}
           >
             {isOpen ? (
               <FontAwesomeIcon icon={faXmark} className="block h-6 w-6" />
@@ -75,7 +76,6 @@ const Navbar = () => {
                     "text-gray-300 hover:bg-gray-700 hover:text-white": !item.current,
                   }
                 )}
-                aria-current={item.current ? "page" : undefined}
               >
                 {item.name}
               </Link>

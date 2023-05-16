@@ -14,7 +14,7 @@ const Navbar = ({ navigation }) => {
       <div className="flex items-center justify-between">
         <Link href="/">
           <Image
-            src="/assets/Images/Logos/AJNA-Logo-LG.svg"
+            src="/assets/images/logos/AJNA-Logo-LG.svg"
             width={130}
             height={50}
             alt="Ajna"

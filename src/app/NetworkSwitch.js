@@ -2,8 +2,10 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import ArrowIcon from "@/components/icon/ArrowIcon";
+import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CryptoIcon from "@/components/icon/CryptoIcon";
+import Icon from "@/components/icon/Icon";
 
 const NetworkSwitch = () => {
   const networkOptions = [
@@ -19,26 +21,36 @@ const NetworkSwitch = () => {
   return (
     <div className="relative">
       <button
-        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        className="hover:ring-2 hover:ring-purple-from focus:outline-none text-gray-4 rounded-3xl text-sm px-4 py-3 text-center inline-flex items-center"
         type="button"
         onClick={() => setOpen(!open)}
       >
-        <CryptoIcon name={networkOptions[0].icon} className="me-1 mr-1" size={"20"} />
+        <div>
+          <CryptoIcon name={networkOptions[0].icon} size="24" priority />
+        </div>
         <span className="ml-2">{networkOptions[0].name}</span>
-        {networkOptions.length > 1 ? <ArrowIcon className="h-4 w-4 ml-2" /> : null}
+        {networkOptions.length > 1 ? (
+          <FontAwesomeIcon
+            icon={open ? faChevronUp : faChevronDown}
+            size="xs"
+            className="ml-2"
+          />
+        ) : null}
       </button>
 
       {networkOptions.length > 1 && open ? (
-        <div className="absolute shadow-xl shadow-black rounded-2xl right-0 z-10 w-56 mt-4 bg-gray-23 border-gray-21 border grid grid-cols-1 gap-3">
-          <div>Select network</div>
+        <div className="absolute shadow-xl shadow-black rounded-3xl right-0 z-10 w-64 mt-4 p-4 bg-gray-23 border-gray-21 border grid grid-cols-1 gap-4">
+          <div className="font-syncopate uppercase font-bold text-center">
+            Select network
+          </div>
 
           {networkOptions.map((item, key) => (
             <div key={key}>
               <Link
                 href={item.href}
-                className="block rounded-lg mx-4 p-3 hover:text-gray-7 bg-gray-22"
+                className="flex items-center rounded-2xl px-3 py-2.5 hover:text-gray-7 text-gray-4 text-sm bg-gray-22"
               >
-                <CryptoIcon name={item.icon} className="me-1" size={20} />
+                <CryptoIcon name={item.icon} className="me-3" size={20} />
                 {item.name}
               </Link>
             </div>

@@ -11,16 +11,16 @@ export const metadata = {
   description: "Ajna Dashboard from Block Analitica",
 };
 
-export const fetchCache = 'default-no-store';
+export const fetchCache = "default-no-store";
 export const revalidate = 1;
 
 const RootLayout = ({ children }) => {
   return (
     <html lang="en">
       <body>
-        <div className="mx-auto max-w-80">
+        <div className="mx-auto max-w-80 px-4">
           <Navbar />
-          
+
           {children}
         </div>
       </body>
