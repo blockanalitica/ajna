@@ -1,9 +1,20 @@
+"use client";
+
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
 import Stats from "@/components/stats/Stats";
+import { useFetch } from "@/hooks.js";
 
-const TotalStats = async ({ promise }) => {
-  const data = await promise;
+const TotalStats = async () => {
+  const { data, error, isLoading } = useFetch("/stats/overview/");
+
+  if (error) {
+    return <p>Failed to load Data</p>;
+  }
+  if (isLoading) {
+    return <p>Loading....</p>;
+  }
+
   const { results } = data;
 
   const stats = [
