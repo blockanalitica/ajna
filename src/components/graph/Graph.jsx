@@ -1,8 +1,6 @@
 import { Chart as ChartJS, registerables } from "chart.js";
 import "chartjs-adapter-luxon";
 import _ from "lodash";
-import PropTypes from "prop-types";
-import React from "react";
 import { Chart } from "react-chartjs-2";
 import { round } from "../../utils/number.js";
 
@@ -52,9 +50,7 @@ const DEFAULT_PALETTE = [
   "#f9d53e",
 ];
 
-const Graph = (props) => {
-  let { series, type, options, labels, ...rest } = props;
-
+const Graph = ({ series, type = "line", options, labels, ...rest }) => {
   const defaultOptions = {
     orderSeries: false, // custom option. If true, orderes series by label
     aspectRatio: 1.5,
@@ -170,18 +166,6 @@ const Graph = (props) => {
       {...rest}
     />
   );
-};
-
-Graph.propTypes = {
-  series: PropTypes.array.isRequired,
-  labels: PropTypes.array,
-  type: PropTypes.string.isRequired,
-  options: PropTypes.object,
-  layout: PropTypes.object,
-};
-
-Graph.defaultProps = {
-  type: "line",
 };
 
 export default Graph;

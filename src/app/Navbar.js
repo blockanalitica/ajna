@@ -1,13 +1,21 @@
+"use client";
+
 import { useState } from "react";
 import classnames from "classnames";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import Image from "next/image";
-import DropDownButton from "./button/DropDownButton";
+import NetworkSwitch from "./NetworkSwitch";
 
-const Navbar = ({ navigation }) => {
+const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
+  const navigation = [
+    { name: "Pools", href: "/pools", current: false },
+    { name: "Tokens", href: "/tokens", current: false },
+    { name: "Auctions", href: "/auctions", current: false },
+    { name: "Grants", href: "#", current: false },
+  ];
 
   return (
     <nav className="mt-4">
@@ -15,9 +23,11 @@ const Navbar = ({ navigation }) => {
         <Link href="/">
           <Image
             src="/assets/images/logos/AJNA-Logo-LG.svg"
-            width={130}
-            height={50}
+            width="130"
+            height="24"
             alt="Ajna"
+            className="h-auto"
+            priority
           />
         </Link>
         <div className="hidden md:flex space-x-4">
@@ -29,14 +39,13 @@ const Navbar = ({ navigation }) => {
                 "text-ajna-aqua": item.current,
                 "text-gray-300 hover:bg-gray-700 hover:text-white": !item.current,
               })}
-              aria-current={item.current ? "page" : undefined}
             >
               {item.name}
             </Link>
           ))}
         </div>
         <div className="hidden md:block">
-          <DropDownButton />
+          <NetworkSwitch />
         </div>
         <div className="-mr-2 flex md:hidden">
           {/* Mobile menu button */}
@@ -67,7 +76,6 @@ const Navbar = ({ navigation }) => {
                     "text-gray-300 hover:bg-gray-700 hover:text-white": !item.current,
                   }
                 )}
-                aria-current={item.current ? "page" : undefined}
               >
                 {item.name}
               </Link>
@@ -77,7 +85,7 @@ const Navbar = ({ navigation }) => {
       ) : null}
 
       <div className="md:hidden flex justify-end -mr-3">
-        <DropDownButton />
+        <NetworkSwitch />
       </div>
     </nav>
   );

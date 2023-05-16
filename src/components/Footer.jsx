@@ -13,7 +13,7 @@ const Footer = () => (
           >
             <Image
               alt="Block Analitica"
-              src="/assets/Images/Logos/BlockAnalitica-Logo-white.svg"
+              src="/assets/images/Logos/BlockAnalitica-Logo-white.svg"
               width={150}
               height={50}
             />
@@ -95,7 +95,7 @@ const Footer = () => (
             >
               <Image
                 alt="Block Analitica"
-                src="/assets/Images/Logos/BlockAnalitica-Logo-white.svg"
+                src="/assets/images/logos/BlockAnalitica-Logo-white.svg"
                 width={150}
                 height={50}
               />

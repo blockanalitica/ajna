@@ -14,7 +14,7 @@ module.exports = {
         20: "5rem",
       },
       maxWidth: {
-        "9xl": "80rem",
+        80: "80rem",
       },
       gridTemplateColumns: {
         // Simple first column bigger, other same size smaller
@@ -40,6 +40,8 @@ module.exports = {
       "purple-6": "#B45CD6",
       "purple-7": "#AC4BD2",
       "purple-8": "#A43BCE",
+      "purple-from": "#B5189F",
+      "purple-to": "#3C0080",
       /* green */
       "green-1": "#ECFEF8",
       "green-2": "#D9FCF2",
@@ -84,8 +86,6 @@ module.exports = {
       "ajna-yellow": "#F6C361",
       "ajna-lavender-light": "#D2C8EF",
       "ajna-plum": "#B5179E",
-      "ajna-special-from": "#B5189F",
-      "ajna-special-to": "#3C0080",
       "ajna-green": "#2A9340",
       "ajna-teal": "#37FCFB",
       "ajna-aqua": "#8AC7DB",
@@ -118,6 +118,7 @@ module.exports = {
       "gray-23": "#121217",
       "gray-24": "#09090C",
       "gray-25": "#2D2D2D",
+      "gray-dark": "#1C1C1C",
     },
     fontFamily: {
       rubik: ["Rubik_Regular", "Inter", "sans-serif"],
