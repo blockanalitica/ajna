@@ -1,6 +1,11 @@
+import { config } from "@fortawesome/fontawesome-svg-core";
 import { Settings as DTSettings } from "luxon";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
+import "@fortawesome/fontawesome-svg-core/styles.css";
 import "@/styles/globals.css";
+
+config.autoAddCss = false;
 
 // Set default timezone to UTC
 DTSettings.defaultZone = "utc";
@@ -20,8 +25,8 @@ const RootLayout = ({ children }) => {
       <body>
         <div className="mx-auto max-w-80 px-4">
           <Navbar />
-
           {children}
+          <Footer />
         </div>
       </body>
     </html>
