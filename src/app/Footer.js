@@ -20,11 +20,7 @@ const Footer = () => (
         <span>© 2023. All rights reserved.</span>
         <span>|</span>
         <span>Made with love by</span>
-        <a
-          href="https://blockanalitica.com"
-          target="_blank"
-          className="text-white"
-        >
+        <a href="https://blockanalitica.com" target="_blank" className="text-white">
           BA Labs LLC
         </a>
       </div>
