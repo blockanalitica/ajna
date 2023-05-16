@@ -14,7 +14,8 @@
 
 @font-face {
   font-family: "Syncopate_Regular";
-  src: url("../../public/assets/fonts/syncopate/Syncopate-Regular.ttf") format("truetype");
+  src: url("../../public/assets/fonts/syncopate/Syncopate-Regular.ttf")
+    format("truetype");
 }
 
 @font-face {
@@ -34,12 +35,12 @@ body {
 }
 
 body {
-  background-image: url('/assets/wallpaper.png') !important;
+  background-image: url("/assets/wallpaper.png") !important;
   background-position: top center !important;
   background-repeat: no-repeat !important;
   color: #fff;
   background-color: black;
-  font-family: 'Rubik_Regular', sans-serif;
+  font-family: "Rubik_Regular", sans-serif;
 }
 
 a {
@@ -48,9 +49,7 @@ a {
 }
 
 h1 {
-  font-family: 'Syncopate_Bold', sans-serif;
+  font-family: "Syncopate_Bold", sans-serif;
   text-transform: uppercase;
   line-height: 70px;
 }
-
-

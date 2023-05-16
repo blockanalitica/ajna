@@ -5,7 +5,7 @@ import ValueChange from "@/components/value/ValueChange";
 import Stats from "@/components/stats/Stats";
 import { useFetch } from "@/hooks.js";
 
-const TotalStats = async () => {
+const TotalStats = () => {
   const { data, error, isLoading } = useFetch("/stats/overview/");
 
   if (error) {

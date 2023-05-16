@@ -1,22 +1,25 @@
-import { Suspense } from "react";
 import TotalStats from "./TotalStats";
 import TopPools from "./TopPools";
+import TopTokens from "./TopTokens";
 // import SearchBar from "@/components/SearchInput/SearchInput";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
+import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMedium, faTwitter } from "@fortawesome/free-brands-svg-icons";
 
 const Page = async () => {
   return (
     <>
       <section className="flex items-center justify-between">
-        <div className="flex flex-row">Home &gt; Pools</div>
+        <div className="flex flex-row">
+          <Breadcrumbs />
+        </div>
         <div>{/* <SearchBar /> */}</div>
         <DisplaySwitch />
       </section>
-
-      <Suspense fallback={<p>Loading ...</p>}>
-        <TotalStats />
-      </Suspense>
+      <TotalStats />
       <TopPools />
+      <TopTokens />
     </>
   );
 };
