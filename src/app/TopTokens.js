@@ -1,4 +1,4 @@
-import PrimaryButton from "@/components/button/PrimaryButton";
+import Button from "@/components/button/Button";
 import TokensTable from "./TokensTable";
 
 const TopTokens = () => {
@@ -6,7 +6,7 @@ const TopTokens = () => {
     <section className="mt-5">
       <div className="flex flex-row justify-between items-center">
         <h1 className="text-xl md:text-1xl xl:text-2xl">Top Tokens</h1>
-        <PrimaryButton title="View all" location="/tokens/" />
+        <Button text="View all" href="/tokens" />
       </div>
       <TokensTable />
     </section>
