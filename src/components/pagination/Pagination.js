@@ -1,6 +1,7 @@
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+// TODO: fix icons and minor styling
 const Pagination = ({ currentPage, totalPages }) => {
   return (
     <div className="flex justify-center items-center my-4 text-blue-500">

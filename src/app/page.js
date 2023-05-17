@@ -1,7 +1,7 @@
 import TotalStats from "./TotalStats";
 import TopPools from "./TopPools";
 import TopTokens from "./TopTokens";
-// import SearchBar from "@/components/SearchInput/SearchInput";
+import SearchInput from "@/components/SearchInput/SearchInput";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,7 +13,7 @@ const Page = async () => {
       <section className="flex items-center justify-between">
         <Breadcrumbs />
 
-        <div>{/* <SearchBar /> */}</div>
+        <SearchInput />
         <DisplaySwitch />
       </section>
       <TotalStats />

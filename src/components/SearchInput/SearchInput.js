@@ -1,9 +1,7 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
-import { useFetchTableData } from "@/hooks.js";
-
-import PoolsTable from "@/components/table/specific/PoolsTable";
-import TokensTable from "@/components/table/specific/TokensTable";
 
 export default function SearchBar() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -11,8 +9,8 @@ export default function SearchBar() {
   const [filteredPoolsData, setFilteredItems] = useState([]);
   const [filteredTokensData, setFilteredTokens] = useState([]);
 
-  const { tableData: tablePoolData, msg: poolMsg } = useFetchTableData("/pools/");
-  const { tableData: tableTokenData, msg: tokenMsg } = useFetchTableData("/tokens/");
+  const { tableData: tablePoolData, msg: poolMsg } = {};
+  const { tableData: tableTokenData, msg: tokenMsg } = {};
 
   useEffect(() => {
     if (tablePoolData) {
@@ -74,9 +72,9 @@ export default function SearchBar() {
       {isFocused && (filteredPoolsData.length > 0 || filteredTokensData.length) && (
         <div className="absolute w-screen mt-1 py-1 border border-ajna-plum bg-black rounded-2xl shadow-lg dropdown">
           <h3 className="px-4 py-2 text-gray-8 font-rubik">Pools</h3>
-          <PoolsTable tableData={filteredPoolsData} />
+          pools table
           <h3 className="px-4 py-2 text-gray-8 font-rubik">Tokens</h3>
-          <TokensTable tableData={filteredTokensData} />
+          tokens table
         </div>
       )}
     </div>
