@@ -1,6 +1,6 @@
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
-import CardBackground from "./CardBackgroud";
+import CardBackground from "./CardBackground";
 
 const AnalyticCard = ({ value, subtitle }) => (
   <CardBackground>

@@ -5,11 +5,14 @@ import CryptoIcon from "@/components/icon/CryptoIcon";
 import TagComp from "@/components/tags/TagComp";
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
+import CardBackground from "@/components/card/CardBackground";
+import Table from "@/components/table/Table";
 import { useFetch } from "@/hooks.js";
 import Link from "next/link";
 
-// TODO: make it async and suspens it for the url fetch
+// TODO: make it async and suspense it for the url fetch
 const PoolsTable = () => {
+  // TODO: wrong url (should only fetch "top" pools, not all?)
   const { data, error, isLoading } = useFetch("/pools/");
 
   if (error) {
@@ -19,213 +22,158 @@ const PoolsTable = () => {
     return <p>Loading....</p>;
   }
 
-  const results = data.results;
-
-  const colClass = "grid-cols-table-8";
-
-  return (
-    <div className="flex flex-col">
-      <div className="relative overflow-x-auto border rounded-3xl bg-gray-20 bg-opacity-30 border-gray-13 border-opacity-30 px-5">
-        <div className="relative overflow-x-auto shadow-md rounded-3xl">
-          <div className="shadow overflow-hidden sm:rounded-lg py-4">
-            <div
-              className={classnames(
-                "grid gap-4 bg-gray-21  text-white rounded-3xl",
-                colClass
-              )}
-            >
-              <div className="bg-gray-100 flex justify-start items-center font-bold p-4">
-                #
-              </div>
-              <div className="bg-gray-100 flex justify-start items-center font-bold p-4">
-                Collateral / Quote
-              </div>
-              <div className="bg-gray-100 flex justify-end items-end font-bold p-4">
-                Collateral
-              </div>
-              <div className="bg-gray-100 flex justify-end items-end font-bold p-4">
-                Quote
-              </div>
-              <div className="bg-gray-100 flex justify-end items-end font-bold p-4">
-                Debt
-              </div>
-              <div className="bg-gray-100 flex justify-end items-end font-bold p-4">
-                TVL
-              </div>
-              <div className="bg-gray-100 flex justify-end items-end font-bold p-4">
-                APR
-              </div>
-              <div className="bg-gray-100 flex justify-end items-end font-bold p-4">
-                🔥
-              </div>
-            </div>
-            {results.map((item, index) => (
-              <Link
-                key={index}
-                className="text-white cursor-pointer hover:text-gray-7"
-                href={`/pools/${item.address}`}
-                alt="link"
-              >
-                <div
-                  className={classnames("grid px-2 border-b border-gray-20", colClass)}
-                >
-                  <div className="flex justify-start items-center p-4">{index + 1}</div>
-
-                  <div className="flex justify-start items-center p-4">
-                    <span className="relative flex justify-start items-center p-4">
-                      <CryptoIcon
-                        name={item.collateral_token_symbol}
-                        className="absolute left-[25%] z-10"
-                        size={30}
-                      />
-                      <CryptoIcon
-                        name={item.quote_token_symbol}
-                        className="ml-6"
-                        size={30}
-                      />
-                    </span>
-                    <span className="font-bold">
-                      {item.collateral_token_symbol} / {item.quote_token_symbol}
-                    </span>
-                  </div>
-                  <div className="flex justify-end items-end p-4">
-                    <div className="flex flex-col items-end">
-                      <div className="flex justify-start items-center">
-                        <Value
-                          value={item.pledged_collateral}
-                          decimals={2}
-                          compact
-                          suffix={item.collateral_token_symbol}
-                        />
-                        <ValueChange
-                          value={1}
-                          decimals={2}
-                          compact
-                          hideIfZero
-                          className="ml-2"
-                        />
-                      </div>
-                      <div className="flex justify-start items-center text-gray-6 text-sm">
-                        <Value
-                          value={
-                            item.pledged_collateral *
-                            item.collateral_token_underlying_price
-                          }
-                          prefix={"$"}
-                          decimals={2}
-                          compact
-                        />
-                        <ValueChange
-                          value={1}
-                          decimals={2}
-                          compact
-                          hideIfZero
-                          className="ml-2"
-                          prefix={"$"}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex justify-end items-end p-4">
-                    <div className="flex flex-col items-end">
-                      <div className="flex justify-start items-center">
-                        <Value
-                          value={item.pool_size}
-                          decimals={2}
-                          compact
-                          suffix={item.quote_token_symbol}
-                        />
-                        <ValueChange
-                          value={0}
-                          decimals={2}
-                          compact
-                          hideIfZero
-                          className="ml-2"
-                        />
-                      </div>
-                      <div className="flex justify-start items-center text-gray-6 text-sm">
-                        <Value
-                          value={item.pool_size * item.quote_token_underlying_price}
-                          prefix={"$"}
-                          decimals={2}
-                          compact
-                        />
-                        <ValueChange
-                          value={0}
-                          decimals={2}
-                          compact
-                          hideIfZero
-                          prefix={"$"}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex justify-end items-end p-4">
-                    <div className="flex flex-col items-end">
-                      <div className="flex justify-start items-center">
-                        <Value
-                          value={item.current_debt}
-                          decimals={2}
-                          compact
-                          suffix={item.quote_token_symbol}
-                        />
-                        <ValueChange
-                          value={0}
-                          decimals={2}
-                          compact
-                          hideIfZero
-                          className="ml-2"
-                        />
-                      </div>
-                      <div className="flex justify-start items-center text-gray-6 text-sm">
-                        <Value
-                          value={item.current_debt * item.quote_token_underlying_price}
-                          prefix={"$"}
-                          decimals={2}
-                          compact
-                        />
-                        <ValueChange
-                          value={0}
-                          decimals={2}
-                          compact
-                          hideIfZero
-                          prefix={"$"}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex justify-end items-end p-4">
-                    <div className="flex flex-col items-end">
-                      <Value value={item.tvl} decimals={2} prefix={"$"} compact />
-                      <ValueChange
-                        value={0}
-                        decimals={2}
-                        prefix={"$"}
-                        compact
-                        dashIfZero
-                      />
-                    </div>
-                  </div>
-                  <div className="flex justify-end items-center p-4">
-                    <TagComp
-                      title={
-                        <Value value={item.interest_rate} decimals={2} suffix={"%"} />
-                      }
-                    />
-                  </div>
-                  <div className="flex justify-end items-end p-4">
-                    <div className="flex flex-col items-end">
-                      <Value value={item.total_ajna_burned} decimals={2} />
-                      <ValueChange value={0} decimals={2} compact dashIfZero />
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            ))}
+  const columns = [
+    {
+      header: "#",
+      cell: ({ index }) => <>{index + 1}</>,
+    },
+    {
+      header: "Collateral / Quote",
+      cell: ({ row }) => (
+        <>
+          <span className="relative flex">
+            <CryptoIcon name={row.collateral_token_symbol} className="z-10" />
+            <CryptoIcon
+              name={row.quote_token_symbol}
+              className="relative left-[-10px] z-0"
+            />
+          </span>
+          <span className="font-medium pl-4">
+            {row.collateral_token_symbol} / {row.quote_token_symbol}
+          </span>
+        </>
+      ),
+    },
+    {
+      header: "Collateral",
+      cell: ({ row }) => (
+        <div className="flex flex-col items-end">
+          <div className="flex">
+            <Value
+              value={row.pledged_collateral}
+              decimals={2}
+              compact
+              suffix={row.collateral_token_symbol}
+            />
+            <ValueChange value={1} decimals={2} compact hideIfZero className="ml-2" />
+          </div>
+          <div className="flex text-gray-6 text-xs">
+            <Value
+              value={row.pledged_collateral * row.collateral_token_underlying_price}
+              prefix="$"
+              decimals={2}
+              compact
+            />
+            <ValueChange
+              value={1}
+              decimals={2}
+              compact
+              hideIfZero
+              className="ml-2"
+              prefix="$"
+            />
           </div>
         </div>
-      </div>
-    </div>
+      ),
+      headerAlign: "end",
+      cellAlign: "end",
+    },
+    {
+      header: "Quote",
+      cell: ({ row }) => (
+        <div className="flex flex-col items-end">
+          <div className="flex">
+            <Value
+              value={row.pool_size}
+              decimals={2}
+              compact
+              suffix={row.quote_token_symbol}
+            />
+            <ValueChange value={0} decimals={2} compact hideIfZero className="ml-2" />
+          </div>
+          <div className="flex text-gray-6 text-xs">
+            <Value
+              value={row.pool_size * row.quote_token_underlying_price}
+              prefix="$"
+              decimals={2}
+              compact
+            />
+            <ValueChange value={0} decimals={2} compact hideIfZero prefix="$" />
+          </div>
+        </div>
+      ),
+      headerAlign: "end",
+      cellAlign: "end",
+    },
+    {
+      header: "Debt",
+      cell: ({ row }) => (
+        <div className="flex flex-col items-end">
+          <div className="flex">
+            <Value
+              value={row.current_debt}
+              decimals={2}
+              compact
+              suffix={row.quote_token_symbol}
+            />
+            <ValueChange value={0} decimals={2} compact hideIfZero className="ml-2" />
+          </div>
+          <div className="flex text-gray-6 text-xs">
+            <Value
+              value={row.current_debt * row.quote_token_underlying_price}
+              prefix="$"
+              decimals={2}
+              compact
+            />
+            <ValueChange value={0} decimals={2} compact hideIfZero prefix="$" />
+          </div>
+        </div>
+      ),
+      headerAlign: "end",
+      cellAlign: "end",
+    },
+    {
+      header: "TVL",
+      cell: ({ row }) => (
+        <div className="flex flex-col items-end">
+          <Value value={row.tvl} decimals={2} prefix="$" compact />
+          <ValueChange value={0} decimals={2} prefix="$" compact dashIfZero />
+        </div>
+      ),
+      headerAlign: "end",
+      cellAlign: "end",
+    },
+    {
+      header: "APR",
+      cell: ({ row }) => (
+        <TagComp
+          title={<Value value={row.interest_rate} decimals={2} suffix={"%"} />}
+        />
+      ),
+      headerAlign: "end",
+      cellAlign: "end",
+    },
+    {
+      header: "🔥",
+      cell: ({ row }) => (
+        <div className="flex flex-col items-end">
+          <Value value={row.total_ajna_burned} decimals={2} />
+          <ValueChange value={0} decimals={2} compact dashIfZero />
+        </div>
+      ),
+      headerAlign: "end",
+      cellAlign: "end",
+    },
+  ];
+
+  return (
+    <Table
+      data={data.results}
+      keyField="address"
+      columns={columns}
+      gridColumnClassName="grid-cols-table-pools"
+      href={(row) => `/pools/${row.address}`}
+    />
   );
 };
 

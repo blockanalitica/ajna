@@ -2,7 +2,7 @@ import Link from "next/link";
 import PrimaryButton from "../button/PrimaryButton";
 import TwoOverlayingCryptoIcons from "../icon/TwoOverlayingCryptoIcons";
 import TagComp from "../tags/TagComp";
-import CardBackground from "./CardBackgroud";
+import CardBackground from "./CardBackground";
 
 const MiningCard = () => (
   <CardBackground styling="px-6 py-4 ">
