@@ -32,12 +32,12 @@ const DisplaySwitch = ({
 
   return (
     <div className="flex items-center">
-      <ul className="flex rounded-2xl bg-gray-dark/30 border-gray-20 border">
+      <ul className="flex rounded-lg bg-gray-dark/30 border-gray-20 border">
         {options.map((option) => (
           <li
             key={option.key}
             className={classnames(
-              "cursor-pointer px-4 py-2 text-center rounded-2xl",
+              "cursor-pointer px-5 py-2 text-center rounded-lg",
               className,
               {
                 "bg-primary-8": option.key === active,
