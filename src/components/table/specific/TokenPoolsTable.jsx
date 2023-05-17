@@ -171,16 +171,11 @@ const TokenPoolsTable = ({ address }) => {
                     </div>
                     <div className="flex justify-end items-end p-4">
                       <div className="flex flex-col items-end">
-                        <Value
-                          value={item.pool_size}
-                          decimals={2}
-                          prefix={"$"}
-                          compact
-                        />
+                        <Value value={item.pool_size} decimals={2} prefix="$" compact />
                         <ValueChange
                           value={0}
                           decimals={2}
-                          prefix={"$"}
+                          prefix="$"
                           compact
                           dashIfZero
                         />
@@ -189,7 +184,7 @@ const TokenPoolsTable = ({ address }) => {
                     <div className="flex justify-end items-center p-4">
                       <TagComp
                         title={
-                          <Value value={item.interest_rate} decimals={2} suffix={"%"} />
+                          <Value value={item.interest_rate} decimals={2} suffix="%" />
                         }
                       />
                     </div>

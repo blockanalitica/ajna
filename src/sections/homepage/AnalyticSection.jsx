@@ -21,10 +21,10 @@ const AnalyticSection = () => {
             Total lended
           </span>
           <span className="mb-2 text-2xl font-bold">
-            <Value value={results.total_pool_size} decimals={2} compact prefix={"$"} />
+            <Value value={results.total_pool_size} decimals={2} compact prefix="$" />
           </span>
           <span className="mb-2 text-sm font-bold">
-            <ValueChange value={0} decimals={2} compact prefix={"$"} />
+            <ValueChange value={0} decimals={2} compact prefix="$" />
           </span>
         </div>
         <div className="px-3 py-4 flex flex-col items-center justify-center bg-gray-20 border-gray-13 border-2 border-opacity-30 shadow-md bg-opacity-30 rounded-2xl uppercase">
@@ -32,15 +32,10 @@ const AnalyticSection = () => {
             Total borowed
           </span>
           <span className="mb-2 text-2xl font-bold">
-            <Value
-              value={results.total_current_debt}
-              decimals={2}
-              compact
-              prefix={"$"}
-            />
+            <Value value={results.total_current_debt} decimals={2} compact prefix="$" />
           </span>
           <span className="mb-2 text-sm font-bold">
-            <ValueChange value={0} decimals={2} compact prefix={"$"} />
+            <ValueChange value={0} decimals={2} compact prefix="$" />
           </span>
         </div>
         <div className="px-3 py-4 flex flex-col items-center justify-center bg-gray-20 border-gray-13 border-2 border-opacity-30 shadow-md bg-opacity-30 rounded-2xl uppercase">
@@ -52,11 +47,11 @@ const AnalyticSection = () => {
               value={results.total_pledged_collateral}
               decimals={2}
               compact
-              prefix={"$"}
+              prefix="$"
             />
           </span>
           <span className="mb-2 text-sm font-bold">
-            <ValueChange value={0} decimals={2} compact prefix={"$"} />
+            <ValueChange value={0} decimals={2} compact prefix="$" />
           </span>
         </div>
         <div className="px-3 py-4 flex flex-col items-center justify-center bg-gray-20 border-gray-13 border-2 border-opacity-30 shadow-md bg-opacity-30 rounded-2xl uppercase">
@@ -64,10 +59,10 @@ const AnalyticSection = () => {
             TVL
           </span>
           <span className="mb-2 text-2xl font-bold">
-            <Value value={results.total_tvl} decimals={2} compact prefix={"$"} />
+            <Value value={results.total_tvl} decimals={2} compact prefix="$" />
           </span>
           <span className="mb-2 text-sm font-bold">
-            <ValueChange value={0} decimals={2} compact prefix={"$"} />
+            <ValueChange value={0} decimals={2} compact prefix="$" />
           </span>
         </div>
 

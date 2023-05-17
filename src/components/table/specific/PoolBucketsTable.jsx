@@ -128,7 +128,7 @@ const BucketsTable = (promps) => {
                           value={
                             item.collateral * item.collateral_token_underlying_price
                           }
-                          prefix={"$"}
+                          prefix="$"
                           decimals={2}
                           compact
                         />
@@ -148,7 +148,7 @@ const BucketsTable = (promps) => {
                       <div className="flex justify-start items-center text-gray-6 text-sm">
                         <Value
                           value={item.deposit * item.quote_token_underlying_price}
-                          prefix={"$"}
+                          prefix="$"
                           decimals={2}
                           compact
                         />

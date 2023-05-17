@@ -110,7 +110,7 @@ const PoolsTable = () => {
                             item.pledged_collateral *
                             item.collateral_token_underlying_price
                           }
-                          prefix={"$"}
+                          prefix="$"
                           decimals={2}
                           compact
                         />
@@ -120,7 +120,7 @@ const PoolsTable = () => {
                           compact
                           hideIfZero
                           className="ml-2"
-                          prefix={"$"}
+                          prefix="$"
                         />
                       </div>
                     </div>
@@ -145,7 +145,7 @@ const PoolsTable = () => {
                       <div className="flex justify-start items-center text-gray-6 text-sm">
                         <Value
                           value={item.pool_size * item.quote_token_underlying_price}
-                          prefix={"$"}
+                          prefix="$"
                           decimals={2}
                           compact
                         />
@@ -154,7 +154,7 @@ const PoolsTable = () => {
                           decimals={2}
                           compact
                           hideIfZero
-                          prefix={"$"}
+                          prefix="$"
                         />
                       </div>
                     </div>
@@ -179,7 +179,7 @@ const PoolsTable = () => {
                       <div className="flex justify-start items-center text-gray-6 text-sm">
                         <Value
                           value={item.current_debt * item.quote_token_underlying_price}
-                          prefix={"$"}
+                          prefix="$"
                           decimals={2}
                           compact
                         />
@@ -188,18 +188,18 @@ const PoolsTable = () => {
                           decimals={2}
                           compact
                           hideIfZero
-                          prefix={"$"}
+                          prefix="$"
                         />
                       </div>
                     </div>
                   </div>
                   <div className="flex justify-end items-end p-4">
                     <div className="flex flex-col items-end">
-                      <Value value={item.tvl} decimals={2} prefix={"$"} compact />
+                      <Value value={item.tvl} decimals={2} prefix="$" compact />
                       <ValueChange
                         value={0}
                         decimals={2}
-                        prefix={"$"}
+                        prefix="$"
                         compact
                         dashIfZero
                       />
@@ -208,7 +208,7 @@ const PoolsTable = () => {
                   <div className="flex justify-end items-center p-4">
                     <TagComp
                       title={
-                        <Value value={item.interest_rate} decimals={2} suffix={"%"} />
+                        <Value value={item.interest_rate} decimals={2} suffix="%" />
                       }
                     />
                   </div>

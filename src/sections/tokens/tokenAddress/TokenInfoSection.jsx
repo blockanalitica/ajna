@@ -33,7 +33,7 @@ const TokenInfoSection = ({ address }) => {
               value={results.lended_amount * results.underlying_price}
               decimals={2}
               compact
-              prefix={"$"}
+              prefix="$"
             />
           </span>
         </div>
@@ -54,7 +54,7 @@ const TokenInfoSection = ({ address }) => {
               value={results.borrowed_amount * results.underlying_price}
               decimals={2}
               compact
-              prefix={"$"}
+              prefix="$"
             />
           </span>
         </div>
@@ -75,7 +75,7 @@ const TokenInfoSection = ({ address }) => {
               value={results.collateral_amount * results.underlying_price}
               decimals={2}
               compact
-              prefix={"$"}
+              prefix="$"
             />
           </span>
         </div>
@@ -84,10 +84,10 @@ const TokenInfoSection = ({ address }) => {
             TVL
           </span>
           <span className="mb-2 text-2xl font-bold">
-            <Value value={results.tvl} decimals={2} compact prefix={"$"} />
+            <Value value={results.tvl} decimals={2} compact prefix="$" />
           </span>
           {/* <span className="mb-2 text-sm font-bold">
-            <ValueChange value={0} decimals={2} compact prefix={"$"} />
+            <ValueChange value={0} decimals={2} compact prefix="$" />
           </span> */}
         </div>
 

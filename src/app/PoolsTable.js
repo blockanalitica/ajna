@@ -146,9 +146,7 @@ const PoolsTable = () => {
     {
       header: "APR",
       cell: ({ row }) => (
-        <TagComp
-          title={<Value value={row.interest_rate} decimals={2} suffix={"%"} />}
-        />
+        <TagComp title={<Value value={row.interest_rate} decimals={2} suffix="%" />} />
       ),
       headerAlign: "end",
       cellAlign: "end",

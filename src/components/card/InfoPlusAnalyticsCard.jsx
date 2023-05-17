@@ -29,7 +29,7 @@ const InfoPlusAnalyticsCard = (promps) => {
                   }
                   decimals={2}
                   compact
-                  prefix={"$"}
+                  prefix="$"
                 />
               </span>
             </div>
@@ -49,7 +49,7 @@ const InfoPlusAnalyticsCard = (promps) => {
                   }
                   decimals={2}
                   compact
-                  prefix={"$"}
+                  prefix="$"
                 />
               </span>
             </div>
@@ -58,17 +58,17 @@ const InfoPlusAnalyticsCard = (promps) => {
       </div>
       <div className="grid grid-cols-2 gap-4 ">
         <SubAnalyticCard
-          title={<Value value={data.tvl} decimals={2} compact prefix={"$"} />}
+          title={<Value value={data.tvl} decimals={2} compact prefix="$" />}
           subtitle="TVL"
           info="0.18%"
         />
         <SubAnalyticCard
-          title={<Value value={0} decimals={2} compact prefix={"$"} />}
+          title={<Value value={0} decimals={2} compact prefix="$" />}
           subtitle="Volume"
           info="1.97%"
         />
         <SubAnalyticCard
-          title={<Value value={0} decimals={2} compact prefix={"$"} />}
+          title={<Value value={0} decimals={2} compact prefix="$" />}
           subtitle="Fees"
         />
         <SubAnalyticCard

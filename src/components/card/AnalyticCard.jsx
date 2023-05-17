@@ -8,10 +8,10 @@ const AnalyticCard = ({ value, subtitle }) => (
       {subtitle}
     </div>
     <div className="mb-2 text-2xl font-bold">
-      <Value value={value} decimals={2} compact prefix={"$"} />
+      <Value value={value} decimals={2} compact prefix="$" />
     </div>
     <div className="mb-2 text-sm font-bold">
-      <ValueChange value={value} decimals={2} compact prefix={"$"} />
+      <ValueChange value={value} decimals={2} compact prefix="$" />
     </div>
   </CardBackground>
 );

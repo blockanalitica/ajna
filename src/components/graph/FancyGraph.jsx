@@ -1,4 +1,6 @@
-import { useState, useRef } from "react";
+"use client";
+
+import { useState } from "react";
 import Graph from "./Graph";
 import _ from "lodash";
 import { tooltipTitleDateTime, tooltipLabelNumber } from "../../utils/graph.js";

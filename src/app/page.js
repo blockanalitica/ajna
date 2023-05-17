@@ -11,9 +11,8 @@ const Page = async () => {
   return (
     <>
       <section className="flex items-center justify-between">
-        <div className="flex flex-row">
-          <Breadcrumbs />
-        </div>
+        <Breadcrumbs />
+
         <div>{/* <SearchBar /> */}</div>
         <DisplaySwitch />
       </section>
