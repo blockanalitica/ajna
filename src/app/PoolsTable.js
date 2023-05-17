@@ -2,7 +2,7 @@
 
 import classnames from "classnames";
 import CryptoIcon from "@/components/icon/CryptoIcon";
-import TagComp from "@/components/tags/TagComp";
+import Tag from "@/components/tags/Tag";
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
 import CardBackground from "@/components/card/CardBackground";
@@ -146,7 +146,9 @@ const PoolsTable = () => {
     {
       header: "APR",
       cell: ({ row }) => (
-        <TagComp title={<Value value={row.interest_rate} decimals={2} suffix="%" />} />
+        <Tag>
+          <Value value={row.interest_rate} decimals={2} suffix="%" />
+        </Tag>
       ),
       headerAlign: "end",
       cellAlign: "end",
