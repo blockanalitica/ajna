@@ -23,7 +23,7 @@ const PoolStatsSection = (promps) => {
               value={results.pool_size * results.quote_token_underlying_price}
               decimals={2}
               compact
-              prefix={"$"}
+              prefix="$"
             />
           </span>
         </div>
@@ -44,7 +44,7 @@ const PoolStatsSection = (promps) => {
               value={results.current_debt * results.quote_token_underlying_price}
               decimals={2}
               compact
-              prefix={"$"}
+              prefix="$"
             />
           </span>
         </div>
@@ -67,7 +67,7 @@ const PoolStatsSection = (promps) => {
               }
               decimals={2}
               compact
-              prefix={"$"}
+              prefix="$"
             />
           </span>
         </div>
@@ -76,7 +76,7 @@ const PoolStatsSection = (promps) => {
             LUP
           </span>
           <span className="mb-2 text-2xl font-bold">
-            <Value value={results.lup} decimals={2} compact prefix={"$"} />
+            <Value value={results.lup} decimals={2} compact prefix="$" />
           </span>
         </div>
 
@@ -85,7 +85,7 @@ const PoolStatsSection = (promps) => {
             htp
           </span>
           <span className="mb-2 text-2xl font-bold">
-            <Value value={results.htp} decimals={2} compact prefix={"$"} />
+            <Value value={results.htp} decimals={2} compact prefix="$" />
           </span>
         </div>
       </div>

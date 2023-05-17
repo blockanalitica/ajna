@@ -81,7 +81,7 @@ const table_tab_title_coin_subtitle_val_change = ({
 
 const table_tab_tag = (title = 0) => (
   <div className="flex justify-end items-center p-4">
-    <TagComp title={<Value value={title} decimals={2} suffix={"%"} />} />
+    <TagComp title={<Value value={title} decimals={2} suffix="%" />} />
   </div>
 );
 

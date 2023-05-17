@@ -1,9 +1,13 @@
+"use client";
+
+import { DateTime } from "luxon";
+import DisplaySwitch from "@/components/switch/DisplaySwitch";
+import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 import FancyGraph from "@/components/graph/FancyGraph";
 import { tooltipTitleDateTime, tooltipLabelNumber } from "@/utils/graph.js";
 import { compact } from "@/utils/number.js";
-import { DateTime } from "luxon";
 
-const AuctionsPage = () => {
+const TestGraphs = () => {
   const results = [
     {
       total_supply: 208057450.659815,
@@ -523,25 +527,23 @@ const AuctionsPage = () => {
   };
 
   return (
-    <section className="mx-auto max-w-9xl">
-      <div className="grid grid-cols-2 gap-4 ">
-        <FancyGraph
-          series={series}
-          options={options}
-          valueFormatter={valueFormatter}
-          subvalueFormatter={subvalueFormatter}
-        />
+    <div className="grid grid-cols-2 gap-4 ">
+      <FancyGraph
+        series={series}
+        options={options}
+        valueFormatter={valueFormatter}
+        subvalueFormatter={subvalueFormatter}
+      />
 
-        <FancyGraph
-          series={series}
-          options={options}
-          valueFormatter={valueFormatter}
-          subvalueFormatter={subvalueFormatter}
-          type="bar"
-        />
-      </div>
-    </section>
+      <FancyGraph
+        series={series}
+        options={options}
+        valueFormatter={valueFormatter}
+        subvalueFormatter={subvalueFormatter}
+        type="bar"
+      />
+    </div>
   );
 };
 
-export default AuctionsPage;
+export default TestGraphs;
