@@ -66,7 +66,7 @@ function Value({
         {prefixPrefix}
         {prefix ? (
           <>
-            {icon ? (
+            {icon && prefix !== "$" ? (
               <>
                 <CryptoIcon
                   name={prefix}
@@ -82,7 +82,7 @@ function Value({
         {value}
         {suffix ? (
           <>
-            {icon ? (
+            {icon && suffix !== "%" ? (
               <CryptoIcon
                 name={suffix}
                 className="ms-1"
