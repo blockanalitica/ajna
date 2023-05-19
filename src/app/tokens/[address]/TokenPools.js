@@ -1,11 +1,9 @@
 import TokenPoolsTable from "./TokenPoolsTable";
 
-const TokenPools = ({ address }) => {
+const TokenPools = ({ address, ...rest }) => {
   return (
-    <section className="mt-5">
-      <div className="flex flex-row justify-between items-center">
-        <h1 className="text-xl md:text-1xl xl:text-2xl">Pools</h1>
-      </div>
+    <section {...rest}>
+      <h1 className="text-xl md:text-1xl xl:text-2xl mb-5">Pools</h1>
       <TokenPoolsTable address={address} />
     </section>
   );

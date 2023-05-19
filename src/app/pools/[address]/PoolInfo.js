@@ -5,7 +5,7 @@ import ValueChange from "@/components/value/ValueChange";
 import { useFetch } from "@/hooks.js";
 import Stats from "@/components/stats/Stats";
 
-const PoolInfo = ({ data }) => {
+const PoolInfo = ({ data, ...rest }) => {
   const stats = [
     {
       title: "Lended",
@@ -77,7 +77,7 @@ const PoolInfo = ({ data }) => {
     },
   ];
 
-  return <Stats data={stats} className="mt-5" />;
+  return <Stats data={stats} {...rest} />;
 };
 
 export default PoolInfo;

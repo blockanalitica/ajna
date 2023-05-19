@@ -21,17 +21,17 @@ const TokenPage = ({ params }) => {
 
   return (
     <>
-      <section className="flex items-center justify-between">
+      <section className="flex items-center justify-between mb-10">
         <Breadcrumbs />
         <div>{/* <SearchBar /> */}</div>
         <DisplaySwitch />
       </section>
-      <div className="flex mt-5">
+      <div className="flex mb-10">
         <CryptoIcon name={token.symbol} size="30" />
         <h1 className="ml-4 text-2xl">{token.symbol}</h1>
       </div>
 
-      <TokenInfo address={address} />
+      <TokenInfo address={address} className="mb-10" />
       <TokenPools address={address} />
     </>
   );

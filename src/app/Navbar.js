@@ -18,7 +18,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="mt-4">
+    <nav className="mt-4 mb-10">
       <div className="flex items-center justify-between">
         <Link href="/">
           <Image

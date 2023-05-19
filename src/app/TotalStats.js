@@ -5,7 +5,7 @@ import ValueChange from "@/components/value/ValueChange";
 import Stats from "@/components/stats/Stats";
 import { useFetch } from "@/hooks.js";
 
-const TotalStats = () => {
+const TotalStats = ({ ...rest }) => {
   const { data, error, isLoading } = useFetch("/stats/overview/");
 
   if (error) {
@@ -54,7 +54,7 @@ const TotalStats = () => {
     },
   ];
 
-  return <Stats data={stats} className="mt-5" />;
+  return <Stats data={stats} {...rest} />;
 };
 
 export default TotalStats;

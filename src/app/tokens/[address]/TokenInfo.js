@@ -5,7 +5,7 @@ import ValueChange from "@/components/value/ValueChange";
 import { useFetch } from "@/hooks.js";
 import Stats from "@/components/stats/Stats";
 
-const TokenInfo = ({ address }) => {
+const TokenInfo = ({ address, ...rest }) => {
   const { data, error, isLoading } = useFetch(`/tokens/${address}/overview/`);
   if (error) {
     return <p>Failed to load Data</p>;
@@ -87,7 +87,7 @@ const TokenInfo = ({ address }) => {
     },
   ];
 
-  return <Stats data={stats} className="mt-5" />;
+  return <Stats data={stats} {...rest} />;
 };
 
 export default TokenInfo;

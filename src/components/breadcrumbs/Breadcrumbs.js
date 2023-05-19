@@ -39,7 +39,7 @@ const Breadcrumbs = () => {
               <FontAwesomeIcon
                 icon={faChevronRight}
                 size="xs"
-                className="text-gray-13 px-2 "
+                className="text-gray-13 px-5"
               />
             )}
             {index === allPaths.length - 1 ? (
