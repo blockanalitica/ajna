@@ -1,3 +1,4 @@
+import Search from "@/components/search/Search";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 
@@ -9,7 +10,7 @@ const PoolsPage = () => {
     <>
       <section className="flex items-center justify-between">
         <Breadcrumbs />
-        <div>{/* <SearchBar /> */}</div>
+        <Search />
         <DisplaySwitch />
       </section>
       <TopPools />
