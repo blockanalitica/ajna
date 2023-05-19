@@ -24,12 +24,12 @@ const PoolPage = ({ params }) => {
 
   return (
     <>
-      <section className="flex items-center justify-between">
+      <section className="flex items-center justify-between mb-10">
         <Breadcrumbs />
         <div>{/* <SearchBar /> */}</div>
         <DisplaySwitch />
       </section>
-      <div className="flex mt-5">
+      <div className="flex mb-10">
         <span className="relative flex">
           <CryptoIcon name={pool.collateral_token_symbol} className="z-10" />
           <CryptoIcon
@@ -42,9 +42,9 @@ const PoolPage = ({ params }) => {
         </h1>
       </div>
 
-      <PoolInfo data={pool} />
+      <PoolInfo data={pool} className="mb-10" />
 
-      <div className="grid grid-cols-3 gap-4 my-5">
+      <div className="grid grid-cols-3 gap-4 mb-10">
         <CardBackground className="grid grid-cols-1 place-content-between">
           <div>
             <h3 className="text-sm font-bold text-gray-1 font-syncopate uppercase mb-5">

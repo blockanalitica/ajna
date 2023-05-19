@@ -7,12 +7,12 @@ import TopTokens from "../TopTokens";
 const TokensPage = () => {
   return (
     <>
-      <section className="flex items-center justify-between">
+      <section className="flex items-center justify-between mb-10">
         <Breadcrumbs />
         <div>{/* <SearchBar /> */}</div>
         <DisplaySwitch />
       </section>
-      <TopTokens />
+      <TopTokens className="mb-10" />
     </>
   );
 };

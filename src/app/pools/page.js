@@ -8,12 +8,12 @@ import TopPools from "../TopPools";
 const PoolsPage = () => {
   return (
     <>
-      <section className="flex items-center justify-between">
+      <section className="flex items-center justify-between mb-10">
         <Breadcrumbs />
         <Search />
         <DisplaySwitch />
       </section>
-      <TopPools />
+      <TopPools className="mb-10" />
     </>
   );
 };
