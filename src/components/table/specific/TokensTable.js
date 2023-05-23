@@ -6,21 +6,9 @@ import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
 import CardBackground from "@/components/card/CardBackground";
 import Table from "@/components/table/Table";
-import { useFetch } from "@/hooks.js";
 import Link from "next/link";
 
-// TODO: make it async and suspense it for the url fetch
-const TokensTable = () => {
-  // TODO: wrong url (should only fetch "top" tokens, not all?)
-  const { data, error, isLoading } = useFetch("/tokens/");
-
-  if (error) {
-    return <p>Failed to load Data</p>;
-  }
-  if (isLoading) {
-    return <p>Loading....</p>;
-  }
-
+const TokensTable = ({ data, ...rest }) => {
   const columns = [
     {
       header: "#",
@@ -63,11 +51,12 @@ const TokensTable = () => {
 
   return (
     <Table
-      data={data.results}
+      data={data}
       keyField="underlying_address"
       columns={columns}
       gridColumnClassName="grid-cols-table-tokens"
       href={(row) => `/tokens/${row.underlying_address}`}
+      {...rest}
     />
   );
 };

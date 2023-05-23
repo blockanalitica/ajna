@@ -7,21 +7,9 @@ import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
 import CardBackground from "@/components/card/CardBackground";
 import Table from "@/components/table/Table";
-import { useFetch } from "@/hooks.js";
 import Link from "next/link";
 
-// TODO: make it async and suspense it for the url fetch
-const PoolsTable = () => {
-  // TODO: wrong url (should only fetch "top" pools, not all?)
-  const { data, error, isLoading } = useFetch("/pools/");
-
-  if (error) {
-    return <p>Failed to load Data</p>;
-  }
-  if (isLoading) {
-    return <p>Loading....</p>;
-  }
-
+const PoolsTable = ({ data, ...rest }) => {
   const columns = [
     {
       header: "#",
@@ -168,11 +156,12 @@ const PoolsTable = () => {
 
   return (
     <Table
-      data={data.results}
+      data={data}
       keyField="address"
       columns={columns}
       gridColumnClassName="grid-cols-table-pools"
       href={(row) => `/pools/${row.address}`}
+      {...rest}
     />
   );
 };

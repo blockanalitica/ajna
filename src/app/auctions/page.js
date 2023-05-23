@@ -2,7 +2,7 @@ import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 import TestGraphs from "./TestGraphs";
 
-const AuctionsPage = async () => {
+const AuctionsPage = () => {
   return (
     <>
       <section className="flex items-center justify-between">
