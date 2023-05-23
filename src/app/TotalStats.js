@@ -36,8 +36,8 @@ const TotalStats = ({ ...rest }) => {
         <Value
           value={results.total_pledged_collateral}
           decimals={2}
-          compact
           prefix="$"
+          compact
         />
       ),
       smallValue: <ValueChange value={0} decimals={2} compact prefix="$" />,

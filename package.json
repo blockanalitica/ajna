@@ -6,9 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint && npm run lint:prettier",
-    "lint:prettier": "prettier --check './src/**/*.{js,jsx}'",
-    "lint:prettier-write": "prettier --write './src/**/*.{js,jsx}'"
+    "lint": "next lint",
+    "lint:fix": "next lint --fix"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
@@ -21,7 +20,7 @@
     "eslint": "8.36.0",
     "eslint-config-next": "13.2.4",
     "lodash": "^4.17.21",
-    "next": "13.4.2",
+    "next": "13.4.3",
     "numeral": "^2.0.6",
     "query-string": "^8.1.0",
     "react": "18.2.0",
@@ -32,6 +31,7 @@
   "devDependencies": {
     "autoprefixer": "^10.4.14",
     "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "postcss": "^8.4.21",
     "prettier": "^2.8.8",
     "tailwindcss": "^3.2.7"
@@ -44,8 +44,12 @@
       "next/core-web-vitals",
       "prettier"
     ],
+    "plugins": [
+      "prettier"
+    ],
     "rules": {
-      "no-console": 1
+      "no-console": 1,
+      "prettier/prettier": "error"
     }
   }
 }

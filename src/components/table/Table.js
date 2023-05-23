@@ -9,14 +9,14 @@ import CardBackground from "@/components/card/CardBackground";
 import { useFetch } from "@/hooks.js";
 import Link from "next/link";
 
-const Table = ({ data, keyField, columns, gridColumnClassName, href }) => {
+const Table = ({ data, keyField, columns, gridColumnClassName, href, ...rest }) => {
   let RowComponent = "div";
   if (href) {
     RowComponent = Link;
   }
 
   return (
-    <CardBackground>
+    <CardBackground {...rest}>
       <div
         className={classnames(
           "grid gap-3 text-white bg-gray-21 rounded-2xl font-medium text-sm px-5 py-3",
