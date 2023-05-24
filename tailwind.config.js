@@ -27,7 +27,7 @@ module.exports = {
 
         "table-pools": ".1fr 1.5fr .7fr .7fr .7fr repeat(3, .8fr)",
         "table-tokens": ".2fr 3fr repeat(3, 1.5fr)",
-
+        "table-search-results": "1fr .5fr",
       },
     },
     colors: {

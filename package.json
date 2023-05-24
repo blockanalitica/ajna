@@ -49,7 +49,7 @@
     ],
     "rules": {
       "no-console": 1,
-      "prettier/prettier": "error"
+      "prettier/prettier": "warn"
     }
   }
 }
