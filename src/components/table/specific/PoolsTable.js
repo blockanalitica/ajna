@@ -65,6 +65,7 @@ const PoolsTable = ({ data, ...rest }) => {
       ),
       headerAlign: "end",
       cellAlign: "end",
+      orderField: "pledged_collateral",
     },
     {
       header: "Quote",
@@ -92,6 +93,7 @@ const PoolsTable = ({ data, ...rest }) => {
       ),
       headerAlign: "end",
       cellAlign: "end",
+      orderField: "pool_size",
     },
     {
       header: "Debt",
@@ -119,6 +121,7 @@ const PoolsTable = ({ data, ...rest }) => {
       ),
       headerAlign: "end",
       cellAlign: "end",
+      orderField: "current_debt",
     },
     {
       header: "TVL",
@@ -130,6 +133,7 @@ const PoolsTable = ({ data, ...rest }) => {
       ),
       headerAlign: "end",
       cellAlign: "end",
+      orderField: "tvl",
     },
     {
       header: "APR",
@@ -140,17 +144,19 @@ const PoolsTable = ({ data, ...rest }) => {
       ),
       headerAlign: "end",
       cellAlign: "end",
+      orderField: "interest_rate",
     },
     {
       header: "🔥",
       cell: ({ row }) => (
         <div className="flex flex-col items-end">
-          <Value value={row.total_ajna_burned} decimals={2} />
+          <Value value={row.total_ajna_burned} suffix="AJNA" decimals={2} />
           <ValueChange value={0} decimals={2} compact dashIfZero />
         </div>
       ),
       headerAlign: "end",
       cellAlign: "end",
+      orderField: "total_ajna_burned",
     },
   ];
 

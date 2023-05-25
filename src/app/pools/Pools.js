@@ -5,9 +5,9 @@ import { useFetch } from "@/hooks.js";
 import PoolsTable from "@/components/table/specific/PoolsTable";
 
 const Pools = ({ ...rest }) => {
-  const pageSize = 2;
+  const pageSize = 10;
   const [page, setPage] = useState(1);
-  const [order, setOrder] = useState("-tlv");
+  const [order, setOrder] = useState("-tvl");
 
   const { data, error, isLoading } = useFetch("/pools/", {
     p: page,
@@ -27,11 +27,12 @@ const Pools = ({ ...rest }) => {
   return (
     <PoolsTable
       data={results}
-      page={page}
+      currentPage={page}
       pageSize={pageSize}
       totalRecords={count}
       onPageChange={setPage}
-      onSortChange={setOrder}
+      onOrderChange={setOrder}
+      currentOrder={order}
       {...rest}
     />
   );

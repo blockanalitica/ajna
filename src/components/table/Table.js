@@ -11,6 +11,7 @@ import { faArrowLeftLong, faArrowRightLong } from "@fortawesome/free-solid-svg-i
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useFetch } from "@/hooks.js";
 import Link from "next/link";
+import HeaderCell from "./HeaderCell";
 
 const Table = ({
   data,
@@ -18,11 +19,12 @@ const Table = ({
   columns,
   gridColumnClassName,
   href,
-  page,
+  currentPage,
   pageSize,
+  currentOrder,
   totalRecords,
   onPageChange,
-  onSortChange,
+  onOrderChange,
   ...rest
 }) => {
   let RowComponent = "div";
@@ -42,15 +44,15 @@ const Table = ({
           )}
         >
           {columns.map((column, colIndex) => (
-            <div
+            <HeaderCell
               key={column.header || `col-${colIndex}`}
-              className={classnames(
-                "flex items-center",
-                `justify-${column.headerAlign || "start"}`
-              )}
+              align={column.headerAlign}
+              orderField={column.orderField}
+              currentOrder={currentOrder}
+              onOrderChange={onOrderChange}
             >
               {column.header}
-            </div>
+            </HeaderCell>
           ))}
         </div>
         <div className="mx-3">
@@ -81,7 +83,7 @@ const Table = ({
       </CardBackground>
       {totalPages > 1 ? (
         <Pagination
-          currentPage={page}
+          currentPage={currentPage}
           pageSize={pageSize}
           totalPages={totalPages}
           onPageChange={onPageChange}
