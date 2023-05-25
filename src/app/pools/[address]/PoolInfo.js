@@ -1,8 +1,6 @@
 "use client";
 
 import Value from "@/components/value/Value";
-import ValueChange from "@/components/value/ValueChange";
-import { useFetch } from "@/hooks.js";
 import Stats from "@/components/stats/Stats";
 
 const PoolInfo = ({ data, ...rest }) => {

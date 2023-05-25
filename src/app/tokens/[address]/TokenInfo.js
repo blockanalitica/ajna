@@ -1,14 +1,13 @@
 "use client";
 
 import Value from "@/components/value/Value";
-import ValueChange from "@/components/value/ValueChange";
 import { useFetch } from "@/hooks.js";
 import Stats from "@/components/stats/Stats";
 
 const TokenInfo = ({ address, ...rest }) => {
   const { data, error, isLoading } = useFetch(`/tokens/${address}/overview/`);
   if (error) {
-    return <p>Failed to load Data</p>;
+    return <p>Failed to load data</p>;
   }
   if (isLoading) {
     return <p>Loading....</p>;

@@ -1,8 +1,6 @@
-import { Suspense } from "react";
 import Search from "@/components/search/Search";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
-import CardBackground from "@/components/card/CardBackground";
 import Pools from "./Pools";
 
 const PoolsPage = () => {

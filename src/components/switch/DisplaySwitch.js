@@ -3,15 +3,7 @@
 import { useState } from "react";
 import classnames from "classnames";
 
-const DisplaySwitch = ({
-  abel,
-  className,
-  onChange,
-  activeOption,
-  options,
-  basic,
-  ...rest
-}) => {
+const DisplaySwitch = ({ className, onChange, activeOption, options }) => {
   if (!options) {
     options = [
       { key: 1, value: "24H" },

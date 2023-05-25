@@ -55,7 +55,7 @@ const Graph = ({ series, type = "line", options, labels, ...rest }) => {
     orderSeries: false, // custom option. If true, orderes series by label
     aspectRatio: 1.5,
     responsive: true,
-    onResize: (chart, size) => {
+    onResize: (chart) => {
       const parentRect = chart.canvas.parentNode.getBoundingClientRect();
       if (
         parentRect.width < 400 &&
@@ -99,8 +99,6 @@ const Graph = ({ series, type = "line", options, labels, ...rest }) => {
   };
 
   const plugins = [];
-  let xScaleTicks = [];
-  let yScaleTicks = [];
 
   let graphType = type;
   switch (type) {

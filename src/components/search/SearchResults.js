@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { useFetch } from "@/hooks.js";
 import CryptoIcon from "@/components/icon/CryptoIcon";
 import Value from "@/components/value/Value";

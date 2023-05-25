@@ -4,14 +4,7 @@ import classnames from "classnames";
 import { faArrowLeftLong, faArrowRightLong } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Pagination = ({
-  currentPage,
-  pageSize = 25,
-  totalPages,
-  className,
-  onPageChange,
-  ...rest
-}) => {
+const Pagination = ({ currentPage, totalPages, className, onPageChange, ...rest }) => {
   const prevDisabled = currentPage === 1;
   const nextDisabled = currentPage === totalPages;
 

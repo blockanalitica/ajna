@@ -1,8 +1,6 @@
-import { Suspense } from "react";
 import Search from "@/components/search/Search";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
-import CardBackground from "@/components/card/CardBackground";
 import Tokens from "./Tokens";
 
 const TokensPage = () => {
@@ -18,9 +16,7 @@ const TokensPage = () => {
         <h1 className="text-xl md:text-1xl xl:text-2xl">Tokens</h1>
       </div>
 
-      <Suspense fallback={<CardBackground>Loading pools...</CardBackground>}>
-        <Tokens />
-      </Suspense>
+      <Tokens />
     </>
   );
 };
