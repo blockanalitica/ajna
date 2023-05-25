@@ -8,7 +8,7 @@ import CardBackground from "@/components/card/CardBackground";
 import Table from "@/components/table/Table";
 import Link from "next/link";
 
-const TokensTable = ({ data, ...rest }) => {
+const TokensTable = ({ ...rest }) => {
   const columns = [
     {
       header: "#",
@@ -33,6 +33,7 @@ const TokensTable = ({ data, ...rest }) => {
       ),
       headerAlign: "end",
       cellAlign: "end",
+      orderField: "price",
     },
 
     {
@@ -40,18 +41,19 @@ const TokensTable = ({ data, ...rest }) => {
       cell: ({ row }) => <Value value={row.tvl} decimals={2} prefix="$" compact />,
       headerAlign: "end",
       cellAlign: "end",
+      orderField: "tvl",
     },
     {
       header: "Pools",
       cell: ({ row }) => <Value value={row.pool_count} decimals={0} />,
       headerAlign: "end",
       cellAlign: "end",
+      orderField: "pool_count",
     },
   ];
 
   return (
     <Table
-      data={data}
       keyField="underlying_address"
       columns={columns}
       gridColumnClassName="grid-cols-table-tokens"

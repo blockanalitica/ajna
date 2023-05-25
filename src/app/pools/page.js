@@ -18,9 +18,7 @@ const PoolsPage = () => {
         <h1 className="text-xl md:text-1xl xl:text-2xl">Pools</h1>
       </div>
 
-      <Suspense fallback={<CardBackground>Loading pools...</CardBackground>}>
-        <Pools />
-      </Suspense>
+      <Pools />
     </>
   );
 };
