@@ -27,7 +27,7 @@ const ResultTable = ({
       <div className={classnames("grid gap-3 text-gray-5 pb-1", gridColumnClassName)}>
         {columns.map((column, colIndex) => (
           <div
-            key={column.header || `col-${colIndex}`}
+            key={_.isString(column.header) ? column.header : `col-${colIndex}`}
             className={classnames(
               "flex items-center",
               `justify-${column.headerAlign || "start"}`
@@ -50,7 +50,7 @@ const ResultTable = ({
           >
             {columns.map((column, colIndex) => (
               <div
-                key={column.header || `col-${colIndex}`}
+                key={`row-${row[keyField]}-${colIndex}`}
                 className={classnames(
                   "flex items-center py-3",
                   `justify-${column.cellAlign || "start"}`

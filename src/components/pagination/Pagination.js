@@ -1,20 +1,45 @@
-import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import classnames from "classnames";
+import { faArrowLeftLong, faArrowRightLong } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-// TODO: fix icons and minor styling
-const Pagination = ({ currentPage, totalPages }) => {
+const Pagination = ({
+  currentPage,
+  pageSize = 25,
+  totalPages,
+  className,
+  onPageChange,
+  ...rest
+}) => {
+  const prevDisabled = currentPage === 1;
+  const nextDisabled = currentPage === totalPages;
+
   return (
-    <div className="flex justify-center items-center my-4 text-blue-500">
-      <button className="focus:outline-none">
-        <i className="fas fa-chevron-left"></i>
-        <FontAwesomeIcon icon={faChevronLeft} />
+    <div
+      className={classnames("flex justify-center items-center", className)}
+      {...rest}
+    >
+      <button
+        className={classnames({
+          "text-gray-12": prevDisabled,
+          "hover:text-primary-5": !prevDisabled,
+        })}
+        disabled={prevDisabled}
+        onClick={() => (onPageChange ? onPageChange(currentPage - 1) : null)}
+      >
+        <FontAwesomeIcon icon={faArrowLeftLong} size="sm" />
       </button>
-      <span className="mx-4">
-        {currentPage} of {totalPages} pages
+      <span className="mx-10 text-primary-5 text-sm">
+        <span className="font-bold">{currentPage}</span> of {totalPages} pages
       </span>
-      <button className="focus:outline-none">
-        <i className="fas fa-chevron-right"></i>
-        <FontAwesomeIcon icon={faChevronRight} />
+      <button
+        className={classnames({
+          "text-gray-12": nextDisabled,
+          "hover:text-primary-5": !nextDisabled,
+        })}
+        disabled={nextDisabled}
+        onClick={() => (onPageChange ? onPageChange(currentPage + 1) : null)}
+      >
+        <FontAwesomeIcon icon={faArrowRightLong} size="sm" />
       </button>
     </div>
   );
