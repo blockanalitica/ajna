@@ -6,6 +6,7 @@ import Search from "@/components/search/Search";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 import TablePlaceholder from "@/components/table/TablePlaceholder";
+import StatsPlaceholder from "@/components/stats/StatsPlaceholder";
 import Button from "@/components/button/Button";
 
 const Page = () => {
@@ -16,7 +17,11 @@ const Page = () => {
         <Search />
         <DisplaySwitch />
       </section>
-      <TotalStats className="mb-10" />
+      <Suspense
+        fallback={<StatsPlaceholder className="mb-10" numStats={5} size="lg" />}
+      >
+        <TotalStats className="mb-10" />
+      </Suspense>
 
       <div className="flex flex-row justify-between items-center mb-5">
         <h1 className="text-xl md:text-1xl xl:text-2xl">Top Pools</h1>

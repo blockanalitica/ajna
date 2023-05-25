@@ -3,18 +3,10 @@
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
 import Stats from "@/components/stats/Stats";
-import { useFetch } from "@/hooks.js";
+import { fetchApi } from "@/utils/http";
 
-const TotalStats = ({ ...rest }) => {
-  const { data, error, isLoading } = useFetch("/stats/overview/");
-
-  if (error) {
-    return <p>Failed to load data</p>;
-  }
-  if (isLoading) {
-    return <p>Loading....</p>;
-  }
-
+const TotalStats = async ({ ...rest }) => {
+  const data = await fetchApi("/stats/overview/");
   const { results } = data;
 
   const stats = [
