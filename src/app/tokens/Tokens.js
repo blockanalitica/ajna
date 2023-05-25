@@ -4,12 +4,16 @@ import { useState } from "react";
 import { useFetch } from "@/hooks.js";
 import TokensTable from "@/components/table/specific/TokensTable";
 
-const TopPools = async ({ ...rest }) => {
+const TopPools = ({ ...rest }) => {
   const pageSize = 10;
   const [page, setPage] = useState(1);
   const [order, setOrder] = useState("-tvl");
 
-  const { data, error, isLoading } = useFetch("/tokens/", {
+  const {
+    data = {},
+    error,
+    isLoading,
+  } = useFetch("/tokens/", {
     p: page,
     p_size: pageSize,
     order,
@@ -17,9 +21,6 @@ const TopPools = async ({ ...rest }) => {
 
   if (error) {
     return <p>Failed to load data</p>;
-  }
-  if (isLoading) {
-    return <p>Loading....</p>;
   }
 
   const { results, count } = data;
@@ -33,6 +34,7 @@ const TopPools = async ({ ...rest }) => {
       onPageChange={setPage}
       onOrderChange={setOrder}
       currentOrder={order}
+      isLoading={isLoading}
       {...rest}
     />
   );

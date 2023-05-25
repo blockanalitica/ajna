@@ -1,13 +1,10 @@
 "use client";
 
-import classnames from "classnames";
 import CryptoIcon from "@/components/icon/CryptoIcon";
 import Tag from "@/components/tags/Tag";
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
-import CardBackground from "@/components/card/CardBackground";
 import Table from "@/components/table/Table";
-import Link from "next/link";
 
 const PoolsTable = ({ ...rest }) => {
   const columns = [

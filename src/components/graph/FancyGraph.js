@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Graph from "./Graph";
 import _ from "lodash";
-import { tooltipTitleDateTime, tooltipLabelNumber } from "../../utils/graph.js";
 
 const _getDefaultValue = (series, valueFormatter, subvalueFormatter) => {
   const lblVal = series[0].data.at(-1);
@@ -35,7 +34,7 @@ const FancyGraph = ({
   const [labelValue, setLabelValue] = useState(defaultValue);
   const [labelSubvalue, setLabelSubvalue] = useState(defaultSubvalue);
 
-  const externalTooltipHandler = ({ chart, tooltip }) => {
+  const externalTooltipHandler = ({ tooltip }) => {
     if (tooltip.opacity === 0) {
       setLabelValue(defaultValue);
       setLabelSubvalue(defaultSubvalue);

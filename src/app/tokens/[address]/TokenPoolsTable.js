@@ -1,25 +1,33 @@
 "use client";
 
-import classnames from "classnames";
+import { useState } from "react";
 import CryptoIcon from "@/components/icon/CryptoIcon";
 import Tag from "@/components/tags/Tag";
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
-import CardBackground from "@/components/card/CardBackground";
 import Table from "@/components/table/Table";
 import { useFetch } from "@/hooks.js";
-import Link from "next/link";
 
-// TODO: make it async and suspense it for the url fetch
 const TokenPoolsTable = ({ address }) => {
-  const { data, error, isLoading } = useFetch(`/tokens/${address}/pools/`);
+  const pageSize = 10;
+  const [page, setPage] = useState(1);
+  const [order, setOrder] = useState("-pool_size");
+
+  const {
+    data = {},
+    error,
+    isLoading,
+  } = useFetch(`/tokens/${address}/pools/`, {
+    p: page,
+    p_size: pageSize,
+    order,
+  });
 
   if (error) {
-    return <p>Failed to load Data</p>;
+    return <p>Failed to load data</p>;
   }
-  if (isLoading) {
-    return <p>Loading....</p>;
-  }
+
+  const { results, count } = data;
 
   const columns = [
     {
@@ -58,6 +66,7 @@ const TokenPoolsTable = ({ address }) => {
       ),
       headerAlign: "end",
       cellAlign: "end",
+      orderField: "collateral_token_underlying_price",
     },
     {
       header: "LUP",
@@ -69,6 +78,7 @@ const TokenPoolsTable = ({ address }) => {
       ),
       headerAlign: "end",
       cellAlign: "end",
+      orderField: "lup",
     },
     {
       header: "HTP",
@@ -80,6 +90,7 @@ const TokenPoolsTable = ({ address }) => {
       ),
       headerAlign: "end",
       cellAlign: "end",
+      orderField: "htp",
     },
     {
       header: "TVL",
@@ -91,6 +102,7 @@ const TokenPoolsTable = ({ address }) => {
       ),
       headerAlign: "end",
       cellAlign: "end",
+      orderField: "pool_size",
     },
     {
       header: "APR",
@@ -101,27 +113,36 @@ const TokenPoolsTable = ({ address }) => {
       ),
       headerAlign: "end",
       cellAlign: "end",
+      orderField: "interest_rate",
     },
     {
       header: "Volume",
       cell: ({ row }) => (
         <div className="flex flex-col items-end">
-          <Value value={row.total_ajna_burned} decimals={2} />
+          <Value value={row.total_ajna_burned} suffix="AJNA" decimals={2} />
           <ValueChange value={0} decimals={2} compact dashIfZero />
         </div>
       ),
       headerAlign: "end",
       cellAlign: "end",
+      orderField: "total_ajna_burned",
     },
   ];
 
   return (
     <Table
-      data={data.results}
+      data={results}
       keyField="address"
       columns={columns}
       gridColumnClassName="grid-cols-table-pools"
       href={(row) => `/pools/${row.address}`}
+      currentPage={page}
+      pageSize={pageSize}
+      totalRecords={count}
+      onPageChange={setPage}
+      onOrderChange={setOrder}
+      currentOrder={order}
+      isLoading={isLoading}
     />
   );
 };

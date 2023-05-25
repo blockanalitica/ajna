@@ -9,7 +9,11 @@ const Pools = ({ ...rest }) => {
   const [page, setPage] = useState(1);
   const [order, setOrder] = useState("-tvl");
 
-  const { data, error, isLoading } = useFetch("/pools/", {
+  const {
+    data = {},
+    error,
+    isLoading,
+  } = useFetch("/pools/", {
     p: page,
     p_size: pageSize,
     order,
@@ -17,9 +21,6 @@ const Pools = ({ ...rest }) => {
 
   if (error) {
     return <p>Failed to load data</p>;
-  }
-  if (isLoading) {
-    return <p>Loading....</p>;
   }
 
   const { results, count } = data;
@@ -33,6 +34,7 @@ const Pools = ({ ...rest }) => {
       onPageChange={setPage}
       onOrderChange={setOrder}
       currentOrder={order}
+      isLoading={isLoading}
       {...rest}
     />
   );

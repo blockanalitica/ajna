@@ -2,18 +2,14 @@
 
 import classnames from "classnames";
 import _ from "lodash";
-import CryptoIcon from "@/components/icon/CryptoIcon";
-import Value from "@/components/value/Value";
-import ValueChange from "@/components/value/ValueChange";
 import CardBackground from "@/components/card/CardBackground";
 import Pagination from "@/components/pagination/Pagination";
-import { faArrowLeftLong, faArrowRightLong } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useFetch } from "@/hooks.js";
 import Link from "next/link";
 import HeaderCell from "./HeaderCell";
+import TablePlaceholder from "./TablePlaceholder";
 
 const Table = ({
+  className,
   data,
   keyField,
   columns,
@@ -26,8 +22,13 @@ const Table = ({
   onPageChange,
   onOrderChange,
   allowOrder,
+  isLoading = false,
   ...rest
 }) => {
+  if (isLoading) {
+    return <TablePlaceholder className={className} />;
+  }
+
   let RowComponent = "div";
   if (href) {
     RowComponent = Link;
@@ -37,7 +38,7 @@ const Table = ({
 
   return (
     <>
-      <CardBackground {...rest}>
+      <CardBackground className={className} {...rest}>
         <div
           className={classnames(
             "grid gap-3 text-white bg-gray-21 rounded-2xl font-medium text-sm px-5 py-3",
@@ -86,7 +87,6 @@ const Table = ({
       {totalPages > 1 ? (
         <Pagination
           currentPage={currentPage}
-          pageSize={pageSize}
           totalPages={totalPages}
           onPageChange={onPageChange}
           className="mt-6"

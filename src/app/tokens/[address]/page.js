@@ -12,7 +12,7 @@ const TokenPage = ({ params }) => {
 
   const { data, error, isLoading } = useFetch(`/tokens/${address}/`);
   if (error) {
-    return <p>Failed to load Data</p>;
+    return <p>Failed to load data</p>;
   }
   if (isLoading) {
     return <p>Loading....</p>;

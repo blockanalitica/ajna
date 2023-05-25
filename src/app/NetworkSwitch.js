@@ -5,7 +5,6 @@ import { useState } from "react";
 import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CryptoIcon from "@/components/icon/CryptoIcon";
-import Icon from "@/components/icon/Icon";
 
 const NetworkSwitch = () => {
   const networkOptions = [

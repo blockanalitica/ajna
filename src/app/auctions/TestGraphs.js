@@ -1,10 +1,7 @@
 "use client";
 
 import { DateTime } from "luxon";
-import DisplaySwitch from "@/components/switch/DisplaySwitch";
-import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 import FancyGraph from "@/components/graph/FancyGraph";
-import { tooltipTitleDateTime, tooltipLabelNumber } from "@/utils/graph.js";
 import { compact } from "@/utils/number.js";
 
 const TestGraphs = () => {

@@ -1,6 +1,4 @@
 import classnames from "classnames";
-import Value from "../value/Value";
-import ValueChange from "../value/ValueChange";
 
 // TODO: automatic calculation of columns based on number of sections passed in data
 const Stats = ({ data, className, ...rest }) => {

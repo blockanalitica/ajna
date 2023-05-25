@@ -2,11 +2,6 @@
 
 import classnames from "classnames";
 import _ from "lodash";
-import CryptoIcon from "@/components/icon/CryptoIcon";
-import Value from "@/components/value/Value";
-import ValueChange from "@/components/value/ValueChange";
-import CardBackground from "@/components/card/CardBackground";
-import { useFetch } from "@/hooks.js";
 import Link from "next/link";
 
 const ResultTable = ({

@@ -5,9 +5,7 @@ import TopTokens from "./TopTokens";
 import Search from "@/components/search/Search";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
-import CardBackground from "@/components/card/CardBackground";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMedium, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import TablePlaceholder from "@/components/table/TablePlaceholder";
 import Button from "@/components/button/Button";
 
 const Page = () => {
@@ -25,7 +23,7 @@ const Page = () => {
         <Button text="View all" href="/pools" />
       </div>
       <div className="mb-10">
-        <Suspense fallback={<CardBackground>Loading pools...</CardBackground>}>
+        <Suspense fallback={<TablePlaceholder />}>
           <TopPools />
         </Suspense>
       </div>
@@ -34,7 +32,7 @@ const Page = () => {
         <h1 className="text-xl md:text-1xl xl:text-2xl">Top Tokens</h1>
         <Button text="View all" href="/tokens" />
       </div>
-      <Suspense fallback={<CardBackground>Loading tokens...</CardBackground>}>
+      <Suspense fallback={<TablePlaceholder />}>
         <TopTokens />
       </Suspense>
     </>

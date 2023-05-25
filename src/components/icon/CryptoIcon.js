@@ -1,4 +1,3 @@
-import classnames from "classnames";
 import Image from "next/image";
 
 const CryptoIcon = ({ name, size = "24", priority = false, ...rest }) => {

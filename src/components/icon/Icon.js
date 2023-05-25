@@ -1,10 +1,4 @@
-import classnames from "classnames";
 import Image from "next/image";
-
-const ajnaIcon = "/assets/images/icon/AJNA-Icon.svg";
-const etherscanIcon = "/assets/images/icon/crypto/etherscan.svg";
-const debankIcon = "/assets/images/icon/crypto/debank.svg";
-const zapperIcon = "/assets/images/icon/crypto/zapper.svg";
 
 const Icon = ({ name, size = "24", priority = false, ...rest }) => {
   const mapping = {

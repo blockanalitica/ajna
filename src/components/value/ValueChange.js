@@ -34,8 +34,6 @@ function ValueChange({
     }
   }
 
-  const rawValue = value;
-
   let spanClass = "";
   let iconPlace = "";
   if (value > 0) {
