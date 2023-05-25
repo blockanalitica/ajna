@@ -25,6 +25,7 @@ const Table = ({
   totalRecords,
   onPageChange,
   onOrderChange,
+  allowOrder,
   ...rest
 }) => {
   let RowComponent = "div";
@@ -35,7 +36,7 @@ const Table = ({
   const totalPages = Math.ceil(totalRecords / pageSize);
 
   return (
-    <div>
+    <>
       <CardBackground {...rest}>
         <div
           className={classnames(
@@ -50,6 +51,7 @@ const Table = ({
               orderField={column.orderField}
               currentOrder={currentOrder}
               onOrderChange={onOrderChange}
+              allowOrder={allowOrder}
             >
               {column.header}
             </HeaderCell>
@@ -90,7 +92,7 @@ const Table = ({
           className="mt-6"
         />
       ) : null}
-    </div>
+    </>
   );
 };
 

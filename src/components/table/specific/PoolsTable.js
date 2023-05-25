@@ -9,7 +9,7 @@ import CardBackground from "@/components/card/CardBackground";
 import Table from "@/components/table/Table";
 import Link from "next/link";
 
-const PoolsTable = ({ data, ...rest }) => {
+const PoolsTable = ({ ...rest }) => {
   const columns = [
     {
       header: "#",
@@ -162,7 +162,6 @@ const PoolsTable = ({ data, ...rest }) => {
 
   return (
     <Table
-      data={data}
       keyField="address"
       columns={columns}
       gridColumnClassName="grid-cols-table-pools"

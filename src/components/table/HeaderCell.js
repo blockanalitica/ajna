@@ -49,10 +49,17 @@ const OrderSection = ({ currentOrder, orderField, onOrderChange, children }) => 
   );
 };
 
-const HeaderCell = ({ align, currentOrder, orderField, onOrderChange, children }) => {
+const HeaderCell = ({
+  align,
+  currentOrder,
+  orderField,
+  onOrderChange,
+  allowOrder = true,
+  children,
+}) => {
   return (
     <div className={classnames("flex items-center", `justify-${align || "start"}`)}>
-      {orderField ? (
+      {allowOrder && orderField ? (
         <OrderSection
           currentOrder={currentOrder}
           orderField={orderField}
