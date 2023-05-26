@@ -1,10 +1,10 @@
 "use client";
 
 import CryptoIcon from "@/components/icon/CryptoIcon";
+import Table from "@/components/table/Table";
 import Tag from "@/components/tags/Tag";
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
-import Table from "@/components/table/Table";
 
 const PoolsTable = ({ ...rest }) => {
   const columns = [
@@ -98,7 +98,7 @@ const PoolsTable = ({ ...rest }) => {
         <div className="flex flex-col items-end">
           <div className="flex">
             <Value
-              value={row.current_debt}
+              value={row.debt}
               decimals={2}
               compact
               suffix={row.quote_token_symbol}
@@ -107,7 +107,7 @@ const PoolsTable = ({ ...rest }) => {
           </div>
           <div className="flex text-gray-6 text-xs">
             <Value
-              value={row.current_debt * row.quote_token_underlying_price}
+              value={row.debt * row.quote_token_underlying_price}
               prefix="$"
               decimals={2}
               compact
@@ -133,10 +133,21 @@ const PoolsTable = ({ ...rest }) => {
       orderField: "tvl",
     },
     {
-      header: "APR",
+      header: "Lend APR",
       cell: ({ row }) => (
         <Tag>
-          <Value value={row.interest_rate} decimals={2} suffix="%" />
+          <Value value={row.lend_rate * 100} decimals={2} suffix="%" />
+        </Tag>
+      ),
+      headerAlign: "end",
+      cellAlign: "end",
+      orderField: "interest_rate",
+    },
+    {
+      header: "Borrow APR",
+      cell: ({ row }) => (
+        <Tag>
+          <Value value={row.borrow_rate * 100} decimals={2} suffix="%" />
         </Tag>
       ),
       headerAlign: "end",
