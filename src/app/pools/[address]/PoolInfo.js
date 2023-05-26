@@ -1,7 +1,7 @@
 "use client";
 
-import Value from "@/components/value/Value";
 import Stats from "@/components/stats/Stats";
+import Value from "@/components/value/Value";
 
 const PoolInfo = ({ data, ...rest }) => {
   const stats = [
@@ -29,7 +29,7 @@ const PoolInfo = ({ data, ...rest }) => {
       title: "Borowed",
       value: (
         <Value
-          value={data.current_debt}
+          value={data.debt}
           decimals={2}
           compact
           suffix={data.quote_token_symbol}
@@ -38,7 +38,7 @@ const PoolInfo = ({ data, ...rest }) => {
       ),
       smallValue: (
         <Value
-          value={data.current_debt * data.quote_token_underlying_price}
+          value={data.debt * data.quote_token_underlying_price}
           decimals={2}
           compact
           prefix="$"
@@ -67,11 +67,29 @@ const PoolInfo = ({ data, ...rest }) => {
     },
     {
       title: "LUP",
-      value: <Value value={data.lup} decimals={2} compact prefix="$" />,
+      value: (
+        <Value
+          value={data.lup}
+          decimals={2}
+          compact
+          suffix={data.quote_token_symbol}
+          big
+        />
+      ),
+      smallValue: <Value value={data.lup} decimals={2} compact prefix="$" />,
     },
     {
       title: "HTP",
-      value: <Value value={data.htp} decimals={2} compact />,
+      value: (
+        <Value
+          value={data.htp}
+          decimals={2}
+          compact
+          suffix={data.quote_token_symbol}
+          big
+        />
+      ),
+      smallValue: <Value value={data.htp} decimals={2} compact prefix="$" />,
     },
   ];
 

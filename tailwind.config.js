@@ -25,7 +25,7 @@ module.exports = {
         "table-7": ".2fr 3fr 1fr 1fr repeat(3, 1fr)",
         "table-8": ".1fr 1.5fr .7fr .7fr .7fr repeat(3, .8fr)",
 
-        "table-pools": ".1fr 1.5fr .7fr .7fr .7fr repeat(3, .8fr)",
+        "table-pools": ".1fr 1.3fr repeat(6, .7fr) .5fr",
         "table-tokens": ".2fr 3fr repeat(3, 1.5fr)",
         "table-search-results": "1fr .5fr",
       },

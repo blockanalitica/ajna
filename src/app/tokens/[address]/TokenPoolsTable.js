@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
 import CryptoIcon from "@/components/icon/CryptoIcon";
+import Table from "@/components/table/Table";
 import Tag from "@/components/tags/Tag";
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
-import Table from "@/components/table/Table";
 import { useFetch } from "@/hooks.js";
+import { useState } from "react";
 
 const TokenPoolsTable = ({ address }) => {
   const pageSize = 10;
@@ -105,10 +105,21 @@ const TokenPoolsTable = ({ address }) => {
       orderField: "pool_size",
     },
     {
-      header: "APR",
+      header: "Lend APR",
       cell: ({ row }) => (
         <Tag>
-          <Value value={row.interest_rate} decimals={2} suffix="%" />
+          <Value value={row.lend_rate * 100} decimals={2} suffix="%" />
+        </Tag>
+      ),
+      headerAlign: "end",
+      cellAlign: "end",
+      orderField: "interest_rate",
+    },
+    {
+      header: "Borrow APR",
+      cell: ({ row }) => (
+        <Tag>
+          <Value value={row.borrow_rate * 100} decimals={2} suffix="%" />
         </Tag>
       ),
       headerAlign: "end",
@@ -119,7 +130,7 @@ const TokenPoolsTable = ({ address }) => {
       header: "Volume",
       cell: ({ row }) => (
         <div className="flex flex-col items-end">
-          <Value value={row.total_ajna_burned} suffix="AJNA" decimals={2} />
+          <Value value={row.total_ajna_burned} decimals={2} />
           <ValueChange value={0} decimals={2} compact dashIfZero />
         </div>
       ),

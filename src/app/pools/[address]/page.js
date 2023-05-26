@@ -1,14 +1,14 @@
 "use client";
 
-import { useFetch } from "@/hooks.js";
+import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
+import CardBackground from "@/components/card/CardBackground";
+import CardOpaque from "@/components/card/CardOpaque";
 import CryptoIcon from "@/components/icon/CryptoIcon";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
-import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
-import PoolInfo from "./PoolInfo";
-import CardBackground from "@/components/card/CardBackground";
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
-import CardOpaque from "@/components/card/CardOpaque";
+import { useFetch } from "@/hooks.js";
+import PoolInfo from "./PoolInfo";
 
 const PoolPage = ({ params }) => {
   const { address } = params;
@@ -68,7 +68,7 @@ const PoolPage = ({ params }) => {
                 <CryptoIcon name={pool.quote_token_symbol} size={20} className="mr-2" />
                 <span className="font-bold text-sm">{pool.quote_token_symbol}</span>
               </div>
-              <Value value={pool.pool_size - pool.current_debt} decimals={2} compact />
+              <Value value={pool.pool_size - pool.debt} decimals={2} compact />
             </div>
           </div>
           <div className="grid grid-cols-2 gap-4 mt-4">
