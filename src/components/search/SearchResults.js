@@ -6,13 +6,10 @@ import Value from "@/components/value/Value";
 import ResultTable from "./ResultTable";
 
 const SearchResults = ({ searchTerm }) => {
-  const { data, error, isLoading } = useFetch("/search/", { search: searchTerm });
+  const { data = {}, error, isLoading } = useFetch("/search/", { search: searchTerm });
 
   if (error) {
     return <p>Failed to load data</p>;
-  }
-  if (isLoading) {
-    return <p>Loading....</p>;
   }
 
   const { pools, tokens } = data;
@@ -74,15 +71,16 @@ const SearchResults = ({ searchTerm }) => {
         columns={poolColumns}
         gridColumnClassName="grid-cols-table-search-results"
         href={(row) => `/pools/${row.address}`}
-        className="mb-5"
+        isLoading={isLoading}
       />
-
+      <hr className="bg-gray-20 h-px border-0 mb-5 mt-3" />
       <ResultTable
         data={tokens}
         keyField="underlying_address"
         columns={tokenColumns}
         gridColumnClassName="grid-cols-table-search-results"
         href={(row) => `/tokens/${row.underlying_address}`}
+        isLoading={isLoading}
       />
     </div>
   );
