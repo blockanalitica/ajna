@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import classnames from "classnames";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,11 +11,16 @@ import NetworkSwitch from "./NetworkSwitch";
 
 const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
+  const pathname = usePathname();
+  const segments = pathname.split("/").filter(Boolean);
+
+  const rootSegment = segments && segments.length > 0 ? segments[0] : null;
+
   const navigation = [
-    { name: "Pools", href: "/pools", current: false },
-    { name: "Tokens", href: "/tokens", current: false },
-    { name: "Auctions", href: "/auctions", current: false },
-    { name: "Grants", href: "#", current: false },
+    { name: "Pools", href: "/pools", current: rootSegment === "pools" },
+    { name: "Tokens", href: "/tokens", current: rootSegment === "tokens" },
+    { name: "Auctions", href: "/auctions", current: rootSegment === "auctions" },
+    { name: "Grants", href: "#", current: rootSegment === "grans" },
   ];
 
   return (
@@ -35,10 +41,13 @@ const Navbar = () => {
             <Link
               key={item.name}
               href={item.href}
-              className={classnames("rounded-md px-4 py-2 text-l font-medium", {
-                "text-ajna-aqua": item.current,
-                "text-gray-300 hover:bg-gray-700 hover:text-white": !item.current,
-              })}
+              className={classnames(
+                "rounded-md px-4 py-2 text-l font-medium hover:text-ajna-aqua",
+                {
+                  "text-ajna-lavender": item.current,
+                  "text-gray-300 hover:bg-gray-700 hover:text-white": !item.current,
+                }
+              )}
             >
               {item.name}
             </Link>
