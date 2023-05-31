@@ -1,11 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import SearchResults from "./SearchResults";
+import { useOnClickOutside } from "@/hooks.js";
 
 const Search = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+
+  const searchRef = useRef(null);
+
+  useOnClickOutside(searchRef, () => {
+    isOpen && setIsOpen(false);
+  });
 
   const handleSearchChange = (event) => {
     const newSearchTerm = event.target.value;
@@ -13,7 +20,7 @@ const Search = () => {
   };
 
   return (
-    <div className="relative z-40">
+    <div className="relative z-40" ref={searchRef}>
       <input
         type="text"
         placeholder="Search pools or tokens"
@@ -21,7 +28,6 @@ const Search = () => {
         value={searchTerm}
         onChange={handleSearchChange}
         onFocus={() => setIsOpen(true)}
-        onBlur={() => setIsOpen(false)}
       />
       {isOpen ? <SearchResults searchTerm={searchTerm} /> : null}
     </div>

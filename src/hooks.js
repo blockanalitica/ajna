@@ -1,6 +1,8 @@
+import { useEffect } from "react";
 import queryString from "query-string";
 import useSWR from "swr";
 
+const clickOutsideEvents = ["mousedown", "touchstart"];
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export const useFetch = (path, query) => {
@@ -10,4 +12,29 @@ export const useFetch = (path, query) => {
   }
 
   return useSWR(`${process.env.NEXT_PUBLIC_API_ENDPOINT}${path}${qs}`, fetcher);
+};
+
+export const useOnClickOutside = (ref, handler) => {
+  useEffect(() => {
+    if (!handler) {
+      return;
+    }
+
+    const listener = (event) => {
+      if (!ref.current || ref.current.contains(event.target)) {
+        return;
+      }
+      handler(event);
+    };
+
+    clickOutsideEvents.forEach((event) => {
+      document.addEventListener(event, listener);
+    });
+
+    return () => {
+      clickOutsideEvents.forEach((event) => {
+        document.removeEventListener(event, listener);
+      });
+    };
+  }, [ref, handler]);
 };
