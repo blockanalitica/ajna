@@ -4,10 +4,13 @@ import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 import CardBackground from "@/components/card/CardBackground";
 import CardOpaque from "@/components/card/CardOpaque";
 import CryptoIcon from "@/components/icon/CryptoIcon";
+import CopyToClipboard from "@/components/copyToClipboard/CopyToClipboard";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
 import { useFetch } from "@/hooks.js";
+import { shorten } from "@/utils/address";
+import Tag from "@/components/tags/Tag";
 import PoolInfo from "./PoolInfo";
 
 const PoolPage = ({ params }) => {
@@ -26,10 +29,9 @@ const PoolPage = ({ params }) => {
     <>
       <section className="flex items-center justify-between mb-10">
         <Breadcrumbs />
-        <div>{/* <SearchBar /> */}</div>
         <DisplaySwitch />
       </section>
-      <div className="flex mb-10">
+      <div className="flex mb-5">
         <span className="relative flex">
           <CryptoIcon name={pool.collateral_token_symbol} className="z-10" />
           <CryptoIcon
@@ -40,6 +42,24 @@ const PoolPage = ({ params }) => {
         <h1 className="pl-4 text-2xl">
           {pool.collateral_token_symbol} / {pool.quote_token_symbol}
         </h1>
+      </div>
+      <div className="flex mb-7 items-center justify-between">
+        <Tag className="flex">
+          <CryptoIcon name={pool.collateral_token_symbol} size="20" className="mr-1" />1{" "}
+          {pool.collateral_token_symbol}
+          <span className="px-1">=</span>
+          <Value
+            value={pool.collateral_token_underlying_price}
+            decimals={2}
+            suffix={` ${pool.quote_token_symbol}`}
+            icon={false}
+          />
+        </Tag>
+        <div className="flex items-baseline">
+          <span className="text-gray-10 text-sm mr-5">Pool Address</span>
+          <span>{shorten(pool.address)}</span>
+          <CopyToClipboard className="ml-3" text={pool.address} />
+        </div>
       </div>
 
       <PoolInfo data={pool} className="mb-10" />
