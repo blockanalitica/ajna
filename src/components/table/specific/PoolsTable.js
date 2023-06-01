@@ -141,7 +141,7 @@ const PoolsTable = ({ ...rest }) => {
       ),
       headerAlign: "end",
       cellAlign: "end",
-      orderField: "interest_rate",
+      orderField: "lend_rate",
     },
     {
       header: "Borrow APR",
@@ -152,7 +152,7 @@ const PoolsTable = ({ ...rest }) => {
       ),
       headerAlign: "end",
       cellAlign: "end",
-      orderField: "interest_rate",
+      orderField: "borrow_rate",
     },
     {
       header: "🔥",
