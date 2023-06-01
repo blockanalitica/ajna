@@ -16,6 +16,7 @@ const CryptoIcon = ({ name, size = "24", priority = false, ...rest }) => {
     wstETH: "steth.svg",
     cbETH: "cbeth.svg",
     AJNA: "ajna.svg",
+    rETH: "reth.svg",
   };
   const iconSrc = mapping[name];
   if (!iconSrc) {
