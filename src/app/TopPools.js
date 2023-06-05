@@ -1,11 +1,24 @@
-import { fetchApi } from "@/utils/http";
+import { useFetch } from "@/hooks.js";
 import PoolsTable from "@/components/table/specific/PoolsTable";
 
-const TopPools = async ({ ...rest }) => {
-  const data = await fetchApi("/pools/", { order: "-tvl" });
+const TopPools = ({ daysAgo = 1, ...rest }) => {
+  const {
+    data = {},
+    error,
+    isLoading,
+  } = useFetch("/pools/", {
+    p_size: 5,
+    order: "-tvl",
+    days_ago: daysAgo,
+  });
+
+  if (error) {
+    return <p>Failed to load data</p>;
+  }
   let { results } = data;
-  results = results.slice(0, 5);
-  return <PoolsTable data={results} allowOrder={false} {...rest} />;
+  return (
+    <PoolsTable data={results} allowOrder={false} isLoading={isLoading} {...rest} />
+  );
 };
 
 export default TopPools;

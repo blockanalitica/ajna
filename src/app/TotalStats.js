@@ -1,12 +1,26 @@
-"use client";
-
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
 import Stats from "@/components/stats/Stats";
-import { fetchApi } from "@/utils/http";
+import StatsPlaceholder from "@/components/stats/StatsPlaceholder";
+import { useFetch } from "@/hooks.js";
 
-const TotalStats = async ({ ...rest }) => {
-  const data = await fetchApi("/stats/overview/");
+const TotalStats = ({ className, ...rest }) => {
+  const {
+    data = {},
+    error,
+    isLoading,
+  } = useFetch("/stats/overview/", {
+    p_size: 5,
+    order: "-tvl",
+    // days_ago: daysAgo,
+  });
+  if (error) {
+    return <p>Failed to load data</p>;
+  }
+  if (isLoading) {
+    return <StatsPlaceholder className={className} numStats={5} size="lg" />;
+  }
+
   const { results } = data;
 
   const stats = [
@@ -46,7 +60,7 @@ const TotalStats = async ({ ...rest }) => {
     },
   ];
 
-  return <Stats data={stats} {...rest} />;
+  return <Stats data={stats} className={className} {...rest} />;
 };
 
 export default TotalStats;
