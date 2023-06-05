@@ -2,7 +2,6 @@
 
 import CryptoIcon from "@/components/icon/CryptoIcon";
 import Table from "@/components/table/Table";
-import Tag from "@/components/tags/Tag";
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
 
@@ -40,22 +39,22 @@ const PoolsTable = ({ ...rest }) => {
               compact
               suffix={row.collateral_token_symbol}
             />
-            <ValueChange value={1} decimals={2} compact hideIfZero className="ml-2" />
-          </div>
-          <div className="flex text-gray-6 text-xs">
-            <Value
-              value={row.pledged_collateral * row.collateral_token_underlying_price}
-              prefix="$"
-              decimals={2}
-              compact
-            />
             <ValueChange
-              value={1}
+              value={row.pledged_collateral - row.prev_pledged_collateral}
               decimals={2}
               compact
               hideIfZero
               className="ml-2"
-              prefix="$"
+            />
+          </div>
+          <div className="flex text-gray-6 text-xs">
+            <Value value={row.pledged_collateral_usd} prefix="$" decimals={2} compact />
+            <ValueChange
+              value={row.pledged_collateral_usd - row.prev_pledged_collateral_usd}
+              decimals={2}
+              compact
+              hideIfZero
+              className="ml-2"
             />
           </div>
         </div>
@@ -75,16 +74,23 @@ const PoolsTable = ({ ...rest }) => {
               compact
               suffix={row.quote_token_symbol}
             />
-            <ValueChange value={0} decimals={2} compact hideIfZero className="ml-2" />
-          </div>
-          <div className="flex text-gray-6 text-xs">
-            <Value
-              value={row.pool_size * row.quote_token_underlying_price}
-              prefix="$"
+            <ValueChange
+              value={row.pool_size - row.prev_pool_size}
               decimals={2}
               compact
+              hideIfZero
+              className="ml-2"
             />
-            <ValueChange value={0} decimals={2} compact hideIfZero prefix="$" />
+          </div>
+          <div className="flex text-gray-6 text-xs">
+            <Value value={row.pool_size_usd} prefix="$" decimals={2} compact />
+            <ValueChange
+              value={row.pool_size_usd - row.prev_pool_size_usd}
+              decimals={2}
+              compact
+              hideIfZero
+              className="ml-2"
+            />
           </div>
         </div>
       ),
@@ -103,16 +109,23 @@ const PoolsTable = ({ ...rest }) => {
               compact
               suffix={row.quote_token_symbol}
             />
-            <ValueChange value={0} decimals={2} compact hideIfZero className="ml-2" />
-          </div>
-          <div className="flex text-gray-6 text-xs">
-            <Value
-              value={row.debt * row.quote_token_underlying_price}
-              prefix="$"
+            <ValueChange
+              value={row.debt - row.prev_debt}
               decimals={2}
               compact
+              hideIfZero
+              className="ml-2"
             />
-            <ValueChange value={0} decimals={2} compact hideIfZero prefix="$" />
+          </div>
+          <div className="flex text-gray-6 text-xs">
+            <Value value={row.debt_usd} prefix="$" decimals={2} compact />
+            <ValueChange
+              value={row.debt_usd - row.prev_debt_usd}
+              decimals={2}
+              compact
+              hideIfZero
+              className="ml-2"
+            />
           </div>
         </div>
       ),
@@ -125,7 +138,13 @@ const PoolsTable = ({ ...rest }) => {
       cell: ({ row }) => (
         <div className="flex flex-col items-end">
           <Value value={row.tvl} decimals={2} prefix="$" compact />
-          <ValueChange value={0} decimals={2} prefix="$" compact dashIfZero />
+          <ValueChange
+            value={row.tvl - row.prev_tvl}
+            decimals={2}
+            compact
+            hideIfZero
+            small
+          />
         </div>
       ),
       headerAlign: "end",
@@ -135,9 +154,16 @@ const PoolsTable = ({ ...rest }) => {
     {
       header: "Lend APR",
       cell: ({ row }) => (
-        <Tag>
+        <div className="flex flex-col items-end">
           <Value value={row.lend_rate * 100} decimals={2} suffix="%" />
-        </Tag>
+          <ValueChange
+            value={(row.lend_rate - row.prev_lend_rate) * 100}
+            decimals={2}
+            compact
+            hideIfZero
+            small
+          />
+        </div>
       ),
       headerAlign: "end",
       cellAlign: "end",
@@ -146,9 +172,16 @@ const PoolsTable = ({ ...rest }) => {
     {
       header: "Borrow APR",
       cell: ({ row }) => (
-        <Tag>
+        <div className="flex flex-col items-end">
           <Value value={row.borrow_rate * 100} decimals={2} suffix="%" />
-        </Tag>
+          <ValueChange
+            value={(row.borrow_rate - row.prev_borrow_rate) * 100}
+            decimals={2}
+            compact
+            hideIfZero
+            small
+          />
+        </div>
       ),
       headerAlign: "end",
       cellAlign: "end",
@@ -159,7 +192,13 @@ const PoolsTable = ({ ...rest }) => {
       cell: ({ row }) => (
         <div className="flex flex-col items-end">
           <Value value={row.total_ajna_burned} suffix="AJNA" decimals={2} />
-          <ValueChange value={0} decimals={2} compact dashIfZero />
+          <ValueChange
+            value={row.total_ajna_burned - row.prev_total_ajna_burned}
+            decimals={2}
+            compact
+            hideIfZero
+            small
+          />
         </div>
       ),
       headerAlign: "end",

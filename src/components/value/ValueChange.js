@@ -56,9 +56,7 @@ function ValueChange({
   }
 
   const classNames = classnames(spanClass, className, "flex", "items-center", {
-    "text-small": small,
-    "lh-sm": small,
-    "text-big": big,
+    "text-xs": small,
   });
 
   value = Math.abs(value);
@@ -93,7 +91,7 @@ function ValueChange({
         {iconPlace} {prefixPrefix}
         {prefix ? (
           <>
-            {icon ? (
+            {prefix !== "$" && icon ? (
               <>
                 <CryptoIcon
                   name={prefix}

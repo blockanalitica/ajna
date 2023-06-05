@@ -9,7 +9,7 @@ const DisplaySwitch = ({ className, onChange, activeOption, options }) => {
       { key: 1, value: "24H" },
       { key: 7, value: "7D" },
       { key: 30, value: "30D" },
-      { key: 356, value: "1Y" },
+      { key: 365, value: "1Y" },
     ];
   }
 
