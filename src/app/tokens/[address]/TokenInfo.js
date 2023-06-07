@@ -1,16 +1,21 @@
 "use client";
 
 import Value from "@/components/value/Value";
-import { useFetch } from "@/hooks.js";
+import ValueChange from "@/components/value/ValueChange";
+import { useFetch } from "@/hooks";
 import Stats from "@/components/stats/Stats";
+import StatsPlaceholder from "@/components/stats/StatsPlaceholder";
 
-const TokenInfo = ({ address, ...rest }) => {
-  const { data, error, isLoading } = useFetch(`/tokens/${address}/overview/`);
+const TokenInfo = ({ address, daysAgo, className, ...rest }) => {
+  const { data, error, isLoading } = useFetch(`/tokens/${address}/overview/`, {
+    days_ago: daysAgo,
+  });
   if (error) {
     return <p>Failed to load data</p>;
   }
+
   if (isLoading) {
-    return <p>Loading....</p>;
+    return <StatsPlaceholder className={className} numStats={5} size="lg" />;
   }
 
   const { results } = data;
@@ -19,74 +24,82 @@ const TokenInfo = ({ address, ...rest }) => {
     {
       title: "Lended",
       value: (
-        <Value
-          value={results.lended_amount}
-          decimals={2}
-          compact
-          suffix={results.symbol}
-          big
-        />
+        <>
+          <Value value={results.lended_amount} suffix={results.symbol} big />
+          <ValueChange
+            value={results.lended_amount - results.prev_lended_amount}
+            suffix={results.symbol}
+            big
+          />
+        </>
       ),
       smallValue: (
-        <Value
-          value={results.lended_amount * results.underlying_price}
-          decimals={2}
-          compact
-          prefix="$"
-        />
+        <>
+          <Value value={results.lended_amount_usd} prefix="$" />
+          <ValueChange
+            value={results.lended_amount_usd - results.prev_lended_amount_usd}
+            prefix="$"
+          />
+        </>
       ),
     },
     {
       title: "Borowed",
       value: (
-        <Value
-          value={results.borrowed_amount}
-          decimals={2}
-          compact
-          suffix={results.symbol}
-          big
-        />
+        <>
+          <Value value={results.borrowed_amount} suffix={results.symbol} big />
+          <ValueChange
+            value={results.borrowed_amount - results.prev_borrowed_amount}
+            suffix={results.symbol}
+            big
+          />
+        </>
       ),
       smallValue: (
-        <Value
-          value={results.borrowed_amount * results.underlying_price}
-          decimals={2}
-          compact
-          prefix="$"
-        />
+        <>
+          <Value value={results.borrowed_amount_usd} prefix="$" />
+          <ValueChange
+            value={results.borrowed_amount_usd - results.prev_borrowed_amount_usd}
+            prefix="$"
+          />
+        </>
       ),
     },
     {
       title: "Collateral",
       value: (
-        <Value
-          value={results.collateral_amount}
-          decimals={2}
-          compact
-          suffix={results.symbol}
-          big
-        />
+        <>
+          <Value value={results.collateral_amount} suffix={results.symbol} big />
+          <ValueChange
+            value={results.collateral_amount - results.prev_collateral_amount}
+            suffix={results.symbol}
+            big
+          />
+        </>
       ),
       smallValue: (
-        <Value
-          value={results.collateral_amount * results.underlying_price}
-          decimals={2}
-          compact
-          prefix="$"
-        />
+        <>
+          <Value value={results.collateral_amount_usd} prefix="$" />
+          <ValueChange
+            value={results.collateral_amount_usd - results.prev_collateral_amount_usd}
+            prefix="$"
+          />
+        </>
       ),
     },
     {
       title: "TVL",
-      value: <Value value={results.tvl} decimals={2} compact prefix="$" />,
+      value: <Value value={results.tvl} prefix="$" />,
+      smallValue: <ValueChange value={results.tvl - results.prev_tvl} prefix="$" />,
     },
     {
       title: "# of pools",
-      value: <Value value={results.pool_count} decimals={2} compact />,
+      value: <Value value={results.pool_count} />,
+      smallValue: <ValueChange value={results.pool_count - results.prev_pool_count} />,
     },
   ];
 
-  return <Stats data={stats} {...rest} />;
+  return <Stats data={stats} className={className} {...rest} />;
 };
 
 export default TokenInfo;

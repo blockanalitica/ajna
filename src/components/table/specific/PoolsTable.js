@@ -131,7 +131,7 @@ const PoolsTable = ({ ...rest }) => {
       ),
       headerAlign: "end",
       cellAlign: "end",
-      orderField: "current_debt",
+      orderField: "debt",
     },
     {
       header: "TVL",
