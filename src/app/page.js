@@ -19,7 +19,7 @@ const Page = () => {
         <DisplaySwitch onChange={setDaysAgo} activeOption={daysAgo} />
       </section>
 
-      <TotalStats className="mb-10" />
+      <TotalStats className="mb-10" daysAgo={daysAgo} />
 
       <div className="flex flex-row justify-between items-center mb-5">
         <h1 className="text-xl md:text-1xl xl:text-2xl">Top Pools</h1>
