@@ -14,10 +14,10 @@ function ValueChange({
   suffix,
   decimals = 2,
   className,
-  hideIfZero = false,
+  hideIfZero = true,
   dashIfZero = false,
   reverse = false,
-  compact = false,
+  compact = true,
   compact100k = false,
   icon = true,
   small = false,
@@ -52,7 +52,13 @@ function ValueChange({
       spanClass = "text-red-8";
     }
 
-    iconPlace = <FontAwesomeIcon style={{ fontSize: ".8em" }} icon={faCaretDown} />;
+    iconPlace = (
+      <FontAwesomeIcon
+        style={{ fontSize: ".8em" }}
+        icon={faCaretDown}
+        className="me-1"
+      />
+    );
   }
 
   const classNames = classnames(spanClass, className, "flex", "items-center", {

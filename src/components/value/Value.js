@@ -11,7 +11,7 @@ function Value({
   prefix,
   suffix,
   decimals = 2,
-  compact = false,
+  compact = true,
   compact100k = false,
   hideIfZero,
   dashIfZero,

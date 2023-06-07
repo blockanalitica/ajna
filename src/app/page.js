@@ -34,7 +34,7 @@ const Page = () => {
         <Button text="View all" href="/tokens" />
       </div>
 
-      <TopTokens />
+      <TopTokens daysAgo={daysAgo} />
     </>
   );
 };

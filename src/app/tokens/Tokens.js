@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useFetch } from "@/hooks.js";
 import TokensTable from "@/components/table/specific/TokensTable";
 
-const TopPools = ({ ...rest }) => {
+const TopPools = ({ daysAgo, ...rest }) => {
   const pageSize = 10;
   const [page, setPage] = useState(1);
   const [order, setOrder] = useState("-tvl");
@@ -17,6 +17,7 @@ const TopPools = ({ ...rest }) => {
     p: page,
     p_size: pageSize,
     order,
+    days_ago: daysAgo,
   });
 
   if (error) {

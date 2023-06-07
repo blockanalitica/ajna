@@ -1,7 +1,7 @@
 import { useFetch } from "@/hooks.js";
 import TokensTable from "@/components/table/specific/TokensTable";
 
-const TopTokens = ({ ...rest }) => {
+const TopTokens = ({ daysAgo, ...rest }) => {
   const {
     data = {},
     error,
@@ -9,7 +9,7 @@ const TopTokens = ({ ...rest }) => {
   } = useFetch("/tokens/", {
     p_size: 5,
     order: "-tvl",
-    // days_ago: daysAgo,
+    days_ago: daysAgo,
   });
   if (error) {
     return <p>Failed to load data</p>;
