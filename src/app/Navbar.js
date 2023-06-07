@@ -44,8 +44,7 @@ const Navbar = () => {
               className={classnames(
                 "rounded-md px-4 py-2 text-l font-medium hover:text-ajna-aqua",
                 {
-                  "text-ajna-lavender": item.current,
-                  "text-gray-300 hover:bg-gray-700 hover:text-white": !item.current,
+                  "text-ajna-aqua": item.current,
                 }
               )}
             >
