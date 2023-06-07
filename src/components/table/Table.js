@@ -68,6 +68,7 @@ const Table = ({
                 { "cursor-pointer hover:text-gray-7": !!href }
               )}
               href={_.isFunction(href) ? href(row) : href}
+              prefetch={false}
             >
               {columns.map((column, colIndex) => (
                 <div
@@ -77,7 +78,17 @@ const Table = ({
                     `justify-${column.cellAlign || "start"}`
                   )}
                 >
-                  {column["cell"]({ row, index })}
+                  <div
+                    className={classnames(
+                      "flex flex-col",
+                      `items-${column.cellAlign || "start"}`
+                    )}
+                  >
+                    <div className="flex">{column["cell"]({ row, index })}</div>
+                    <div className="flex text-sm">
+                      {column["smallCell"] ? column["smallCell"]({ row, index }) : null}
+                    </div>
+                  </div>
                 </div>
               ))}
             </RowComponent>
