@@ -4,7 +4,7 @@ import Stats from "@/components/stats/Stats";
 import StatsPlaceholder from "@/components/stats/StatsPlaceholder";
 import { useFetch } from "@/hooks.js";
 
-const TotalStats = ({ className, ...rest }) => {
+const TotalStats = ({ daysAgo, className, ...rest }) => {
   const {
     data = {},
     error,
@@ -12,7 +12,7 @@ const TotalStats = ({ className, ...rest }) => {
   } = useFetch("/stats/overview/", {
     p_size: 5,
     order: "-tvl",
-    // days_ago: daysAgo,
+    days_ago: daysAgo,
   });
   if (error) {
     return <p>Failed to load data</p>;
@@ -26,37 +26,51 @@ const TotalStats = ({ className, ...rest }) => {
   const stats = [
     {
       title: "Total lended",
-      value: <Value value={results.total_pool_size} decimals={2} compact prefix="$" />,
-      smallValue: <ValueChange value={0} decimals={2} compact prefix="$" />,
+      value: <Value value={results.total_pool_size} prefix="$" />,
+      smallValue: (
+        <ValueChange
+          value={results.total_pool_size - results.prev_total_pool_size}
+          prefix="$"
+        />
+      ),
     },
     {
       title: "Total borowed",
-      value: (
-        <Value value={results.total_current_debt} decimals={2} compact prefix="$" />
+      value: <Value value={results.total_current_debt} prefix="$" />,
+      smallValue: (
+        <ValueChange
+          value={results.total_current_debt - results.prev_total_current_debt}
+          prefix="$"
+        />
       ),
-      smallValue: <ValueChange value={0} decimals={2} compact prefix="$" />,
     },
     {
       title: "Total collateral",
-      value: (
-        <Value
-          value={results.total_pledged_collateral}
-          decimals={2}
+      value: <Value value={results.total_pledged_collateral} prefix="$" />,
+      smallValue: (
+        <ValueChange
+          value={
+            results.total_pledged_collateral - results.prev_total_pledged_collateral
+          }
           prefix="$"
-          compact
         />
       ),
-      smallValue: <ValueChange value={0} decimals={2} compact prefix="$" />,
     },
     {
       title: "TVL",
-      value: <Value value={results.total_tvl} decimals={2} compact prefix="$" />,
-      smallValue: <ValueChange value={0} decimals={2} compact prefix="$" />,
+      value: <Value value={results.total_tvl} prefix="$" />,
+      smallValue: (
+        <ValueChange value={results.total_tvl - results.prev_total_tvl} prefix="$" />
+      ),
     },
     {
       title: "Ajna burned 🔥",
-      value: <Value value={results.total_ajna_burned} decimals={2} compact />,
-      smallValue: <ValueChange value={0} decimals={2} compact />,
+      value: <Value value={results.total_ajna_burned} />,
+      smallValue: (
+        <ValueChange
+          value={results.total_ajna_burned - results.prev_total_ajna_burned}
+        />
+      ),
     },
   ];
 
