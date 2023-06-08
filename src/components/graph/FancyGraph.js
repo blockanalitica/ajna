@@ -4,51 +4,28 @@ import { useState } from "react";
 import Graph from "./Graph";
 import _ from "lodash";
 
-const _getDefaultValue = (series, valueFormatter, subvalueFormatter) => {
-  const lblVal = series[0].data.at(-1);
-  let value = lblVal.y;
-  let subvalue = lblVal.x;
-
-  if (valueFormatter) {
-    value = valueFormatter(value);
-  }
-  if (subvalueFormatter) {
-    subvalue = subvalueFormatter(subvalue);
-  }
-  return { value, subvalue };
-};
-
 const FancyGraph = ({
   series,
   options,
   valueFormatter,
   subvalueFormatter,
+  headerRight,
   ...rest
 }) => {
-  const { value: defaultValue, subvalue: defaultSubvalue } = _getDefaultValue(
-    series,
-    valueFormatter,
-    subvalueFormatter
-  );
-
-  const [labelValue, setLabelValue] = useState(defaultValue);
-  const [labelSubvalue, setLabelSubvalue] = useState(defaultSubvalue);
+  const defaultValues = series[0].data.at(-1);
+  const [labelValue, setLabelValue] = useState(defaultValues.y);
+  const [labelSubvalue, setLabelSubvalue] = useState(defaultValues.x);
 
   const externalTooltipHandler = ({ tooltip }) => {
     if (tooltip.opacity === 0) {
-      setLabelValue(defaultValue);
-      setLabelSubvalue(defaultSubvalue);
+      setLabelValue(defaultValues.y);
+      setLabelSubvalue(defaultValues.x);
       return;
     }
 
     let value = tooltip.dataPoints[0].parsed.y;
     let subvalue = tooltip.dataPoints[0].parsed.x;
-    if (valueFormatter) {
-      value = valueFormatter(value);
-    }
-    if (subvalueFormatter) {
-      subvalue = subvalueFormatter(subvalue);
-    }
+
     setLabelValue(value);
     setLabelSubvalue(subvalue);
   };
@@ -102,10 +79,18 @@ const FancyGraph = ({
     },
   ];
 
+  const lblValue = valueFormatter ? valueFormatter(labelValue) : labelValue;
+  const lblSubValue = valueFormatter ? subvalueFormatter(labelSubvalue) : labelSubvalue;
+
   return (
     <div>
-      <div className="text-2xl font-bold mb-1">{labelValue}</div>
-      <div className="text-sm text-gray-6 mb-6">{labelSubvalue}</div>
+      <div className="flex justify-between">
+        <div>
+          <div className="text-4xl mb-1">{lblValue}</div>
+          <div className="text-sm text-gray-10 mb-6">{lblSubValue}</div>
+        </div>
+        <div>{headerRight}</div>
+      </div>
       <Graph series={series} options={mergedOptions} plugins={plugins} {...rest} />
     </div>
   );

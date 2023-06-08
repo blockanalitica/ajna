@@ -3,7 +3,13 @@
 import { useState } from "react";
 import classnames from "classnames";
 
-const DisplaySwitch = ({ className, onChange, activeOption, options }) => {
+const DisplaySwitch = ({
+  className,
+  onChange,
+  activeOption,
+  options,
+  small = false,
+}) => {
   if (!options) {
     options = [
       { key: 1, value: "24H" },
@@ -24,17 +30,20 @@ const DisplaySwitch = ({ className, onChange, activeOption, options }) => {
 
   return (
     <div className="flex items-center">
-      <ul className="flex rounded-lg bg-gray-dark/30 border-gray-20 border">
+      <ul
+        className={classnames("flex rounded-lg", {
+          "bg-gray-dark/30 border-gray-20 border": small === false,
+          "bg-gray-18": small === true,
+        })}
+      >
         {options.map((option) => (
           <li
             key={option.key}
-            className={classnames(
-              "cursor-pointer px-5 py-2 text-center rounded-lg",
-              className,
-              {
-                "bg-primary-8": option.key === active,
-              }
-            )}
+            className={classnames("cursor-pointer text-center rounded-lg", className, {
+              "bg-primary-8": option.key === active,
+              "px-5 py-2": small === false,
+              "text-xs px-3 py-1": small === true,
+            })}
             onClick={() => onOptionClick(option.key)}
           >
             {option.value}

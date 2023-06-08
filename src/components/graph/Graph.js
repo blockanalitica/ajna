@@ -1,3 +1,5 @@
+"use client";
+
 import { Chart as ChartJS, registerables } from "chart.js";
 import "chartjs-adapter-luxon";
 import _ from "lodash";
@@ -13,6 +15,7 @@ ChartJS.defaults.font = {
 };
 
 const DEFAULT_PALETTE = [
+  "#8AC7DB",
   "#00d395",
   "#9669ed",
   "#03A9F4",

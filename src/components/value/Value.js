@@ -59,7 +59,6 @@ function Value({
         className={classnames("flex items-center", className, {
           "text-sm": small,
           "lh-sm": small,
-          "text-big": big,
         })}
         {...rest}
       >
