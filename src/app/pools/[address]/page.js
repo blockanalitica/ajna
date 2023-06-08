@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 import CardBackground from "@/components/card/CardBackground";
 import CardOpaque from "@/components/card/CardOpaque";
@@ -8,15 +9,19 @@ import CopyToClipboard from "@/components/copyToClipboard/CopyToClipboard";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
-import { useFetch } from "@/hooks.js";
+import { useFetch } from "@/hooks";
 import { shorten } from "@/utils/address";
 import Tag from "@/components/tags/Tag";
 import PoolInfo from "./PoolInfo";
+import HistoricGraphs from "./HistoricGraphs";
 
 const PoolPage = ({ params }) => {
   const { address } = params;
+  const [daysAgo, setDaysAgo] = useState(1);
 
-  const { data, error, isLoading } = useFetch(`/pools/${address}/`);
+  const { data, error, isLoading } = useFetch(`/pools/${address}/`, {
+    days_ago: daysAgo,
+  });
   if (error) {
     return <p>Failed to load data</p>;
   }
@@ -29,7 +34,7 @@ const PoolPage = ({ params }) => {
     <>
       <section className="flex items-center justify-between mb-10">
         <Breadcrumbs />
-        <DisplaySwitch />
+        <DisplaySwitch onChange={setDaysAgo} activeOption={daysAgo} />
       </section>
       <div className="flex mb-5">
         <span className="relative flex">
@@ -100,36 +105,43 @@ const PoolPage = ({ params }) => {
                 prefix="$"
                 className="text-xl"
               />
-              <ValueChange value={0.18} decimals={2} compact suffix="%" />
+              <ValueChange value={pool.tvl - pool.prev_tvl} suffix="%" />
             </CardOpaque>
             <CardOpaque title="Volume">
-              <Value value={0} decimals={2} compact prefix="$" className="text-xl" />
-              <ValueChange value={0.18} decimals={2} compact suffix="%" />
+              todo
+              {/* <Value value={0} decimals={2} className="text-xl" /> */}
+              {/* <ValueChange value={0.18} suffix="%" /> */}
             </CardOpaque>
             <CardOpaque title="Fees">
-              <Value value={0} decimals={2} compact prefix="$" className="text-xl" />
-              <ValueChange value={0.18} decimals={2} compact suffix="%" />
+              todo
+              {/* <Value value={"-"} prefix="$" className="text-xl" /> */}
+              {/* <ValueChange value={0.18} suffix="%" /> */}
             </CardOpaque>
             <CardOpaque title="Ajna Burned">
               <Value
                 value={pool.total_ajna_burned}
-                decimals={2}
-                compact
                 prefix={"🔥 "}
                 icon={false}
                 className="text-xl"
               />
-              <ValueChange value={-0.18} decimals={2} compact suffix="%" />
+              <ValueChange
+                value={pool.total_ajna_burned - pool.prev_total_ajna_burned}
+                prefix={"🔥 "}
+                icon={false}
+              />
             </CardOpaque>
           </div>
         </CardBackground>
 
         <div className="col-span-2">
-          <CardBackground>Graph goes here</CardBackground>
+          <HistoricGraphs
+            address={address}
+            daysAgo={daysAgo}
+            collateralSymbol={pool.collateral_token_symbol}
+            quoteSymbol={pool.quote_token_symbol}
+          />
         </div>
       </div>
-
-      <CardBackground>Pool buckets table goes here</CardBackground>
     </>
   );
 };

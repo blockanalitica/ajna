@@ -2,94 +2,86 @@
 
 import Stats from "@/components/stats/Stats";
 import Value from "@/components/value/Value";
+import ValueChange from "@/components/value/ValueChange";
 
 const PoolInfo = ({ data, ...rest }) => {
   const stats = [
     {
       title: "Lended",
       value: (
-        <Value
-          value={data.pool_size}
-          decimals={2}
-          compact
-          suffix={data.quote_token_symbol}
-          big
-        />
+        <>
+          <Value value={data.pool_size} suffix={data.quote_token_symbol} big />
+          <ValueChange
+            value={data.pool_size - data.prev_pool_size}
+            suffix={data.quote_token_symbol}
+            big
+          />
+        </>
       ),
       smallValue: (
-        <Value
-          value={data.pool_size * data.quote_token_underlying_price}
-          decimals={2}
-          compact
-          prefix="$"
-        />
+        <>
+          <Value value={data.pool_size_usd} prefix="$" />
+          <ValueChange
+            value={data.pool_size_usd - data.prev_pool_size_usd}
+            prefix="$"
+          />
+        </>
       ),
     },
     {
       title: "Borowed",
       value: (
-        <Value
-          value={data.debt}
-          decimals={2}
-          compact
-          suffix={data.quote_token_symbol}
-          big
-        />
+        <>
+          <Value value={data.debt} suffix={data.quote_token_symbol} big />
+          <ValueChange
+            value={data.debt - data.prev_debt}
+            suffix={data.quote_token_symbol}
+            big
+          />
+        </>
       ),
       smallValue: (
-        <Value
-          value={data.debt * data.quote_token_underlying_price}
-          decimals={2}
-          compact
-          prefix="$"
-        />
+        <>
+          <Value value={data.debt_usd} prefix="$" />
+          <ValueChange value={data.debt_usd - data.prev_debt_usd} prefix="$" />
+        </>
       ),
     },
     {
       title: "Collateral",
       value: (
-        <Value
-          value={data.pledged_collateral}
-          decimals={2}
-          compact
-          suffix={data.collateral_token_symbol}
-          big
-        />
+        <>
+          <Value
+            value={data.pledged_collateral}
+            suffix={data.collateral_token_symbol}
+            big
+          />
+          <ValueChange
+            value={data.pledged_collateral - data.prev_pledged_collateral}
+            suffix={data.collateral_token_symbol}
+            big
+          />
+        </>
       ),
       smallValue: (
-        <Value
-          value={data.pledged_collateral * data.collateral_token_underlying_price}
-          decimals={2}
-          compact
-          prefix="$"
-        />
+        <>
+          <Value value={data.pledged_collateral_usd} prefix="$" />
+          <ValueChange
+            value={data.pledged_collateral_usd - data.prev_pledged_collateral_usd}
+            prefix="$"
+          />
+        </>
       ),
     },
     {
       title: "LUP",
-      value: (
-        <Value
-          value={data.lup}
-          decimals={2}
-          compact
-          suffix={data.quote_token_symbol}
-          big
-        />
-      ),
-      smallValue: <Value value={data.lup} decimals={2} compact prefix="$" />,
+      value: <Value value={data.lup} suffix={data.quote_token_symbol} big />,
+      smallValue: <ValueChange value={data.lup - data.prev_lup} decimals={2} compact />,
     },
     {
       title: "HTP",
-      value: (
-        <Value
-          value={data.htp}
-          decimals={2}
-          compact
-          suffix={data.quote_token_symbol}
-          big
-        />
-      ),
-      smallValue: <Value value={data.htp} decimals={2} compact prefix="$" />,
+      value: <Value value={data.htp} suffix={data.quote_token_symbol} big />,
+      smallValue: <ValueChange value={data.htp - data.prev_htp} decimals={2} compact />,
     },
   ];
 
