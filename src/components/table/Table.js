@@ -37,11 +37,11 @@ const Table = ({
   const totalPages = Math.ceil(totalRecords / pageSize);
 
   return (
-    <>
-      <CardBackground className={className} {...rest}>
+    <div className={className}>
+      <CardBackground className="p-0" {...rest}>
         <div
           className={classnames(
-            "grid gap-3 text-white bg-gray-21 rounded-2xl font-medium text-sm px-5 py-3",
+            "grid gap-3 text-gray-4 border-b border-gray-19 text-sm px-9 py-5",
             gridColumnClassName
           )}
         >
@@ -58,12 +58,12 @@ const Table = ({
             </HeaderCell>
           ))}
         </div>
-        <div className="mx-3">
+        <div className="mx-5">
           {data.map((row, index) => (
             <RowComponent
               key={row[keyField]}
               className={classnames(
-                "block grid gap-3 border-b border-gray-20 px-2 last:border-b-0",
+                "block grid gap-3 border-b border-gray-20 px-4 last:border-b-0",
                 gridColumnClassName,
                 { "cursor-pointer hover:text-gray-7": !!href }
               )}
@@ -103,7 +103,7 @@ const Table = ({
           className="mt-6"
         />
       ) : null}
-    </>
+    </div>
   );
 };
 
