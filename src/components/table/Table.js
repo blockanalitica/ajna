@@ -22,6 +22,7 @@ const Table = ({
   onPageChange,
   onOrderChange,
   allowOrder,
+  footerRow,
   isLoading = false,
   ...rest
 }) => {
@@ -63,9 +64,12 @@ const Table = ({
             <RowComponent
               key={row[keyField]}
               className={classnames(
-                "block grid gap-3 border-b border-gray-20 px-4 last:border-b-0",
+                "block grid gap-3 border-b border-gray-20 px-4 ",
                 gridColumnClassName,
-                { "cursor-pointer hover:text-gray-7": !!href }
+                {
+                  "cursor-pointer hover:text-gray-7": !!href,
+                  "last:border-b-0": !footerRow,
+                }
               )}
               href={_.isFunction(href) ? href(row) : href}
               prefetch={false}
@@ -85,7 +89,7 @@ const Table = ({
                     )}
                   >
                     <div className="flex">{column["cell"]({ row, index })}</div>
-                    <div className="flex text-sm">
+                    <div className="flex text-sm text-gray-6">
                       {column["smallCell"] ? column["smallCell"]({ row, index }) : null}
                     </div>
                   </div>
@@ -94,6 +98,7 @@ const Table = ({
             </RowComponent>
           ))}
         </div>
+        {footerRow ? <div className="px-9 py-5 text-gray-7">{footerRow}</div> : null}
       </CardBackground>
       {totalPages > 1 ? (
         <Pagination

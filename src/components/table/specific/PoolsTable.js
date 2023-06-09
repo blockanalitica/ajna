@@ -1,11 +1,15 @@
 "use client";
 
+import { useState } from "react";
 import CryptoIcon from "@/components/icon/CryptoIcon";
 import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
+import InlineSelect from "@/components/select/InlineSelect";
 
 const PoolsTable = ({ ...rest }) => {
+  const [isPriceUsd, setIsPriceUsd] = useState(false);
+
   const columns = [
     {
       header: "#",
@@ -33,33 +37,31 @@ const PoolsTable = ({ ...rest }) => {
     {
       header: "Collateral",
       cell: ({ row }) => (
-        <div className="flex flex-col items-end">
-          <div className="flex">
+        <>
+          {isPriceUsd ? (
+            <Value value={row.pledged_collateral_usd} prefix="$" />
+          ) : (
             <Value
               value={row.pledged_collateral}
-              decimals={2}
-              compact
               suffix={row.collateral_token_symbol}
             />
-            <ValueChange
-              value={row.pledged_collateral - row.prev_pledged_collateral}
-              decimals={2}
-              compact
-              hideIfZero
-              className="ml-2"
-            />
-          </div>
-          <div className="flex text-gray-6 text-xs">
-            <Value value={row.pledged_collateral_usd} prefix="$" decimals={2} compact />
+          )}
+        </>
+      ),
+      smallCell: ({ row }) => (
+        <>
+          {isPriceUsd ? (
             <ValueChange
               value={row.pledged_collateral_usd - row.prev_pledged_collateral_usd}
-              decimals={2}
-              compact
-              hideIfZero
-              className="ml-2"
+              prefix="$"
             />
-          </div>
-        </div>
+          ) : (
+            <ValueChange
+              value={row.pledged_collateral - row.prev_pledged_collateral}
+              suffix={row.collateral_token_symbol}
+            />
+          )}
+        </>
       ),
       headerAlign: "end",
       cellAlign: "end",
@@ -68,33 +70,28 @@ const PoolsTable = ({ ...rest }) => {
     {
       header: "Quote",
       cell: ({ row }) => (
-        <div className="flex flex-col items-end">
-          <div className="flex">
-            <Value
-              value={row.pool_size}
-              decimals={2}
-              compact
-              suffix={row.quote_token_symbol}
-            />
-            <ValueChange
-              value={row.pool_size - row.prev_pool_size}
-              decimals={2}
-              compact
-              hideIfZero
-              className="ml-2"
-            />
-          </div>
-          <div className="flex text-gray-6 text-xs">
-            <Value value={row.pool_size_usd} prefix="$" decimals={2} compact />
+        <>
+          {isPriceUsd ? (
+            <Value value={row.pool_size_usd} prefix="$" />
+          ) : (
+            <Value value={row.pool_size} suffix={row.quote_token_symbol} />
+          )}
+        </>
+      ),
+      smallCell: ({ row }) => (
+        <>
+          {isPriceUsd ? (
             <ValueChange
               value={row.pool_size_usd - row.prev_pool_size_usd}
-              decimals={2}
-              compact
-              hideIfZero
-              className="ml-2"
+              prefix="$"
             />
-          </div>
-        </div>
+          ) : (
+            <ValueChange
+              value={row.pool_size - row.prev_pool_size}
+              suffix={row.quote_token_symbol}
+            />
+          )}
+        </>
       ),
       headerAlign: "end",
       cellAlign: "end",
@@ -103,33 +100,25 @@ const PoolsTable = ({ ...rest }) => {
     {
       header: "Debt",
       cell: ({ row }) => (
-        <div className="flex flex-col items-end">
-          <div className="flex">
-            <Value
-              value={row.debt}
-              decimals={2}
-              compact
-              suffix={row.quote_token_symbol}
-            />
+        <>
+          {isPriceUsd ? (
+            <Value value={row.debt_usd} prefix="$" />
+          ) : (
+            <Value value={row.debt} suffix={row.quote_token_symbol} />
+          )}
+        </>
+      ),
+      smallCell: ({ row }) => (
+        <>
+          {isPriceUsd ? (
+            <ValueChange value={row.debt_usd - row.prev_debt_usd} prefix="$" />
+          ) : (
             <ValueChange
               value={row.debt - row.prev_debt}
-              decimals={2}
-              compact
-              hideIfZero
-              className="ml-2"
+              suffix={row.quote_token_symbol}
             />
-          </div>
-          <div className="flex text-gray-6 text-xs">
-            <Value value={row.debt_usd} prefix="$" decimals={2} compact />
-            <ValueChange
-              value={row.debt_usd - row.prev_debt_usd}
-              decimals={2}
-              compact
-              hideIfZero
-              className="ml-2"
-            />
-          </div>
-        </div>
+          )}
+        </>
       ),
       headerAlign: "end",
       cellAlign: "end",
@@ -209,14 +198,36 @@ const PoolsTable = ({ ...rest }) => {
     },
   ];
 
+  const priceOptions = [
+    { key: "token", value: "Token" },
+    { key: "usd", value: "USD" },
+  ];
+
+  const onPriceOptionChange = (event) => {
+    setIsPriceUsd(event.target.value === "usd");
+  };
+
+  const footerRow = (
+    <div className="text-sm text-right">
+      Prices shown in
+      <InlineSelect
+        options={priceOptions}
+        value={isPriceUsd ? "usd" : "token"}
+        onChange={onPriceOptionChange}
+      />
+    </div>
+  );
   return (
-    <Table
-      keyField="address"
-      columns={columns}
-      gridColumnClassName="grid-cols-table-pools"
-      href={(row) => `/pools/${row.address}`}
-      {...rest}
-    />
+    <>
+      <Table
+        keyField="address"
+        columns={columns}
+        gridColumnClassName="grid-cols-table-pools"
+        href={(row) => `/pools/${row.address}`}
+        footerRow={footerRow}
+        {...rest}
+      />
+    </>
   );
 };
 

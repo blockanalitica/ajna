@@ -20,7 +20,7 @@ function Value({
   id,
   small = false,
   big = false,
-  iconSize = "15",
+  iconSize = "16",
   ...rest
 }) {
   if (
@@ -70,7 +70,7 @@ function Value({
                 <CryptoIcon
                   name={prefix}
                   className="me-1"
-                  size={small ? "15" : big ? "24" : iconSize}
+                  size={small ? "14" : big ? "24" : iconSize}
                 />
               </>
             ) : (
@@ -85,7 +85,7 @@ function Value({
               <CryptoIcon
                 name={suffix}
                 className="ms-1"
-                size={small ? "15" : big ? "24" : iconSize}
+                size={small ? "14" : big ? "24" : iconSize}
               />
             ) : (
               suffix
