@@ -22,7 +22,7 @@ function ValueChange({
   icon = true,
   small = false,
   big = false,
-  iconSize = "15",
+  iconSize = "14",
   ...rest
 }) {
   if (value === undefined || value === null || isNaN(value)) {
@@ -62,7 +62,7 @@ function ValueChange({
   }
 
   const classNames = classnames(spanClass, className, "flex", "items-center", {
-    "text-xs": small,
+    "text-sm": small,
   });
 
   value = Math.abs(value);
@@ -102,7 +102,7 @@ function ValueChange({
                 <CryptoIcon
                   name={prefix}
                   className="me-1"
-                  size={small ? "15" : big ? "25" : iconSize}
+                  size={small ? "14" : big ? "25" : iconSize}
                 />
               </>
             ) : (
@@ -117,7 +117,7 @@ function ValueChange({
               <CryptoIcon
                 name={suffix}
                 className="ms-1"
-                size={small ? "15" : big ? "25" : iconSize}
+                size={small ? "14" : big ? "25" : iconSize}
               />
             ) : (
               suffix

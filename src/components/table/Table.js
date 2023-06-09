@@ -22,6 +22,7 @@ const Table = ({
   onPageChange,
   onOrderChange,
   allowOrder,
+  footerRow,
   isLoading = false,
   ...rest
 }) => {
@@ -37,11 +38,11 @@ const Table = ({
   const totalPages = Math.ceil(totalRecords / pageSize);
 
   return (
-    <>
-      <CardBackground className={className} {...rest}>
+    <div className={className}>
+      <CardBackground className="p-0" {...rest}>
         <div
           className={classnames(
-            "grid gap-3 text-white bg-gray-21 rounded-2xl font-medium text-sm px-5 py-3",
+            "grid gap-3 text-gray-4 border-b border-gray-19 text-sm px-9 py-5",
             gridColumnClassName
           )}
         >
@@ -58,14 +59,17 @@ const Table = ({
             </HeaderCell>
           ))}
         </div>
-        <div className="mx-3">
+        <div className="mx-5">
           {data.map((row, index) => (
             <RowComponent
               key={row[keyField]}
               className={classnames(
-                "block grid gap-3 border-b border-gray-20 px-2 last:border-b-0",
+                "block grid gap-3 border-b border-gray-20 px-4 ",
                 gridColumnClassName,
-                { "cursor-pointer hover:text-gray-7": !!href }
+                {
+                  "cursor-pointer hover:text-gray-7": !!href,
+                  "last:border-b-0": !footerRow,
+                }
               )}
               href={_.isFunction(href) ? href(row) : href}
               prefetch={false}
@@ -85,7 +89,7 @@ const Table = ({
                     )}
                   >
                     <div className="flex">{column["cell"]({ row, index })}</div>
-                    <div className="flex text-sm">
+                    <div className="flex text-sm text-gray-6">
                       {column["smallCell"] ? column["smallCell"]({ row, index }) : null}
                     </div>
                   </div>
@@ -94,6 +98,7 @@ const Table = ({
             </RowComponent>
           ))}
         </div>
+        {footerRow ? <div className="px-9 py-5 text-gray-7">{footerRow}</div> : null}
       </CardBackground>
       {totalPages > 1 ? (
         <Pagination
@@ -103,7 +108,7 @@ const Table = ({
           className="mt-6"
         />
       ) : null}
-    </>
+    </div>
   );
 };
 

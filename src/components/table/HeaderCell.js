@@ -34,7 +34,6 @@ const OrderSection = ({ currentOrder, orderField, onOrderChange, children }) => 
         {children}
         <div
           className={classnames("ml-3", {
-            "text-white": !isActive,
             "text-ajna-lavender": isActive,
           })}
         >
