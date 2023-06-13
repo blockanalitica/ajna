@@ -14,7 +14,7 @@ const PoolInfo = ({ data, ...rest }) => {
           <ValueChange
             value={data.pool_size - data.prev_pool_size}
             suffix={data.quote_token_symbol}
-            big
+            className="text-lg"
           />
         </>
       ),
@@ -24,6 +24,7 @@ const PoolInfo = ({ data, ...rest }) => {
           <ValueChange
             value={data.pool_size_usd - data.prev_pool_size_usd}
             prefix="$"
+            className="ms-2"
           />
         </>
       ),
@@ -36,14 +37,18 @@ const PoolInfo = ({ data, ...rest }) => {
           <ValueChange
             value={data.debt - data.prev_debt}
             suffix={data.quote_token_symbol}
-            big
+            className="text-lg"
           />
         </>
       ),
       smallValue: (
         <>
           <Value value={data.debt_usd} prefix="$" />
-          <ValueChange value={data.debt_usd - data.prev_debt_usd} prefix="$" />
+          <ValueChange
+            value={data.debt_usd - data.prev_debt_usd}
+            prefix="$"
+            className="ms-2"
+          />
         </>
       ),
     },
@@ -59,7 +64,7 @@ const PoolInfo = ({ data, ...rest }) => {
           <ValueChange
             value={data.pledged_collateral - data.prev_pledged_collateral}
             suffix={data.collateral_token_symbol}
-            big
+            className="text-lg"
           />
         </>
       ),
@@ -69,19 +74,28 @@ const PoolInfo = ({ data, ...rest }) => {
           <ValueChange
             value={data.pledged_collateral_usd - data.prev_pledged_collateral_usd}
             prefix="$"
+            className="ms-2"
           />
         </>
       ),
     },
     {
       title: "LUP",
-      value: <Value value={data.lup} suffix={data.quote_token_symbol} big />,
-      smallValue: <ValueChange value={data.lup - data.prev_lup} />,
+      value: (
+        <>
+          <Value value={data.lup} suffix={data.quote_token_symbol} big />
+          <ValueChange value={data.lup - data.prev_lup} className="text-lg" />
+        </>
+      ),
     },
     {
       title: "HTP",
-      value: <Value value={data.htp} suffix={data.quote_token_symbol} big />,
-      smallValue: <ValueChange value={data.htp - data.prev_htp} />,
+      value: (
+        <>
+          <Value value={data.htp} suffix={data.quote_token_symbol} big />
+          <ValueChange value={data.htp - data.prev_htp} className="text-lg" />
+        </>
+      ),
     },
   ];
 

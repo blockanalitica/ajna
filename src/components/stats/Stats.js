@@ -18,8 +18,12 @@ const Stats = ({ data, className, ...rest }) => {
           <span className="text-gray-5 pb-2 text-sm font-syncopate uppercase text-center">
             {title}
           </span>
-          <span className="mb-2 text-2xl font-bold">{value}</span>
-          {smallValue ? <span className="text-sm font-bold">{smallValue}</span> : null}
+          <span className="mb-2 text-2xl font-bold flex flex-col items-center">
+            {value}
+          </span>
+          {smallValue ? (
+            <span className="text-sm flex text-gray-10">{smallValue}</span>
+          ) : null}
         </div>
       ))}
     </section>

@@ -16,9 +16,9 @@ const HistoricGraphs = ({
   ...rest
 }) => {
   const [displayOption, setDisplayOption] = useState("pool_size");
-
+  const actualDaysAgo = daysAgo > 7 ? daysAgo : 30;
   const { data, error, isLoading } = useFetch(`/pools/${address}/historic/`, {
-    days_ago: daysAgo,
+    days_ago: actualDaysAgo,
   });
   if (error) {
     return <p>Failed to load data</p>;
@@ -47,7 +47,7 @@ const HistoricGraphs = ({
       x: {
         type: "time",
         time: {
-          unit: daysAgo > 7 ? "day" : "hour",
+          unit: actualDaysAgo > 7 ? "day" : "hour",
         },
       },
     },
@@ -70,8 +70,8 @@ const HistoricGraphs = ({
     } else {
       date = DateTime.fromISO(value);
     }
-    const format = daysAgo > 7 ? "LLL dd, y" : "LLL dd, y HH:MM";
-    const suffix = daysAgo > 7 ? "" : " UTC";
+    const format = actualDaysAgo > 7 ? "LLL dd, y" : "LLL dd, y HH:MM";
+    const suffix = actualDaysAgo > 7 ? "" : " UTC";
     return `${date.toFormat(format)}${suffix}`;
   };
 

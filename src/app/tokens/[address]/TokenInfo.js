@@ -29,7 +29,7 @@ const TokenInfo = ({ address, daysAgo, className, ...rest }) => {
           <ValueChange
             value={results.lended_amount - results.prev_lended_amount}
             suffix={results.symbol}
-            big
+            className="text-lg"
           />
         </>
       ),
@@ -39,6 +39,7 @@ const TokenInfo = ({ address, daysAgo, className, ...rest }) => {
           <ValueChange
             value={results.lended_amount_usd - results.prev_lended_amount_usd}
             prefix="$"
+            className="ms-2"
           />
         </>
       ),
@@ -51,7 +52,7 @@ const TokenInfo = ({ address, daysAgo, className, ...rest }) => {
           <ValueChange
             value={results.borrowed_amount - results.prev_borrowed_amount}
             suffix={results.symbol}
-            big
+            className="text-lg"
           />
         </>
       ),
@@ -61,6 +62,7 @@ const TokenInfo = ({ address, daysAgo, className, ...rest }) => {
           <ValueChange
             value={results.borrowed_amount_usd - results.prev_borrowed_amount_usd}
             prefix="$"
+            className="ms-2"
           />
         </>
       ),
@@ -73,7 +75,7 @@ const TokenInfo = ({ address, daysAgo, className, ...rest }) => {
           <ValueChange
             value={results.collateral_amount - results.prev_collateral_amount}
             suffix={results.symbol}
-            big
+            className="text-lg"
           />
         </>
       ),
@@ -83,19 +85,35 @@ const TokenInfo = ({ address, daysAgo, className, ...rest }) => {
           <ValueChange
             value={results.collateral_amount_usd - results.prev_collateral_amount_usd}
             prefix="$"
+            className="ms-2"
           />
         </>
       ),
     },
     {
       title: "TVL",
-      value: <Value value={results.tvl} prefix="$" />,
-      smallValue: <ValueChange value={results.tvl - results.prev_tvl} prefix="$" />,
+      value: (
+        <>
+          <Value value={results.tvl} prefix="$" />
+          <ValueChange
+            value={results.tvl - results.prev_tvl}
+            prefix="$"
+            className="text-lg"
+          />
+        </>
+      ),
     },
     {
       title: "# of pools",
-      value: <Value value={results.pool_count} />,
-      smallValue: <ValueChange value={results.pool_count - results.prev_pool_count} />,
+      value: (
+        <>
+          <Value value={results.pool_count} />
+          <ValueChange
+            value={results.pool_count - results.prev_pool_count}
+            className="text-lg"
+          />
+        </>
+      ),
     },
   ];
 

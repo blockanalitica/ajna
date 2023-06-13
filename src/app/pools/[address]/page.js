@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 import CardBackground from "@/components/card/CardBackground";
 import CardOpaque from "@/components/card/CardOpaque";
@@ -9,7 +8,7 @@ import CopyToClipboard from "@/components/copyToClipboard/CopyToClipboard";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
-import { useFetch } from "@/hooks";
+import { useFetch, useQueryParams } from "@/hooks";
 import { shorten } from "@/utils/address";
 import Tag from "@/components/tags/Tag";
 import PoolInfo from "./PoolInfo";
@@ -17,24 +16,31 @@ import HistoricGraphs from "./HistoricGraphs";
 
 const PoolPage = ({ params }) => {
   const { address } = params;
-  const [daysAgo, setDaysAgo] = useState(1);
+  const { queryParams, setQueryParams } = useQueryParams();
+  const daysAgo = parseInt(queryParams.get("daysAgo")) || 1;
 
   const { data, error, isLoading } = useFetch(`/pools/${address}/`, {
     days_ago: daysAgo,
   });
+
   if (error) {
     return <p>Failed to load data</p>;
   }
   if (isLoading) {
     return <p>Loading....</p>;
   }
+
+  const onDisplaySwitchChange = (value) => {
+    setQueryParams({ daysAgo: value });
+  };
+
   const { results: pool } = data;
 
   return (
     <>
       <section className="flex items-center justify-between mb-10">
         <Breadcrumbs />
-        <DisplaySwitch onChange={setDaysAgo} activeOption={daysAgo} />
+        <DisplaySwitch onChange={onDisplaySwitchChange} activeOption={daysAgo} />
       </section>
       <div className="flex mb-5">
         <span className="relative flex">
