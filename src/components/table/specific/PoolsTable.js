@@ -128,14 +128,8 @@ const PoolsTable = ({ ...rest }) => {
       header: "TVL",
       cell: ({ row }) => (
         <div className="flex flex-col items-end">
-          <Value value={row.tvl} decimals={2} prefix="$" compact />
-          <ValueChange
-            value={row.tvl - row.prev_tvl}
-            decimals={2}
-            compact
-            hideIfZero
-            small
-          />
+          <Value value={row.tvl} prefix="$" />
+          <ValueChange value={row.tvl - row.prev_tvl} small />
         </div>
       ),
       headerAlign: "end",
@@ -146,14 +140,8 @@ const PoolsTable = ({ ...rest }) => {
       header: "Lend APR",
       cell: ({ row }) => (
         <div className="flex flex-col items-end">
-          <Value value={row.lend_rate * 100} decimals={2} suffix="%" />
-          <ValueChange
-            value={(row.lend_rate - row.prev_lend_rate) * 100}
-            decimals={2}
-            compact
-            hideIfZero
-            small
-          />
+          <Value value={row.lend_rate * 100} suffix="%" />
+          <ValueChange value={(row.lend_rate - row.prev_lend_rate) * 100} small />
         </div>
       ),
       headerAlign: "end",
@@ -164,14 +152,8 @@ const PoolsTable = ({ ...rest }) => {
       header: "Borrow APR",
       cell: ({ row }) => (
         <div className="flex flex-col items-end">
-          <Value value={row.borrow_rate * 100} decimals={2} suffix="%" />
-          <ValueChange
-            value={(row.borrow_rate - row.prev_borrow_rate) * 100}
-            decimals={2}
-            compact
-            hideIfZero
-            small
-          />
+          <Value value={row.borrow_rate * 100} suffix="%" />
+          <ValueChange value={(row.borrow_rate - row.prev_borrow_rate) * 100} small />
         </div>
       ),
       headerAlign: "end",
@@ -182,12 +164,9 @@ const PoolsTable = ({ ...rest }) => {
       header: "🔥",
       cell: ({ row }) => (
         <div className="flex flex-col items-end">
-          <Value value={row.total_ajna_burned} suffix="AJNA" decimals={2} />
+          <Value value={row.total_ajna_burned} suffix="AJNA" />
           <ValueChange
             value={row.total_ajna_burned - row.prev_total_ajna_burned}
-            decimals={2}
-            compact
-            hideIfZero
             small
           />
         </div>

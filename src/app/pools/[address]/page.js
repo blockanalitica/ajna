@@ -55,7 +55,6 @@ const PoolPage = ({ params }) => {
           <span className="px-1">=</span>
           <Value
             value={pool.collateral_token_underlying_price}
-            decimals={2}
             suffix={` ${pool.quote_token_symbol}`}
             icon={false}
           />
@@ -86,30 +85,24 @@ const PoolPage = ({ params }) => {
                   {pool.collateral_token_symbol}
                 </span>
               </div>
-              <Value value={pool.pledged_collateral} decimals={2} compact />
+              <Value value={pool.pledged_collateral} />
             </div>
             <div className="flex justify-between items-center">
               <div className="flex items-center">
                 <CryptoIcon name={pool.quote_token_symbol} size={20} className="mr-2" />
                 <span className="font-bold text-sm">{pool.quote_token_symbol}</span>
               </div>
-              <Value value={pool.pool_size - pool.debt} decimals={2} compact />
+              <Value value={pool.pool_size - pool.debt} />
             </div>
           </div>
           <div className="grid grid-cols-2 gap-4 mt-4">
             <CardOpaque title="TVL">
-              <Value
-                value={pool.tvl}
-                decimals={2}
-                compact
-                prefix="$"
-                className="text-xl"
-              />
+              <Value value={pool.tvl} prefix="$" className="text-xl" />
               <ValueChange value={pool.tvl - pool.prev_tvl} suffix="%" />
             </CardOpaque>
             <CardOpaque title="Volume">
               todo
-              {/* <Value value={0} decimals={2} className="text-xl" /> */}
+              {/* <Value value={0} className="text-xl" /> */}
               {/* <ValueChange value={0.18} suffix="%" /> */}
             </CardOpaque>
             <CardOpaque title="Fees">
