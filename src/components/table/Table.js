@@ -39,7 +39,7 @@ const Table = ({
 
   return (
     <div className={className}>
-      <CardBackground className="p-0" {...rest}>
+      <CardBackground className="!p-0" {...rest}>
         <div
           className={classnames(
             "grid gap-3 text-gray-4 border-b border-gray-19 text-sm px-9 py-5",
