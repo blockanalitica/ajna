@@ -4,7 +4,7 @@ import { useState } from "react";
 import Tooltip from "@/components/tooltip/Tooltip";
 import { faCopy } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { copyTextToClipboard } from "../../utils/clipboard.js";
+import { copyTextToClipboard } from "@/utils/clipboard";
 
 const CopyToClipboard = ({ text, className, ...rest }) => {
   const [isCopied, setIsCopied] = useState(false);

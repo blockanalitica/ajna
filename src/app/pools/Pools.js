@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useFetch } from "@/hooks.js";
+import { useFetch } from "@/hooks";
 import PoolsTable from "@/components/table/specific/PoolsTable";
 
 const Pools = ({ searchTerm, daysAgo = 1, ...rest }) => {

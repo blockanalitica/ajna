@@ -1,4 +1,4 @@
-import { useFetch } from "@/hooks.js";
+import { useFetch } from "@/hooks";
 import TokensTable from "@/components/table/specific/TokensTable";
 
 const TopTokens = ({ daysAgo, ...rest }) => {

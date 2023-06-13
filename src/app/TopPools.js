@@ -1,4 +1,4 @@
-import { useFetch } from "@/hooks.js";
+import { useFetch } from "@/hooks";
 import PoolsTable from "@/components/table/specific/PoolsTable";
 
 const TopPools = ({ daysAgo = 1, ...rest }) => {
