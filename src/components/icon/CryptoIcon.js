@@ -10,6 +10,7 @@ const CryptoIcon = ({ name, size = "24", priority = false, ...rest }) => {
     LINK: "link.svg",
     UNI: "uni.svg",
     USDC: "usdc.svg",
+    TUSDC: "usdc.svg",
     WBTC: "wbtc.svg",
     WETH: "eth.svg",
     TWETH: "eth.svg",
