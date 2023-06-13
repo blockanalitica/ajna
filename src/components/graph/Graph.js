@@ -123,6 +123,7 @@ const Graph = ({ series, type = "line", options, labels, ...rest }) => {
       };
       break;
     case "line":
+      defaultOptions["cubicInterpolationMode"] = "monotone";
       defaultOptions["radius"] = 0;
       defaultOptions["scales"] = {
         x: {
