@@ -3,7 +3,7 @@ import {
   compact as compactNumber,
   formatToDecimals,
   resolveSmallNumbers,
-} from "../../utils/number.js";
+} from "@/utils/number";
 import CryptoIcon from "../icon/CryptoIcon";
 
 function Value({

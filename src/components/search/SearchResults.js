@@ -1,6 +1,6 @@
 "use client";
 
-import { useFetch } from "@/hooks.js";
+import { useFetch } from "@/hooks";
 import CryptoIcon from "@/components/icon/CryptoIcon";
 import Value from "@/components/value/Value";
 import ResultTable from "./ResultTable";

@@ -6,7 +6,7 @@ import {
   compact as compactNumber,
   formatToDecimals,
   resolveSmallNumbers,
-} from "../../utils/number.js";
+} from "@/utils/number";
 
 function ValueChange({
   value,

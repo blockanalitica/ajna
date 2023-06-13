@@ -2,7 +2,7 @@
 
 import { DateTime } from "luxon";
 import FancyGraph from "@/components/graph/FancyGraph";
-import { compact } from "@/utils/number.js";
+import { compact } from "@/utils/number";
 
 const TestGraphs = () => {
   const results = [
