@@ -9,7 +9,9 @@ const TokensTable = ({ ...rest }) => {
   const columns = [
     {
       header: "#",
-      cell: ({ index }) => <>{index + 1}</>,
+      cell: ({ index }) => (
+        <span className="font-syncopate text-gray-7">{index + 1}</span>
+      ),
     },
     {
       header: "Name",
