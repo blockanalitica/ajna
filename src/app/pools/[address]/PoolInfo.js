@@ -76,12 +76,12 @@ const PoolInfo = ({ data, ...rest }) => {
     {
       title: "LUP",
       value: <Value value={data.lup} suffix={data.quote_token_symbol} big />,
-      smallValue: <ValueChange value={data.lup - data.prev_lup} decimals={2} compact />,
+      smallValue: <ValueChange value={data.lup - data.prev_lup} />,
     },
     {
       title: "HTP",
       value: <Value value={data.htp} suffix={data.quote_token_symbol} big />,
-      smallValue: <ValueChange value={data.htp - data.prev_htp} decimals={2} compact />,
+      smallValue: <ValueChange value={data.htp - data.prev_htp} />,
     },
   ];
 

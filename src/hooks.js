@@ -1,6 +1,9 @@
+"use client";
+
 import { useEffect } from "react";
 import queryString from "query-string";
 import useSWR from "swr";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const clickOutsideEvents = ["mousedown", "touchstart"];
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
@@ -37,4 +40,25 @@ export const useOnClickOutside = (ref, handler) => {
       });
     };
   }, [ref, handler]);
+};
+
+export const useQueryParams = () => {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const queryParams = searchParams;
+  const urlSearchParams = new URLSearchParams(searchParams);
+
+  function setQueryParams(params) {
+    Object.entries(params).forEach(([key, value]) => {
+      urlSearchParams.set(key, String(value));
+    });
+
+    const search = urlSearchParams.toString();
+    const query = search ? `?${search}` : "";
+
+    router.push(`${pathname}${query}`);
+  }
+
+  return { queryParams, setQueryParams };
 };

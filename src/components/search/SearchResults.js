@@ -34,7 +34,7 @@ const SearchResults = ({ searchTerm }) => {
       header: <span className="text-sm">TVL</span>,
       cell: ({ row }) => (
         <div className="flex flex-col items-end">
-          <Value value={row.tvl} decimals={2} prefix="$" compact />
+          <Value value={row.tvl} prefix="$" />
         </div>
       ),
       headerAlign: "end",
@@ -57,7 +57,7 @@ const SearchResults = ({ searchTerm }) => {
     },
     {
       header: <span className="text-sm">TVL</span>,
-      cell: ({ row }) => <Value value={row.tvl} decimals={2} prefix="$" compact />,
+      cell: ({ row }) => <Value value={row.tvl} prefix="$" />,
       headerAlign: "end",
       cellAlign: "end",
     },

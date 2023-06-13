@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import classnames from "classnames";
 
 const DisplaySwitch = ({
@@ -19,10 +18,7 @@ const DisplaySwitch = ({
     ];
   }
 
-  const [active, setActive] = useState(activeOption || options[0].key);
-
   const onOptionClick = (option) => {
-    setActive(option);
     if (onChange) {
       onChange(option);
     }
@@ -40,7 +36,7 @@ const DisplaySwitch = ({
           <li
             key={option.key}
             className={classnames("cursor-pointer text-center rounded-lg", className, {
-              "bg-primary-8": option.key === active,
+              "bg-primary-8": option.key === activeOption,
               "px-5 py-2": small === false,
               "text-xs px-3 py-1": small === true,
             })}
