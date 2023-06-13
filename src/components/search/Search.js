@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useRef } from "react";
+import { useOnClickOutside } from "@/hooks";
 import SearchResults from "./SearchResults";
-import { useOnClickOutside } from "@/hooks.js";
+import SearchInput from "./SearchInput";
 
 const Search = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -21,10 +22,8 @@ const Search = () => {
 
   return (
     <div className="relative z-40" ref={searchRef}>
-      <input
-        type="text"
+      <SearchInput
         placeholder="Search pools or tokens"
-        className="bg-gray-24 px-8 rounded-full border border-gray-20 text-gray-3 text-l focus:border-purple-to outline-none w-full pl-7 p-2.5"
         value={searchTerm}
         onChange={handleSearchChange}
         onFocus={() => setIsOpen(true)}

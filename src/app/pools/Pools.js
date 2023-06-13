@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useFetch } from "@/hooks.js";
 import PoolsTable from "@/components/table/specific/PoolsTable";
 
-const Pools = ({ daysAgo = 1, ...rest }) => {
+const Pools = ({ searchTerm, daysAgo = 1, ...rest }) => {
   const pageSize = 10;
   const [page, setPage] = useState(1);
   const [order, setOrder] = useState("-tvl");
@@ -18,6 +18,7 @@ const Pools = ({ daysAgo = 1, ...rest }) => {
     p_size: pageSize,
     order,
     days_ago: daysAgo,
+    search: searchTerm,
   });
 
   if (error) {
