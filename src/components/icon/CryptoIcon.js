@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const CryptoIcon = ({ name, size = "24", priority = false, ...rest }) => {
   const [imgSrc, setImgSrc] = useState(
-    `https://icons.blockanalitica.com/currency/${name.toLowerCase()}.svg`
+    `https://icons.blockanalitica.com/currency/${(name || "").toLowerCase()}.svg`
   );
 
   return (
