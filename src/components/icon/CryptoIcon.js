@@ -1,28 +1,12 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 
 const CryptoIcon = ({ name, size = "24", priority = false, ...rest }) => {
-  const mapping = {
-    DAI: "dai.svg",
-    TDAI: "dai.svg",
-    sDAI: "dai.svg",
-    COMP: "comp.svg",
-    ETH: "eth.svg",
-    LINK: "link.svg",
-    UNI: "uni.svg",
-    USDC: "usdc.svg",
-    TUSDC: "usdc.svg",
-    WBTC: "wbtc.svg",
-    WETH: "eth.svg",
-    TWETH: "eth.svg",
-    wstETH: "steth.svg",
-    cbETH: "cbeth.svg",
-    AJNA: "ajna.svg",
-    rETH: "reth.svg",
-  };
-  const iconSrc = mapping[name];
-  if (!iconSrc) {
-    return null;
-  }
+  const [imgSrc, setImgSrc] = useState(
+    `https://icons.blockanalitica.com/currency/${name.toLowerCase()}.svg`
+  );
 
   return (
     <div
@@ -33,11 +17,14 @@ const CryptoIcon = ({ name, size = "24", priority = false, ...rest }) => {
       {...rest}
     >
       <Image
-        src={`/assets/images/icon/crypto/${iconSrc}`}
+        src={imgSrc}
         width={size}
         height={size}
         alt={name}
         priority={priority}
+        onError={() => {
+          setImgSrc("/assets/images/icon/missing-currency.svg");
+        }}
       />
     </div>
   );
