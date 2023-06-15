@@ -113,7 +113,7 @@ function ValueChange({
         {value}
         {suffix ? (
           <>
-            {icon ? (
+            {icon && suffix !== "%" ? (
               <CryptoIcon
                 name={suffix}
                 className="ms-1"

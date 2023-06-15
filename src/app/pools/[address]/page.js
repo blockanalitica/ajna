@@ -13,6 +13,7 @@ import { shorten } from "@/utils/address";
 import Tag from "@/components/tags/Tag";
 import PoolInfo from "./PoolInfo";
 import HistoricGraphs from "./HistoricGraphs";
+import PoolEvents from "./PoolEvents";
 
 const PoolPage = ({ params }) => {
   const { address } = params;
@@ -141,6 +142,7 @@ const PoolPage = ({ params }) => {
           />
         </div>
       </div>
+      <PoolEvents address={address} />
     </>
   );
 };
