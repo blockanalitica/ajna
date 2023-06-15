@@ -64,7 +64,7 @@ const Table = ({
             <RowComponent
               key={row[keyField]}
               className={classnames(
-                "block grid gap-3 border-b border-gray-20 px-4 ",
+                "block grid gap-3 border-b border-gray-20 px-4 min-h-[78px]",
                 gridColumnClassName,
                 {
                   "cursor-pointer hover:text-gray-7": !!href,

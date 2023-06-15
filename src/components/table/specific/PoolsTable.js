@@ -197,16 +197,14 @@ const PoolsTable = ({ ...rest }) => {
     </div>
   );
   return (
-    <>
-      <Table
-        keyField="address"
-        columns={columns}
-        gridColumnClassName="grid-cols-table-pools"
-        href={(row) => `/pools/${row.address}`}
-        footerRow={footerRow}
-        {...rest}
-      />
-    </>
+    <Table
+      keyField="address"
+      columns={columns}
+      gridColumnClassName="grid-cols-table-pools"
+      href={(row) => `/pools/${row.address}`}
+      footerRow={footerRow}
+      {...rest}
+    />
   );
 };
 
