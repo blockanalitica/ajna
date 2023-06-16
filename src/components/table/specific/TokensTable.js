@@ -1,9 +1,9 @@
 "use client";
 
 import CryptoIcon from "@/components/icon/CryptoIcon";
+import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
-import Table from "@/components/table/Table";
 
 const TokensTable = ({ ...rest }) => {
   const columns = [
@@ -30,7 +30,11 @@ const TokensTable = ({ ...rest }) => {
       cell: ({ row }) => <Value value={row.underlying_price} prefix="$" />,
       smallCell: ({ row }) => (
         <ValueChange
-          value={row.underlying_price - row.prev_underlying_price}
+          value={
+            row.prev_underlying_price
+              ? row.underlying_price - row.prev_underlying_price
+              : 0
+          }
           prefix="$"
         />
       ),
@@ -42,7 +46,9 @@ const TokensTable = ({ ...rest }) => {
     {
       header: "TVL",
       cell: ({ row }) => <Value value={row.tvl} prefix="$" />,
-      smallCell: ({ row }) => <ValueChange value={row.tvl - row.prev_tvl} prefix="$" />,
+      smallCell: ({ row }) => (
+        <ValueChange value={row.prev_tvl ? row.tvl - row.prev_tvl : 0} prefix="$" />
+      ),
       headerAlign: "end",
       cellAlign: "end",
       orderField: "tvl",
@@ -51,7 +57,10 @@ const TokensTable = ({ ...rest }) => {
       header: "Pools",
       cell: ({ row }) => <Value value={row.pool_count} decimals={0} />,
       smallCell: ({ row }) => (
-        <ValueChange value={row.pool_count - row.prev_pool_count} decimals={0} />
+        <ValueChange
+          value={row.prev_pool_count ? row.pool_count - row.prev_pool_count : 0}
+          decimals={0}
+        />
       ),
       headerAlign: "end",
       cellAlign: "end",

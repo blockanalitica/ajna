@@ -27,7 +27,11 @@ const TokenInfo = ({ address, daysAgo, className, ...rest }) => {
         <>
           <Value value={results.lended_amount} suffix={results.symbol} big />
           <ValueChange
-            value={results.lended_amount - results.prev_lended_amount}
+            value={
+              results.prev_lended_amount
+                ? results.lended_amount - results.prev_lended_amount
+                : 0
+            }
             suffix={results.symbol}
             className="text-lg"
           />
@@ -37,7 +41,11 @@ const TokenInfo = ({ address, daysAgo, className, ...rest }) => {
         <>
           <Value value={results.lended_amount_usd} prefix="$" />
           <ValueChange
-            value={results.lended_amount_usd - results.prev_lended_amount_usd}
+            value={
+              results.prev_lended_amount_usd
+                ? results.lended_amount_usd - results.prev_lended_amount_usd
+                : 0
+            }
             prefix="$"
             className="ms-2"
           />
@@ -50,7 +58,11 @@ const TokenInfo = ({ address, daysAgo, className, ...rest }) => {
         <>
           <Value value={results.borrowed_amount} suffix={results.symbol} big />
           <ValueChange
-            value={results.borrowed_amount - results.prev_borrowed_amount}
+            value={
+              results.prev_borrowed_amount
+                ? results.borrowed_amount - results.prev_borrowed_amount
+                : 0
+            }
             suffix={results.symbol}
             className="text-lg"
           />
@@ -60,7 +72,11 @@ const TokenInfo = ({ address, daysAgo, className, ...rest }) => {
         <>
           <Value value={results.borrowed_amount_usd} prefix="$" />
           <ValueChange
-            value={results.borrowed_amount_usd - results.prev_borrowed_amount_usd}
+            value={
+              results.prev_borrowed_amount_usd
+                ? results.borrowed_amount_usd - results.prev_borrowed_amount_usd
+                : 0
+            }
             prefix="$"
             className="ms-2"
           />
@@ -73,7 +89,11 @@ const TokenInfo = ({ address, daysAgo, className, ...rest }) => {
         <>
           <Value value={results.collateral_amount} suffix={results.symbol} big />
           <ValueChange
-            value={results.collateral_amount - results.prev_collateral_amount}
+            value={
+              results.prev_collateral_amount
+                ? results.collateral_amount - results.prev_collateral_amount
+                : 0
+            }
             suffix={results.symbol}
             className="text-lg"
           />
@@ -83,7 +103,11 @@ const TokenInfo = ({ address, daysAgo, className, ...rest }) => {
         <>
           <Value value={results.collateral_amount_usd} prefix="$" />
           <ValueChange
-            value={results.collateral_amount_usd - results.prev_collateral_amount_usd}
+            value={
+              results.prev_collateral_amount_usd
+                ? results.collateral_amount_usd - results.prev_collateral_amount_usd
+                : 0
+            }
             prefix="$"
             className="ms-2"
           />
@@ -96,7 +120,7 @@ const TokenInfo = ({ address, daysAgo, className, ...rest }) => {
         <>
           <Value value={results.tvl} prefix="$" />
           <ValueChange
-            value={results.tvl - results.prev_tvl}
+            value={results.prev_tvl ? results.tvl - results.prev_tvl : 0}
             prefix="$"
             className="text-lg"
           />
@@ -109,7 +133,9 @@ const TokenInfo = ({ address, daysAgo, className, ...rest }) => {
         <>
           <Value value={results.pool_count} />
           <ValueChange
-            value={results.pool_count - results.prev_pool_count}
+            value={
+              results.prev_pool_count ? results.pool_count - results.prev_pool_count : 0
+            }
             className="text-lg"
           />
         </>

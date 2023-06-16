@@ -1,12 +1,12 @@
 import CryptoIcon from "@/components/icon/CryptoIcon";
-import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import classnames from "classnames";
 import {
   compact as compactNumber,
   formatToDecimals,
   resolveSmallNumbers,
 } from "@/utils/number";
+import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import classnames from "classnames";
 
 function ValueChange({
   value,

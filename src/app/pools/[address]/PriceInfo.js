@@ -19,7 +19,10 @@ const PriceInfo = ({ data, ...rest }) => {
           />
           <ValueChange
             value={
-              data.collateral_token_underlying_price - data.prev_collateral_token_price
+              data.prev_collateral_token_price
+                ? data.collateral_token_underlying_price -
+                  data.prev_collateral_token_price
+                : 0
             }
             className="text-lg"
             prefix={"$"}
@@ -33,7 +36,7 @@ const PriceInfo = ({ data, ...rest }) => {
         <>
           <Value value={data.lup} suffix={data.quote_token_symbol} big />
           <ValueChange
-            value={data.lup - data.prev_lup}
+            value={data.prev_lup ? data.lup - data.prev_lup : 0}
             suffix={data.quote_token_symbol}
             className="text-lg"
           />
@@ -46,7 +49,7 @@ const PriceInfo = ({ data, ...rest }) => {
         <>
           <Value value={data.htp} suffix={data.quote_token_symbol} big />
           <ValueChange
-            value={data.htp - data.prev_htp}
+            value={data.prev_htp ? data.htp - data.prev_htp : 0}
             suffix={data.quote_token_symbol}
             className="text-lg"
           />
@@ -59,7 +62,7 @@ const PriceInfo = ({ data, ...rest }) => {
         <>
           <Value value={data.hpb} suffix={data.quote_token_symbol} big />
           <ValueChange
-            value={data.hpb - data.prev_hpb}
+            value={data.prev_hpb ? data.hpb - data.prev_hpb : 0}
             suffix={data.quote_token_symbol}
             className="text-lg"
           />
