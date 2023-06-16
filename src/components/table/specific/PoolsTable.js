@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
 import CryptoIcon from "@/components/icon/CryptoIcon";
+import InlineSelect from "@/components/select/InlineSelect";
 import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
-import InlineSelect from "@/components/select/InlineSelect";
+import { useState } from "react";
 
 const PoolsTable = ({ ...rest }) => {
   const [isPriceUsd, setIsPriceUsd] = useState(false);
@@ -129,7 +129,7 @@ const PoolsTable = ({ ...rest }) => {
       cell: ({ row }) => (
         <div className="flex flex-col items-end">
           <Value value={row.tvl} prefix="$" />
-          <ValueChange value={row.tvl - row.prev_tvl} small />
+          <ValueChange value={row.tvl - row.prev_tvl} small prefix={"$"} />
         </div>
       ),
       headerAlign: "end",
@@ -141,7 +141,11 @@ const PoolsTable = ({ ...rest }) => {
       cell: ({ row }) => (
         <div className="flex flex-col items-end">
           <Value value={row.lend_rate * 100} suffix="%" />
-          <ValueChange value={(row.lend_rate - row.prev_lend_rate) * 100} small />
+          <ValueChange
+            value={(row.lend_rate - row.prev_lend_rate) * 100}
+            small
+            suffix={"%"}
+          />
         </div>
       ),
       headerAlign: "end",
@@ -153,7 +157,11 @@ const PoolsTable = ({ ...rest }) => {
       cell: ({ row }) => (
         <div className="flex flex-col items-end">
           <Value value={row.borrow_rate * 100} suffix="%" />
-          <ValueChange value={(row.borrow_rate - row.prev_borrow_rate) * 100} small />
+          <ValueChange
+            value={(row.borrow_rate - row.prev_borrow_rate) * 100}
+            small
+            suffix={"%"}
+          />
         </div>
       ),
       headerAlign: "end",
@@ -188,7 +196,7 @@ const PoolsTable = ({ ...rest }) => {
 
   const footerRow = (
     <div className="text-sm text-right">
-      Prices shown in
+      Prices shown in{" "}
       <InlineSelect
         options={priceOptions}
         value={isPriceUsd ? "usd" : "token"}

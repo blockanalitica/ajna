@@ -1,8 +1,8 @@
 "use client";
 
-import { DateTime } from "luxon";
 import FancyGraph from "@/components/graph/FancyGraph";
 import { compact } from "@/utils/number";
+import { DateTime } from "luxon";
 
 const TestGraphs = () => {
   const results = [

@@ -1,7 +1,7 @@
-import Value from "@/components/value/Value";
-import ValueChange from "@/components/value/ValueChange";
 import Stats from "@/components/stats/Stats";
 import StatsPlaceholder from "@/components/stats/StatsPlaceholder";
+import Value from "@/components/value/Value";
+import ValueChange from "@/components/value/ValueChange";
 import { useFetch } from "@/hooks";
 
 const TotalStats = ({ daysAgo, className, ...rest }) => {

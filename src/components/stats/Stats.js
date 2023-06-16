@@ -2,12 +2,19 @@ import classnames from "classnames";
 
 // TODO: automatic calculation of columns based on number of sections passed in data
 const Stats = ({ data, className, ...rest }) => {
+  const cols = data.length;
+  let mid_cols = cols;
+  if (cols % 2 !== 0) {
+    mid_cols = Math.floor(cols);
+    if (mid_cols % 2 !== 0) {
+      mid_cols = mid_cols - 1;
+    }
+  }
+  let cols_classes = `sm:grid-cols-2 md:grid-cols-${mid_cols} lg:grid-cols-${cols}`;
+
   return (
     <section
-      className={classnames(
-        "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4",
-        className
-      )}
+      className={classnames("grid grid-cols-1 gap-4", cols_classes, className)}
       {...rest}
     >
       {data.map(({ title, value, smallValue }) => (
