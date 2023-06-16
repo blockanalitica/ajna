@@ -12,7 +12,7 @@ const PoolInfo = ({ data, ...rest }) => {
         <>
           <Value value={data.pool_size} suffix={data.quote_token_symbol} big />
           <ValueChange
-            value={data.pool_size - data.prev_pool_size}
+            value={data.prev_pool_size ? data.pool_size - data.prev_pool_size : 0}
             suffix={data.quote_token_symbol}
             className="text-lg"
           />
@@ -22,7 +22,9 @@ const PoolInfo = ({ data, ...rest }) => {
         <>
           <Value value={data.pool_size_usd} prefix="$" />
           <ValueChange
-            value={data.pool_size_usd - data.prev_pool_size_usd}
+            value={
+              data.prev_pool_size_usd ? data.pool_size_usd - data.prev_pool_size_usd : 0
+            }
             prefix="$"
             className="ms-2"
           />
@@ -35,7 +37,7 @@ const PoolInfo = ({ data, ...rest }) => {
         <>
           <Value value={data.debt} suffix={data.quote_token_symbol} big />
           <ValueChange
-            value={data.debt - data.prev_debt}
+            value={data.prev_debt ? data.debt - data.prev_debt : 0}
             suffix={data.quote_token_symbol}
             className="text-lg"
           />
@@ -45,7 +47,7 @@ const PoolInfo = ({ data, ...rest }) => {
         <>
           <Value value={data.debt_usd} prefix="$" />
           <ValueChange
-            value={data.debt_usd - data.prev_debt_usd}
+            value={data.prev_debt_usd ? data.debt_usd - data.prev_debt_usd : 0}
             prefix="$"
             className="ms-2"
           />
@@ -62,7 +64,11 @@ const PoolInfo = ({ data, ...rest }) => {
             big
           />
           <ValueChange
-            value={data.pledged_collateral - data.prev_pledged_collateral}
+            value={
+              data.prev_pledged_collateral
+                ? data.pledged_collateral - data.prev_pledged_collateral
+                : 0
+            }
             suffix={data.collateral_token_symbol}
             className="text-lg"
           />
@@ -72,7 +78,11 @@ const PoolInfo = ({ data, ...rest }) => {
         <>
           <Value value={data.pledged_collateral_usd} prefix="$" />
           <ValueChange
-            value={data.pledged_collateral_usd - data.prev_pledged_collateral_usd}
+            value={
+              data.prev_pledged_collateral_usd
+                ? data.pledged_collateral_usd - data.prev_pledged_collateral_usd
+                : 0
+            }
             prefix="$"
             className="ms-2"
           />

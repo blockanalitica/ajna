@@ -121,11 +121,11 @@ const PoolPage = ({ params }) => {
           </div>
           <div>
             <h3 className="text-sm font-bold text-gray-1 font-syncopate uppercase mb-5">
-              APR
+              Pool info
             </h3>
             <div className="flex justify-between items-center mb-2">
               <div className="flex items-center">
-                <span className="font-bold text-sm">Lend</span>
+                <span className="text-sm">Lend APR</span>
               </div>
               <div>
                 <Value value={pool.lend_rate * 100} suffix={"%"} />
@@ -133,17 +133,37 @@ const PoolPage = ({ params }) => {
             </div>
             <div className="flex justify-between items-center mb-2">
               <div className="flex items-center">
-                <span className="font-bold text-sm">Borrow</span>
+                <span className="text-sm">Borrow APR</span>
               </div>
               <div>
                 <Value value={pool.borrow_rate * 100} suffix={"%"} />
               </div>
             </div>
+            <div className="flex justify-between items-center mb-2">
+              <div className="flex items-center">
+                <span className="text-sm">Utilization</span>
+              </div>
+              <div>
+                <Value value={pool.actual_utilization * 100} suffix={"%"} />
+              </div>
+            </div>
+            <div className="flex justify-between items-center mb-2">
+              <div className="flex items-center">
+                <span className=" text-sm">Collateralization</span>
+              </div>
+              <div>
+                <Value value={pool.collateralization * 100} suffix={"%"} />
+              </div>
+            </div>
           </div>
+
           <div className="grid grid-cols-2 gap-4 mt-4">
             <CardOpaque title="TVL">
               <Value value={pool.tvl} prefix="$" className="text-xl" />
-              <ValueChange value={pool.tvl - pool.prev_tvl} prefix="$" />
+              <ValueChange
+                value={pool.prev_tvl ? pool.tvl - pool.prev_tvl : 0}
+                prefix="$"
+              />
             </CardOpaque>
             <CardOpaque title="Volume">
               <Value value={0} className="text-xl" prefix="$" />
@@ -161,7 +181,11 @@ const PoolPage = ({ params }) => {
                 className="text-xl"
               />
               <ValueChange
-                value={pool.total_ajna_burned - pool.prev_total_ajna_burned}
+                value={
+                  pool.prev_total_ajna_burned
+                    ? pool.total_ajna_burned - pool.prev_total_ajna_burned
+                    : 0
+                }
                 prefix={"🔥 "}
                 icon={false}
               />

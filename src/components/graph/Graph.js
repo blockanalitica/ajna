@@ -1,10 +1,10 @@
 "use client";
 
+import { round } from "@/utils/number";
 import { Chart as ChartJS, registerables } from "chart.js";
 import "chartjs-adapter-luxon";
 import _ from "lodash";
 import { Chart } from "react-chartjs-2";
-import { round } from "@/utils/number";
 
 ChartJS.register(...registerables);
 ChartJS.defaults.color = "rgb(185, 186, 202)";
