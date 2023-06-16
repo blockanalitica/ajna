@@ -4,7 +4,7 @@ import classnames from "classnames";
 const Stats = ({ data, className, ...rest }) => {
   const cols = data.length;
   let mid_cols = cols;
-  if (cols % 2 !== 0) {
+  if (cols > 4 && cols % 2 !== 0) {
     mid_cols = Math.floor(cols);
     if (mid_cols % 2 !== 0) {
       mid_cols = mid_cols - 1;
