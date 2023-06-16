@@ -10,7 +10,13 @@ const PriceInfo = ({ data, ...rest }) => {
       title: "Market Price",
       value: (
         <>
-          <Value value={data.collateral_token_underlying_price} prefix={"$"} big />
+          <Value
+            value={data.collateral_token_underlying_price}
+            prefix={"$"}
+            big
+            compact100k={true}
+            compact={false}
+          />
           <ValueChange
             value={
               data.collateral_token_underlying_price - data.prev_collateral_token_price
