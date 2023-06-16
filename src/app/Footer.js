@@ -1,7 +1,7 @@
+import { faMedium, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMedium, faTwitter } from "@fortawesome/free-brands-svg-icons";
 
 const Footer = () => (
   <footer className="mt-20 mb-10">
@@ -18,11 +18,6 @@ const Footer = () => (
         </Link>
         <span>|</span>
         <span>© 2023. All rights reserved.</span>
-        <span>|</span>
-        <span>Made with love by</span>
-        <a href="https://blockanalitica.com" target="_blank" className="text-white">
-          BA Labs LLC
-        </a>
       </div>
 
       <div className="flex space-x-4">
