@@ -1,8 +1,8 @@
 "use client";
 
+import _ from "lodash";
 import { useState } from "react";
 import Graph from "./Graph";
-import _ from "lodash";
 
 const FancyGraph = ({
   series,
@@ -33,7 +33,7 @@ const FancyGraph = ({
   const defaultOptions = {
     scales: {
       y: {
-        display: false,
+        display: true,
       },
     },
     plugins: {

@@ -1,10 +1,10 @@
 "use client";
 
+import Stats from "@/components/stats/Stats";
+import StatsPlaceholder from "@/components/stats/StatsPlaceholder";
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
 import { useFetch } from "@/hooks";
-import Stats from "@/components/stats/Stats";
-import StatsPlaceholder from "@/components/stats/StatsPlaceholder";
 
 const TokenInfo = ({ address, daysAgo, className, ...rest }) => {
   const { data, error, isLoading } = useFetch(`/tokens/${address}/overview/`, {

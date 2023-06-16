@@ -79,24 +79,6 @@ const PoolInfo = ({ data, ...rest }) => {
         </>
       ),
     },
-    {
-      title: "LUP",
-      value: (
-        <>
-          <Value value={data.lup} suffix={data.quote_token_symbol} big />
-          <ValueChange value={data.lup - data.prev_lup} className="text-lg" />
-        </>
-      ),
-    },
-    {
-      title: "HTP",
-      value: (
-        <>
-          <Value value={data.htp} suffix={data.quote_token_symbol} big />
-          <ValueChange value={data.htp - data.prev_htp} className="text-lg" />
-        </>
-      ),
-    },
   ];
 
   return <Stats data={stats} {...rest} />;

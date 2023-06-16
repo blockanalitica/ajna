@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
-import { DateTime } from "luxon";
-import { useFetch } from "@/hooks";
 import CardBackground from "@/components/card/CardBackground";
-import Value from "@/components/value/Value";
 import FancyGraph from "@/components/graph/FancyGraph";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
+import Value from "@/components/value/Value";
+import { useFetch } from "@/hooks";
+import { compact } from "@/utils/number";
+import { DateTime } from "luxon";
+import { useState } from "react";
 
 const HistoricGraphs = ({
   address,
@@ -50,6 +51,11 @@ const HistoricGraphs = ({
           unit: actualDaysAgo > 7 ? "day" : "hour",
         },
       },
+      y: {
+        ticks: {
+          callback: (value) => compact(value, 2, true),
+        },
+      },
     },
   };
 
@@ -59,6 +65,7 @@ const HistoricGraphs = ({
         value={value}
         suffix={displayOption === "pledged_collateral" ? collateralSymbol : quoteSymbol}
         big
+        compact
       />
     );
   };
