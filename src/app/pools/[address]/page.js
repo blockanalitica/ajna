@@ -121,7 +121,7 @@ const PoolPage = ({ params }) => {
           </div>
           <div>
             <h3 className="text-sm font-bold text-gray-1 font-syncopate uppercase mb-5">
-              APR Rates
+              APR
             </h3>
             <div className="flex justify-between items-center mb-2">
               <div className="flex items-center">
