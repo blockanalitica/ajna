@@ -10,11 +10,22 @@ const Stats = ({ data, className, ...rest }) => {
       mid_cols = mid_cols - 1;
     }
   }
-  let cols_classes = `sm:grid-cols-2 md:grid-cols-${mid_cols} lg:grid-cols-${cols}`;
+  let cols_classes = null;
+  if (cols == 5) {
+    cols_classes = "md:grid-cols-4 lg:grid-cols-5";
+  } else if (cols == 4) {
+    cols_classes = "md:grid-cols-4 lg:grid-cols-4";
+  } else if (cols == 3) {
+    cols_classes = "md:grid-cols-3 lg:grid-cols-3";
+  }
 
   return (
     <section
-      className={classnames("grid grid-cols-1 gap-4", cols_classes, className)}
+      className={classnames(
+        "grid grid-cols-1 gap-4 sm:grid-cols-2 ",
+        cols_classes,
+        className
+      )}
       {...rest}
     >
       {data.map(({ title, value, smallValue }) => (

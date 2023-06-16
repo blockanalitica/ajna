@@ -8,6 +8,7 @@ module.exports = {
     // Or if using `src` directory:
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  safelist: ["grid-cols-3", "grid-cols-4", "grid-cols-5"],
   theme: {
     extend: {
       lineHeight: {
@@ -17,7 +18,6 @@ module.exports = {
         80: "80rem",
       },
       gridTemplateColumns: {
-        // Simple first column bigger, other same size smaller
         "first-big": "3fr repeat(3, minmax(0, 1fr))",
         "table-5-small": ".2fr repeat(4, 1.5fr)",
         "table-5": ".2fr 3fr repeat(3, 1.5fr)",
