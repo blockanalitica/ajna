@@ -28,6 +28,7 @@ const HistoricGraphs = ({
     return <p>Loading....</p>;
   }
   const displayOptions = [
+    { key: "tvl", value: "TVL" },
     { key: "pool_size", value: "Lended" },
     { key: "debt", value: "Borrowed" },
     { key: "pledged_collateral", value: "Collateral" },
