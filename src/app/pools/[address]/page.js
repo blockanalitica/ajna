@@ -81,11 +81,6 @@ const PoolPage = ({ params }) => {
             </h3>
             <div className="flex justify-between items-center mb-2">
               <div className="flex items-center">
-                <CryptoIcon
-                  name={pool.collateral_token_symbol}
-                  size="20"
-                  className="mr-2"
-                />
                 <span className="font-bold text-sm">
                   {pool.collateral_token_symbol}
                 </span>
@@ -98,13 +93,15 @@ const PoolPage = ({ params }) => {
                     prefix={"$"}
                     className="text-gray-10"
                   />
-                  <Value value={pool.pledged_collateral} />
+                  <Value
+                    value={pool.pledged_collateral}
+                    suffix={pool.collateral_token_symbol}
+                  />
                 </div>
               </div>
             </div>
             <div className="flex justify-between items-center">
               <div className="flex items-center">
-                <CryptoIcon name={pool.quote_token_symbol} size={20} className="mr-2" />
                 <span className="font-bold text-sm">{pool.quote_token_symbol}</span>
               </div>
 
@@ -115,7 +112,10 @@ const PoolPage = ({ params }) => {
                   prefix={"$"}
                   className="text-gray-10"
                 />
-                <Value value={pool.pool_size - pool.debt} />
+                <Value
+                  value={pool.pool_size - pool.debt}
+                  suffix={pool.quote_token_symbol}
+                />
               </div>
             </div>
           </div>
