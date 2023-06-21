@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
-import { usePathname } from "next/navigation";
-import classnames from "classnames";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
+import classnames from "classnames";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
 import NetworkSwitch from "./NetworkSwitch";
 
 const Navbar = () => {
@@ -20,7 +20,7 @@ const Navbar = () => {
     { name: "Pools", href: "/pools", current: rootSegment === "pools" },
     { name: "Tokens", href: "/tokens", current: rootSegment === "tokens" },
     { name: "Auctions", href: "/auctions", current: rootSegment === "auctions" },
-    { name: "Grants", href: "#", current: rootSegment === "grans" },
+    // { name: "Grants", href: "#", current: rootSegment === "grans" },
   ];
 
   return (

@@ -160,17 +160,14 @@ const PoolPage = ({ params }) => {
           <div className="grid grid-cols-2 gap-4 mt-4">
             <CardOpaque title="TVL">
               <Value value={pool.tvl} prefix="$" className="text-xl" />
-              <ValueChange
-                value={pool.prev_tvl ? pool.tvl - pool.prev_tvl : 0}
-                prefix="$"
-              />
+              <ValueChange value={pool.tvl - pool.prev_tvl} prefix="$" />
             </CardOpaque>
             <CardOpaque title="Volume">
-              <Value value={0} className="text-xl" prefix="$" />
+              <Value value={pool.volume} className="text-xl" prefix="$" />
               <ValueChange value={0} suffix="%" />
             </CardOpaque>
             <CardOpaque title="Fees">
-              <Value value={0} prefix="$" className="text-xl" />
+              <Value value={pool.fees ? pool.fees : 0} className="text-xl" />
               <ValueChange value={0} suffix="%" />
             </CardOpaque>
             <CardOpaque title="Ajna Burned">
@@ -181,11 +178,7 @@ const PoolPage = ({ params }) => {
                 className="text-xl"
               />
               <ValueChange
-                value={
-                  pool.prev_total_ajna_burned
-                    ? pool.total_ajna_burned - pool.prev_total_ajna_burned
-                    : 0
-                }
+                value={pool.total_ajna_burned - pool.prev_total_ajna_burned}
                 prefix={"🔥 "}
                 icon={false}
               />
