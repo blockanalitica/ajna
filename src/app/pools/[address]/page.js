@@ -12,6 +12,7 @@ import ValueChange from "@/components/value/ValueChange";
 import { useFetch, useQueryParams } from "@/hooks";
 import { shorten } from "@/utils/address";
 import HistoricGraphs from "./HistoricGraphs";
+import PoolBuckets from "./PoolBuckets";
 import PoolEvents from "./PoolEvents";
 import PoolInfo from "./PoolInfo";
 import PriceInfo from "./PriceInfo";
@@ -200,6 +201,7 @@ const PoolPage = ({ params }) => {
         </div>
       </div>
       <PriceInfo data={pool} className="mb-10" />
+      <PoolBuckets address={address} className="mb-10" />
       <PoolEvents address={address} />
     </>
   );
