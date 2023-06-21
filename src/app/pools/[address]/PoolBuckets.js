@@ -11,7 +11,6 @@ const PoolBuckets = ({ address, ...rest }) => {
   const pageSize = 5;
   const [page, setPage] = useState(1);
   const [order, setOrder] = useState("-bucket_price");
-  const [eventType, setEventType] = useState(null);
 
   const {
     data = {},
