@@ -15,7 +15,7 @@ import HistoricGraphs from "./HistoricGraphs";
 import PoolBuckets from "./PoolBuckets";
 import PoolEvents from "./PoolEvents";
 import PoolInfo from "./PoolInfo";
-import PriceInfo from "./PriceInfo";
+import BucketsGraph from "./BucketsGraph";
 
 const PoolPage = ({ params }) => {
   const { address } = params;
@@ -200,7 +200,78 @@ const PoolPage = ({ params }) => {
           />
         </div>
       </div>
-      <PriceInfo data={pool} className="mb-10" />
+
+      <div className="grid grid-cols-3 gap-4 mb-10">
+        <div className="col-span-2">
+          <BucketsGraph address={address} />
+        </div>
+
+        <CardBackground className="grid grid-cols-1 place-content-between">
+          <div>
+            <h3 className="text-sm font-bold text-gray-1 font-syncopate uppercase mb-5">
+              Buckets
+            </h3>
+          </div>
+          <div className="grid grid-cols-2 gap-4 mt-4">
+            <CardOpaque title="Market Price">
+              <Value
+                value={pool.collateral_token_underlying_price}
+                prefix="$"
+                compact100k={true}
+                compact={false}
+                className="text-xl"
+              />
+              <ValueChange
+                value={
+                  pool.prev_collateral_token_price
+                    ? pool.collateral_token_underlying_price -
+                      pool.prev_collateral_token_price
+                    : 0
+                }
+                prefix="$"
+                compact100k={true}
+                compact={false}
+              />
+            </CardOpaque>
+            <CardOpaque title="LUP">
+              <Value
+                value={pool.lup}
+                suffix={pool.quote_token_symbol}
+                className="text-xl"
+              />
+              <ValueChange
+                value={pool.lup - pool.prev_lup}
+                suffix={pool.quote_token_symbol}
+                className="text-lg"
+              />
+            </CardOpaque>
+            <CardOpaque title="HTP">
+              <Value
+                value={pool.htp}
+                suffix={pool.quote_token_symbol}
+                className="text-xl"
+              />
+              <ValueChange
+                value={pool.htp - pool.prev_htp}
+                suffix={pool.quote_token_symbol}
+                className="text-lg"
+              />
+            </CardOpaque>
+            <CardOpaque title="HPB">
+              <Value
+                value={pool.hpb}
+                suffix={pool.quote_token_symbol}
+                className="text-xl"
+              />
+              <ValueChange
+                value={pool.hpb - pool.prev_hpb}
+                suffix={pool.quote_token_symbol}
+                className="text-lg"
+              />
+            </CardOpaque>
+          </div>
+        </CardBackground>
+      </div>
       <PoolBuckets address={address} className="mb-10" />
       <PoolEvents address={address} />
     </>
