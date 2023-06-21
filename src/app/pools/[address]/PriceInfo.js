@@ -36,7 +36,7 @@ const PriceInfo = ({ data, ...rest }) => {
         <>
           <Value value={data.lup} suffix={data.quote_token_symbol} big />
           <ValueChange
-            value={data.prev_lup ? data.lup - data.prev_lup : 0}
+            value={data.lup - data.prev_lup}
             suffix={data.quote_token_symbol}
             className="text-lg"
           />
@@ -49,7 +49,7 @@ const PriceInfo = ({ data, ...rest }) => {
         <>
           <Value value={data.htp} suffix={data.quote_token_symbol} big />
           <ValueChange
-            value={data.prev_htp ? data.htp - data.prev_htp : 0}
+            value={data.htp - data.prev_htp}
             suffix={data.quote_token_symbol}
             className="text-lg"
           />
@@ -62,7 +62,7 @@ const PriceInfo = ({ data, ...rest }) => {
         <>
           <Value value={data.hpb} suffix={data.quote_token_symbol} big />
           <ValueChange
-            value={data.prev_hpb ? data.hpb - data.prev_hpb : 0}
+            value={data.hpb - data.prev_hpb}
             suffix={data.quote_token_symbol}
             className="text-lg"
           />

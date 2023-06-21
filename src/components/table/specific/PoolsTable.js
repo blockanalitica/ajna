@@ -52,20 +52,12 @@ const PoolsTable = ({ ...rest }) => {
         <>
           {isPriceUsd ? (
             <ValueChange
-              value={
-                row.prev_pledged_collateral_usd
-                  ? row.pledged_collateral_usd - row.prev_pledged_collateral_usd
-                  : 0
-              }
+              value={row.pledged_collateral_usd - row.prev_pledged_collateral_usd}
               prefix="$"
             />
           ) : (
             <ValueChange
-              value={
-                row.prev_pledged_collateral
-                  ? row.pledged_collateral - row.prev_pledged_collateral
-                  : 0
-              }
+              value={row.pledged_collateral - row.prev_pledged_collateral}
               suffix={row.collateral_token_symbol}
             />
           )}
@@ -90,14 +82,12 @@ const PoolsTable = ({ ...rest }) => {
         <>
           {isPriceUsd ? (
             <ValueChange
-              value={
-                row.prev_pool_size_usd ? row.pool_size_usd - row.prev_pool_size_usd : 0
-              }
+              value={row.pool_size_usd - row.prev_pool_size_usd}
               prefix="$"
             />
           ) : (
             <ValueChange
-              value={row.prev_pool_size ? row.pool_size - row.prev_pool_size : 0}
+              value={row.pool_size - row.prev_pool_size}
               suffix={row.quote_token_symbol}
             />
           )}
@@ -121,13 +111,10 @@ const PoolsTable = ({ ...rest }) => {
       smallCell: ({ row }) => (
         <>
           {isPriceUsd ? (
-            <ValueChange
-              value={row.prev_debt_usd ? row.debt_usd - row.prev_debt_usd : 0}
-              prefix="$"
-            />
+            <ValueChange value={row.debt_usd - row.prev_debt_usd} prefix="$" />
           ) : (
             <ValueChange
-              value={row.prev_debt ? row.debt - row.prev_debt : 0}
+              value={row.debt - row.prev_debt}
               suffix={row.quote_token_symbol}
             />
           )}
@@ -142,11 +129,7 @@ const PoolsTable = ({ ...rest }) => {
       cell: ({ row }) => (
         <div className="flex flex-col items-end">
           <Value value={row.tvl} prefix="$" />
-          <ValueChange
-            value={row.prev_tvl ? row.tvl - row.prev_tvl : 0}
-            small
-            prefix={"$"}
-          />
+          <ValueChange value={row.tvl - row.prev_tvl} small prefix={"$"} />
         </div>
       ),
       headerAlign: "end",
@@ -159,7 +142,7 @@ const PoolsTable = ({ ...rest }) => {
         <div className="flex flex-col items-end">
           <Value value={row.lend_rate * 100} suffix="%" />
           <ValueChange
-            value={row.prev_lend_rate ? (row.lend_rate - row.prev_lend_rate) * 100 : 0}
+            value={(row.lend_rate - row.prev_lend_rate) * 100}
             small
             suffix={"%"}
           />
@@ -175,9 +158,7 @@ const PoolsTable = ({ ...rest }) => {
         <div className="flex flex-col items-end">
           <Value value={row.borrow_rate * 100} suffix="%" />
           <ValueChange
-            value={
-              row.prev_borrow_rate ? (row.borrow_rate - row.prev_borrow_rate) * 100 : 0
-            }
+            value={(row.borrow_rate - row.prev_borrow_rate) * 100}
             small
             suffix={"%"}
           />
@@ -193,11 +174,7 @@ const PoolsTable = ({ ...rest }) => {
         <div className="flex flex-col items-end">
           <Value value={row.total_ajna_burned} suffix="AJNA" />
           <ValueChange
-            value={
-              row.prev_total_ajna_burned
-                ? row.total_ajna_burned - row.prev_total_ajna_burned
-                : 0
-            }
+            value={row.total_ajna_burned - row.prev_total_ajna_burned}
             small
           />
         </div>

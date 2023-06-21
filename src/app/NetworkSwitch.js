@@ -1,19 +1,13 @@
 "use client";
 
+import CryptoIcon from "@/components/icon/CryptoIcon";
+import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { useState } from "react";
-import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import CryptoIcon from "@/components/icon/CryptoIcon";
 
 const NetworkSwitch = () => {
-  const networkOptions = [
-    { name: "Ethereum", href: "/ethereum", icon: "ETH" },
-    { name: "Polygon", href: "/polygon" },
-    { name: "Optimism", href: "/optimism" },
-    { name: "Arbitrum", href: "/arbitrum" },
-    { name: "Celo", href: "/celo" },
-  ];
+  const networkOptions = [{ name: "Ethereum", href: "/ethereum", icon: "ETH" }];
 
   const [open, setOpen] = useState(false);
 

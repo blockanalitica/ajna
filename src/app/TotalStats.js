@@ -29,11 +29,7 @@ const TotalStats = ({ daysAgo, className, ...rest }) => {
       value: <Value value={results.total_pool_size} prefix="$" />,
       smallValue: (
         <ValueChange
-          value={
-            results.prev_total_pool_size
-              ? results.total_pool_size - results.prev_total_pool_size
-              : 0
-          }
+          value={results.total_pool_size - results.prev_total_pool_size}
           prefix="$"
         />
       ),
@@ -43,11 +39,7 @@ const TotalStats = ({ daysAgo, className, ...rest }) => {
       value: <Value value={results.total_current_debt} prefix="$" />,
       smallValue: (
         <ValueChange
-          value={
-            results.prev_total_current_debt
-              ? results.total_current_debt - results.prev_total_current_debt
-              : 0
-          }
+          value={results.total_current_debt - results.prev_total_current_debt}
           prefix="$"
         />
       ),
@@ -58,9 +50,7 @@ const TotalStats = ({ daysAgo, className, ...rest }) => {
       smallValue: (
         <ValueChange
           value={
-            results.prev_total_pledged_collateral
-              ? results.total_pledged_collateral - results.prev_total_pledged_collateral
-              : 0
+            results.total_pledged_collateral - results.prev_total_pledged_collateral
           }
           prefix="$"
         />
@@ -70,12 +60,7 @@ const TotalStats = ({ daysAgo, className, ...rest }) => {
       title: "TVL",
       value: <Value value={results.total_tvl} prefix="$" />,
       smallValue: (
-        <ValueChange
-          value={
-            results.prev_total_tvl ? results.total_tvl - results.prev_total_tvl : 0
-          }
-          prefix="$"
-        />
+        <ValueChange value={results.total_tvl - results.prev_total_tvl} prefix="$" />
       ),
     },
     {
@@ -83,11 +68,7 @@ const TotalStats = ({ daysAgo, className, ...rest }) => {
       value: <Value value={results.total_ajna_burned} />,
       smallValue: (
         <ValueChange
-          value={
-            results.prev_total_ajna_burned
-              ? results.total_ajna_burned - results.prev_total_ajna_burned
-              : 0
-          }
+          value={results.total_ajna_burned - results.prev_total_ajna_burned}
         />
       ),
     },
