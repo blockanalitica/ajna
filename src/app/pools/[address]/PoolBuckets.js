@@ -20,7 +20,6 @@ const PoolBuckets = ({ address, ...rest }) => {
     p: page,
     p_size: pageSize,
     order,
-    type: eventType,
   });
 
   if (error) {
