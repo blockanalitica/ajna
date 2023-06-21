@@ -162,8 +162,12 @@ const PoolPage = ({ params }) => {
               <Value value={pool.tvl} prefix="$" className="text-xl" />
               <ValueChange value={pool.tvl - pool.prev_tvl} prefix="$" />
             </CardOpaque>
-            <CardOpaque title="Volume">
-              <Value value={pool.volume} className="text-xl" prefix="$" />
+            <CardOpaque title="Volume (24h)">
+              <Value
+                value={pool.volume ? pool.volume : 0}
+                className="text-xl"
+                prefix="$"
+              />
               <ValueChange value={0} suffix="%" />
             </CardOpaque>
             <CardOpaque title="Fees">
