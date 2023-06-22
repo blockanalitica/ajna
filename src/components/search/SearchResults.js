@@ -64,7 +64,7 @@ const SearchResults = ({ searchTerm }) => {
   ];
 
   return (
-    <div className="absolute border border-gray-21 bg-gray-23 rounded-3xl mt-4 py-5 px-7 w-[500px]">
+    <div className="absolute left-[-50%] border border-gray-21 bg-gray-23 rounded-3xl mt-3 py-5 px-7 w-[500px]">
       <ResultTable
         data={pools}
         keyField="address"

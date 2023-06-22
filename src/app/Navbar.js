@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import Search from "@/components/search/Search";
 import NetworkSwitch from "./NetworkSwitch";
 
 const Navbar = () => {
@@ -52,7 +53,8 @@ const Navbar = () => {
             </Link>
           ))}
         </div>
-        <div className="hidden md:block">
+        <div className="hidden md:flex items-center">
+          <Search className="me-4" />
           <NetworkSwitch />
         </div>
         <div className="-mr-2 flex md:hidden">
