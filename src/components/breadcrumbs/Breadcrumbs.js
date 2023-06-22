@@ -10,7 +10,7 @@ const Breadcrumbs = () => {
   const segments = pathname.split("/").filter(Boolean);
 
   if (segments.length === 0) {
-    return null;
+    return <div></div>;
   }
 
   // Create a new path object for each segment in the URL

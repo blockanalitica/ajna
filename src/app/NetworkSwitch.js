@@ -1,5 +1,6 @@
 "use client";
 
+import classnames from "classnames";
 import CryptoIcon from "@/components/icon/CryptoIcon";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,7 +15,10 @@ const NetworkSwitch = () => {
   return (
     <div className="relative">
       <button
-        className="hover:ring-2 hover:ring-purple-from focus:outline-none text-gray-4 rounded-3xl text-sm px-4 py-3 text-center inline-flex items-center"
+        className={classnames(
+          "focus:outline-none text-gray-4 rounded-3xl text-sm px-4 py-2 text-center inline-flex items-center",
+          { "hover:ring-2 hover:ring-purple-from": networkOptions.length > 1 }
+        )}
         type="button"
         onClick={() => setOpen(!open)}
       >

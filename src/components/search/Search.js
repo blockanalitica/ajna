@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, useRef } from "react";
+import classnames from "classnames";
 import { useOnClickOutside } from "@/hooks";
 import SearchResults from "./SearchResults";
 import SearchInput from "./SearchInput";
 
-const Search = () => {
+const Search = ({ className }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
@@ -21,7 +22,7 @@ const Search = () => {
   };
 
   return (
-    <div className="relative z-40" ref={searchRef}>
+    <div className={classnames("relative z-40", className)} ref={searchRef}>
       <SearchInput
         placeholder="Search pools or tokens"
         value={searchTerm}
