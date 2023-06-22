@@ -6,11 +6,14 @@ import CryptoIcon from "@/components/icon/CryptoIcon";
 import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
+import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const TokenArbitragePools = ({ address, daysAgo, ...rest }) => {
   const pageSize = 10;
   const [page, setPage] = useState(1);
   const [order, setOrder] = useState("-collateral_token_underlying_price");
+  const [expanded, setExpanded] = useState(false);
 
   const {
     data = {},
@@ -32,7 +35,9 @@ const TokenArbitragePools = ({ address, daysAgo, ...rest }) => {
   const columns = [
     {
       header: "#",
-      cell: ({ index }) => <>{index + 1}</>,
+      cell: ({ index }) => (
+        <span className="font-syncopate text-gray-7">{index + 1}</span>
+      ),
     },
     {
       header: "Collateral / Quote",
@@ -96,22 +101,34 @@ const TokenArbitragePools = ({ address, daysAgo, ...rest }) => {
 
   return (
     <section {...rest}>
-      <h1 className="text-xl md:text-1xl xl:text-2xl mb-5">Arbitrage Pools</h1>
-
-      <Table
-        data={results}
-        keyField="address"
-        columns={columns}
-        gridColumnClassName="grid-cols-table-pools"
-        href={(row) => `/pools/${row.address}`}
-        currentPage={page}
-        pageSize={pageSize}
-        totalRecords={count}
-        onPageChange={setPage}
-        onOrderChange={setOrder}
-        currentOrder={order}
-        isLoading={isLoading}
-      />
+      <div
+        onClick={() => setExpanded(!expanded)}
+        className="flex items-center mb-5 cursor-pointer hover:text-ajna-aqua"
+      >
+        <FontAwesomeIcon
+          icon={expanded ? faChevronUp : faChevronDown}
+          size="lg"
+          className="mr-3"
+        />
+        <h1 className="text-xl md:text-1xl xl:text-2xl">Arbitrage Pools</h1>
+        <span className="text-gray-13 font-medium ml-2">({count})</span>
+      </div>
+      {expanded ? (
+        <Table
+          data={results}
+          keyField="address"
+          columns={columns}
+          gridColumnClassName="grid-cols-table-token-arbitrage-pools"
+          href={(row) => `/pools/${row.address}`}
+          currentPage={page}
+          pageSize={pageSize}
+          totalRecords={count}
+          onPageChange={setPage}
+          onOrderChange={setOrder}
+          currentOrder={order}
+          isLoading={isLoading}
+        />
+      ) : null}
     </section>
   );
 };

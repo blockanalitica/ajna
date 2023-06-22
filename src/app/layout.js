@@ -28,6 +28,7 @@ const RootLayout = ({ children }) => {
           {children}
           <Footer />
         </div>
+        <div id="ajna-portal"></div>
       </body>
     </html>
   );

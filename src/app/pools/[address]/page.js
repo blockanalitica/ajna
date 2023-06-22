@@ -16,6 +16,7 @@ import PoolBuckets from "./PoolBuckets";
 import PoolEvents from "./PoolEvents";
 import PoolInfo from "./PoolInfo";
 import BucketsGraph from "./BucketsGraph";
+import Info from "@/components/info/Info";
 
 const PoolPage = ({ params }) => {
   const { address } = params;
@@ -233,7 +234,19 @@ const PoolPage = ({ params }) => {
                 compact={false}
               />
             </CardOpaque>
-            <CardOpaque title="LUP">
+            <CardOpaque
+              title={
+                <span>
+                  LUP
+                  <Info className="ms-2" title="Lowest Utilized Price (LUP)">
+                    The LUP is the lowest price bucket where there is a utilized
+                    deposit. It could also be seen as the price of the marginal (lowest
+                    priced and therefore least aggressive) lender matched with a
+                    borrower.
+                  </Info>
+                </span>
+              }
+            >
               <Value
                 value={pool.lup}
                 suffix={pool.quote_token_symbol}
@@ -245,7 +258,17 @@ const PoolPage = ({ params }) => {
                 className="text-lg"
               />
             </CardOpaque>
-            <CardOpaque title="HTP">
+            <CardOpaque
+              title={
+                <span>
+                  HTP
+                  <Info className="ms-2" title="Highest Threshold Price (HTP)">
+                    The threshold price of the least collateralized loan. Lender
+                    deposits above the HTP earn interest.
+                  </Info>
+                </span>
+              }
+            >
               <Value
                 value={pool.htp}
                 suffix={pool.quote_token_symbol}
@@ -257,7 +280,17 @@ const PoolPage = ({ params }) => {
                 className="text-lg"
               />
             </CardOpaque>
-            <CardOpaque title="HPB">
+            <CardOpaque
+              title={
+                <span>
+                  HPB
+                  <Info className="ms-2" title="Highest Price Bucket (HPB)">
+                    The highest-priced bucket which contains a deposit, not counting
+                    claimable collateral.
+                  </Info>
+                </span>
+              }
+            >
               <Value
                 value={pool.hpb}
                 suffix={pool.quote_token_symbol}
