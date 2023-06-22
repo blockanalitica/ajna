@@ -3,10 +3,11 @@
 import { round } from "@/utils/number";
 import { Chart as ChartJS, registerables } from "chart.js";
 import "chartjs-adapter-luxon";
+import annotationPlugin from "chartjs-plugin-annotation";
 import _ from "lodash";
 import { Chart } from "react-chartjs-2";
 
-ChartJS.register(...registerables);
+ChartJS.register(...registerables, annotationPlugin);
 ChartJS.defaults.color = "rgb(185, 186, 202)";
 ChartJS.defaults.font = {
   size: 12,

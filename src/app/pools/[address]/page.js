@@ -203,7 +203,7 @@ const PoolPage = ({ params }) => {
 
       <div className="grid grid-cols-3 gap-4 mb-10">
         <div className="col-span-2">
-          <BucketsGraph address={address} />
+          <BucketsGraph address={address} lup={pool.lup} htp={pool.htp} />
         </div>
 
         <CardBackground className="grid grid-cols-1 place-content-between">
