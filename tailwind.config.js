@@ -30,6 +30,7 @@ module.exports = {
         "table-search-results": "1fr .5fr",
         "table-pool-events": "1.5fr 1fr 1fr 1fr 1fr",
         "table-pool-buckets": ".2fr 1fr 1fr 1fr 1fr",
+        "table-token-arbitrage-pools": ".1fr 1fr 1fr 1fr 1fr 1fr",
       },
     },
     colors: {
