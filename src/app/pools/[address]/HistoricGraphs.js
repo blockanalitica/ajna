@@ -60,7 +60,8 @@ const HistoricGraphs = ({
     },
   };
 
-  const valueFormatter = (value) => {
+  const valueFormatter = (data) => {
+    const value = data.y;
     return (
       <Value
         value={value}
@@ -71,7 +72,8 @@ const HistoricGraphs = ({
     );
   };
 
-  const subvalueFormatter = (value) => {
+  const subvalueFormatter = (data) => {
+    const value = data.x;
     let date;
     if (typeof value == "number") {
       date = DateTime.fromMillis(value);
