@@ -18,9 +18,12 @@ const HistoricGraphs = ({
 }) => {
   const [displayOption, setDisplayOption] = useState("pool_size");
   const actualDaysAgo = daysAgo > 7 ? daysAgo : 30;
-  const { data, error, isLoading } = useFetch(`/pools/${address}/historic/`, {
-    days_ago: actualDaysAgo,
-  });
+  const { data, error, isLoading } = useFetch(
+    `/pools/${address}/historic/${displayOption}/`,
+    {
+      days_ago: actualDaysAgo,
+    }
+  );
   if (error) {
     return <p>Failed to load data</p>;
   }
@@ -32,12 +35,13 @@ const HistoricGraphs = ({
     { key: "pool_size", value: "Lended" },
     { key: "debt", value: "Borrowed" },
     { key: "pledged_collateral", value: "Collateral" },
+    { key: "volume", value: "Volume" },
   ];
 
   const series = [
     {
       label: "earn",
-      data: data.map((row) => ({ x: row.date, y: row[displayOption] })),
+      data: data.map((row) => ({ x: row.date, y: row.amount })),
     },
   ];
 
@@ -62,14 +66,15 @@ const HistoricGraphs = ({
 
   const valueFormatter = (data) => {
     const value = data.y;
-    return (
-      <Value
-        value={value}
-        suffix={displayOption === "pledged_collateral" ? collateralSymbol : quoteSymbol}
-        big
-        compact
-      />
-    );
+    let prefix = "";
+    let suffix = "";
+    if (displayOption === "volume") {
+      prefix = "$";
+    } else {
+      suffix = displayOption === "pledged_collateral" ? collateralSymbol : quoteSymbol;
+    }
+
+    return <Value value={value} suffix={suffix} prefix={prefix} big compact />;
   };
 
   const subvalueFormatter = (data) => {
@@ -97,6 +102,7 @@ const HistoricGraphs = ({
   return (
     <CardBackground {...rest}>
       <FancyGraph
+        type={displayOption === "volume" ? "bar" : "line"}
         key={`graph-${displayOption}`}
         series={series}
         options={options}
