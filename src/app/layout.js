@@ -7,6 +7,7 @@ import "@/styles/globals.css";
 
 config.autoAddCss = false;
 
+// Set default timezone here for server components
 // Set default timezone to UTC
 DTSettings.defaultZone = "utc";
 DTSettings.defaultLocale = "en";

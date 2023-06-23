@@ -10,24 +10,30 @@ const FancyGraph = ({
   valueFormatter,
   subvalueFormatter,
   headerRight,
+  defaultTooltipData,
   ...rest
 }) => {
-  const defaultValues = series[0].data.at(-1);
-  const [labelValue, setLabelValue] = useState(defaultValues.y);
-  const [labelSubvalue, setLabelSubvalue] = useState(defaultValues.x);
+  let defaultData = null;
+  if (defaultTooltipData) {
+    defaultData = defaultTooltipData;
+  } else {
+    defaultData = series[0].data.at(-1);
+  }
+
+  const [tooltipData, setTooltipData] = useState(defaultData);
 
   const externalTooltipHandler = ({ tooltip }) => {
     if (tooltip.opacity === 0) {
-      setLabelValue(defaultValues.y);
-      setLabelSubvalue(defaultValues.x);
+      if (!_.isEqual(tooltipData, defaultData)) {
+        setTooltipData(defaultData);
+      }
       return;
     }
-
-    let value = tooltip.dataPoints[0].parsed.y;
-    let subvalue = tooltip.dataPoints[0].parsed.x;
-
-    setLabelValue(value);
-    setLabelSubvalue(subvalue);
+    // Only set tooltip data when it differes, to avoid unnecessary rerenders
+    const rawData = tooltip.dataPoints.map((row) => row.raw);
+    if (!_.isEqual(tooltipData, rawData)) {
+      setTooltipData(rawData);
+    }
   };
 
   const defaultOptions = {
@@ -79,8 +85,10 @@ const FancyGraph = ({
     },
   ];
 
-  const lblValue = valueFormatter ? valueFormatter(labelValue) : labelValue;
-  const lblSubValue = valueFormatter ? subvalueFormatter(labelSubvalue) : labelSubvalue;
+  const lblValue = valueFormatter ? valueFormatter(tooltipData) : tooltipData.y;
+  const lblSubValue = subvalueFormatter
+    ? subvalueFormatter(tooltipData)
+    : tooltipData.x;
 
   return (
     <div>

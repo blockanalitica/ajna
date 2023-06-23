@@ -1,5 +1,6 @@
 "use client";
 
+import { Settings as DTSettings } from "luxon";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classnames from "classnames";
@@ -9,6 +10,11 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import Search from "@/components/search/Search";
 import NetworkSwitch from "./NetworkSwitch";
+
+// Set default timezone here for client components
+// Set default timezone to UTC
+DTSettings.defaultZone = "utc";
+DTSettings.defaultLocale = "en";
 
 const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
