@@ -30,7 +30,11 @@ const FancyGraph = ({
       return;
     }
     // Only set tooltip data when it differes, to avoid unnecessary rerenders
-    const rawData = tooltip.dataPoints.map((row) => row.raw);
+    let rawData = tooltip.dataPoints.map((row) => row.raw);
+    if (rawData.length === 1) {
+      rawData = rawData[0];
+    }
+
     if (!_.isEqual(tooltipData, rawData)) {
       setTooltipData(rawData);
     }
