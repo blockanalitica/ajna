@@ -1,5 +1,6 @@
 "use client";
 
+import { DateTime } from "luxon";
 import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 import CardBackground from "@/components/card/CardBackground";
 import CardOpaque from "@/components/card/CardOpaque";
@@ -164,7 +165,16 @@ const PoolPage = ({ params }) => {
               <Value value={pool.tvl} prefix="$" className="text-xl" />
               <ValueChange value={pool.tvl - pool.prev_tvl} prefix="$" />
             </CardOpaque>
-            <CardOpaque title="Volume (24h)">
+            <CardOpaque
+              title={
+                <span>
+                  Volume (today)
+                  <Info className="ms-2" title="Volume (today)">
+                    Total volume on date {DateTime.now().toFormat("LLL dd, y")}
+                  </Info>
+                </span>
+              }
+            >
               <Value
                 value={pool.volume ? pool.volume : 0}
                 className="text-xl"
