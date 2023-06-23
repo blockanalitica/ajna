@@ -6,6 +6,7 @@ import "chartjs-adapter-luxon";
 import annotationPlugin from "chartjs-plugin-annotation";
 import _ from "lodash";
 import { Chart } from "react-chartjs-2";
+import { DEFAULT_PALETTE, SYMBOLS_PALETTE } from "@/utils/colors";
 
 ChartJS.register(...registerables, annotationPlugin);
 ChartJS.defaults.color = "rgb(185, 186, 202)";
@@ -14,45 +15,6 @@ ChartJS.defaults.font = {
   family: "Rubik_Regular, Inter, sans-serif",
   weight: 300,
 };
-
-const DEFAULT_PALETTE = [
-  "#8AC7DB",
-  "#00d395",
-  "#9669ed",
-  "#03A9F4",
-  "#FF4560",
-  "#775DD0",
-  "#3F51B5",
-  "#4CAF50",
-  "#F9CE1D",
-  "#008FFB",
-  "#00E396",
-  "#FEB019",
-  "#0276aa",
-  "#e20020",
-  "#492fa3",
-  "#2c387e",
-  "#357a38",
-  "#bd9905",
-  "#0064af",
-  "#009e69",
-  "#c28000",
-  "#014361",
-  "#810012",
-  "#2a1b5d",
-  "#192048",
-  "#1e4620",
-  "#6c5702",
-  "#003964",
-  "#005a3c",
-  "#6f4900",
-  "#22b8fc",
-  "#ff6077",
-  "#8b75d7",
-  "#5767c4",
-  "#65bc69",
-  "#f9d53e",
-];
 
 const Graph = ({ series, type = "line", options, labels, ...rest }) => {
   const defaultOptions = {
@@ -73,7 +35,7 @@ const Graph = ({ series, type = "line", options, labels, ...rest }) => {
       } else if (parentRect.width >= 400 && parentRect.width < 600) {
         chart.config.options.aspectRatio = 1.5;
       } else if (parentRect.width >= 600) {
-        chart.config.options.aspectRatio = 1.7;
+        chart.config.options.aspectRatio = 2;
       }
     },
     fill: false,
@@ -148,6 +110,9 @@ const Graph = ({ series, type = "line", options, labels, ...rest }) => {
 
     if (serie.color) {
       bgColor = serie.color;
+    }
+    if (serie.symbol) {
+      bgColor = SYMBOLS_PALETTE[serie.symbol] || bgColor;
     }
     return {
       backgroundColor: bgColor,

@@ -115,7 +115,6 @@ const BucketsGraph = ({ address, lup, htp, ...rest }) => {
               2
             )}`;
           },
-
           label: (tooltipItem) => {
             const value = compact(tooltipItem.parsed.x, 2, true);
             return `Bucket #${tooltipItem.dataset.label}: ${value}`;
