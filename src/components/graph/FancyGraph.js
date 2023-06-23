@@ -47,6 +47,14 @@ const FancyGraph = ({
         enabled: false,
         position: "nearest",
         external: externalTooltipHandler,
+        // disable animation to prevent weird behaviour when showing both external
+        // and on-canvas tooltip
+        animations: {
+          opacity: {
+            easing: "linear",
+            duration: 0,
+          },
+        },
       },
       legend: {
         display: false,

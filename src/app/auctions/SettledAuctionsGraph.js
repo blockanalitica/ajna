@@ -11,7 +11,12 @@ import { tooltipLabelNumber, tooltipTitleDateTime } from "@/utils/graph";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import { compact } from "@/utils/number";
 
-const SettledAuctionsGraph = ({ daysAgo, ...rest }) => {
+const SettledAuctionsGraph = ({
+  daysAgo,
+  totalCollateralUsd,
+  totalDebtUsd,
+  ...rest
+}) => {
   const [displayOption, setDisplayOption] = useState("collateral");
 
   const { data, error, isLoading } = useFetch(
@@ -118,10 +123,9 @@ const SettledAuctionsGraph = ({ daysAgo, ...rest }) => {
     },
   };
 
-  // TODO:
   const defaultTooltipData = {
-    x: DateTime.now().toISO(),
-    y: 123446789,
+    x: `Total ${displayOption}`,
+    y: displayOption === "collateral" ? totalCollateralUsd : totalDebtUsd,
   };
 
   const valueFormatter = (data) => {
@@ -138,6 +142,8 @@ const SettledAuctionsGraph = ({ daysAgo, ...rest }) => {
     let dateVal = null;
     if (Array.isArray(data)) {
       dateVal = data[0].x;
+    } else if (_.isString(data.x)) {
+      return data.x;
     } else {
       dateVal = data.x;
     }
