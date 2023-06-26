@@ -26,7 +26,7 @@ const TotalStats = ({ daysAgo, className, ...rest }) => {
   const stats = [
     {
       title: "Total lended",
-      value: <Value value={results.total_pool_size} prefix="$" />,
+      value: <Value value={results.total_pool_size || 0} prefix="$" />,
       smallValue: (
         <ValueChange
           value={results.total_pool_size - results.prev_total_pool_size}
@@ -36,7 +36,7 @@ const TotalStats = ({ daysAgo, className, ...rest }) => {
     },
     {
       title: "Total borowed",
-      value: <Value value={results.total_current_debt} prefix="$" />,
+      value: <Value value={results.total_current_debt || 0} prefix="$" />,
       smallValue: (
         <ValueChange
           value={results.total_current_debt - results.prev_total_current_debt}
@@ -46,7 +46,7 @@ const TotalStats = ({ daysAgo, className, ...rest }) => {
     },
     {
       title: "Total collateral",
-      value: <Value value={results.total_pledged_collateral} prefix="$" />,
+      value: <Value value={results.total_pledged_collateral || 0} prefix="$" />,
       smallValue: (
         <ValueChange
           value={
@@ -58,14 +58,14 @@ const TotalStats = ({ daysAgo, className, ...rest }) => {
     },
     {
       title: "TVL",
-      value: <Value value={results.total_tvl} prefix="$" />,
+      value: <Value value={results.total_tvl || 0} prefix="$" />,
       smallValue: (
         <ValueChange value={results.total_tvl - results.prev_total_tvl} prefix="$" />
       ),
     },
     {
       title: "Ajna burned 🔥",
-      value: <Value value={results.total_ajna_burned} />,
+      value: <Value value={results.total_ajna_burned || 0} />,
       smallValue: (
         <ValueChange
           value={results.total_ajna_burned - results.prev_total_ajna_burned}

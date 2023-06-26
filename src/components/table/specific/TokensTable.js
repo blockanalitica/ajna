@@ -1,5 +1,6 @@
 "use client";
 
+import { faCoins } from "@fortawesome/free-solid-svg-icons";
 import CryptoIcon from "@/components/icon/CryptoIcon";
 import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
@@ -65,6 +66,9 @@ const TokensTable = ({ ...rest }) => {
       columns={columns}
       gridColumnClassName="grid-cols-table-tokens"
       href={(row) => `/tokens/${row.underlying_address}`}
+      emptyIcon={faCoins}
+      emptyTitle="No Tokens"
+      emptyContent="There are no tokens"
       {...rest}
     />
   );

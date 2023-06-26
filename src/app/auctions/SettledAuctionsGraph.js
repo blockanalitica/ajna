@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { faGavel } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useFetch } from "@/hooks";
 import { DateTime } from "luxon";
 import _ from "lodash";
@@ -41,9 +43,16 @@ const SettledAuctionsGraph = ({
 
     return (
       <CardBackground {...rest}>
-        <div className="text-gray-6 text-center">
-          No auctions in the last {daysText}.
+        <div className="flex items-center flex-col">
+          <div className="w-20 h-20 mt-20 mb-4 bg-gray-22 rounded-full p-4 flex items-center justify-center">
+            <FontAwesomeIcon icon={faGavel} size="xl" className="opacity-60" />
+          </div>
+          <div className="text-red-3 text-sm mb-2">No Auctions</div>
+          <div className="text-gray-13 text-sm mb-20">
+            No auctions in the last {daysText}.
+          </div>
         </div>
+        <div className="text-gray-6 text-center"></div>
       </CardBackground>
     );
   }

@@ -1,5 +1,6 @@
 "use client";
 
+import { faBucket } from "@fortawesome/free-solid-svg-icons";
 import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
 import { useFetch } from "@/hooks";
@@ -108,6 +109,9 @@ const PoolBuckets = ({ address, ...rest }) => {
         onOrderChange={setOrder}
         currentOrder={order}
         isLoading={isLoading}
+        emptyIcon={faBucket}
+        emptyTitle="No Buckets"
+        emptyContent="There are no buckets"
       />
     </div>
   );

@@ -1,7 +1,8 @@
 "use client";
 
-import { useFetch } from "@/hooks";
 import { useState } from "react";
+import { faPersonSwimming } from "@fortawesome/free-solid-svg-icons";
+import { useFetch } from "@/hooks";
 import CryptoIcon from "@/components/icon/CryptoIcon";
 import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
@@ -127,6 +128,9 @@ const TokenArbitragePools = ({ address, daysAgo, ...rest }) => {
           onOrderChange={setOrder}
           currentOrder={order}
           isLoading={isLoading}
+          emptyIcon={faPersonSwimming}
+          emptyTitle="No Arbitrage Pools"
+          emptyContent="There are no arbitrage pools"
         />
       ) : null}
     </section>
