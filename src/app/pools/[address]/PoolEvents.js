@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 import { useFetch } from "@/hooks";
 import { DateTime } from "luxon";
 import Table from "@/components/table/Table";
@@ -139,6 +140,9 @@ const PoolEvents = ({ address, ...rest }) => {
         onOrderChange={setOrder}
         currentOrder={order}
         isLoading={isLoading}
+        emptyIcon={faCalendarDays}
+        emptyTitle="No Events"
+        emptyContent="There are no events"
       />
     </div>
   );

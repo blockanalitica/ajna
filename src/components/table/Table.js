@@ -2,6 +2,8 @@
 
 import classnames from "classnames";
 import _ from "lodash";
+import { faFolderOpen } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CardBackground from "@/components/card/CardBackground";
 import Pagination from "@/components/pagination/Pagination";
 import Link from "next/link";
@@ -10,7 +12,7 @@ import TablePlaceholder from "./TablePlaceholder";
 
 const Table = ({
   className,
-  data,
+  data = [],
   keyField,
   columns,
   gridColumnClassName,
@@ -23,6 +25,9 @@ const Table = ({
   onOrderChange,
   allowOrder,
   footerRow,
+  emptyIcon,
+  emptyTitle,
+  emptyContent,
   isLoading = false,
   ...rest
 }) => {
@@ -60,45 +65,67 @@ const Table = ({
           ))}
         </div>
         <div className="mx-5">
-          {data.map((row, index) => (
-            <RowComponent
-              key={row[keyField]}
-              className={classnames(
-                "block grid gap-3 border-b border-gray-20 px-4 min-h-[78px]",
-                gridColumnClassName,
-                {
-                  "cursor-pointer hover:text-gray-7": !!href,
-                  "last:border-b-0": !footerRow,
-                }
-              )}
-              href={_.isFunction(href) ? href(row) : href}
-              prefetch={false}
-            >
-              {columns.map((column, colIndex) => (
-                <div
-                  key={`row-${row[keyField]}-${colIndex}`}
-                  className={classnames(
-                    "flex items-center py-4",
-                    `justify-${column.cellAlign || "start"}`
-                  )}
-                >
+          {data.length > 0 ? (
+            data.map((row, index) => (
+              <RowComponent
+                key={row[keyField]}
+                className={classnames(
+                  "block grid gap-3 border-b border-gray-20 px-4 min-h-[78px]",
+                  gridColumnClassName,
+                  {
+                    "cursor-pointer hover:text-gray-7": !!href,
+                    "last:border-b-0": !footerRow,
+                  }
+                )}
+                href={_.isFunction(href) ? href(row) : href}
+                prefetch={false}
+              >
+                {columns.map((column, colIndex) => (
                   <div
+                    key={`row-${row[keyField]}-${colIndex}`}
                     className={classnames(
-                      "flex flex-col",
-                      `items-${column.cellAlign || "start"}`
+                      "flex items-center py-4",
+                      `justify-${column.cellAlign || "start"}`
                     )}
                   >
-                    <div className="flex">{column["cell"]({ row, index })}</div>
-                    <div className="flex text-sm text-gray-6">
-                      {column["smallCell"] ? column["smallCell"]({ row, index }) : null}
+                    <div
+                      className={classnames(
+                        "flex flex-col",
+                        `items-${column.cellAlign || "start"}`
+                      )}
+                    >
+                      <div className="flex">{column["cell"]({ row, index })}</div>
+                      <div className="flex text-sm text-gray-6">
+                        {column["smallCell"]
+                          ? column["smallCell"]({ row, index })
+                          : null}
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </RowComponent>
-          ))}
+                ))}
+              </RowComponent>
+            ))
+          ) : (
+            <div className="flex items-center flex-col">
+              <div className="w-20 h-20 mt-20 mb-4 bg-gray-22 rounded-full p-4 flex items-center justify-center">
+                <FontAwesomeIcon
+                  icon={emptyIcon ? emptyIcon : faFolderOpen}
+                  size="xl"
+                  className="opacity-60"
+                />
+              </div>
+              <div className="text-red-3 text-sm mb-2">
+                {emptyTitle ? emptyTitle : "No Items"}
+              </div>
+              <div className="text-gray-13 text-sm mb-20">
+                {emptyContent ? emptyContent : "There are no items"}
+              </div>
+            </div>
+          )}
         </div>
-        {footerRow ? <div className="px-9 py-5 text-gray-7">{footerRow}</div> : null}
+        {footerRow && data.length > 0 ? (
+          <div className="px-9 py-5 text-gray-7">{footerRow}</div>
+        ) : null}
       </CardBackground>
       {totalPages > 1 ? (
         <Pagination

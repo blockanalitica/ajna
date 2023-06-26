@@ -10,6 +10,7 @@ const ResultTable = ({
   columns,
   gridColumnClassName,
   href,
+  emptyMessage,
   isLoading = false,
   ...rest
 }) => {
@@ -71,7 +72,9 @@ const ResultTable = ({
             </RowComponent>
           ))
         ) : (
-          <div className="text-gray-5">No results</div>
+          <div className="text-gray-5">
+            {emptyMessage ? emptyMessage : "No results"}
+          </div>
         )}
       </div>
     </div>

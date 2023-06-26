@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { faWaterLadder } from "@fortawesome/free-solid-svg-icons";
 import { useFetch } from "@/hooks";
 import PoolsTable from "@/components/table/specific/PoolsTable";
 
@@ -38,6 +39,9 @@ const TokenPools = ({ address, daysAgo, ...rest }) => {
         onOrderChange={setOrder}
         currentOrder={order}
         isLoading={isLoading}
+        emptyIcon={faWaterLadder}
+        emptyTitle="No Pools"
+        emptyContent="There are no pools"
         {...rest}
       />
     </section>

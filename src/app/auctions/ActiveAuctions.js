@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { faGavel } from "@fortawesome/free-solid-svg-icons";
 import { useFetch } from "@/hooks";
 import { shorten } from "@/utils/address";
 import { DateTime } from "luxon";
@@ -83,6 +84,9 @@ const ActiveAuctions = () => {
       keyField="uid"
       columns={columns}
       gridColumnClassName="grid-cols-table-auctions-active"
+      emptyIcon={faGavel}
+      emptyTitle="No Auctions"
+      emptyContent="There are no active auctions"
     />
   );
 };

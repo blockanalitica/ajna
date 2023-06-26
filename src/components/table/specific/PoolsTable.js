@@ -1,5 +1,6 @@
 "use client";
 
+import { faWaterLadder } from "@fortawesome/free-solid-svg-icons";
 import CryptoIcon from "@/components/icon/CryptoIcon";
 import InlineSelect from "@/components/select/InlineSelect";
 import Table from "@/components/table/Table";
@@ -211,6 +212,9 @@ const PoolsTable = ({ ...rest }) => {
       gridColumnClassName="grid-cols-table-pools"
       href={(row) => `/pools/${row.address}`}
       footerRow={footerRow}
+      emptyIcon={faWaterLadder}
+      emptyTitle="No Pools"
+      emptyContent="There are no pools"
       {...rest}
     />
   );

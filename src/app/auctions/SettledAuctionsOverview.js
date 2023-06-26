@@ -38,11 +38,11 @@ const SettledAuctionsOverview = ({ daysAgo, className }) => {
           </CardOpaque>
           <div></div>
           <CardOpaque title="Collateral">
-            <Value value={collateralUsd} className="text-xl" prefix="$" />
+            <Value value={collateralUsd || 0} className="text-xl" prefix="$" />
             <ValueChange value={change.collateral_usd} prefix="$" />
           </CardOpaque>
           <CardOpaque title="Debt">
-            <Value value={debtUsd} prefix="$" className="text-xl" />
+            <Value value={debtUsd || 0} prefix="$" className="text-xl" />
             <ValueChange value={change.debt_usd} prefix="$" />
           </CardOpaque>
         </div>

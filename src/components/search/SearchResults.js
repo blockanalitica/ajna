@@ -72,6 +72,7 @@ const SearchResults = ({ searchTerm }) => {
         gridColumnClassName="grid-cols-table-search-results"
         href={(row) => `/pools/${row.address}`}
         isLoading={isLoading}
+        emptyMessage="No pools"
       />
       <hr className="bg-gray-20 h-px border-0 mb-5 mt-3" />
       <ResultTable
@@ -81,6 +82,7 @@ const SearchResults = ({ searchTerm }) => {
         gridColumnClassName="grid-cols-table-search-results"
         href={(row) => `/tokens/${row.underlying_address}`}
         isLoading={isLoading}
+        emptyMessage="No tokens"
       />
     </div>
   );
