@@ -1,4 +1,5 @@
 import { config } from "@fortawesome/fontawesome-svg-core";
+import { Analytics } from "@vercel/analytics/react";
 import { Settings as DTSettings } from "luxon";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
@@ -30,6 +31,7 @@ const RootLayout = ({ children }) => {
           <Footer />
         </div>
         <div id="ajna-portal"></div>
+        <Analytics />
       </body>
     </html>
   );
