@@ -29,10 +29,18 @@ const Table = ({
   emptyTitle,
   emptyContent,
   isLoading = false,
+  placeholderRows,
+  placeholderFooter,
   ...rest
 }) => {
   if (isLoading) {
-    return <TablePlaceholder className={className} />;
+    return (
+      <TablePlaceholder
+        className={className}
+        rows={placeholderRows}
+        footer={placeholderFooter}
+      />
+    );
   }
 
   let RowComponent = "div";

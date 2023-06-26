@@ -143,6 +143,7 @@ const PoolEvents = ({ address, ...rest }) => {
         emptyIcon={faCalendarDays}
         emptyTitle="No Events"
         emptyContent="There are no events"
+        placeholderRows={pageSize}
       />
     </div>
   );

@@ -112,6 +112,7 @@ const PoolBuckets = ({ address, ...rest }) => {
         emptyIcon={faBucket}
         emptyTitle="No Buckets"
         emptyContent="There are no buckets"
+        placeholderRows={pageSize}
       />
     </div>
   );
