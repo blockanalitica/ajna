@@ -29,6 +29,7 @@ const Page = () => {
         <h1 className="text-xl md:text-1xl xl:text-2xl">Top Pools</h1>
         <Button text="View all" href="/pools" />
       </div>
+
       <div className="mb-10">
         <TopPools daysAgo={daysAgo} />
       </div>
