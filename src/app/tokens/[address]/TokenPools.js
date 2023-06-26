@@ -42,6 +42,7 @@ const TokenPools = ({ address, daysAgo, ...rest }) => {
         emptyIcon={faWaterLadder}
         emptyTitle="No Pools"
         emptyContent="There are no pools"
+        placeholderRows={pageSize}
         {...rest}
       />
     </section>

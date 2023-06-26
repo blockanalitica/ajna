@@ -1,29 +1,22 @@
 import classnames from "classnames";
 
-// TODO: automatic calculation of columns based on number of sections passed in data
 const Stats = ({ data, className, ...rest }) => {
   const cols = data.length;
-  let mid_cols = cols;
-  if (cols > 4 && cols % 2 !== 0) {
-    mid_cols = Math.floor(cols);
-    if (mid_cols % 2 !== 0) {
-      mid_cols = mid_cols - 1;
-    }
-  }
-  let cols_classes = null;
+
+  let colClassName = null;
   if (cols == 5) {
-    cols_classes = "md:grid-cols-4 lg:grid-cols-5";
+    colClassName = "md:grid-cols-4 lg:grid-cols-5";
   } else if (cols == 4) {
-    cols_classes = "md:grid-cols-4 lg:grid-cols-4";
+    colClassName = "md:grid-cols-4 lg:grid-cols-4";
   } else if (cols == 3) {
-    cols_classes = "md:grid-cols-3 lg:grid-cols-3";
+    colClassName = "md:grid-cols-3 lg:grid-cols-3";
   }
 
   return (
     <section
       className={classnames(
-        "grid grid-cols-1 gap-4 sm:grid-cols-2 ",
-        cols_classes,
+        "grid grid-cols-1 gap-4 sm:grid-cols-2",
+        colClassName,
         className
       )}
       {...rest}

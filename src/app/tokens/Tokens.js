@@ -37,6 +37,7 @@ const TopPools = ({ searchTerm, daysAgo, ...rest }) => {
       onOrderChange={setOrder}
       currentOrder={order}
       isLoading={isLoading}
+      placeholderRows={5}
       {...rest}
     />
   );

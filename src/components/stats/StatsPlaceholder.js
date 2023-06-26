@@ -1,12 +1,21 @@
 import classnames from "classnames";
 import _ from "lodash";
 
-// TODO: automatic calculation of columns based on number of sections passed in data
-const StatsPlaceholder = ({ numStats, className, size = "md", ...rest }) => {
+const StatsPlaceholder = ({ numStats, className, ...rest }) => {
+  let colClassName = null;
+  if (numStats == 5) {
+    colClassName = "md:grid-cols-4 lg:grid-cols-5";
+  } else if (numStats == 4) {
+    colClassName = "md:grid-cols-4 lg:grid-cols-4";
+  } else if (numStats == 3) {
+    colClassName = "md:grid-cols-3 lg:grid-cols-3";
+  }
+
   return (
     <section
       className={classnames(
-        "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 animate-pulse",
+        "grid grid-cols-1 gap-4 sm:grid-cols-2 animate-pulse",
+        colClassName,
         className
       )}
       {...rest}
@@ -14,11 +23,13 @@ const StatsPlaceholder = ({ numStats, className, size = "md", ...rest }) => {
       {_.range(numStats).map((value) => (
         <div
           key={value}
-          className={classnames("bg-gray-dark/30 border-gray-20 border rounded-3xl", {
-            "h-28": size === "lg",
-            "h-24": size === "md",
-          })}
-        ></div>
+          className={classnames(
+            "bg-gray-dark/30 border-gray-20 border rounded-3xl",
+            "px-6 py-4 h-[122px]"
+          )}
+        >
+          <div className="h-5 bg-gray-21 opacity-70 rounded-lg"></div>
+        </div>
       ))}
     </section>
   );

@@ -17,7 +17,13 @@ const TopTokens = ({ daysAgo, ...rest }) => {
   let { results } = data;
 
   return (
-    <TokensTable data={results} allowOrder={false} isLoading={isLoading} {...rest} />
+    <TokensTable
+      data={results}
+      allowOrder={false}
+      isLoading={isLoading}
+      placeholderRows={5}
+      {...rest}
+    />
   );
 };
 

@@ -18,7 +18,7 @@ const TotalStats = ({ daysAgo, className, ...rest }) => {
     return <p>Failed to load data</p>;
   }
   if (isLoading) {
-    return <StatsPlaceholder className={className} numStats={5} size="lg" />;
+    return <StatsPlaceholder className={className} numStats={5} />;
   }
 
   const { results } = data;
@@ -74,7 +74,11 @@ const TotalStats = ({ daysAgo, className, ...rest }) => {
     },
   ];
 
-  return <Stats data={stats} className={className} {...rest} />;
+  return (
+    <>
+      <Stats data={stats} className={className} {...rest} />
+    </>
+  );
 };
 
 export default TotalStats;

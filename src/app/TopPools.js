@@ -17,7 +17,14 @@ const TopPools = ({ daysAgo = 1, ...rest }) => {
   }
   let { results } = data;
   return (
-    <PoolsTable data={results} allowOrder={false} isLoading={isLoading} {...rest} />
+    <PoolsTable
+      data={results}
+      allowOrder={false}
+      isLoading={isLoading}
+      placeholderRows={5}
+      placeholderFooter={true}
+      {...rest}
+    />
   );
 };
 
