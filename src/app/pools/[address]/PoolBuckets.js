@@ -35,9 +35,8 @@ const PoolBuckets = ({ address, ...rest }) => {
       cell: ({ row }) => (
         <span className="font-syncopate text-gray-7">{row.bucket_index}</span>
       ),
-      headerAlign: "end",
-      cellAlign: "end",
       orderField: "bucket_index",
+      cellSize: "0.2fr",
     },
     {
       header: "Bucket Price",
@@ -68,6 +67,7 @@ const PoolBuckets = ({ address, ...rest }) => {
       headerAlign: "end",
       cellAlign: "end",
       orderField: "collateral",
+      visibleAfter: "md",
     },
     {
       header: "Quote",
@@ -78,6 +78,7 @@ const PoolBuckets = ({ address, ...rest }) => {
       headerAlign: "end",
       cellAlign: "end",
       orderField: "deposit",
+      visibleAfter: "md",
     },
     {
       header: "Utilized Bucket",
@@ -99,9 +100,8 @@ const PoolBuckets = ({ address, ...rest }) => {
       </div>
       <Table
         data={results}
-        keyField="id"
+        keyField="bucket_index"
         columns={columns}
-        gridColumnClassName="grid-cols-table-pool-buckets"
         currentPage={page}
         pageSize={pageSize}
         totalRecords={count}

@@ -1,11 +1,10 @@
 "use client";
 
-import CardBackground from "@/components/card/CardBackground";
 import Graph from "@/components/graph/Graph";
 import { useFetch } from "@/hooks";
 import { compact, formatToDecimals } from "@/utils/number";
 
-const BucketsGraph = ({ address, lup, htp, ...rest }) => {
+const BucketsGraph = ({ address, lup, htp }) => {
   const { data, error, isLoading } = useFetch(`/pools/${address}/buckets/`, {
     p_size: 50,
     order: "-bucket_price",
@@ -127,11 +126,7 @@ const BucketsGraph = ({ address, lup, htp, ...rest }) => {
     },
   };
 
-  return (
-    <CardBackground {...rest}>
-      <Graph series={series} options={options} type="bar" labels={labels} />
-    </CardBackground>
-  );
+  return <Graph series={series} options={options} type="bar" labels={labels} />;
 };
 
 export default BucketsGraph;

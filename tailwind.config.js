@@ -8,31 +8,14 @@ module.exports = {
     // Or if using `src` directory:
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  safelist: ["grid-cols-3", "grid-cols-4", "grid-cols-5"],
   theme: {
     extend: {
-      lineHeight: {
-        20: "5rem",
-      },
       maxWidth: {
         80: "80rem",
       },
       gridTemplateColumns: {
-        "first-big": "3fr repeat(3, minmax(0, 1fr))",
-        "table-5-small": ".2fr repeat(4, 1.5fr)",
-        "table-5": ".2fr 3fr repeat(3, 1.5fr)",
-        "table-6": ".2fr 3fr 2fr repeat(3, 1fr)",
-        "table-7": ".2fr 3fr 1fr 1fr repeat(3, 1fr)",
-        "table-8": ".1fr 1.5fr .7fr .7fr .7fr repeat(3, .8fr)",
-
         "table-placeholder": ".2fr 1.5fr 1fr 1fr 1fr",
-        "table-pools": ".1fr 1.3fr repeat(6, .7fr) .5fr",
-        "table-tokens": ".2fr 3fr repeat(3, 1.5fr)",
         "table-search-results": "1fr .5fr",
-        "table-pool-events": "1.5fr 1fr 1fr 1fr 1fr",
-        "table-pool-buckets": ".2fr 1fr 1fr 1fr 1fr",
-        "table-token-arbitrage-pools": ".1fr 1fr 1fr 1fr 1fr 1fr",
-        "table-auctions-active": "1fr 1fr 1fr 1fr",
       },
     },
     colors: {

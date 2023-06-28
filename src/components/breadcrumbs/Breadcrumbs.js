@@ -31,7 +31,7 @@ const Breadcrumbs = () => {
   ];
 
   return (
-    <ol className="hidden md:inline-flex items-center text-sm">
+    <ol className="hidden lg:inline-flex items-center text-sm">
       {allPaths.map((path, index) => (
         <li key={index}>
           <div className="flex items-center">

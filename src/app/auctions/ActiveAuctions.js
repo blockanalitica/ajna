@@ -83,7 +83,6 @@ const ActiveAuctions = () => {
       isLoading={isLoading}
       keyField="uid"
       columns={columns}
-      gridColumnClassName="grid-cols-table-auctions-active"
       emptyIcon={faGavel}
       emptyTitle="No Auctions"
       emptyContent="There are no active auctions"

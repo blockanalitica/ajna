@@ -1,12 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import { faWaterLadder } from "@fortawesome/free-solid-svg-icons";
 import CryptoIcon from "@/components/icon/CryptoIcon";
 import InlineSelect from "@/components/select/InlineSelect";
 import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
-import { useState } from "react";
 
 const PoolsTable = ({ ...rest }) => {
   const [isPriceUsd, setIsPriceUsd] = useState(false);
@@ -17,12 +17,13 @@ const PoolsTable = ({ ...rest }) => {
       cell: ({ index }) => (
         <span className="font-syncopate text-gray-7">{index + 1}</span>
       ),
+      cellSize: "0.2fr",
     },
     {
       header: "Collateral / Quote",
       cell: ({ row }) => (
         <>
-          <span className="relative flex">
+          <span className="relative hidden sm:flex">
             <CryptoIcon name={row.collateral_token_symbol} className="z-10" />
             <CryptoIcon
               name={row.quote_token_symbol}
@@ -34,6 +35,7 @@ const PoolsTable = ({ ...rest }) => {
           </span>
         </>
       ),
+      cellSize: "1.3fr",
     },
     {
       header: "Collateral",
@@ -67,6 +69,7 @@ const PoolsTable = ({ ...rest }) => {
       headerAlign: "end",
       cellAlign: "end",
       orderField: "pledged_collateral",
+      visibleAfter: "md",
     },
     {
       header: "Quote",
@@ -97,6 +100,7 @@ const PoolsTable = ({ ...rest }) => {
       headerAlign: "end",
       cellAlign: "end",
       orderField: "pool_size",
+      visibleAfter: "md",
     },
     {
       header: "Debt",
@@ -124,6 +128,7 @@ const PoolsTable = ({ ...rest }) => {
       headerAlign: "end",
       cellAlign: "end",
       orderField: "debt",
+      visibleAfter: "md",
     },
     {
       header: "TVL",
@@ -152,6 +157,7 @@ const PoolsTable = ({ ...rest }) => {
       headerAlign: "end",
       cellAlign: "end",
       orderField: "lend_rate",
+      visibleAfter: "lg",
     },
     {
       header: "Borrow APR",
@@ -168,6 +174,7 @@ const PoolsTable = ({ ...rest }) => {
       headerAlign: "end",
       cellAlign: "end",
       orderField: "borrow_rate",
+      visibleAfter: "lg",
     },
     {
       header: "🔥",
@@ -183,6 +190,8 @@ const PoolsTable = ({ ...rest }) => {
       headerAlign: "end",
       cellAlign: "end",
       orderField: "total_ajna_burned",
+      cellSize: "0.5fr",
+      visibleAfter: "lg",
     },
   ];
 
@@ -209,7 +218,6 @@ const PoolsTable = ({ ...rest }) => {
     <Table
       keyField="address"
       columns={columns}
-      gridColumnClassName="grid-cols-table-pools"
       href={(row) => `/pools/${row.address}`}
       footerRow={footerRow}
       emptyIcon={faWaterLadder}

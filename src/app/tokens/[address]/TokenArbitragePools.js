@@ -39,6 +39,7 @@ const TokenArbitragePools = ({ address, daysAgo, ...rest }) => {
       cell: ({ index }) => (
         <span className="font-syncopate text-gray-7">{index + 1}</span>
       ),
+      cellSize: "0.2fr",
     },
     {
       header: "Collateral / Quote",
@@ -119,7 +120,6 @@ const TokenArbitragePools = ({ address, daysAgo, ...rest }) => {
           data={results}
           keyField="address"
           columns={columns}
-          gridColumnClassName="grid-cols-table-token-arbitrage-pools"
           href={(row) => `/pools/${row.address}`}
           currentPage={page}
           pageSize={pageSize}

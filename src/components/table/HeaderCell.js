@@ -67,8 +67,26 @@ const HeaderCell = ({
   allowOrder = true,
   children,
 }) => {
+  // We're doing aerobatics with the alignment because tailwind can't figure out
+  // composed strigs, so we need to map it out for it to be recognised and compiled
+  const justifyMapping = {
+    start: "justify-start",
+    center: "justify-center",
+    end: "justify-end",
+  };
+  const textMapping = {
+    start: "text-start",
+    center: "text-center",
+    end: "text-end",
+  };
   return (
-    <div className={classnames("flex items-center", `justify-${align || "start"}`)}>
+    <div
+      className={classnames(
+        "flex items-center",
+        justifyMapping[align || "start"],
+        textMapping[align || "start"]
+      )}
+    >
       {allowOrder && orderField ? (
         <OrderSection
           currentOrder={currentOrder}
