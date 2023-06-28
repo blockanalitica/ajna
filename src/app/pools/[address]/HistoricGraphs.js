@@ -16,7 +16,7 @@ const HistoricGraphs = ({
   quoteSymbol,
   ...rest
 }) => {
-  const [displayOption, setDisplayOption] = useState("pool_size");
+  const [displayOption, setDisplayOption] = useState("tvl");
   const actualDaysAgo = daysAgo > 7 ? daysAgo : 30;
   const { data, error, isLoading } = useFetch(
     `/pools/${address}/historic/${displayOption}/`,
