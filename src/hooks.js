@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import queryString from "query-string";
 import useSWR from "swr";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -61,4 +61,30 @@ export const useQueryParams = () => {
   }
 
   return { queryParams, setQueryParams };
+};
+
+export const useMediaQuery = (size, type = "min-width") => {
+  // This is tailwinds default
+  const mapping = {
+    sm: `(${type}: 640px)`,
+    md: `(${type}: 768px)`,
+    lg: `(${type}: 1024px)`,
+    xl: `(${type}: 1280px)`,
+    "2xl": `(${type}: 1536px)`,
+  };
+  let mediaMatch;
+  if (typeof window !== "undefined") {
+    mediaMatch = window.matchMedia(mapping[size]);
+  }
+
+  const [match, setMatch] = useState(mediaMatch ? mediaMatch.matches : null);
+
+  useEffect(() => {
+    if (mediaMatch) {
+      const handler = (e) => setMatch(e.matches);
+      mediaMatch.addListener(handler);
+      return () => mediaMatch.removeListener(handler);
+    }
+  });
+  return match;
 };

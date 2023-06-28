@@ -14,6 +14,8 @@ const CryptoIcon = ({ name, size = "24", priority = false, ...rest }) => {
       style={{
         height: `${size}px`,
         width: `${size}px`,
+        minHeight: `${size}px`,
+        minWidth: `${size}px`,
       }}
       {...rest}
     >

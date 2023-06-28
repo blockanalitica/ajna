@@ -1,6 +1,5 @@
 "use client";
 
-import CardBackground from "@/components/card/CardBackground";
 import FancyGraph from "@/components/graph/FancyGraph";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import Value from "@/components/value/Value";
@@ -9,13 +8,7 @@ import { compact } from "@/utils/number";
 import { DateTime } from "luxon";
 import { useState } from "react";
 
-const HistoricGraphs = ({
-  address,
-  daysAgo,
-  collateralSymbol,
-  quoteSymbol,
-  ...rest
-}) => {
+const HistoricGraphs = ({ address, daysAgo, collateralSymbol, quoteSymbol }) => {
   const [displayOption, setDisplayOption] = useState("tvl");
   const actualDaysAgo = daysAgo > 7 ? daysAgo : 30;
   const { data, error, isLoading } = useFetch(
@@ -100,17 +93,15 @@ const HistoricGraphs = ({
   );
 
   return (
-    <CardBackground {...rest}>
-      <FancyGraph
-        type={displayOption === "volume" ? "bar" : "line"}
-        key={`graph-${displayOption}`}
-        series={series}
-        options={options}
-        valueFormatter={valueFormatter}
-        subvalueFormatter={subvalueFormatter}
-        headerRight={headerRight}
-      />
-    </CardBackground>
+    <FancyGraph
+      type={displayOption === "volume" ? "bar" : "line"}
+      key={`graph-${displayOption}`}
+      series={series}
+      options={options}
+      valueFormatter={valueFormatter}
+      subvalueFormatter={subvalueFormatter}
+      headerRight={headerRight}
+    />
   );
 };
 

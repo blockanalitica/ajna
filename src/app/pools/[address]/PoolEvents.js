@@ -16,7 +16,7 @@ const PoolEvents = ({ address, ...rest }) => {
   const pageSize = 10;
   const [page, setPage] = useState(1);
   const [order, setOrder] = useState("-tvl");
-  const [eventType, setEventType] = useState(null);
+  const [eventType, setEventType] = useState("all");
   const {
     data = {},
     error,
@@ -25,7 +25,7 @@ const PoolEvents = ({ address, ...rest }) => {
     p: page,
     p_size: pageSize,
     order,
-    type: eventType,
+    type: eventType !== "all" ? eventType : null,
   });
 
   if (error) {
@@ -41,7 +41,7 @@ const PoolEvents = ({ address, ...rest }) => {
     repay_debt: "Repay Debt",
   };
 
-  const eventTypeOptions = [{ key: null, value: "All" }];
+  const eventTypeOptions = [{ key: "all", value: "All" }];
   Object.entries(eventTypeMapping).forEach(([key, value]) => {
     eventTypeOptions.push({ key, value });
   });
@@ -57,6 +57,7 @@ const PoolEvents = ({ address, ...rest }) => {
     {
       header: "Event",
       cell: ({ row }) => <>{eventTypeMapping[row.event_type]}</>,
+      cellSize: "1.5fr",
     },
     {
       header: "Amount",
@@ -64,6 +65,7 @@ const PoolEvents = ({ address, ...rest }) => {
       headerAlign: "end",
       cellAlign: "end",
       orderField: "amount",
+      visibleAfter: "sm",
     },
     {
       header: "Collateral",
@@ -73,6 +75,7 @@ const PoolEvents = ({ address, ...rest }) => {
       headerAlign: "end",
       cellAlign: "end",
       orderField: "collateral",
+      visibleAfter: "sm",
     },
     {
       header: "Account",
@@ -89,6 +92,7 @@ const PoolEvents = ({ address, ...rest }) => {
       headerAlign: "end",
       cellAlign: "end",
       orderField: "account",
+      visibleAfter: "lg",
     },
     {
       header: "Time",
@@ -131,7 +135,6 @@ const PoolEvents = ({ address, ...rest }) => {
         data={results}
         keyField="id"
         columns={columns}
-        gridColumnClassName="grid-cols-table-pool-events"
         currentPage={page}
         pageSize={pageSize}
         totalRecords={count}

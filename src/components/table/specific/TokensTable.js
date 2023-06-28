@@ -13,18 +13,20 @@ const TokensTable = ({ ...rest }) => {
       cell: ({ index }) => (
         <span className="font-syncopate text-gray-7">{index + 1}</span>
       ),
+      cellSize: "0.2fr",
     },
     {
       header: "Name",
       cell: ({ row }) => (
         <>
           <CryptoIcon name={row.symbol} />
-          <span className="font-medium ml-2">
-            {row.name}
-            <span className="text-gray-13 ml-2">({row.symbol})</span>
-          </span>
+          <span className="font-medium ml-2">{row.symbol}</span>
         </>
       ),
+      smallCell: ({ row }) => (
+        <span className="hidden sm:inline-block ml-8">{row.name}</span>
+      ),
+      cellSize: "1.5fr",
     },
     {
       header: "Price",
@@ -38,6 +40,7 @@ const TokensTable = ({ ...rest }) => {
       headerAlign: "end",
       cellAlign: "end",
       orderField: "price",
+      visibleAfter: "md",
     },
 
     {
@@ -57,6 +60,7 @@ const TokensTable = ({ ...rest }) => {
       headerAlign: "end",
       cellAlign: "end",
       orderField: "pool_count",
+      visibleAfter: "sm",
     },
   ];
 
@@ -64,7 +68,6 @@ const TokensTable = ({ ...rest }) => {
     <Table
       keyField="underlying_address"
       columns={columns}
-      gridColumnClassName="grid-cols-table-tokens"
       href={(row) => `/tokens/${row.underlying_address}`}
       emptyIcon={faCoins}
       emptyTitle="No Tokens"

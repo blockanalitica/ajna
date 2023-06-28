@@ -76,8 +76,8 @@ const PoolPage = ({ params }) => {
 
       <PoolInfo data={pool} className="mb-10" />
 
-      <div className="grid grid-cols-3 gap-4 mb-10">
-        <CardBackground className="grid grid-cols-1 place-content-between">
+      <div className="flex flex-col-reverse md:flex-row md:gap-4">
+        <CardBackground className="md:w-1/3 grid grid-cols-1 place-content-between mb-10">
           <div>
             <h3 className="text-sm font-bold text-gray-1 font-syncopate uppercase mb-5">
               Total tokens locked
@@ -160,7 +160,7 @@ const PoolPage = ({ params }) => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 mt-4">
+          <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
             <CardOpaque title="TVL">
               <Value value={pool.tvl} prefix="$" className="text-xl" />
               <ValueChange value={pool.tvl - pool.prev_tvl} prefix="$" />
@@ -202,28 +202,28 @@ const PoolPage = ({ params }) => {
           </div>
         </CardBackground>
 
-        <div className="col-span-2">
+        <CardBackground className="md:w-2/3 col-span-2 mb-10 grid grid-cols-1 place-content-between">
           <HistoricGraphs
             address={address}
             daysAgo={daysAgo}
             collateralSymbol={pool.collateral_token_symbol}
             quoteSymbol={pool.quote_token_symbol}
           />
-        </div>
+        </CardBackground>
       </div>
 
-      <div className="grid grid-cols-3 gap-4 mb-10">
-        <div className="col-span-2">
+      <div className="flex flex-col-reverse md:flex-row md:gap-4">
+        <CardBackground className="md:w-2/3 col-span-2 mb-10 grid grid-cols-1 place-content-between">
           <BucketsGraph address={address} lup={pool.lup} htp={pool.htp} />
-        </div>
+        </CardBackground>
 
-        <CardBackground className="grid grid-cols-1 place-content-between">
+        <CardBackground className="md:w-1/3 grid grid-cols-1 place-content-between mb-10">
           <div>
             <h3 className="text-sm font-bold text-gray-1 font-syncopate uppercase mb-5">
               Buckets
             </h3>
           </div>
-          <div className="grid grid-cols-2 gap-4 mt-4">
+          <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
             <CardOpaque title="Market Price">
               <Value
                 value={pool.collateral_token_underlying_price}

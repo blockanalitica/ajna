@@ -80,7 +80,6 @@ const SettledAuctionsTable = ({ daysAgo }) => {
       isLoading={isLoading}
       keyField="uid"
       columns={columns}
-      gridColumnClassName="grid-cols-table-auctions-active"
     />
   );
 };

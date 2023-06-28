@@ -19,6 +19,12 @@ const ResultTable = ({
     RowComponent = Link;
   }
 
+  const justifyMapping = {
+    start: "justify-start",
+    center: "justify-center",
+    end: "justify-end",
+  };
+
   return (
     <div {...rest}>
       <div className={classnames("grid gap-3 text-gray-5 pb-1", gridColumnClassName)}>
@@ -27,7 +33,7 @@ const ResultTable = ({
             key={_.isString(column.header) ? column.header : `col-${colIndex}`}
             className={classnames(
               "flex items-center",
-              `justify-${column.headerAlign || "start"}`
+              justifyMapping[column.cellAlign || "start"]
             )}
           >
             {column.header}
@@ -63,7 +69,7 @@ const ResultTable = ({
                   key={`row-${row[keyField]}-${colIndex}`}
                   className={classnames(
                     "flex items-center py-3",
-                    `justify-${column.cellAlign || "start"}`
+                    justifyMapping[column.cellAlign || "start"]
                   )}
                 >
                   {column["cell"]({ row, index })}

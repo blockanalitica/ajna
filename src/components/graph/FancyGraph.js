@@ -104,12 +104,14 @@ const FancyGraph = ({
 
   return (
     <div>
-      <div className="flex justify-between">
+      <div className="flex flex-col-reverse justify-between lg:flex-row">
         <div>
           <div className="text-4xl mb-1">{lblValue}</div>
           <div className="text-sm text-gray-10 mb-6">{lblSubValue}</div>
         </div>
-        <div>{headerRight}</div>
+        {headerRight ? (
+          <div className="mb-4 flex justify-center items-start">{headerRight}</div>
+        ) : null}
       </div>
       <Graph series={series} options={mergedOptions} plugins={plugins} {...rest} />
     </div>
