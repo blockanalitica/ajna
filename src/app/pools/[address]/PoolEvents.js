@@ -93,20 +93,19 @@ const PoolEvents = ({ address, ...rest }) => {
     {
       header: "Time",
       cell: ({ row }) => (
-        <div>
-          <DateTimeAgo dateTime={DateTime.fromSeconds(row.block_timestamp)} />
-          <br />
-          <span className="text-sm text-gray-10">
-            {row.block_number}
-            <a
-              href={`https://etherscan.io/tx/${row.transaction_hash}`}
-              target="_blank"
-              className="ms-2 hover:text-white"
-            >
-              <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
-            </a>
-          </span>
-        </div>
+        <DateTimeAgo dateTime={DateTime.fromSeconds(row.block_timestamp)} />
+      ),
+      smallCell: ({ row }) => (
+        <>
+          {row.block_number}
+          <a
+            href={`https://etherscan.io/tx/${row.transaction_hash}`}
+            target="_blank"
+            className="ms-2 hover:text-white"
+          >
+            <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+          </a>
+        </>
       ),
       headerAlign: "end",
       cellAlign: "end",

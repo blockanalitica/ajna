@@ -1,12 +1,13 @@
 import classnames from "classnames";
 
 const Tooltop = ({ children, message, className }) => (
-  <div className="group relative inline-block text-center">
+  <div className="group relative">
     {children}
     <div
       className={classnames(
-        "opacity-0 bg-gray-20 text-white text-xs rounded-lg px-2 py-1 absolute z-10 group-hover:opacity-100 bottom-full pointer-events-none transition-all duration-300",
-        "left-1/2 -translate-x-1/2",
+        "opacity-0 bg-gray-20 text-white text-xs rounded-lg px-2 py-1 absolute z-10",
+        "group-hover:opacity-100 bottom-full pointer-events-none transition-all duration-300",
+        "text-center left-1/2 -translate-x-1/2",
         className
       )}
     >
