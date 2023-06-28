@@ -4,7 +4,13 @@ import classnames from "classnames";
 import { faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const OrderSection = ({ currentOrder, orderField, onOrderChange, children }) => {
+const OrderSection = ({
+  currentOrder,
+  orderField,
+  onOrderChange,
+  onPageChange,
+  children,
+}) => {
   let currentOrderField = currentOrder;
   let isAscOrder = true;
   if (currentOrder.startsWith("-")) {
@@ -15,6 +21,10 @@ const OrderSection = ({ currentOrder, orderField, onOrderChange, children }) => 
   const isActive = currentOrderField === orderField;
 
   const onChange = () => {
+    if (!onOrderChange) {
+      return;
+    }
+
     let field = null;
     if (isActive) {
       field = orderField;
@@ -24,8 +34,8 @@ const OrderSection = ({ currentOrder, orderField, onOrderChange, children }) => 
     } else {
       field = `-${orderField}`;
     }
-
-    onOrderChange ? onOrderChange(field) : null;
+    onOrderChange(field);
+    onPageChange ? onPageChange(1) : null;
   };
 
   return (
@@ -53,6 +63,7 @@ const HeaderCell = ({
   currentOrder,
   orderField,
   onOrderChange,
+  onPageChange,
   allowOrder = true,
   children,
 }) => {
@@ -63,6 +74,7 @@ const HeaderCell = ({
           currentOrder={currentOrder}
           orderField={orderField}
           onOrderChange={onOrderChange}
+          onPageChange={onPageChange}
         >
           {children}
         </OrderSection>

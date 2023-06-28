@@ -66,6 +66,7 @@ const Table = ({
               orderField={column.orderField}
               currentOrder={currentOrder}
               onOrderChange={onOrderChange}
+              onPageChange={onPageChange}
               allowOrder={allowOrder}
             >
               {column.header}
