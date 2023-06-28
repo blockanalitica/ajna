@@ -17,7 +17,6 @@ const PoolEvents = ({ address, ...rest }) => {
   const [page, setPage] = useState(1);
   const [order, setOrder] = useState("-tvl");
   const [eventType, setEventType] = useState(null);
-
   const {
     data = {},
     error,
@@ -48,6 +47,7 @@ const PoolEvents = ({ address, ...rest }) => {
   });
 
   const onEventTypeOptionChange = (event) => {
+    setPage(1);
     setEventType(event.target.value);
   };
 
