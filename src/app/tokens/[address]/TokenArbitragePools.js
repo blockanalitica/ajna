@@ -40,12 +40,13 @@ const TokenArbitragePools = ({ address, daysAgo, ...rest }) => {
         <span className="font-syncopate text-gray-7">{index + 1}</span>
       ),
       cellSize: "0.2fr",
+      visibleAfter: "sm"
     },
     {
       header: "Collateral / Quote",
       cell: ({ row }) => (
         <>
-          <span className="relative flex">
+          <span className="relative hidden sm:flex">
             <CryptoIcon name={row.collateral_token_symbol} className="z-10" />
             <CryptoIcon
               name={row.quote_token_symbol}

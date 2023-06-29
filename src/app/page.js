@@ -5,7 +5,6 @@ import TotalStats from "./TotalStats";
 import TopPools from "./TopPools";
 import TopTokens from "./TopTokens";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
-import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 import Button from "@/components/button/Button";
 
 const Page = () => {
@@ -18,8 +17,7 @@ const Page = () => {
 
   return (
     <>
-      <section className="flex items-center justify-between mb-10">
-        <Breadcrumbs />
+      <section className="flex items-center justify-center sm:justify-end mb-10">
         <DisplaySwitch onChange={onDisplaySwitchChange} activeOption={daysAgo} />
       </section>
 

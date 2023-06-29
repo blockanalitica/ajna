@@ -1,4 +1,5 @@
 import Link from "next/link";
+import classnames from "classnames";
 
 const Button = ({ text, href, ...rest }) => {
   let Component = "button";
@@ -9,7 +10,10 @@ const Button = ({ text, href, ...rest }) => {
 
   return (
     <Component
-      className="rounded-3xl bg-purple-7 hover:bg-purple-8 inline-flex items-center justify-center px-6 py-3 font-bold text-center"
+      className={classnames(
+        "rounded-3xl bg-purple-7 hover:bg-purple-8 inline-flex items-center",
+        "justify-center px-6 py-3 text-center sm:font-bold"
+      )}
       {...rest}
     >
       {text}

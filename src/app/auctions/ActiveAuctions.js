@@ -32,8 +32,14 @@ const ActiveAuctions = () => {
 
   const columns = [
     {
-      header: "Borrower Address",
+      header: "Borrower",
       cell: ({ row }) => <>{shorten(row.borrower)}</>,
+      smallCell: ({ row }) => (
+        <HoursMinutes
+          dateTime={DateTime.fromSeconds(row.kick_time).plus({ hours: 72 })}
+          className="sm:hidden"
+        />
+      ),
     },
     {
       header: "Time Remaining",
@@ -44,15 +50,28 @@ const ActiveAuctions = () => {
       ),
       headerAlign: "end",
       cellAlign: "end",
+      visibleAfter: "sm",
     },
     {
       header: "Collateral Remaining / Total",
       cell: ({ row }) => (
         <>
-          <Value value={row.collateral_remaining} />
-          <span className="px-2">/</span>
-          <Value value={row.collateral} suffix={row.collateral_token_symbol} />
+          <Value
+            value={row.collateral_remaining}
+            suffix={row.collateral_token_symbol}
+          />
+          <span className="hidden sm:inline-flex">
+            <span className="px-2">/</span>
+            <Value value={row.collateral} suffix={row.collateral_token_symbol} />
+          </span>
         </>
+      ),
+      smallCell: ({ row }) => (
+        <Value
+          value={row.collateral}
+          suffix={row.collateral_token_symbol}
+          className="sm:hidden"
+        />
       ),
       headerAlign: "end",
       cellAlign: "end",
@@ -61,10 +80,20 @@ const ActiveAuctions = () => {
       header: "Debt Remaining / Total",
       cell: ({ row }) => (
         <>
-          <Value value={row.debt_remaining} />
-          <span className="px-2">/</span>
-          <Value value={row.debt} suffix={row.debt_token_symbol} />
+          <Value value={row.debt_remaining} suffix={row.debt_token_symbol} />
+          <span className="hidden sm:inline-flex">
+            <span className="px-2">/</span>
+            <Value value={row.debt} suffix={row.debt_token_symbol} />
+          </span>
         </>
+      ),
+      smallCell: ({ row }) => (
+        <Value
+          value={row.debt}
+          suffix={row.debt_token_symbol}
+          small
+          className="sm:hidden"
+        />
       ),
       headerAlign: "end",
       cellAlign: "end",

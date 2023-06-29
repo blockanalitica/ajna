@@ -43,7 +43,7 @@ const PoolPage = ({ params }) => {
 
   return (
     <>
-      <section className="flex items-center justify-between mb-10">
+      <section className="flex items-center justify-center sm:justify-end md:justify-between mb-10">
         <Breadcrumbs />
         <DisplaySwitch onChange={onDisplaySwitchChange} activeOption={daysAgo} />
       </section>
@@ -60,15 +60,15 @@ const PoolPage = ({ params }) => {
           {pool.collateral_token_symbol} / {pool.quote_token_symbol}
         </h1>
       </div>
-      <div className="flex mb-7 items-center justify-between">
-        <Tag className="flex">
+      <div className="flex flex-col sm:flex-row items-center justify-between">
+        <Tag className="flex mb-5">
           <CryptoIcon name={pool.collateral_token_symbol} size="20" className="mr-1" />1{" "}
           {pool.collateral_token_symbol}
           <span className="px-1">=</span>
           <Value value={pool.hpb} suffix={` ${pool.quote_token_symbol}`} icon={false} />
         </Tag>
-        <div className="flex items-baseline">
-          <span className="text-gray-10 text-sm mr-5">Pool Address</span>
+        <div className="flex items-baseline mb-5">
+          <span className="text-gray-10 text-sm mr-4">Pool Address:</span>
           <span>{shorten(pool.address)}</span>
           <CopyToClipboard className="ml-3" text={pool.address} />
         </div>

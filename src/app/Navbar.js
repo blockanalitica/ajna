@@ -60,13 +60,18 @@ const Navbar = () => {
           ))}
         </div>
         <div className="hidden md:flex items-center">
-          <Search className="me-4" />
+          <Search className="me-4 hidden lg:block" />
           <NetworkSwitch />
         </div>
+        <NetworkSwitch className="-mr-2 flex md:hidden" />
         <div className="-mr-2 flex md:hidden">
           {/* Mobile menu button */}
           <button
-            className="inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring- focus:ring-offset-2 focus:ring-offset-gray-800"
+            className={classnames(
+              "inline-flex items-center justify-center rounded-md bg-gray-800 p-2",
+              "text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none",
+              "focus:ring- focus:ring-offset-2 focus:ring-offset-gray-800"
+            )}
             onClick={() => setOpen(!isOpen)}
           >
             {isOpen ? (
@@ -79,17 +84,17 @@ const Navbar = () => {
       </div>
 
       {isOpen ? (
-        <div>
-          <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
+        <div className="md:hidden">
+          <div className="rounded-3xl mt-4 p-4 bg-gray-23 border-gray-21 border">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
+                onClick={() => setOpen(false)}
                 className={classnames(
-                  "block rounded-md px-3 py-2 text-base font-medium",
+                  "block rounded-md px-3 py-2 text-base font-medium my-2",
                   {
-                    "bg-gray-900 text-white": item.current,
-                    "text-gray-300 hover:bg-gray-700 hover:text-white": !item.current,
+                    "text-ajna-aqua": item.current,
                   }
                 )}
               >
@@ -99,10 +104,6 @@ const Navbar = () => {
           </div>
         </div>
       ) : null}
-
-      <div className="md:hidden flex justify-end -mr-3">
-        <NetworkSwitch />
-      </div>
     </nav>
   );
 };

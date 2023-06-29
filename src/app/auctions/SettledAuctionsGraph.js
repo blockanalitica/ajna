@@ -7,18 +7,12 @@ import { useFetch } from "@/hooks";
 import { DateTime } from "luxon";
 import _ from "lodash";
 import Value from "@/components/value/Value";
-import CardBackground from "@/components/card/CardBackground";
 import FancyGraph from "@/components/graph/FancyGraph";
 import { tooltipLabelNumber, tooltipTitleDateTime } from "@/utils/graph";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import { compact } from "@/utils/number";
 
-const SettledAuctionsGraph = ({
-  daysAgo,
-  totalCollateralUsd,
-  totalDebtUsd,
-  ...rest
-}) => {
+const SettledAuctionsGraph = ({ daysAgo, totalCollateralUsd, totalDebtUsd }) => {
   const [displayOption, setDisplayOption] = useState("collateral");
 
   const { data, error, isLoading } = useFetch(
@@ -42,7 +36,7 @@ const SettledAuctionsGraph = ({
     }
 
     return (
-      <CardBackground {...rest}>
+      <>
         <div className="flex items-center flex-col">
           <div className="w-20 h-20 mt-20 mb-4 bg-gray-22 rounded-full p-4 flex items-center justify-center">
             <FontAwesomeIcon icon={faGavel} size="xl" className="opacity-60" />
@@ -53,7 +47,7 @@ const SettledAuctionsGraph = ({
           </div>
         </div>
         <div className="text-gray-6 text-center"></div>
-      </CardBackground>
+      </>
     );
   }
 
@@ -161,18 +155,16 @@ const SettledAuctionsGraph = ({
   };
 
   return (
-    <CardBackground {...rest}>
-      <FancyGraph
-        key={`graph-${displayOption}`}
-        series={series}
-        options={options}
-        type="bar"
-        valueFormatter={valueFormatter}
-        subvalueFormatter={subvalueFormatter}
-        headerRight={headerRight}
-        defaultTooltipData={defaultTooltipData}
-      />
-    </CardBackground>
+    <FancyGraph
+      key={`graph-${displayOption}`}
+      series={series}
+      options={options}
+      type="bar"
+      valueFormatter={valueFormatter}
+      subvalueFormatter={subvalueFormatter}
+      headerRight={headerRight}
+      defaultTooltipData={defaultTooltipData}
+    />
   );
 };
 
