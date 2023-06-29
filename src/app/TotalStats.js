@@ -35,7 +35,7 @@ const TotalStats = ({ daysAgo, className, ...rest }) => {
       ),
     },
     {
-      title: "Total borowed",
+      title: "Total borrowed",
       value: <Value value={results.total_current_debt || 0} prefix="$" />,
       smallValue: (
         <ValueChange

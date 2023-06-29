@@ -30,7 +30,7 @@ const PoolInfo = ({ data, ...rest }) => {
       ),
     },
     {
-      title: "Borowed",
+      title: "Borrowed",
       value: (
         <>
           <Value value={data.debt} suffix={data.quote_token_symbol} big />
