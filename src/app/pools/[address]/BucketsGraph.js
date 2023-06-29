@@ -3,12 +3,10 @@
 import Graph from "@/components/graph/Graph";
 import { useFetch } from "@/hooks";
 import { compact, formatToDecimals } from "@/utils/number";
+import _ from "lodash";
 
 const BucketsGraph = ({ address, lup, htp }) => {
-  const { data, error, isLoading } = useFetch(`/pools/${address}/buckets/`, {
-    p_size: 50,
-    order: "-bucket_price",
-  });
+  const { data, error, isLoading } = useFetch(`/pools/${address}/buckets/graph/`);
 
   if (error) {
     return <p>Failed to load data</p>;
@@ -17,26 +15,20 @@ const BucketsGraph = ({ address, lup, htp }) => {
     return <p>Loading....</p>;
   }
 
-  const { results } = data;
+  const grouped = _.groupBy(data, "type");
 
   const series = [];
-  const labels = [];
-  let lupIndex = 0;
-  let htpIndex = 0;
-  results.forEach((row, index) => {
-    const y = formatToDecimals(row.bucket_price);
-    labels.push(y);
-
-    if (row.bucket_price >= lup) {
-      lupIndex = index;
-    }
-    if (row.bucket_price >= htp) {
-      htpIndex = index;
-    }
-
+  Object.entries(grouped).forEach(([key, rows]) => {
+    const color = key === "utilized" ? "#8AC7DB" : "#B5179E";
     series.push({
-      label: row.bucket_index,
-      data: [{ x: row.deposit, y: y, bucketPrice: row.bucket_price }],
+      label: key,
+      backgroundColor: color,
+      borderColor: color,
+      data: rows.map((row) => ({
+        x: row["amount"],
+        y: row["bucket_price"],
+        bucketIndex: row["bucket_index"],
+      })),
     });
   });
 
@@ -44,7 +36,7 @@ const BucketsGraph = ({ address, lup, htp }) => {
     htp: {
       type: "line",
       scaleID: "y",
-      value: htpIndex,
+      value: htp,
       borderColor: "#B45CD6",
       borderWidth: 2,
       borderDash: [10, 8],
@@ -61,7 +53,7 @@ const BucketsGraph = ({ address, lup, htp }) => {
     lup: {
       type: "line",
       scaleID: "y",
-      value: lupIndex,
+      value: lup,
       borderColor: "#8AC7DB",
       borderWidth: 2,
       borderDash: [10, 8],
@@ -83,8 +75,10 @@ const BucketsGraph = ({ address, lup, htp }) => {
       mode: "nearest",
       axis: "y",
     },
+    barThickness: 10,
     scales: {
       x: {
+        stacked: true,
         ticks: {
           callback: (value) => compact(value, 2, true),
         },
@@ -94,12 +88,13 @@ const BucketsGraph = ({ address, lup, htp }) => {
         },
       },
       y: {
-        type: "category",
+        type: "linear",
         stacked: true,
         title: {
           display: true,
           text: "bucket price",
         },
+        beginAtZero: false,
       },
     },
     plugins: {
@@ -109,14 +104,13 @@ const BucketsGraph = ({ address, lup, htp }) => {
       tooltip: {
         callbacks: {
           title: (tooltipItems) => {
-            return `Bucket price: ${formatToDecimals(
-              tooltipItems[0].raw.bucketPrice,
-              2
-            )}`;
+            return `Bucket price: ${formatToDecimals(tooltipItems[0].raw.x, 2)}`;
           },
           label: (tooltipItem) => {
             const value = compact(tooltipItem.parsed.x, 2, true);
-            return `Bucket #${tooltipItem.dataset.label}: ${value}`;
+            const utilized =
+              tooltipItem.dataset.label === "utilized" ? "utilized" : "not utilized";
+            return `Bucket #${tooltipItem.raw.bucketIndex} ${utilized}: ${value}`;
           },
         },
       },
@@ -125,8 +119,7 @@ const BucketsGraph = ({ address, lup, htp }) => {
       },
     },
   };
-
-  return <Graph series={series} options={options} type="bar" labels={labels} />;
+  return <Graph series={series} options={options} type="bar" />;
 };
 
 export default BucketsGraph;

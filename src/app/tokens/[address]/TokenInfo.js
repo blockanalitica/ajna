@@ -45,7 +45,7 @@ const TokenInfo = ({ address, daysAgo, className, ...rest }) => {
       ),
     },
     {
-      title: "Borowed",
+      title: "Borrowed",
       value: (
         <>
           <Value value={results.borrowed_amount} suffix={results.symbol} big />

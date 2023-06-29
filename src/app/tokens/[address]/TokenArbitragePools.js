@@ -40,7 +40,7 @@ const TokenArbitragePools = ({ address, daysAgo, ...rest }) => {
         <span className="font-syncopate text-gray-7">{index + 1}</span>
       ),
       cellSize: "0.2fr",
-      visibleAfter: "sm"
+      visibleAfter: "sm",
     },
     {
       header: "Collateral / Quote",
