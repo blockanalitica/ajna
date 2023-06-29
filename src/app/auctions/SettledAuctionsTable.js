@@ -36,8 +36,14 @@ const SettledAuctionsTable = ({ daysAgo }) => {
 
   const columns = [
     {
-      header: "Borrower Address",
+      header: "Borrower",
       cell: ({ row }) => <>{shorten(row.borrower)}</>,
+      smallCell: ({ row }) => (
+        <DateTimeAgo
+          dateTime={DateTime.fromSeconds(row.settle_time)}
+          className="sm:hidden"
+        />
+      ),
     },
     {
       header: "Collateral",
@@ -65,6 +71,7 @@ const SettledAuctionsTable = ({ daysAgo }) => {
       headerAlign: "end",
       cellAlign: "end",
       orderField: "settle_time",
+      visibleAfter: "sm",
     },
   ];
 

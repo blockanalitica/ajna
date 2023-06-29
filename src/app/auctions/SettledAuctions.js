@@ -10,7 +10,7 @@ const SettledAuctions = () => {
 
   return (
     <>
-      <div className="flex justify-end mb-4">
+      <div className="flex justify-center sm:justify-end mb-4">
         <DisplaySwitch onChange={setDaysAgo} activeOption={daysAgo} />
       </div>
       <SettledAuctionsOverview daysAgo={daysAgo} className="mb-4" />

@@ -23,20 +23,22 @@ const SettledAuctionsOverview = ({ daysAgo, className }) => {
   const { debt_usd: debtUsd, collateral_usd: collateralUsd, count, change = {} } = data;
 
   return (
-    <div className={classnames("grid grid-cols-3 gap-4", className)}>
-      <CardBackground className="grid grid-cols-1 place-content-between">
+    <div
+      className={classnames("flex flex-col-reverse md:flex-row md:gap-4", className)}
+    >
+      <CardBackground className="md:w-1/3 grid grid-cols-1 place-content-between mb-10">
         <div>
           <h3 className="text-sm font-bold text-gray-1 font-syncopate uppercase mb-5">
             Settled Auctions
           </h3>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 mt-4">
+        <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
           <CardOpaque title="Auctions">
             <Value value={count} className="text-xl" />
             <ValueChange value={change.count} />
           </CardOpaque>
-          <div></div>
+          <div className="md:hidden lg:block"></div>
           <CardOpaque title="Collateral">
             <Value value={collateralUsd || 0} className="text-xl" prefix="$" />
             <ValueChange value={change.collateral_usd} prefix="$" />
@@ -48,13 +50,13 @@ const SettledAuctionsOverview = ({ daysAgo, className }) => {
         </div>
       </CardBackground>
 
-      <div className="col-span-2">
+      <CardBackground className="md:w-2/3 col-span-2 mb-10 grid grid-cols-1 place-content-between">
         <SettledAuctionsGraph
           daysAgo={daysAgo}
           totalCollateralUsd={collateralUsd}
           totalDebtUsd={debtUsd}
         />
-      </div>
+      </CardBackground>
     </div>
   );
 };

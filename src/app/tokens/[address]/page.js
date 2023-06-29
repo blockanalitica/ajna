@@ -30,7 +30,7 @@ const TokenPage = ({ params }) => {
 
   return (
     <>
-      <section className="flex items-center justify-between mb-10">
+      <section className="flex items-center justify-center sm:justify-end md:justify-between mb-10">
         <Breadcrumbs />
         <DisplaySwitch onChange={onDisplaySwitchChange} activeOption={daysAgo} />
       </section>
