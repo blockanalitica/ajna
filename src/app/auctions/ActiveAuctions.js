@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { faGavel } from "@fortawesome/free-solid-svg-icons";
-import { useFetch } from "@/hooks";
+import { useFetch, usePageTitle } from "@/hooks";
 import { shorten } from "@/utils/address";
 import { DateTime } from "luxon";
 import Table from "@/components/table/Table";
@@ -10,6 +10,7 @@ import Value from "@/components/value/Value";
 import HoursMinutes from "@/components/dateTime/HoursMinutes";
 
 const ActiveAuctions = () => {
+  usePageTitle("Active Auctions");
   const pageSize = 10;
   const [page, setPage] = useState(1);
   const [order, setOrder] = useState("-kick_time");

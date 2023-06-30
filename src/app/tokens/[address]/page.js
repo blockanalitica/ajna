@@ -1,6 +1,6 @@
 "use client";
 
-import { useFetch, useQueryParams } from "@/hooks";
+import { useFetch, useQueryParams, usePageTitle } from "@/hooks";
 import CryptoIcon from "@/components/icon/CryptoIcon";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
@@ -14,7 +14,12 @@ const TokenPage = ({ params }) => {
   const { queryParams, setQueryParams } = useQueryParams();
   const daysAgo = parseInt(queryParams.get("daysAgo")) || 1;
 
-  const { data, error, isLoading } = useFetch(`/tokens/${address}/`);
+  const { data = {}, error, isLoading } = useFetch(`/tokens/${address}/`);
+
+  const { results: token } = data;
+
+  usePageTitle(token ? token.symbol : "Token");
+
   if (error) {
     return <p>Failed to load data</p>;
   }
@@ -25,8 +30,6 @@ const TokenPage = ({ params }) => {
   const onDisplaySwitchChange = (value) => {
     setQueryParams({ daysAgo: value });
   };
-
-  const { results: token } = data;
 
   return (
     <>
