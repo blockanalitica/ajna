@@ -88,3 +88,13 @@ export const useMediaQuery = (size, type = "min-width") => {
   });
   return match;
 };
+
+export const usePageTitle = (title) => {
+  useEffect(() => {
+    const prevTitle = document.title;
+    document.title = title + " | Block Analitica";
+    return () => {
+      document.title = prevTitle;
+    };
+  });
+};

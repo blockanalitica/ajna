@@ -1,13 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { useQueryParams } from "@/hooks";
+import { useQueryParams, usePageTitle } from "@/hooks";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 import SearchInput from "@/components/search/SearchInput";
 import Tokens from "./Tokens";
 
 const TokensPage = () => {
+  usePageTitle("Tokens");
   const { queryParams, setQueryParams } = useQueryParams();
   const daysAgo = parseInt(queryParams.get("daysAgo")) || 1;
   const [searchTerm, setSearchTerm] = useState("");

@@ -10,7 +10,7 @@ import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import Tag from "@/components/tags/Tag";
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
-import { useFetch, useQueryParams } from "@/hooks";
+import { useFetch, useQueryParams, usePageTitle } from "@/hooks";
 import { shorten } from "@/utils/address";
 import HistoricGraphs from "./HistoricGraphs";
 import PoolBuckets from "./PoolBuckets";
@@ -24,9 +24,19 @@ const PoolPage = ({ params }) => {
   const { queryParams, setQueryParams } = useQueryParams();
   const daysAgo = parseInt(queryParams.get("daysAgo")) || 1;
 
-  const { data, error, isLoading } = useFetch(`/pools/${address}/`, {
+  const {
+    data = {},
+    error,
+    isLoading,
+  } = useFetch(`/pools/${address}/`, {
     days_ago: daysAgo,
   });
+
+  const { results: pool } = data;
+
+  usePageTitle(
+    pool ? `${pool.collateral_token_symbol} / ${pool.quote_token_symbol}` : "Pool"
+  );
 
   if (error) {
     return <p>Failed to load data</p>;
@@ -39,7 +49,7 @@ const PoolPage = ({ params }) => {
     setQueryParams({ daysAgo: value });
   };
 
-  const { results: pool } = data;
+  // const { results: pool } = data;
 
   return (
     <>
