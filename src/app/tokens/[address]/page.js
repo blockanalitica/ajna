@@ -4,6 +4,7 @@ import { useFetch, useQueryParams, usePageTitle } from "@/hooks";
 import CryptoIcon from "@/components/icon/CryptoIcon";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
+import GenericPlaceholder from "@/components/GenericPlaceholder";
 import TokenInfo from "./TokenInfo";
 import TokenArbitragePools from "./TokenArbitragePools";
 import TokenPools from "./TokenPools";
@@ -24,7 +25,7 @@ const TokenPage = ({ params }) => {
     return <p>Failed to load data</p>;
   }
   if (isLoading) {
-    return <p>Loading....</p>;
+    return <GenericPlaceholder />;
   }
 
   const onDisplaySwitchChange = (value) => {
