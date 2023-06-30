@@ -1,7 +1,7 @@
 import classnames from "classnames";
 import _ from "lodash";
 
-const StatsPlaceholder = ({ numStats, className, ...rest }) => {
+const StatsPlaceholder = ({ numStats, className, animate = true, ...rest }) => {
   let colClassName = null;
   if (numStats == 5) {
     colClassName = "md:grid-cols-4 lg:grid-cols-5";
@@ -14,7 +14,8 @@ const StatsPlaceholder = ({ numStats, className, ...rest }) => {
   return (
     <section
       className={classnames(
-        "grid grid-cols-1 gap-4 sm:grid-cols-2 animate-pulse",
+        "grid grid-cols-1 gap-4 sm:grid-cols-2",
+        { "animate-pulse": animate },
         colClassName,
         className
       )}

@@ -17,15 +17,25 @@ const SettledAuctionsOverview = ({ daysAgo, className }) => {
     return <p>Failed to load data</p>;
   }
   if (isLoading) {
-    return <p>Loading....</p>;
+    return (
+      <div
+        className={classnames(
+          "flex flex-col md:flex-row md:gap-4 animate-pulse",
+          className
+        )}
+      >
+        <CardBackground className="md:w-1/3 grid grid-cols-1 place-content-between mb-10 h-60">
+          <div className="h-5 bg-gray-21 opacity-70 rounded-lg"></div>
+        </CardBackground>
+        <CardBackground className="md:w-2/3 col-span-2 mb-10 grid grid-cols-1 place-content-between h-60" />
+      </div>
+    );
   }
 
   const { debt_usd: debtUsd, collateral_usd: collateralUsd, count, change = {} } = data;
 
   return (
-    <div
-      className={classnames("flex flex-col-reverse md:flex-row md:gap-4", className)}
-    >
+    <div className={classnames("flex flex-col md:flex-row md:gap-4", className)}>
       <CardBackground className="md:w-1/3 grid grid-cols-1 place-content-between mb-10">
         <div>
           <h3 className="text-sm font-bold text-gray-1 font-syncopate uppercase mb-5">

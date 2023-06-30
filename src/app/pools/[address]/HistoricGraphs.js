@@ -21,7 +21,11 @@ const HistoricGraphs = ({ address, daysAgo, collateralSymbol, quoteSymbol }) => 
     return <p>Failed to load data</p>;
   }
   if (isLoading) {
-    return <p>Loading....</p>;
+    return (
+      <div className="flex items-center flex-col animate-pulse">
+        <div className="w-20 h-20 mt-20 mb-4 bg-gray-22 rounded-full p-4 flex items-center justify-center"></div>
+      </div>
+    );
   }
   const displayOptions = [
     { key: "tvl", value: "TVL" },

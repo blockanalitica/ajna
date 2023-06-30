@@ -18,6 +18,7 @@ import PoolEvents from "./PoolEvents";
 import PoolInfo from "./PoolInfo";
 import BucketsGraph from "./BucketsGraph";
 import Info from "@/components/info/Info";
+import GenericPlaceholder from "@/components/GenericPlaceholder";
 
 const PoolPage = ({ params }) => {
   const { address } = params;
@@ -42,14 +43,12 @@ const PoolPage = ({ params }) => {
     return <p>Failed to load data</p>;
   }
   if (isLoading) {
-    return <p>Loading....</p>;
+    return <GenericPlaceholder />;
   }
 
   const onDisplaySwitchChange = (value) => {
     setQueryParams({ daysAgo: value });
   };
-
-  // const { results: pool } = data;
 
   return (
     <>
