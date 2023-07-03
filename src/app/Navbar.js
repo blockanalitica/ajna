@@ -59,7 +59,7 @@ const Navbar = () => {
             </Link>
           ))}
         </div>
-        <div className="hidden md:flex items-center">
+        <div className="hidden lg:flex items-center">
           <Search className="me-4 hidden lg:block" />
           <NetworkSwitch />
         </div>
