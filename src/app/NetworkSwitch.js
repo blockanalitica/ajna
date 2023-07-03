@@ -7,13 +7,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { useState } from "react";
 
-const NetworkSwitch = () => {
+const NetworkSwitch = ({ className }) => {
   const networkOptions = [{ name: "Ethereum", href: "/ethereum", icon: "ETH" }];
 
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="relative">
+    <div className={classnames("relative", className)}>
       <button
         className={classnames(
           "focus:outline-none text-gray-4 rounded-3xl text-sm px-4 py-2 text-center inline-flex items-center",
