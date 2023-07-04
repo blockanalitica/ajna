@@ -22,9 +22,7 @@ const Navbar = () => {
   const pathname = usePathname();
   const segments = pathname.split("/").filter(Boolean);
 
-  const segmentIndex = network === "ethereum" ? 0 : 1;
-  const rootSegment =
-    segments && segments.length > segmentIndex ? segments[segmentIndex] : null;
+  const rootSegment = segments && segments.length > 1 ? segments[1] : null;
 
   const navigation = [
     { name: "Pools", href: `/${network}/pools`, current: rootSegment === "pools" },
