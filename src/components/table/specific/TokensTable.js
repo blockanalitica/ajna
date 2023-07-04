@@ -5,8 +5,10 @@ import CryptoIcon from "@/components/icon/CryptoIcon";
 import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
+import { useParams } from "next/navigation";
 
 const TokensTable = ({ ...rest }) => {
+  const { network } = useParams();
   const columns = [
     {
       header: "#",
@@ -68,7 +70,7 @@ const TokensTable = ({ ...rest }) => {
     <Table
       keyField="underlying_address"
       columns={columns}
-      href={(row) => `/tokens/${row.underlying_address}`}
+      href={(row) => `/${network}/tokens/${row.underlying_address}`}
       emptyIcon={faCoins}
       emptyTitle="No Tokens"
       emptyContent="There are no tokens"

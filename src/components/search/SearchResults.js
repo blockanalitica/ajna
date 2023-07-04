@@ -1,11 +1,13 @@
 "use client";
 
 import { useFetch } from "@/hooks";
+import { useParams } from "next/navigation";
 import CryptoIcon from "@/components/icon/CryptoIcon";
 import Value from "@/components/value/Value";
 import ResultTable from "./ResultTable";
 
 const SearchResults = ({ searchTerm }) => {
+  const { network } = useParams();
   const { data = {}, error, isLoading } = useFetch("/search/", { search: searchTerm });
 
   if (error) {
@@ -70,7 +72,7 @@ const SearchResults = ({ searchTerm }) => {
         keyField="address"
         columns={poolColumns}
         gridColumnClassName="grid-cols-table-search-results"
-        href={(row) => `/pools/${row.address}`}
+        href={(row) => `/${network}/pools/${row.address}`}
         isLoading={isLoading}
         emptyMessage="No pools"
       />
@@ -80,7 +82,7 @@ const SearchResults = ({ searchTerm }) => {
         keyField="underlying_address"
         columns={tokenColumns}
         gridColumnClassName="grid-cols-table-search-results"
-        href={(row) => `/tokens/${row.underlying_address}`}
+        href={(row) => `/${network}/tokens/${row.underlying_address}`}
         isLoading={isLoading}
         emptyMessage="No tokens"
       />

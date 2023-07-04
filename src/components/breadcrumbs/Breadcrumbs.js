@@ -7,12 +7,13 @@ import { faHouse, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 const Breadcrumbs = () => {
   const pathname = usePathname();
-  const segments = pathname.split("/").filter(Boolean);
+  let segments = pathname.split("/").filter(Boolean);
 
-  if (segments.length === 0) {
+  if (segments.length <= 1) {
     return <div></div>;
   }
 
+  segments.shift(); // remove first element which is network
   // Create a new path object for each segment in the URL
   const dynamicPaths = segments.map((segment, index) => ({
     label: segment

@@ -7,10 +7,11 @@ import InlineSelect from "@/components/select/InlineSelect";
 import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
+import { useParams } from "next/navigation";
 
 const PoolsTable = ({ ...rest }) => {
   const [isPriceUsd, setIsPriceUsd] = useState(false);
-
+  const { network } = useParams();
   const columns = [
     {
       header: "#",
@@ -218,7 +219,7 @@ const PoolsTable = ({ ...rest }) => {
     <Table
       keyField="address"
       columns={columns}
-      href={(row) => `/pools/${row.address}`}
+      href={(row) => `/${network}/pools/${row.address}`}
       footerRow={footerRow}
       emptyIcon={faWaterLadder}
       emptyTitle="No Pools"

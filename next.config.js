@@ -8,6 +8,15 @@ const nextConfig = {
   images: {
     domains: ["icons.blockanalitica.com"],
   },
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/ethereum",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useParams } from "next/navigation";
 import { faPersonSwimming } from "@fortawesome/free-solid-svg-icons";
 import { useFetch } from "@/hooks";
 import CryptoIcon from "@/components/icon/CryptoIcon";
@@ -11,6 +12,7 @@ import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const TokenArbitragePools = ({ address, daysAgo, ...rest }) => {
+  const { network } = useParams();
   const pageSize = 10;
   const [page, setPage] = useState(1);
   const [order, setOrder] = useState("-collateral_token_underlying_price");
@@ -121,7 +123,7 @@ const TokenArbitragePools = ({ address, daysAgo, ...rest }) => {
           data={results}
           keyField="address"
           columns={columns}
-          href={(row) => `/pools/${row.address}`}
+          href={(row) => `/${network}/pools/${row.address}`}
           currentPage={page}
           pageSize={pageSize}
           totalRecords={count}
