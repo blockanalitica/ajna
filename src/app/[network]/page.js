@@ -7,7 +7,8 @@ import TopTokens from "./TopTokens";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import Button from "@/components/button/Button";
 
-const Page = () => {
+const Page = ({ params }) => {
+  const { network } = params;
   const { queryParams, setQueryParams } = useQueryParams();
   const daysAgo = parseInt(queryParams.get("daysAgo")) || 1;
 
@@ -25,7 +26,7 @@ const Page = () => {
 
       <div className="flex flex-row justify-between items-center mb-5">
         <h1 className="text-xl md:text-1xl xl:text-2xl">Top Pools</h1>
-        <Button text="View all" href="/pools" />
+        <Button text="View all" href={`/${network}/pools`} />
       </div>
 
       <div className="mb-10">
@@ -34,7 +35,7 @@ const Page = () => {
 
       <div className="flex flex-row justify-between items-center mb-5">
         <h1 className="text-xl md:text-1xl xl:text-2xl">Top Tokens</h1>
-        <Button text="View all" href="/tokens" />
+        <Button text="View all" href={`/${network}/tokens`} />
       </div>
 
       <TopTokens daysAgo={daysAgo} />

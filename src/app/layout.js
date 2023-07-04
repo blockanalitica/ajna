@@ -26,7 +26,7 @@ const RootLayout = ({ children }) => {
     <html lang="en">
       <body>
         <div className="mx-auto max-w-80 px-4">
-          <Navbar />
+          <Navbar network={"asd"} />
           {children}
           <Footer />
         </div>

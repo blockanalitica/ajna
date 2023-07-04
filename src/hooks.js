@@ -4,17 +4,23 @@ import { useEffect, useState } from "react";
 import queryString from "query-string";
 import useSWR from "swr";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useParams } from "next/navigation";
 
 const clickOutsideEvents = ["mousedown", "touchstart"];
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export const useFetch = (path, query) => {
+  const params = useParams();
+
   let qs = queryString.stringify(query, { skipNull: true });
   if (qs) {
     qs = `?${qs}`;
   }
 
-  return useSWR(`${process.env.NEXT_PUBLIC_API_ENDPOINT}${path}${qs}`, fetcher);
+  return useSWR(
+    `${process.env.NEXT_PUBLIC_API_ENDPOINT}${params.network}${path}${qs}`,
+    fetcher
+  );
 };
 
 export const useOnClickOutside = (ref, handler) => {

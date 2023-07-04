@@ -10,30 +10,37 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import Search from "@/components/search/Search";
 import NetworkSwitch from "./NetworkSwitch";
-
+import { useParams } from "next/navigation";
 // Set default timezone here for client components
 // Set default timezone to UTC
 DTSettings.defaultZone = "utc";
 DTSettings.defaultLocale = "en";
 
 const Navbar = () => {
+  const { network } = useParams();
   const [isOpen, setOpen] = useState(false);
   const pathname = usePathname();
   const segments = pathname.split("/").filter(Boolean);
 
-  const rootSegment = segments && segments.length > 0 ? segments[0] : null;
+  const segmentIndex = network === "ethereum" ? 0 : 1;
+  const rootSegment =
+    segments && segments.length > segmentIndex ? segments[segmentIndex] : null;
 
   const navigation = [
-    { name: "Pools", href: "/pools", current: rootSegment === "pools" },
-    { name: "Tokens", href: "/tokens", current: rootSegment === "tokens" },
-    { name: "Auctions", href: "/auctions", current: rootSegment === "auctions" },
+    { name: "Pools", href: `/${network}/pools`, current: rootSegment === "pools" },
+    { name: "Tokens", href: `/${network}/tokens`, current: rootSegment === "tokens" },
+    {
+      name: "Auctions",
+      href: `/${network}/auctions`,
+      current: rootSegment === "auctions",
+    },
     // { name: "Grants", href: "#", current: rootSegment === "grans" },
   ];
 
   return (
     <nav className="mt-4 mb-10">
       <div className="flex items-center justify-between">
-        <Link href="/">
+        <Link href={`/${network}`}>
           <Image
             src="/assets/images/logos/AJNA-Logo-LG.svg"
             width="130"
