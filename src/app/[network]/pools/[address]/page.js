@@ -1,24 +1,24 @@
 "use client";
 
-import { DateTime } from "luxon";
+import GenericPlaceholder from "@/components/GenericPlaceholder";
 import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 import CardBackground from "@/components/card/CardBackground";
 import CardOpaque from "@/components/card/CardOpaque";
 import CopyToClipboard from "@/components/copyToClipboard/CopyToClipboard";
 import CryptoIcon from "@/components/icon/CryptoIcon";
+import Info from "@/components/info/Info";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import Tag from "@/components/tags/Tag";
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
-import { useFetch, useQueryParams, usePageTitle } from "@/hooks";
+import { useFetch, usePageTitle, useQueryParams } from "@/hooks";
 import { shorten } from "@/utils/address";
+import { DateTime } from "luxon";
+import BucketsGraph from "./BucketsGraph";
 import HistoricGraphs from "./HistoricGraphs";
 import PoolBuckets from "./PoolBuckets";
 import PoolEvents from "./PoolEvents";
 import PoolInfo from "./PoolInfo";
-import BucketsGraph from "./BucketsGraph";
-import Info from "@/components/info/Info";
-import GenericPlaceholder from "@/components/GenericPlaceholder";
 
 const PoolPage = ({ params }) => {
   const { address } = params;
@@ -156,7 +156,7 @@ const PoolPage = ({ params }) => {
                 <span className="text-sm">Utilization</span>
               </div>
               <div>
-                <Value value={pool.actual_utilization * 100} suffix={"%"} />
+                <Value value={pool.actual_utilization * 100} suffix={"%"} dashIfZero />
               </div>
             </div>
             <div className="flex justify-between items-center mb-2">
@@ -164,7 +164,7 @@ const PoolPage = ({ params }) => {
                 <span className=" text-sm">Collateralization</span>
               </div>
               <div>
-                <Value value={pool.collateralization * 100} suffix={"%"} />
+                <Value value={pool.collateralization * 100} suffix={"%"} dashIfZero />
               </div>
             </div>
           </div>
