@@ -25,7 +25,7 @@ const TotalStats = ({ daysAgo, className, ...rest }) => {
 
   const stats = [
     {
-      title: "Total lended",
+      title: "Total deposited",
       value: <Value value={results.total_pool_size || 0} prefix="$" />,
       smallValue: (
         <ValueChange
