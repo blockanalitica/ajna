@@ -1,10 +1,10 @@
+import "@/styles/globals.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
 import { Analytics } from "@vercel/analytics/react";
 import { Settings as DTSettings } from "luxon";
-import Navbar from "./Navbar";
 import Footer from "./Footer";
-import "@fortawesome/fontawesome-svg-core/styles.css";
-import "@/styles/globals.css";
+import Navbar from "./Navbar";
 
 config.autoAddCss = false;
 
@@ -14,8 +14,8 @@ DTSettings.defaultZone = "utc";
 DTSettings.defaultLocale = "en";
 
 export const metadata = {
-  title: "Ajna | Block Analitica",
-  description: "Ajna Dashboard from Block Analitica",
+  title: "Ajna Info",
+  description: "Ajna Info Dashboard from Block Analitica",
 };
 
 export const fetchCache = "default-no-store";

@@ -22,7 +22,7 @@ const TokenInfo = ({ address, daysAgo, className, ...rest }) => {
 
   const stats = [
     {
-      title: "Lended",
+      title: "Deposited",
       value: (
         <>
           <Value value={results.lended_amount} suffix={results.symbol} big />
