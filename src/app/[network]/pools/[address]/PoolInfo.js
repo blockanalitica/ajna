@@ -7,7 +7,7 @@ import ValueChange from "@/components/value/ValueChange";
 const PoolInfo = ({ data, ...rest }) => {
   const stats = [
     {
-      title: "Lended",
+      title: "Deposited",
       value: (
         <>
           <Value value={data.pool_size} suffix={data.quote_token_symbol} big />
