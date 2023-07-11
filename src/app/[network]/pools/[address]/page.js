@@ -267,23 +267,17 @@ const PoolPage = ({ params }) => {
                 </span>
               }
             >
-              {pool.lup > 1000000000 ? (
-                "-"
-              ) : (
-                <>
-                  <Value
-                    value={pool.lup}
-                    suffix={pool.quote_token_symbol}
-                    className="text-xl"
-                    dashIfZero
-                  />
-                  <ValueChange
-                    value={pool.lup - pool.prev_lup}
-                    suffix={pool.quote_token_symbol}
-                    className="text-lg"
-                  />
-                </>
-              )}
+              <Value
+                value={pool.lup}
+                suffix={pool.quote_token_symbol}
+                className="text-xl"
+                dashIfZero
+              />
+              <ValueChange
+                value={pool.lup - pool.prev_lup}
+                suffix={pool.quote_token_symbol}
+                className="text-lg"
+              />
             </CardOpaque>
             <CardOpaque
               title={
