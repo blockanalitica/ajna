@@ -38,7 +38,7 @@ const BucketsGraph = ({ address, lup, htp }) => {
 
   const graphAnnotations = {};
 
-  if (lup && lup < 1000000000) {
+  if (lup) {
     graphAnnotations["lup"] = {
       type: "line",
       scaleID: "y",
