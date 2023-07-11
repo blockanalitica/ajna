@@ -94,7 +94,7 @@ const TokenInfo = ({ address, daysAgo, className, ...rest }) => {
       title: "TVL",
       value: (
         <>
-          <Value value={results.tvl} prefix="$" />
+          <Value value={results.tvl} prefix="$" dashIfZero />
           <ValueChange
             value={results.tvl - results.prev_tvl}
             prefix="$"

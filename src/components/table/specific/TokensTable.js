@@ -32,7 +32,7 @@ const TokensTable = ({ ...rest }) => {
     },
     {
       header: "Price",
-      cell: ({ row }) => <Value value={row.underlying_price} prefix="$" />,
+      cell: ({ row }) => <Value value={row.underlying_price} prefix="$" dashIfZero />,
       smallCell: ({ row }) => (
         <ValueChange
           value={row.underlying_price - row.prev_underlying_price}
@@ -47,7 +47,7 @@ const TokensTable = ({ ...rest }) => {
 
     {
       header: "TVL",
-      cell: ({ row }) => <Value value={row.tvl} prefix="$" />,
+      cell: ({ row }) => <Value value={row.tvl} prefix="$" dashIfZero />,
       smallCell: ({ row }) => <ValueChange value={row.tvl - row.prev_tvl} prefix="$" />,
       headerAlign: "end",
       cellAlign: "end",
