@@ -135,7 +135,7 @@ const PoolsTable = ({ ...rest }) => {
       header: "TVL",
       cell: ({ row }) => (
         <div className="flex flex-col items-end">
-          <Value value={row.tvl} prefix="$" />
+          <Value value={row.tvl} prefix="$" dashIfZero />
           <ValueChange value={row.tvl - row.prev_tvl} small prefix={"$"} />
         </div>
       ),

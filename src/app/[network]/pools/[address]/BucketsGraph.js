@@ -36,25 +36,10 @@ const BucketsGraph = ({ address, lup, htp }) => {
     });
   });
 
-  const graphAnnotations = {
-    htp: {
-      type: "line",
-      scaleID: "y",
-      value: htp,
-      borderColor: "#B45CD6",
-      borderWidth: 2,
-      borderDash: [10, 8],
-      label: {
-        position: "end",
-        backgroundColor: "#1A1B23",
-        padding: 5,
-        color: "#AEAFC2",
-        content: "HTP",
-        display: true,
-        font: { weight: "normal" },
-      },
-    },
-    lup: {
+  const graphAnnotations = {};
+
+  if (lup && lup < 1000000000) {
+    graphAnnotations["lup"] = {
       type: "line",
       scaleID: "y",
       value: lup,
@@ -70,8 +55,28 @@ const BucketsGraph = ({ address, lup, htp }) => {
         display: true,
         font: { weight: "normal" },
       },
-    },
-  };
+    };
+  }
+
+  if (htp) {
+    graphAnnotations["htp"] = {
+      type: "line",
+      scaleID: "y",
+      value: htp,
+      borderColor: "#B45CD6",
+      borderWidth: 2,
+      borderDash: [10, 8],
+      label: {
+        position: "end",
+        backgroundColor: "#1A1B23",
+        padding: 5,
+        color: "#AEAFC2",
+        content: "HTP",
+        display: true,
+        font: { weight: "normal" },
+      },
+    };
+  }
 
   const options = {
     indexAxis: "y",

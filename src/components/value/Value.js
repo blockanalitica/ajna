@@ -29,7 +29,7 @@ function Value({
     (hideIfZero && value === 0) ||
     (dashIfZero && value === 0)
   ) {
-    if (dashIfZero && value === 0) {
+    if (dashIfZero) {
       return "-";
     }
     return "";

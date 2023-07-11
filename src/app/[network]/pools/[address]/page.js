@@ -171,7 +171,7 @@ const PoolPage = ({ params }) => {
 
           <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
             <CardOpaque title="TVL">
-              <Value value={pool.tvl} prefix="$" className="text-xl" />
+              <Value value={pool.tvl} prefix="$" className="text-xl" dashIfZero />
               <ValueChange value={pool.tvl - pool.prev_tvl} prefix="$" />
             </CardOpaque>
             <CardOpaque
@@ -240,6 +240,7 @@ const PoolPage = ({ params }) => {
                 compact100k={true}
                 compact={false}
                 className="text-xl"
+                dashIfZero
               />
               <ValueChange
                 value={
@@ -266,16 +267,23 @@ const PoolPage = ({ params }) => {
                 </span>
               }
             >
-              <Value
-                value={pool.lup}
-                suffix={pool.quote_token_symbol}
-                className="text-xl"
-              />
-              <ValueChange
-                value={pool.lup - pool.prev_lup}
-                suffix={pool.quote_token_symbol}
-                className="text-lg"
-              />
+              {pool.lup > 1000000000 ? (
+                "-"
+              ) : (
+                <>
+                  <Value
+                    value={pool.lup}
+                    suffix={pool.quote_token_symbol}
+                    className="text-xl"
+                    dashIfZero
+                  />
+                  <ValueChange
+                    value={pool.lup - pool.prev_lup}
+                    suffix={pool.quote_token_symbol}
+                    className="text-lg"
+                  />
+                </>
+              )}
             </CardOpaque>
             <CardOpaque
               title={
@@ -292,6 +300,7 @@ const PoolPage = ({ params }) => {
                 value={pool.htp}
                 suffix={pool.quote_token_symbol}
                 className="text-xl"
+                dashIfZero
               />
               <ValueChange
                 value={pool.htp - pool.prev_htp}
@@ -314,6 +323,7 @@ const PoolPage = ({ params }) => {
                 value={pool.hpb}
                 suffix={pool.quote_token_symbol}
                 className="text-xl"
+                dashIfZero
               />
               <ValueChange
                 value={pool.hpb - pool.prev_hpb}
