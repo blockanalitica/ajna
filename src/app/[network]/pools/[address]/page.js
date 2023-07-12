@@ -132,7 +132,7 @@ const PoolPage = ({ params }) => {
             </div>
           </div>
           <div>
-            <h3 className="text-sm font-bold text-gray-1 font-syncopate uppercase mb-5">
+            <h3 className="text-sm font-bold text-gray-1 font-syncopate uppercase mt-5 mb-3">
               Pool info
             </h3>
             <div className="flex justify-between items-center mb-2">

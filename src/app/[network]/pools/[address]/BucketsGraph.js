@@ -125,7 +125,7 @@ const BucketsGraph = ({ address, lup, htp }) => {
       tooltip: {
         callbacks: {
           title: (tooltipItems) => {
-            return `Bucket price: ${formatToDecimals(tooltipItems[0].raw.y, 2)}`;
+            return `Bucket price: ${formatToDecimals(tooltipItems[0].raw.y, 5)}`;
           },
           label: (tooltipItem) => {
             const value = compact(tooltipItem.parsed.x, 2, true);

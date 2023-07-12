@@ -36,7 +36,7 @@ const PoolsTable = ({ ...rest }) => {
           </span>
         </>
       ),
-      cellSize: "1.3fr",
+      cellSize: "1.5fr",
     },
     {
       header: "Collateral",
