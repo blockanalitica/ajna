@@ -119,13 +119,13 @@ const PoolPage = ({ params }) => {
 
               <div className="flex space-x-2">
                 <Value
-                  value={pool.pool_size_usd - pool.debt_usd}
+                  value={pool.quote_token_balance_usd}
                   small
                   prefix={"$"}
                   className="text-gray-10"
                 />
                 <Value
-                  value={pool.pool_size - pool.debt}
+                  value={pool.quote_token_balance}
                   suffix={pool.quote_token_symbol}
                 />
               </div>
