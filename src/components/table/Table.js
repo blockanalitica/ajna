@@ -3,10 +3,9 @@
 import classnames from "classnames";
 import _ from "lodash";
 import { useMediaQuery } from "@/hooks";
-import { faFolderOpen } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CardBackground from "@/components/card/CardBackground";
 import Pagination from "@/components/pagination/Pagination";
+import GenericEmptyPlaceholder from "@/components/GenericEmptyPlaceholder";
 import Link from "next/link";
 import HeaderCell from "./HeaderCell";
 import TablePlaceholder from "./TablePlaceholder";
@@ -156,21 +155,11 @@ const Table = ({
               </RowComponent>
             ))
           ) : (
-            <div className="flex items-center flex-col">
-              <div className="w-20 h-20 mt-20 mb-4 bg-gray-22 rounded-full p-4 flex items-center justify-center">
-                <FontAwesomeIcon
-                  icon={emptyIcon ? emptyIcon : faFolderOpen}
-                  size="xl"
-                  className="opacity-60"
-                />
-              </div>
-              <div className="text-red-3 text-sm mb-2">
-                {emptyTitle ? emptyTitle : "No Items"}
-              </div>
-              <div className="text-gray-13 text-sm mb-20">
-                {emptyContent ? emptyContent : "There are no items"}
-              </div>
-            </div>
+            <GenericEmptyPlaceholder
+              title={emptyTitle}
+              content={emptyContent}
+              icon={emptyIcon}
+            />
           )}
         </div>
         {footerRow && data.length > 0 ? (
