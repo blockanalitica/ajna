@@ -1,9 +1,11 @@
 "use client";
 
+import _ from "lodash";
 import Graph from "@/components/graph/Graph";
 import { useFetch } from "@/hooks";
 import { compact, formatToDecimals } from "@/utils/number";
-import _ from "lodash";
+import GenericEmptyPlaceholder from "@/components/GenericEmptyPlaceholder";
+import { faChartBar } from "@fortawesome/free-solid-svg-icons";
 
 const BucketsGraph = ({ address, lup, htp }) => {
   const { data, error, isLoading } = useFetch(`/pools/${address}/buckets/graph/`);
@@ -16,6 +18,16 @@ const BucketsGraph = ({ address, lup, htp }) => {
       <div className="flex items-center flex-col animate-pulse">
         <div className="w-20 h-20 mt-20 mb-4 bg-gray-22 rounded-full p-4 flex items-center justify-center"></div>
       </div>
+    );
+  }
+
+  if (!data || (data && data.length === 0)) {
+    return (
+      <GenericEmptyPlaceholder
+        title="No buckets"
+        content="There are no buckets"
+        icon={faChartBar}
+      />
     );
   }
 
@@ -113,7 +125,7 @@ const BucketsGraph = ({ address, lup, htp }) => {
       tooltip: {
         callbacks: {
           title: (tooltipItems) => {
-            return `Bucket price: ${formatToDecimals(tooltipItems[0].raw.x, 2)}`;
+            return `Bucket price: ${formatToDecimals(tooltipItems[0].raw.y, 2)}`;
           },
           label: (tooltipItem) => {
             const value = compact(tooltipItem.parsed.x, 2, true);
