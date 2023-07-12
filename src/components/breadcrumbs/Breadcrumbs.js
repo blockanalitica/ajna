@@ -13,7 +13,6 @@ const Breadcrumbs = () => {
     return <div></div>;
   }
 
-  segments.shift(); // remove first element which is network
   // Create a new path object for each segment in the URL
   const dynamicPaths = segments.map((segment, index) => ({
     label: segment
@@ -25,6 +24,7 @@ const Breadcrumbs = () => {
     url: "/" + segments.slice(0, index + 1).join("/"),
   }));
 
+  dynamicPaths.shift(); // remove first element which is network
   // Combine the hard-coded and dynamic paths
   const allPaths = [
     { label: <FontAwesomeIcon icon={faHouse} />, url: "/" },
