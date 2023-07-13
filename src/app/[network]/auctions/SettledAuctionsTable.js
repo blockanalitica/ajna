@@ -7,8 +7,14 @@ import { DateTime } from "luxon";
 import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
 import DateTimeAgo from "@/components/dateTime/DateTimeAgo";
+import CryptoIcon from "@/components/icon/CryptoIcon";
+import Link from "next/link";
+import { useParams } from "next/navigation";
+import { generateEtherscanUrl } from "@/utils/urls";
+import CopyToClipboard from "@/components/copyToClipboard/CopyToClipboard";
 
 const SettledAuctionsTable = ({ daysAgo }) => {
+  const { network } = useParams();
   const pageSize = 10;
   const [page, setPage] = useState(1);
   const [order, setOrder] = useState("-settle_time");
@@ -36,13 +42,49 @@ const SettledAuctionsTable = ({ daysAgo }) => {
 
   const columns = [
     {
+      header: "Pool",
+      cell: ({ row }) => (
+        <Link
+          href={`/${network}/pools/${row.pool_address}`}
+          className="text-purple-6 hover:underline flex"
+        >
+          <span className="relative hidden md:flex">
+            <CryptoIcon name={row.collateral_token_symbol} className="z-10" />
+            <CryptoIcon
+              name={row.debt_token_symbol}
+              className="relative left-[-10px] z-0"
+            />
+          </span>
+          <span className="font-medium md:pl-2">
+            {row.collateral_token_symbol} / {row.debt_token_symbol}
+          </span>
+        </Link>
+      ),
+      visibleAfter: "sm",
+    },
+    {
       header: "Borrower",
-      cell: ({ row }) => <>{shorten(row.borrower)}</>,
+      cell: ({ row }) => (
+        <>
+          {shorten(row.borrower)}
+          <div className="sm:hidden">
+            <CopyToClipboard className="ml-3 text-gray-6" text={row.borrower} />
+          </div>
+        </>
+      ),
       smallCell: ({ row }) => (
-        <DateTimeAgo
-          dateTime={DateTime.fromSeconds(row.settle_time)}
-          className="sm:hidden"
-        />
+        <>
+          <div className="items-center hidden sm:flex">
+            <a href={generateEtherscanUrl(network, row.borrower)} target="_blank">
+              <CryptoIcon name="etherscan" size={16} />
+            </a>
+            <CopyToClipboard className="ml-3 mr-3" text={row.borrower} />
+          </div>
+          <DateTimeAgo
+            dateTime={DateTime.fromSeconds(row.settle_time)}
+            className="sm:hidden"
+          />
+        </>
       ),
     },
     {

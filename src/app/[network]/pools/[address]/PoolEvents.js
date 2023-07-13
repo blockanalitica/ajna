@@ -11,8 +11,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { shorten } from "@/utils/address";
 import Select from "@/components/select/Select";
+import { generateEtherscanUrl } from "@/utils/urls";
+import { useParams } from "next/navigation";
 
 const PoolEvents = ({ address, ...rest }) => {
+  const { network } = useParams();
   const pageSize = 10;
   const [page, setPage] = useState(1);
   const [order, setOrder] = useState("-tvl");
@@ -81,7 +84,7 @@ const PoolEvents = ({ address, ...rest }) => {
       header: "Account",
       cell: ({ row }) => (
         <a
-          href={`https://etherscan.io/address/${row.account}`}
+          href={generateEtherscanUrl(network, row.account)}
           target="_blank"
           className="ms-2 text-purple-6 hover:underline"
         >
@@ -103,7 +106,7 @@ const PoolEvents = ({ address, ...rest }) => {
         <>
           {row.block_number}
           <a
-            href={`https://etherscan.io/tx/${row.transaction_hash}`}
+            href={generateEtherscanUrl(network, row.transaction_hash, "tx")}
             target="_blank"
             className="ms-2 hover:text-white"
           >
