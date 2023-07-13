@@ -140,7 +140,7 @@ const PoolPage = ({ params }) => {
                 <span className="text-sm">Lend APR</span>
               </div>
               <div>
-                <Value value={pool.lend_rate * 100} suffix={"%"} />
+                <Value value={pool.lend_rate * 100} suffix="%" />
               </div>
             </div>
             <div className="flex justify-between items-center mb-2">
@@ -148,7 +148,7 @@ const PoolPage = ({ params }) => {
                 <span className="text-sm">Borrow APR</span>
               </div>
               <div>
-                <Value value={pool.borrow_rate * 100} suffix={"%"} />
+                <Value value={pool.borrow_rate * 100} suffix="%" />
               </div>
             </div>
             <div className="flex justify-between items-center mb-2">
@@ -156,7 +156,15 @@ const PoolPage = ({ params }) => {
                 <span className="text-sm">Utilization</span>
               </div>
               <div>
-                <Value value={pool.actual_utilization * 100} suffix={"%"} dashIfZero />
+                <Value value={pool.actual_utilization * 100} suffix="%" dashIfZero />
+              </div>
+            </div>
+            <div className="flex justify-between items-center mb-2">
+              <div className="flex items-center">
+                <span className="text-sm">Target Utilization</span>
+              </div>
+              <div>
+                <Value value={pool.target_utilization * 100} suffix="%" dashIfZero />
               </div>
             </div>
             <div className="flex justify-between items-center mb-2">
@@ -164,7 +172,7 @@ const PoolPage = ({ params }) => {
                 <span className=" text-sm">Collateralization</span>
               </div>
               <div>
-                <Value value={pool.collateralization * 100} suffix={"%"} dashIfZero />
+                <Value value={pool.collateralization * 100} suffix="%" dashIfZero />
               </div>
             </div>
           </div>
