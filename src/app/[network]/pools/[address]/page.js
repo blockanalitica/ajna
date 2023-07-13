@@ -189,11 +189,13 @@ const PoolPage = ({ params }) => {
                 className="text-xl"
                 prefix="$"
               />
-              <ValueChange value={0} suffix="%" />
             </CardOpaque>
             <CardOpaque title="Fees">
-              <Value value={pool.fees ? pool.fees : 0} className="text-xl" />
-              <ValueChange value={0} suffix="%" />
+              <Value
+                value={pool.fees ? pool.fees : 0}
+                className="text-xl"
+                suffix={pool.quote_token_symbol}
+              />
             </CardOpaque>
             <CardOpaque title="Ajna Burned">
               <Value

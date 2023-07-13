@@ -7,6 +7,21 @@ import { useFetch } from "@/hooks";
 import { compact } from "@/utils/number";
 import { DateTime } from "luxon";
 import { useState } from "react";
+import _ from "lodash";
+
+const prefillSerieDates = (serie, days = 30) => {
+  const fakedDays = days - serie.length;
+  if (fakedDays <= 0) {
+    return serie;
+  }
+  const startDate = DateTime.fromISO(serie[0].x);
+  const fakes = _.range(fakedDays).map((days) => {
+    return { x: startDate.minus({ days: days + 1 }).toISO(), y: 0 };
+  });
+  fakes.reverse();
+  serie.unshift(...fakes);
+  return serie;
+};
 
 const HistoricGraphs = ({ address, daysAgo, collateralSymbol, quoteSymbol }) => {
   const [displayOption, setDisplayOption] = useState("tvl");
@@ -35,10 +50,11 @@ const HistoricGraphs = ({ address, daysAgo, collateralSymbol, quoteSymbol }) => 
     { key: "volume", value: "Volume" },
   ];
 
+  const serie = data.map((row) => ({ x: row.date, y: row.amount }));
   const series = [
     {
       label: "earn",
-      data: data.map((row) => ({ x: row.date, y: row.amount })),
+      data: prefillSerieDates(serie),
     },
   ];
 
@@ -50,7 +66,7 @@ const HistoricGraphs = ({ address, daysAgo, collateralSymbol, quoteSymbol }) => 
       x: {
         type: "time",
         time: {
-          unit: actualDaysAgo > 7 ? "day" : "hour",
+          unit: "day",
         },
       },
       y: {
