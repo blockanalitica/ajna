@@ -10,6 +10,8 @@ import DateTimeAgo from "@/components/dateTime/DateTimeAgo";
 import CryptoIcon from "@/components/icon/CryptoIcon";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { generateEtherscanUrl } from "@/utils/urls";
+import CopyToClipboard from "@/components/copyToClipboard/CopyToClipboard";
 
 const SettledAuctionsTable = ({ daysAgo }) => {
   const { network } = useParams();
@@ -58,19 +60,32 @@ const SettledAuctionsTable = ({ daysAgo }) => {
           </span>
         </Link>
       ),
+      visibleAfter: "sm",
     },
     {
       header: "Borrower",
-      cell: ({ row }) => <>{shorten(row.borrower)}</>,
-      smallCell: ({ row }) => (
-        <DateTimeAgo
-          dateTime={DateTime.fromSeconds(row.settle_time)}
-          className="sm:hidden"
-        />
+      cell: ({ row }) => (
+        <>
+          {shorten(row.borrower)}
+          <div className="sm:hidden">
+            <CopyToClipboard className="ml-3 text-gray-6" text={row.borrower} />
+          </div>
+        </>
       ),
-      headerAlign: "center",
-      cellAlign: "center",
-      visibleAfter: "sm",
+      smallCell: ({ row }) => (
+        <>
+          <div className="items-center hidden sm:flex">
+            <a href={generateEtherscanUrl(network, row.borrower)} target="_blank">
+              <CryptoIcon name="etherscan" size={16} />
+            </a>
+            <CopyToClipboard className="ml-3 mr-3" text={row.borrower} />
+          </div>
+          <DateTimeAgo
+            dateTime={DateTime.fromSeconds(row.settle_time)}
+            className="sm:hidden"
+          />
+        </>
+      ),
     },
     {
       header: "Collateral",

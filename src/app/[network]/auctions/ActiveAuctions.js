@@ -11,9 +11,14 @@ import HoursMinutes from "@/components/dateTime/HoursMinutes";
 import SecondaryButton from "@/components/button/SecondaryButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+import CryptoIcon from "@/components/icon/CryptoIcon";
+import CopyToClipboard from "@/components/copyToClipboard/CopyToClipboard";
+import { generateEtherscanUrl } from "@/utils/urls";
+import { useParams } from "next/navigation";
 
 const ActiveAuctions = () => {
   usePageTitle("Active Auctions");
+  const { network } = useParams();
   const pageSize = 10;
   const [page, setPage] = useState(1);
   const [order, setOrder] = useState("-kick_time");
@@ -37,12 +42,27 @@ const ActiveAuctions = () => {
   const columns = [
     {
       header: "Borrower",
-      cell: ({ row }) => <>{shorten(row.borrower)}</>,
+      cell: ({ row }) => (
+        <>
+          {shorten(row.borrower)}
+          <div className="sm:hidden">
+            <CopyToClipboard className="ml-3 text-gray-6" text={row.borrower} />
+          </div>
+        </>
+      ),
       smallCell: ({ row }) => (
-        <HoursMinutes
-          dateTime={DateTime.fromSeconds(row.kick_time).plus({ hours: 72 })}
-          className="sm:hidden"
-        />
+        <>
+          <div className="items-center hidden sm:flex">
+            <a href={generateEtherscanUrl(network, row.borrower)} target="_blank">
+              <CryptoIcon name="etherscan" size={16} />
+            </a>
+            <CopyToClipboard className="ml-3 mr-3" text={row.borrower} />
+          </div>
+          <HoursMinutes
+            dateTime={DateTime.fromSeconds(row.kick_time).plus({ hours: 72 })}
+            className="sm:hidden"
+          />
+        </>
       ),
     },
     {
