@@ -8,6 +8,9 @@ import { DateTime } from "luxon";
 import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
 import HoursMinutes from "@/components/dateTime/HoursMinutes";
+import SecondaryButton from "@/components/button/SecondaryButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 
 const ActiveAuctions = () => {
   usePageTitle("Active Auctions");
@@ -98,6 +101,31 @@ const ActiveAuctions = () => {
       ),
       headerAlign: "end",
       cellAlign: "end",
+    },
+    {
+      header: "",
+      cell: ({ row }) => (
+        <>
+          <SecondaryButton
+            text={
+              <>
+                View in app
+                <FontAwesomeIcon
+                  icon={faArrowUpRightFromSquare}
+                  size="xs"
+                  className="ms-2"
+                />
+              </>
+            }
+            href={`https://app.ajna.finance/pools/${row.pool_address}/auctions`}
+            target="_blank"
+          />
+        </>
+      ),
+
+      headerAlign: "end",
+      cellAlign: "end",
+      visibleAfter: "lg",
     },
   ];
 
