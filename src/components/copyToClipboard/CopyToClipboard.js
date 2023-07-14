@@ -23,7 +23,11 @@ const CopyToClipboard = ({ text, className, ...rest }) => {
   };
 
   return (
-    <Tooltip message={isCopied ? "Address copied!" : "Click to copy"} className="w-28">
+    <Tooltip
+      message={isCopied ? "Address copied!" : "Click to copy"}
+      className="w-28"
+      wrapperClassName="flex"
+    >
       <FontAwesomeIcon
         onClick={btnClick}
         icon={faCopy}
