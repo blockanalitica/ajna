@@ -9,9 +9,12 @@ import Value from "@/components/value/Value";
 import DateTimeAgo from "@/components/dateTime/DateTimeAgo";
 import CryptoIcon from "@/components/icon/CryptoIcon";
 import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFileContract } from "@fortawesome/free-solid-svg-icons";
 import { useParams } from "next/navigation";
 import { generateEtherscanUrl } from "@/utils/urls";
 import CopyToClipboard from "@/components/copyToClipboard/CopyToClipboard";
+import Tooltip from "@/components/tooltip/Tooltip";
 
 const SettledAuctionsTable = ({ daysAgo }) => {
   const { network } = useParams();
@@ -66,19 +69,30 @@ const SettledAuctionsTable = ({ daysAgo }) => {
       header: "Borrower",
       cell: ({ row }) => (
         <>
-          {shorten(row.borrower)}
+          {shorten(row.wallet_address)}
           <div className="sm:hidden">
-            <CopyToClipboard className="ml-3 text-gray-6" text={row.borrower} />
+            <CopyToClipboard className="ml-3 text-gray-6" text={row.wallet_address} />
           </div>
         </>
       ),
       smallCell: ({ row }) => (
         <>
-          <div className="items-center hidden sm:flex">
-            <a href={generateEtherscanUrl(network, row.borrower)} target="_blank">
+          <div className="items-center hidden pt-1 sm:flex">
+            <a href={generateEtherscanUrl(network, row.wallet_address)} target="_blank">
               <CryptoIcon name="etherscan" size={16} />
             </a>
-            <CopyToClipboard className="ml-3 mr-3" text={row.borrower} />
+            <CopyToClipboard className="ml-3 mr-3" text={row.wallet_address} />
+            {row.borrower !== row.wallet_address ? (
+              <a href={generateEtherscanUrl(network, row.borrower)} target="_blank">
+                <Tooltip
+                  message="View contract on Etherscan"
+                  className="w-28"
+                  wrapperClassName="flex"
+                >
+                  <FontAwesomeIcon icon={faFileContract} className="mr-3" />
+                </Tooltip>
+              </a>
+            ) : null}
           </div>
           <DateTimeAgo
             dateTime={DateTime.fromSeconds(row.settle_time)}

@@ -10,11 +10,15 @@ import Value from "@/components/value/Value";
 import HoursMinutes from "@/components/dateTime/HoursMinutes";
 import SecondaryButton from "@/components/button/SecondaryButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowUpRightFromSquare,
+  faFileContract,
+} from "@fortawesome/free-solid-svg-icons";
 import CryptoIcon from "@/components/icon/CryptoIcon";
 import CopyToClipboard from "@/components/copyToClipboard/CopyToClipboard";
 import { generateEtherscanUrl } from "@/utils/urls";
 import { useParams } from "next/navigation";
+import Tooltip from "@/components/tooltip/Tooltip";
 
 const ActiveAuctions = () => {
   usePageTitle("Active Auctions");
@@ -44,19 +48,30 @@ const ActiveAuctions = () => {
       header: "Borrower",
       cell: ({ row }) => (
         <>
-          {shorten(row.borrower)}
+          {shorten(row.wallet_address)}
           <div className="sm:hidden">
-            <CopyToClipboard className="ml-3 text-gray-6" text={row.borrower} />
+            <CopyToClipboard className="ml-3 text-gray-6" text={row.wallet_address} />
           </div>
         </>
       ),
       smallCell: ({ row }) => (
         <>
-          <div className="items-center hidden sm:flex">
-            <a href={generateEtherscanUrl(network, row.borrower)} target="_blank">
+          <div className="items-center hidden pt-1 sm:flex">
+            <a href={generateEtherscanUrl(network, row.wallet_address)} target="_blank">
               <CryptoIcon name="etherscan" size={16} />
             </a>
-            <CopyToClipboard className="ml-3 mr-3" text={row.borrower} />
+            <CopyToClipboard className="mx-3" text={row.wallet_address} />
+            {row.borrower !== row.wallet_address ? (
+              <a href={generateEtherscanUrl(network, row.borrower)} target="_blank">
+                <Tooltip
+                  message="View contract on Etherscan"
+                  className="w-28"
+                  wrapperClassName="flex"
+                >
+                  <FontAwesomeIcon icon={faFileContract} className="mr-3" />
+                </Tooltip>
+              </a>
+            ) : null}
           </div>
           <HoursMinutes
             dateTime={DateTime.fromSeconds(row.kick_time).plus({ hours: 72 })}

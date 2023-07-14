@@ -1,7 +1,7 @@
 import classnames from "classnames";
 
-const Tooltop = ({ children, message, className }) => (
-  <div className="group relative">
+const Tooltop = ({ children, message, className, wrapperClassName }) => (
+  <div className={classnames("group relative", wrapperClassName)}>
     {children}
     <div
       className={classnames(
