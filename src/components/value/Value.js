@@ -4,7 +4,8 @@ import {
   formatToDecimals,
   resolveSmallNumbers,
 } from "@/utils/number";
-import CryptoIcon from "../icon/CryptoIcon";
+import CryptoIcon from "@/components/icon/CryptoIcon";
+import Tooltip from "@/components/tooltip/Tooltip";
 
 function Value({
   value,
@@ -34,7 +35,6 @@ function Value({
     }
     return "";
   }
-  let tooltip = null;
   const rawValue = value;
 
   const showCompactNum = compact100k === true && value >= 100000;
@@ -51,6 +51,9 @@ function Value({
   if (newValue !== null) {
     value = newValue;
   }
+  const tooltipPrefix = `${prefix !== "$" ? " " : ""} ${prefix ? prefix : ""}`;
+  const tooltipSuffix = `${suffix !== "%" ? " " : ""}${suffix ? suffix : ""}`;
+  const tooltipMessage = `${tooltipPrefix}${rawValue}${tooltipSuffix}`;
 
   return (
     <>
@@ -78,7 +81,7 @@ function Value({
             )}
           </>
         ) : null}
-        {value}
+        <Tooltip message={tooltipMessage}>{value}</Tooltip>
         {suffix ? (
           <>
             {icon && suffix !== "%" ? (
@@ -93,7 +96,6 @@ function Value({
           </>
         ) : null}
       </span>
-      {tooltip}
     </>
   );
 }

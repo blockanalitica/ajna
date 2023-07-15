@@ -1,4 +1,5 @@
 import CryptoIcon from "@/components/icon/CryptoIcon";
+import Tooltip from "@/components/tooltip/Tooltip";
 import {
   compact as compactNumber,
   formatToDecimals,
@@ -91,6 +92,10 @@ function ValueChange({
     value = newValue;
   }
 
+  const tooltipPrefix = `${prefix !== "$" ? " " : ""} ${prefix ? prefix : ""}`;
+  const tooltipSuffix = `${suffix !== "%" ? " " : ""}${suffix ? suffix : ""}`;
+  const tooltipMessage = `${tooltipPrefix}${theValue}${tooltipSuffix}`;
+
   return (
     <>
       <span className={classNames} {...rest}>
@@ -110,7 +115,7 @@ function ValueChange({
             )}
           </>
         ) : null}
-        {value}
+        <Tooltip message={tooltipMessage}>{value}</Tooltip>
         {suffix ? (
           <>
             {icon && suffix !== "%" ? (

@@ -50,6 +50,10 @@ const PoolPage = ({ params }) => {
     setQueryParams({ daysAgo: value });
   };
 
+  const prevCollateralTokenUnderlyingPrice = pool.prev_collateral_token_price
+    ? pool.collateral_token_underlying_price - pool.prev_collateral_token_price
+    : 0;
+
   return (
     <>
       <section className="flex items-center justify-center sm:justify-end md:justify-between mb-10">
@@ -203,6 +207,7 @@ const PoolPage = ({ params }) => {
                 value={pool.fees ? pool.fees : 0}
                 className="text-xl"
                 suffix={pool.quote_token_symbol}
+                decimals={pool.fees < 1 ? 5 : 2}
               />
             </CardOpaque>
             <CardOpaque title="Ajna Burned">
@@ -251,17 +256,14 @@ const PoolPage = ({ params }) => {
                 compact={false}
                 className="text-xl"
                 dashIfZero
+                decimals={pool.collateral_token_underlying_price < 1 ? 5 : 2}
               />
               <ValueChange
-                value={
-                  pool.prev_collateral_token_price
-                    ? pool.collateral_token_underlying_price -
-                      pool.prev_collateral_token_price
-                    : 0
-                }
+                value={prevCollateralTokenUnderlyingPrice}
                 prefix="$"
                 compact100k={true}
                 compact={false}
+                decimals={Math.abs(prevCollateralTokenUnderlyingPrice) < 1 ? 5 : 7}
               />
             </CardOpaque>
             <CardOpaque
@@ -282,11 +284,12 @@ const PoolPage = ({ params }) => {
                 suffix={pool.quote_token_symbol}
                 className="text-xl"
                 dashIfZero
+                decimals={pool.lup < 1 ? 5 : 2}
               />
               <ValueChange
                 value={pool.lup - pool.prev_lup}
                 suffix={pool.quote_token_symbol}
-                className="text-lg"
+                decimals={Math.abs(pool.lup - pool.prev_lup) < 1 ? 5 : 2}
               />
             </CardOpaque>
             <CardOpaque
@@ -305,11 +308,12 @@ const PoolPage = ({ params }) => {
                 suffix={pool.quote_token_symbol}
                 className="text-xl"
                 dashIfZero
+                decimals={pool.htp < 1 ? 5 : 2}
               />
               <ValueChange
                 value={pool.htp - pool.prev_htp}
                 suffix={pool.quote_token_symbol}
-                className="text-lg"
+                decimals={Math.abs(pool.htp - pool.prev_htp) < 1 ? 5 : 2}
               />
             </CardOpaque>
             <CardOpaque
@@ -328,11 +332,12 @@ const PoolPage = ({ params }) => {
                 suffix={pool.quote_token_symbol}
                 className="text-xl"
                 dashIfZero
+                decimals={pool.hpb < 1 ? 5 : 2}
               />
               <ValueChange
                 value={pool.hpb - pool.prev_hpb}
                 suffix={pool.quote_token_symbol}
-                className="text-lg"
+                decimals={Math.abs(pool.hpb - pool.prev_hpb) < 1 ? 5 : 2}
               />
             </CardOpaque>
           </div>

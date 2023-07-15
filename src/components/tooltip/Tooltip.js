@@ -7,7 +7,7 @@ const Tooltop = ({ children, message, className, wrapperClassName }) => (
       className={classnames(
         "opacity-0 bg-gray-20 text-white text-xs rounded-lg px-2 py-1 absolute z-10",
         "group-hover:opacity-100 bottom-full pointer-events-none transition-all duration-300",
-        "text-center left-1/2 -translate-x-1/2",
+        "text-center left-1/2 -translate-x-1/2 font-normal whitespace-nowrap",
         className
       )}
     >
