@@ -50,7 +50,8 @@ const PoolBuckets = ({ address, ...rest }) => {
       smallCell: ({ row }) => (
         <Value
           value={row.bucket_price * row.quote_token_underlying_price}
-          prefix={"$"}
+          prefix="$"
+          decimals={row.bucket_price * row.quote_token_underlying_price < 1 ? 5 : 2}
         />
       ),
       headerAlign: "end",
@@ -69,7 +70,8 @@ const PoolBuckets = ({ address, ...rest }) => {
       smallCell: ({ row }) => (
         <Value
           value={row.collateral * row.collateral_token_underlying_price}
-          prefix={"$"}
+          prefix="$"
+          decimals={row.collateral * row.collateral_token_underlying_price < 1 ? 5 : 2}
         />
       ),
       headerAlign: "end",
@@ -87,7 +89,11 @@ const PoolBuckets = ({ address, ...rest }) => {
         />
       ),
       smallCell: ({ row }) => (
-        <Value value={row.deposit * row.quote_token_underlying_price} prefix={"$"} />
+        <Value
+          value={row.deposit * row.quote_token_underlying_price}
+          prefix="$"
+          decimals={row.deposit * row.quote_token_underlying_price < 1 ? 5 : 2}
+        />
       ),
       headerAlign: "end",
       cellAlign: "end",
