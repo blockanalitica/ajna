@@ -32,11 +32,21 @@ const TokensTable = ({ ...rest }) => {
     },
     {
       header: "Price",
-      cell: ({ row }) => <Value value={row.underlying_price} prefix="$" dashIfZero />,
+      cell: ({ row }) => (
+        <Value
+          value={row.underlying_price}
+          prefix="$"
+          dashIfZero
+          decimals={row.underlying_price < 1 ? 5 : 2}
+        />
+      ),
       smallCell: ({ row }) => (
         <ValueChange
           value={row.underlying_price - row.prev_underlying_price}
           prefix="$"
+          decimals={
+            Math.abs(row.underlying_price - row.prev_underlying_price) < 1 ? 5 : 2
+          }
         />
       ),
       headerAlign: "end",
