@@ -102,7 +102,10 @@ const SettledAuctionsGraph = ({ daysAgo, totalCollateralUsd, totalDebtUsd }) => 
         time: {
           unit: xUnit,
         },
-        min: DateTime.now().minus({ days: daysAgo }).toJSDate(),
+        // for 24h, show today and yesterday
+        min: DateTime.now()
+          .minus({ days: daysAgo === 1 ? 2 : daysAgo })
+          .toJSDate(),
         max: DateTime.now().toJSDate(),
       },
       y: {
