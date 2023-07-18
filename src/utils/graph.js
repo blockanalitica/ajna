@@ -149,3 +149,39 @@ export const barGraphSeriesCountLimiter = (
 
   return { series };
 };
+
+export const prefillSerieDates = (serie, days = 30, additionalSeriesData = null) => {
+  const fakedDays = days - serie.length;
+  if (fakedDays <= 0) {
+    return serie;
+  }
+  const startDate = DateTime.fromISO(serie[0].x);
+  const fakes = _.range(fakedDays).map((days) => {
+    return {
+      ...additionalSeriesData,
+      x: startDate.minus({ days: days + 1 }).toISO(),
+      y: 0,
+    };
+  });
+  fakes.reverse();
+  serie.unshift(...fakes);
+  return serie;
+};
+
+export const prefillSerieHours = (serie, hours = 30, additionalSeriesData = null) => {
+  const fakeHours = hours - serie.length;
+  if (fakeHours <= 0) {
+    return serie;
+  }
+  const startDate = DateTime.fromISO(serie[0].x);
+  const fakes = _.range(fakeHours).map((hours) => {
+    return {
+      ...additionalSeriesData,
+      x: startDate.minus({ hours: hours + 1 }).toISO(),
+      y: 0,
+    };
+  });
+  fakes.reverse();
+  serie.unshift(...fakes);
+  return serie;
+};

@@ -1,30 +1,16 @@
 "use client";
 
-import FancyGraph from "@/components/graph/FancyGraph";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
-import Value from "@/components/value/Value";
 import { useFetch } from "@/hooks";
-import { compact } from "@/utils/number";
-import { DateTime } from "luxon";
 import { useState } from "react";
-import _ from "lodash";
-
-const prefillSerieDates = (serie, days = 30) => {
-  const fakedDays = days - serie.length;
-  if (fakedDays <= 0) {
-    return serie;
-  }
-  const startDate = DateTime.fromISO(serie[0].x);
-  const fakes = _.range(fakedDays).map((days) => {
-    return { x: startDate.minus({ days: days + 1 }).toISO(), y: 0 };
-  });
-  fakes.reverse();
-  serie.unshift(...fakes);
-  return serie;
-};
+import APRHistoricGraph from "./APRHistoricGraph";
+import OtherHistoricGraphs from "./OtherHistoricGraphs";
+import GenericEmptyPlaceholder from "@/components/GenericEmptyPlaceholder";
+import { faChartBar } from "@fortawesome/free-solid-svg-icons";
 
 const HistoricGraphs = ({ address, daysAgo, collateralSymbol, quoteSymbol }) => {
   const [displayOption, setDisplayOption] = useState("tvl");
+
   const actualDaysAgo = daysAgo > 7 ? daysAgo : 30;
   const { data, error, isLoading } = useFetch(
     `/pools/${address}/historic/${displayOption}/`,
@@ -42,66 +28,25 @@ const HistoricGraphs = ({ address, daysAgo, collateralSymbol, quoteSymbol }) => 
       </div>
     );
   }
+
+  if (!data || (data && data.length === 0)) {
+    return (
+      <GenericEmptyPlaceholder
+        title="No data"
+        content="There is no data"
+        icon={faChartBar}
+      />
+    );
+  }
+
   const displayOptions = [
     { key: "tvl", value: "TVL" },
     { key: "pool_size", value: "Deposited" },
     { key: "debt", value: "Borrowed" },
     { key: "pledged_collateral", value: "Collateral" },
     { key: "volume", value: "Volume" },
+    { key: "apr", value: "APR" },
   ];
-
-  const serie = data.map((row) => ({ x: row.date, y: row.amount }));
-  const series = [
-    {
-      label: "earn",
-      data: prefillSerieDates(serie),
-    },
-  ];
-
-  const options = {
-    interaction: {
-      axis: "x",
-    },
-    scales: {
-      x: {
-        type: "time",
-        time: {
-          unit: "day",
-        },
-      },
-      y: {
-        ticks: {
-          callback: (value) => compact(value, 2, true),
-        },
-      },
-    },
-  };
-
-  const valueFormatter = (data) => {
-    const value = data.y;
-    let prefix = "";
-    let suffix = "";
-    if (displayOption === "volume") {
-      prefix = "$";
-    } else {
-      suffix = displayOption === "pledged_collateral" ? collateralSymbol : quoteSymbol;
-    }
-
-    return <Value value={value} suffix={suffix} prefix={prefix} big compact />;
-  };
-
-  const subvalueFormatter = (data) => {
-    const value = data.x;
-    let date;
-    if (typeof value == "number") {
-      date = DateTime.fromMillis(value);
-    } else {
-      date = DateTime.fromISO(value);
-    }
-    const format = actualDaysAgo > 7 ? "LLL dd, y" : "LLL dd, y HH:MM";
-    const suffix = actualDaysAgo > 7 ? "" : " UTC";
-    return `${date.toFormat(format)}${suffix}`;
-  };
 
   const headerRight = (
     <DisplaySwitch
@@ -112,17 +57,22 @@ const HistoricGraphs = ({ address, daysAgo, collateralSymbol, quoteSymbol }) => 
     />
   );
 
-  return (
-    <FancyGraph
-      type={displayOption === "volume" ? "bar" : "line"}
-      key={`graph-${displayOption}`}
-      series={series}
-      options={options}
-      valueFormatter={valueFormatter}
-      subvalueFormatter={subvalueFormatter}
-      headerRight={headerRight}
-    />
-  );
+  if (displayOption === "apr") {
+    return (
+      <APRHistoricGraph data={data} headerRight={headerRight} daysAgo={actualDaysAgo} />
+    );
+  } else {
+    return (
+      <OtherHistoricGraphs
+        data={data}
+        headerRight={headerRight}
+        displayOption={displayOption}
+        collateralSymbol={collateralSymbol}
+        quoteSymbol={quoteSymbol}
+        daysAgo={actualDaysAgo}
+      />
+    );
+  }
 };
 
 export default HistoricGraphs;
