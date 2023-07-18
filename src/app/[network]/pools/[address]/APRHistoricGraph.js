@@ -38,7 +38,6 @@ const APRHistoricGraph = ({ data, headerRight, daysAgo }) => {
       borderColor: "#B5179E",
     },
   ];
-  // TODO: what it lentapr and borrowapr are empty
   const defaultTooltipData = [lendApr.at(-1), borrowApr.at(-1)];
 
   const options = {
@@ -54,7 +53,7 @@ const APRHistoricGraph = ({ data, headerRight, daysAgo }) => {
       },
       y: {
         ticks: {
-          callback: (value) => compact(value, 2, true),
+          callback: (value) => compact(value * 100, 2, true) + "%",
         },
       },
     },

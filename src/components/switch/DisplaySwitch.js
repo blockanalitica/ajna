@@ -25,7 +25,11 @@ const DisplaySwitch = ({
   };
 
   return (
-    <div className="flex items-center">
+    <div
+      className={classnames("flex items-center", {
+        "max-w-full overflow-y-scroll rounded-lg": small === true,
+      })}
+    >
       <ul
         className={classnames("flex rounded-lg", {
           "bg-gray-dark/30 border-gray-20 border": small === false,
@@ -35,11 +39,15 @@ const DisplaySwitch = ({
         {options.map((option) => (
           <li
             key={option.key}
-            className={classnames("cursor-pointer text-center rounded-lg", className, {
-              "bg-primary-8": option.key === activeOption,
-              "px-5 py-2": small === false,
-              "text-xs px-3 py-1": small === true,
-            })}
+            className={classnames(
+              "cursor-pointer text-center rounded-lg py-2",
+              className,
+              {
+                "bg-primary-8": option.key === activeOption,
+                "px-5": small === false,
+                "text-sm px-4 md:text-xs md:py-1": small === true,
+              }
+            )}
             onClick={() => onOptionClick(option.key)}
           >
             {option.value}
