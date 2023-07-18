@@ -59,9 +59,6 @@ const APRHistoricGraph = ({ data, headerRight, daysAgo }) => {
       },
     },
     plugins: {
-      tooltip: {
-        enabled: true,
-      },
       legend: {
         display: true,
       },
