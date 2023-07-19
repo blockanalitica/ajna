@@ -4,6 +4,7 @@ import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import { useFetch } from "@/hooks";
 import { useState } from "react";
 import APRHistoricGraph from "./APRHistoricGraph";
+import MauTuHistoricGraph from "./MauTuHistoricGraph";
 import OtherHistoricGraphs from "./OtherHistoricGraphs";
 import GenericEmptyPlaceholder from "@/components/GenericEmptyPlaceholder";
 import { faChartBar } from "@fortawesome/free-solid-svg-icons";
@@ -46,6 +47,7 @@ const HistoricGraphs = ({ address, daysAgo, collateralSymbol, quoteSymbol }) => 
     { key: "pledged_collateral", value: "Collateral" },
     { key: "volume", value: "Volume" },
     { key: "apr", value: "APR" },
+    { key: "mau_tu", value: "MAU/TU" },
   ];
 
   const headerRight = (
@@ -60,6 +62,14 @@ const HistoricGraphs = ({ address, daysAgo, collateralSymbol, quoteSymbol }) => 
   if (displayOption === "apr") {
     return (
       <APRHistoricGraph data={data} headerRight={headerRight} daysAgo={actualDaysAgo} />
+    );
+  } else if (displayOption === "mau_tu") {
+    return (
+      <MauTuHistoricGraph
+        data={data}
+        headerRight={headerRight}
+        daysAgo={actualDaysAgo}
+      />
     );
   } else {
     return (
