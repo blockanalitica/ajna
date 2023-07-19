@@ -160,7 +160,7 @@ const PoolPage = ({ params }) => {
                 <span className="text-sm">Utilization</span>
               </div>
               <div>
-                <Value value={pool.actual_utilization * 100} suffix="%" dashIfZero />
+                <Value value={pool.utilization * 100} suffix="%" dashIfZero />
               </div>
             </div>
             <div className="flex justify-between items-center mb-2">
