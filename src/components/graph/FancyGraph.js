@@ -104,7 +104,7 @@ const FancyGraph = ({
 
   return (
     <div>
-      <div className="flex flex-col-reverse justify-between lg:flex-row">
+      <div className="flex flex-col-reverse justify-between xl:flex-row">
         <div>
           <div className="text-4xl mb-1">{lblValue}</div>
           <div className="text-sm text-gray-10 mb-6">{lblSubValue}</div>

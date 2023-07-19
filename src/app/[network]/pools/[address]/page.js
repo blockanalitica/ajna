@@ -165,7 +165,30 @@ const PoolPage = ({ params }) => {
             </div>
             <div className="flex justify-between items-center mb-2">
               <div className="flex items-center">
-                <span className="text-sm">Target Utilization</span>
+                <span className="text-sm">
+                  Meaningful Actual Utilization
+                  <Info className="ms-2" title="Meaningful Actual Utilization (MAU)">
+                    The ratio of the 12 hour moving average of debt to the 12 hour
+                    moving average of meaningful deposit, where meaningful deposit is
+                    the amount of deposit priced at or above the average threshold price
+                    of all loans, weighted by their debt.
+                  </Info>
+                </span>
+              </div>
+              <div>
+                <Value value={pool.actual_utilization * 100} suffix="%" dashIfZero />
+              </div>
+            </div>
+            <div className="flex justify-between items-center mb-2">
+              <div className="flex items-center">
+                <span className="text-sm">
+                  Target Utilization
+                  <Info className="ms-2" title="Target Utilization (TU)">
+                    The ratio of the 3.5 day EMA of system debt to 3.5 day EMA of
+                    LUP*totalCollateral. This may be sampled every half day to determine
+                    whether an interest rate update is available.
+                  </Info>
+                </span>
               </div>
               <div>
                 <Value value={pool.target_utilization * 100} suffix="%" dashIfZero />
