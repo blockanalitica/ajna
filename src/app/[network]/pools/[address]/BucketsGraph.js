@@ -160,7 +160,11 @@ const BucketsGraph = ({ address, lupIndex, htpIndex }) => {
     },
   };
 
-  return <Graph series={series} options={options} type="bar" labels={labels} />;
+  return (
+    <div className="min-h-[20rem]">
+      <Graph series={series} options={options} type="bar" labels={labels} />
+    </div>
+  );
 };
 
 export default BucketsGraph;
