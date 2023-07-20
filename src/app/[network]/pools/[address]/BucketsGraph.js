@@ -7,7 +7,7 @@ import { compact, formatToDecimals } from "@/utils/number";
 import GenericEmptyPlaceholder from "@/components/GenericEmptyPlaceholder";
 import { faChartBar } from "@fortawesome/free-solid-svg-icons";
 
-const BucketsGraph = ({ address, lup, htp }) => {
+const BucketsGraph = ({ address, lupIndex, htpIndex }) => {
   const { data, error, isLoading } = useFetch(`/pools/${address}/buckets/graph/`);
 
   if (error) {
@@ -32,37 +32,47 @@ const BucketsGraph = ({ address, lup, htp }) => {
   }
 
   const grouped = _.groupBy(data, "type");
-
+  let labels = [];
   const series = [];
   Object.entries(grouped).forEach(([key, rows]) => {
     const color = key === "utilized" ? "#8AC7DB" : "#B5179E";
+    labels = labels.concat(rows.map((row) => row.bucket_index));
     series.push({
       label: key,
       backgroundColor: color,
       borderColor: color,
       data: rows.map((row) => ({
         x: row["amount"],
-        y: row["bucket_price"],
-        bucketIndex: row["bucket_index"],
+        y: row["bucket_index"],
+        bucketPrice: row["bucket_price"],
       })),
     });
   });
+  labels.sort();
+  labels = _.sortedUniq(labels);
 
   const graphAnnotations = {};
 
-  if (lup) {
+  if (lupIndex) {
+    let lupIndexValue = labels.findIndex((el) => el >= lupIndex);
+    if (lupIndexValue === -1) {
+      lupIndexValue = labels.length - 0.5;
+    } else if (labels[lupIndexValue] !== lupIndex) {
+      lupIndexValue -= 0.5;
+    }
+
     graphAnnotations["lup"] = {
       type: "line",
       scaleID: "y",
-      value: lup,
-      borderColor: "#8AC7DB",
+      value: lupIndexValue,
+      borderColor: "#F6C361",
       borderWidth: 2,
       borderDash: [10, 8],
       label: {
         position: "end",
         backgroundColor: "#1A1B23",
         padding: 5,
-        color: "#AEAFC2",
+        color: "#F6C361",
         content: "LUP",
         display: true,
         font: { weight: "normal" },
@@ -70,19 +80,25 @@ const BucketsGraph = ({ address, lup, htp }) => {
     };
   }
 
-  if (htp) {
+  if (htpIndex) {
+    let htpIndexValue = labels.findIndex((el) => el >= htpIndex);
+    if (htpIndexValue === -1) {
+      htpIndexValue = labels.length - 0.5;
+    } else if (labels[htpIndexValue] !== htpIndex) {
+      htpIndexValue -= 0.5;
+    }
     graphAnnotations["htp"] = {
       type: "line",
       scaleID: "y",
-      value: htp,
-      borderColor: "#B45CD6",
+      value: htpIndexValue,
+      borderColor: "#FF5C69",
       borderWidth: 2,
       borderDash: [10, 8],
       label: {
         position: "end",
         backgroundColor: "#1A1B23",
         padding: 5,
-        color: "#AEAFC2",
+        color: "#FF5C69",
         content: "HTP",
         display: true,
         font: { weight: "normal" },
@@ -96,7 +112,6 @@ const BucketsGraph = ({ address, lup, htp }) => {
       mode: "nearest",
       axis: "y",
     },
-    barThickness: 10,
     scales: {
       x: {
         stacked: true,
@@ -109,13 +124,11 @@ const BucketsGraph = ({ address, lup, htp }) => {
         },
       },
       y: {
-        type: "linear",
         stacked: true,
         title: {
           display: true,
-          text: "bucket price",
+          text: "bucket index",
         },
-        beginAtZero: false,
       },
     },
     plugins: {
@@ -125,13 +138,17 @@ const BucketsGraph = ({ address, lup, htp }) => {
       tooltip: {
         callbacks: {
           title: (tooltipItems) => {
-            return `Bucket price: ${formatToDecimals(tooltipItems[0].raw.y, 5)}`;
+            return `Bucket price: ${formatToDecimals(
+              tooltipItems[0].raw.bucketPrice,
+              5
+            )}`;
           },
           label: (tooltipItem) => {
-            const value = compact(tooltipItem.parsed.x, 2, true);
+            let value = tooltipItem.parsed.x;
+            value = compact(value, value < 1 ? 5 : 2, true);
             const utilized =
               tooltipItem.dataset.label === "utilized" ? "utilized" : "not utilized";
-            return `Bucket #${tooltipItem.raw.bucketIndex} ${utilized}: ${value}`;
+            return `Bucket #${tooltipItem.raw.y} ${utilized}: ${value}`;
           },
         },
       },
@@ -140,7 +157,8 @@ const BucketsGraph = ({ address, lup, htp }) => {
       },
     },
   };
-  return <Graph series={series} options={options} type="bar" />;
+
+  return <Graph series={series} options={options} type="bar" labels={labels} />;
 };
 
 export default BucketsGraph;
