@@ -60,7 +60,6 @@ const BucketsGraph = ({ address, lupIndex, htpIndex }) => {
     } else if (labels[lupIndexValue] !== lupIndex) {
       lupIndexValue -= 0.5;
     }
-
     graphAnnotations["lup"] = {
       type: "line",
       scaleID: "y",
@@ -74,6 +73,7 @@ const BucketsGraph = ({ address, lupIndex, htpIndex }) => {
         padding: 5,
         color: "#F6C361",
         content: "LUP",
+        rotation: "90",
         display: true,
         font: { weight: "normal" },
       },
@@ -98,7 +98,9 @@ const BucketsGraph = ({ address, lupIndex, htpIndex }) => {
         position: "end",
         backgroundColor: "#1A1B23",
         padding: 5,
+        rotation: "90",
         color: "#FF5C69",
+        xAdjust: -20,
         content: "HTP",
         display: true,
         font: { weight: "normal" },

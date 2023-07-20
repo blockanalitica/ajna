@@ -321,7 +321,9 @@ const PoolPage = ({ params }) => {
                   decimals={Math.abs(pool.lup - pool.prev_lup) < 1.1 ? 5 : 2}
                 />
               </div>
-              <span className="text-sm text-gray-10">Bucket #: {pool.lup_index}</span>
+              <span className="text-sm text-gray-10">
+                Bucket #: {pool.lup_index ? pool.lup_index : "-"}
+              </span>
             </CardOpaque>
             <CardOpaque
               title={
@@ -348,7 +350,9 @@ const PoolPage = ({ params }) => {
                   decimals={Math.abs(pool.htp - pool.prev_htp) < 1.1 ? 5 : 2}
                 />
               </div>
-              <span className="text-sm text-gray-10">Bucket #: {pool.htp_index}</span>
+              <span className="text-sm text-gray-10">
+                Bucket #: {pool.htp_index ? pool.htp_index : "-"}
+              </span>
             </CardOpaque>
             <CardOpaque
               title={
@@ -375,7 +379,9 @@ const PoolPage = ({ params }) => {
                   decimals={Math.abs(pool.hpb - pool.prev_hpb) < 1.1 ? 5 : 2}
                 />
               </div>
-              <span className="text-sm text-gray-10">Bucket #: {pool.hpb_index}</span>
+              <span className="text-sm text-gray-10">
+                Bucket #: {pool.hpb_index ? pool.hpb_index : "-"}
+              </span>
             </CardOpaque>
           </div>
         </CardBackground>
