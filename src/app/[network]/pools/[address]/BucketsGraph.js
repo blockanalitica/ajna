@@ -122,7 +122,7 @@ const BucketsGraph = ({ address, lupIndex, htpIndex }) => {
         },
         title: {
           display: true,
-          text: "quote",
+          text: "quote amount",
         },
       },
       y: {

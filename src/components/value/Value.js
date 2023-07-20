@@ -59,7 +59,7 @@ function Value({
     <>
       <span
         id={id}
-        className={classnames("flex items-center", className, {
+        className={classnames("inline-flex items-center", className, {
           "text-sm": small,
           "lh-sm": small,
         })}

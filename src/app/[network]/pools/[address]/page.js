@@ -300,15 +300,16 @@ const PoolPage = ({ params }) => {
                   }
                 />
               </div>
-              <Value
-                value={pool.collateral_token_underlying_price}
-                className="text-sm text-gray-10"
-                prefix="$"
-                compact100k={true}
-                compact={false}
-                hideIfZero
-                decimals={pool.collateral_token_underlying_price < 1.1 ? 5 : 2}
-              />
+              <span className="text-sm text-gray-10">
+                <Value
+                  value={pool.collateral_token_underlying_price}
+                  prefix="$"
+                  compact100k={true}
+                  compact={false}
+                  hideIfZero
+                  decimals={pool.collateral_token_underlying_price < 1.1 ? 5 : 2}
+                />
+              </span>
             </CardOpaque>
             <CardOpaque
               title={
