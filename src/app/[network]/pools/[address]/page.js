@@ -50,8 +50,12 @@ const PoolPage = ({ params }) => {
     setQueryParams({ daysAgo: value });
   };
 
-  const prevCollateralTokenUnderlyingPrice = pool.prev_collateral_token_price
-    ? pool.collateral_token_underlying_price - pool.prev_collateral_token_price
+  const currentCollateralPrice = pool.quote_token_underlying_price
+    ? pool.collateral_token_underlying_price / pool.quote_token_underlying_price
+    : 0;
+
+  const prevCollateralPrice = pool.prev_quote_token_price
+    ? pool.prev_collateral_token_price / pool.prev_quote_token_price
     : 0;
 
   return (
@@ -277,23 +281,35 @@ const PoolPage = ({ params }) => {
           <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
             <CardOpaque title="Market Price">
               <Value
-                value={pool.collateral_token_underlying_price}
-                prefix="$"
+                value={currentCollateralPrice}
+                suffix={pool.quote_token_symbol}
                 compact100k={true}
                 compact={false}
                 className="text-xl"
                 dashIfZero
-                decimals={pool.collateral_token_underlying_price < 1.1 ? 5 : 2}
+                decimals={currentCollateralPrice < 1.1 ? 5 : 2}
               />
-              <ValueChange
-                value={prevCollateralTokenUnderlyingPrice}
+              <div className="h-6">
+                <ValueChange
+                  value={currentCollateralPrice - prevCollateralPrice}
+                  suffix={pool.quote_token_symbol}
+                  compact100k={true}
+                  compact={false}
+                  decimals={
+                    Math.abs(currentCollateralPrice - prevCollateralPrice) < 1.1 ? 5 : 2
+                  }
+                />
+              </div>
+              <Value
+                value={pool.collateral_token_underlying_price}
+                className="text-sm text-gray-10"
                 prefix="$"
                 compact100k={true}
                 compact={false}
-                decimals={Math.abs(prevCollateralTokenUnderlyingPrice) < 1.1 ? 5 : 7}
+                hideIfZero
+                decimals={pool.collateral_token_underlying_price < 1.1 ? 5 : 2}
               />
             </CardOpaque>
-
             <CardOpaque
               title={
                 <span>
