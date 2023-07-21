@@ -3,7 +3,7 @@
 import _ from "lodash";
 import Graph from "@/components/graph/Graph";
 import { useFetch } from "@/hooks";
-import { compact, formatToDecimals } from "@/utils/number";
+import { compact } from "@/utils/number";
 import GenericEmptyPlaceholder from "@/components/GenericEmptyPlaceholder";
 import { faChartBar } from "@fortawesome/free-solid-svg-icons";
 
@@ -32,32 +32,38 @@ const BucketsGraph = ({ address, lupIndex, htpIndex }) => {
   }
 
   const grouped = _.groupBy(data, "type");
-  let labels = [];
+  let labelMap = [];
   const series = [];
   Object.entries(grouped).forEach(([key, rows]) => {
     const color = key === "utilized" ? "#8AC7DB" : "#B5179E";
-    labels = labels.concat(rows.map((row) => row.bucket_index));
+    labelMap = labelMap.concat(
+      rows.map((row) => ({
+        bucketPrice: row.bucket_price,
+        bucketIndex: row.bucket_index,
+      }))
+    );
+
     series.push({
       label: key,
       backgroundColor: color,
       borderColor: color,
       data: rows.map((row) => ({
         x: row["amount"],
-        y: row["bucket_index"],
-        bucketPrice: row["bucket_price"],
+        y: row["bucket_price"],
+        bucketIndex: row["bucket_index"],
       })),
     });
   });
-  labels.sort();
-  labels = _.sortedUniq(labels);
 
+  labelMap = _.uniqBy(labelMap, "bucketIndex");
+  labelMap = _.sortBy(labelMap, "bucketIndex");
   const graphAnnotations = {};
 
   if (lupIndex) {
-    let lupIndexValue = labels.findIndex((el) => el >= lupIndex);
+    let lupIndexValue = labelMap.findIndex((el) => el.bucketIndex >= lupIndex);
     if (lupIndexValue === -1) {
-      lupIndexValue = labels.length - 0.5;
-    } else if (labels[lupIndexValue] !== lupIndex) {
+      lupIndexValue = labelMap.length - 0.5;
+    } else if (labelMap[lupIndexValue].bucketIndex !== lupIndex) {
       lupIndexValue -= 0.5;
     }
     graphAnnotations["lup"] = {
@@ -79,12 +85,11 @@ const BucketsGraph = ({ address, lupIndex, htpIndex }) => {
       },
     };
   }
-
   if (htpIndex) {
-    let htpIndexValue = labels.findIndex((el) => el >= htpIndex);
+    let htpIndexValue = labelMap.findIndex((el) => el.bucketIndex >= htpIndex);
     if (htpIndexValue === -1) {
-      htpIndexValue = labels.length - 0.5;
-    } else if (labels[htpIndexValue] !== htpIndex) {
+      htpIndexValue = labelMap.length - 0.5;
+    } else if (labelMap[htpIndexValue].bucketIndex !== htpIndex) {
       htpIndexValue -= 0.5;
     }
     graphAnnotations["htp"] = {
@@ -107,7 +112,7 @@ const BucketsGraph = ({ address, lupIndex, htpIndex }) => {
       },
     };
   }
-
+  let labels = labelMap.map((el) => el.bucketPrice);
   const options = {
     indexAxis: "y",
     interaction: {
@@ -127,9 +132,15 @@ const BucketsGraph = ({ address, lupIndex, htpIndex }) => {
       },
       y: {
         stacked: true,
+        ticks: {
+          callback: function (value) {
+            const num = this.getLabelForValue(value);
+            return compact(num, num < 1.1 ? 5 : 2);
+          },
+        },
         title: {
           display: true,
-          text: "bucket index",
+          text: "bucket price",
         },
       },
     },
@@ -140,17 +151,14 @@ const BucketsGraph = ({ address, lupIndex, htpIndex }) => {
       tooltip: {
         callbacks: {
           title: (tooltipItems) => {
-            return `Bucket price: ${formatToDecimals(
-              tooltipItems[0].raw.bucketPrice,
-              5
-            )}`;
+            return `Bucket price: ${tooltipItems[0].raw.y}`;
           },
           label: (tooltipItem) => {
             let value = tooltipItem.parsed.x;
-            value = compact(value, value < 1 ? 5 : 2, true);
+            value = compact(value, value < 1.1 ? 5 : 2, true);
             const utilized =
               tooltipItem.dataset.label === "utilized" ? "utilized" : "not utilized";
-            return `Bucket #${tooltipItem.raw.y} ${utilized}: ${value}`;
+            return `Bucket #${tooltipItem.raw.bucketIndex} ${utilized}: ${value}`;
           },
         },
       },
