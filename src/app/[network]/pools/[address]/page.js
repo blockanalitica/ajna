@@ -124,7 +124,6 @@ const PoolPage = ({ params }) => {
               <div className="flex items-center">
                 <span className="font-bold text-sm">{pool.quote_token_symbol}</span>
               </div>
-
               <div className="flex space-x-2">
                 <Value
                   value={pool.quote_token_balance_usd}
