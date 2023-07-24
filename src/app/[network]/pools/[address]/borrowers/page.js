@@ -36,14 +36,7 @@ const Page = ({ params }) => {
 
   const columns = [
     {
-      header: "#",
-      cell: ({ index }) => (
-        <span className="font-syncopate text-gray-7">{index + 1}</span>
-      ),
-      cellSize: "0.2fr",
-    },
-    {
-      header: "Collateral / Quote",
+      header: "Borrower",
       cell: ({ row }) => (
         <>
           <a
