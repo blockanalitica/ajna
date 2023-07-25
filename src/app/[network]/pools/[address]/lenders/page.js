@@ -5,7 +5,6 @@ import { useParams } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useFetch } from "@/hooks";
 import { shorten } from "@/utils/address";
-import Info from "@/components/info/Info";
 import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
@@ -20,13 +19,13 @@ const Page = ({ params }) => {
   const { address } = params;
   const pageSize = 10;
   const [page, setPage] = useState(1);
-  const [order, setOrder] = useState("-debt");
+  const [order, setOrder] = useState("-bucket_price");
 
   const {
     data = {},
     error,
     isLoading,
-  } = useFetch(`/pools/${address}/borrowers/`, {
+  } = useFetch(`/pools/${address}/lenders/`, {
     p: page,
     p_size: pageSize,
     order,
@@ -40,15 +39,15 @@ const Page = ({ params }) => {
 
   const columns = [
     {
-      header: "Borrower",
+      header: "Lender",
       cell: ({ row }) => (
         <>
           <a
-            href={generateEtherscanUrl(network, row.borrower)}
+            href={generateEtherscanUrl(network, row.lender)}
             target="_blank"
             className="ms-2 text-purple-6 hover:underline"
           >
-            {shorten(row.borrower)}
+            {shorten(row.lender)}
             <FontAwesomeIcon
               icon={faArrowUpRightFromSquare}
               className="ms-2"
@@ -58,47 +57,31 @@ const Page = ({ params }) => {
         </>
       ),
       cellSize: "1.5fr",
+      orderField: "lender",
     },
+
     {
-      header: "Collateral",
-      cell: ({ row }) => (
-        <>
-          <Value value={row.collateral} suffix={row.collateral_token_symbol} />
-        </>
-      ),
-      smallCell: ({ row }) => <Value value={row.collateral_usd} prefix="$" />,
+      header: "Bucket",
+      cell: ({ row }) => <Value value={row.bucket_price} suffix={row.token_symbol} />,
+      smallCell: ({ row }) => row.bucket_index,
       headerAlign: "end",
       cellAlign: "end",
-      orderField: "collateral",
+      orderField: "bucket_price",
     },
     {
-      header: "Debt",
-      cell: ({ row }) => <Value value={row.debt} suffix={row.quote_token_symbol} />,
-      smallCell: ({ row }) => <Value value={row.debt_usd} prefix="$" />,
+      header: "Amount",
+      cell: ({ row }) => <Value value={row.amount} suffix={row.token_symbol} />,
+      smallCell: ({ row }) => <Value value={row.amount_usd} prefix="$" />,
       headerAlign: "end",
       cellAlign: "end",
-      orderField: "debt",
-    },
-    {
-      header: (
-        <>
-          Health rate
-          <Info className="ms-2" title="Health rate">
-            LUP * collateral / debt * quoteTokenMarketPrice
-          </Info>
-        </>
-      ),
-      cell: ({ row }) => <Value value={row.health_rate} />,
-      headerAlign: "end",
-      cellAlign: "end",
-      orderField: "health_rate",
+      orderField: "amount",
     },
   ];
 
   const footerRow = (
     <div className="text-sm text-right">
       <a
-        href={`https://ajna-api.blockanalitica.com/v1/${network}/pools/${address}/borrowers-csv/`}
+        href={`https://ajna-api.blockanalitica.com/v1/${network}/pools/${address}/lenders-csv/`}
         target="_blank"
         className="ms-2 text-purple-6 hover:underline"
       >
@@ -114,7 +97,7 @@ const Page = ({ params }) => {
         <Breadcrumbs />
       </section>
       <div className="flex mb-5">
-        <h1 className="pl-4 text-2xl">Borrowers</h1>
+        <h1 className="pl-4 text-2xl">Lenders</h1>
       </div>
       <Table
         keyField="address"
@@ -127,8 +110,8 @@ const Page = ({ params }) => {
         onOrderChange={setOrder}
         currentOrder={order}
         isLoading={isLoading}
-        emptyTitle="No Borrowers"
-        emptyContent="There are no borrowers"
+        emptyTitle="No Lenders"
+        emptyContent="There are no lenders"
         footerRow={footerRow}
       />
     </>
