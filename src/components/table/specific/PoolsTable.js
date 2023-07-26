@@ -71,7 +71,7 @@ const PoolsTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
       ),
       headerAlign: "end",
       cellAlign: "end",
-      orderField: "pledged_collateral",
+      orderField: isPriceUsd ? "pledged_collateral_usd" : "pledged_collateral",
       visibleAfter: "md",
     },
     {
@@ -102,7 +102,7 @@ const PoolsTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
       ),
       headerAlign: "end",
       cellAlign: "end",
-      orderField: "pool_size",
+      orderField: isPriceUsd ? "pool_size_usd" : "pool_size",
       visibleAfter: "md",
     },
     {
@@ -130,7 +130,7 @@ const PoolsTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
       ),
       headerAlign: "end",
       cellAlign: "end",
-      orderField: "debt",
+      orderField: isPriceUsd ? "debt_usd": "debt",
       visibleAfter: "md",
     },
     {
