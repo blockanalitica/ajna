@@ -9,14 +9,16 @@ import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
 import { useParams } from "next/navigation";
 
-const PoolsTable = ({ ...rest }) => {
+const PoolsTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
   const [isPriceUsd, setIsPriceUsd] = useState(false);
   const { network } = useParams();
   const columns = [
     {
       header: "#",
       cell: ({ index }) => (
-        <span className="font-syncopate text-gray-7">{index + 1}</span>
+        <span className="font-syncopate text-gray-7">
+          {(currentPage - 1) * pageSize + index + 1}
+        </span>
       ),
       cellSize: "0.2fr",
     },
@@ -221,6 +223,8 @@ const PoolsTable = ({ ...rest }) => {
       columns={columns}
       href={(row) => `/${network}/pools/${row.address}`}
       footerRow={footerRow}
+      currentPage={currentPage}
+      pageSize={pageSize}
       emptyIcon={faWaterLadder}
       emptyTitle="No Pools"
       emptyContent="There are no pools"
