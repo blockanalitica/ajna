@@ -9,14 +9,16 @@ import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
 import { useParams } from "next/navigation";
 
-const PoolsTable = ({ ...rest }) => {
+const PoolsTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
   const [isPriceUsd, setIsPriceUsd] = useState(false);
   const { network } = useParams();
   const columns = [
     {
       header: "#",
       cell: ({ index }) => (
-        <span className="font-syncopate text-gray-7">{index + 1}</span>
+        <span className="font-syncopate text-gray-7">
+          {(currentPage - 1) * pageSize + index + 1}
+        </span>
       ),
       cellSize: "0.2fr",
     },
@@ -69,7 +71,7 @@ const PoolsTable = ({ ...rest }) => {
       ),
       headerAlign: "end",
       cellAlign: "end",
-      orderField: "pledged_collateral",
+      orderField: isPriceUsd ? "pledged_collateral_usd" : "pledged_collateral",
       visibleAfter: "md",
     },
     {
@@ -100,7 +102,7 @@ const PoolsTable = ({ ...rest }) => {
       ),
       headerAlign: "end",
       cellAlign: "end",
-      orderField: "pool_size",
+      orderField: isPriceUsd ? "pool_size_usd" : "pool_size",
       visibleAfter: "md",
     },
     {
@@ -128,7 +130,7 @@ const PoolsTable = ({ ...rest }) => {
       ),
       headerAlign: "end",
       cellAlign: "end",
-      orderField: "debt",
+      orderField: isPriceUsd ? "debt_usd": "debt",
       visibleAfter: "md",
     },
     {
@@ -221,6 +223,8 @@ const PoolsTable = ({ ...rest }) => {
       columns={columns}
       href={(row) => `/${network}/pools/${row.address}`}
       footerRow={footerRow}
+      currentPage={currentPage}
+      pageSize={pageSize}
       emptyIcon={faWaterLadder}
       emptyTitle="No Pools"
       emptyContent="There are no pools"
