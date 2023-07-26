@@ -27,7 +27,7 @@ const DisplaySwitch = ({
   return (
     <div
       className={classnames("flex items-center", {
-        "max-w-full overflow-y-scroll rounded-lg": small === true,
+        "max-w-full overflow-y-auto rounded-lg": small === true,
       })}
     >
       <ul
