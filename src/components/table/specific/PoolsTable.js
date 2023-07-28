@@ -130,7 +130,7 @@ const PoolsTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
       ),
       headerAlign: "end",
       cellAlign: "end",
-      orderField: isPriceUsd ? "debt_usd": "debt",
+      orderField: isPriceUsd ? "debt_usd" : "debt",
       visibleAfter: "md",
     },
     {

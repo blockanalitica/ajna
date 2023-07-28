@@ -39,6 +39,7 @@ const PoolEvents = ({ address, ...rest }) => {
     add_collateral: "Add Collateral",
     remove_collateral: "Remove Collateral",
     add_quote_token: "Add Quote Token",
+    move_quote_token: "Move Quote Token",
     remove_quote_token: "Remove Quote Token",
     draw_debt: "Draw Debt",
     repay_debt: "Repay Debt",
@@ -60,6 +61,15 @@ const PoolEvents = ({ address, ...rest }) => {
     {
       header: "Event",
       cell: ({ row }) => <>{eventTypeMapping[row.event_type]}</>,
+      smallCell: ({ row }) => (
+        <>
+          {row.event_type === "move_quote_token" ? (
+            <>
+              Bucket from {row.bucket_index_from} to {row.bucket_index_to}
+            </>
+          ) : null}
+        </>
+      ),
       cellSize: "1.5fr",
     },
     {
