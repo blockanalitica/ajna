@@ -5,6 +5,8 @@ import CryptoIcon from "@/components/icon/CryptoIcon";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 import GenericPlaceholder from "@/components/GenericPlaceholder";
+import Tag from "@/components/tags/Tag";
+import Value from "@/components/value/Value";
 import TokenInfo from "./TokenInfo";
 import TokenArbitragePools from "./TokenArbitragePools";
 import TokenPools from "./TokenPools";
@@ -38,9 +40,21 @@ const TokenPage = ({ params }) => {
         <Breadcrumbs />
         <DisplaySwitch onChange={onDisplaySwitchChange} activeOption={daysAgo} />
       </section>
-      <div className="flex mb-10">
+      <div className="flex mb-5">
         <CryptoIcon name={token.symbol} size="30" />
         <h1 className="ml-4 text-2xl">{token.symbol}</h1>
+      </div>
+      <div className="flex">
+        <Tag className="flex mb-5">
+          <CryptoIcon name={token.symbol} size="20" className="mr-1" />1 {token.symbol}
+          <span className="px-1">=</span>
+          <Value
+            value={token.underlying_price}
+            prefix="$"
+            compact={false}
+            decimals={token.underlying_price < 1 ? 5 : 2}
+          />
+        </Tag>
       </div>
 
       <TokenInfo address={address} daysAgo={daysAgo} className="mb-10" />
