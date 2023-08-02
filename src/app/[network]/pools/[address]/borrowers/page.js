@@ -84,7 +84,7 @@ const Page = ({ params }) => {
         <>
           Health rate
           <Info className="ms-2" title="Health rate">
-            LUP * collateral / debt * quoteTokenMarketPrice
+            LUP * collateral * collateralTokenMarketPrice / debt * quoteTokenMarketPrice
           </Info>
         </>
       ),
