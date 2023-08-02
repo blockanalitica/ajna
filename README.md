@@ -8,7 +8,6 @@ This repository provides the front-end part of the codebase. To make it work pro
 ## Table of Contents
 
 - [Getting Started](#getting-started)
-- [Figma Files](#figma-files)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -42,14 +41,6 @@ To get started with Ajna, follow the steps below:
 
 6. Open your browser and visit `http://localhost:3000` to view the application.
 
-## Figma Files
-
-You can find the Figma files related to the Ajna project:
-
-- [Ajna UX (Dashboard) - View](https://www.figma.com/file/qOAeTiOhCeY8pakZaCnQpO/Ajna-UX-(Dashboard-Copy)?node-id=3729-12559&t=HhBWFrS7NKBZCKal-0)
-- [Ajna UX (Dashboard) - Prototype](https://www.figma.com/proto/qOAeTiOhCeY8pakZaCnQpO/Ajna-UX-(Dashboard-Copy)?node-id=8707-42872&scaling=scale-down-width&page-id=215%3A3283&starting-point-node-id=3729%3A12559)
-
-Feel free to check them out to get a better understanding of the project's design and user experience.
 
 ## Contributing
 
