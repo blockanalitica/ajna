@@ -171,10 +171,10 @@ const PoolPage = ({ params }) => {
                 <span className="text-sm">
                   Meaningful Actual Utilization
                   <Info className="ms-2" title="Meaningful Actual Utilization (MAU)">
-                    The ratio of the 12 hour moving average of debt to the 12 hour
-                    moving average of meaningful deposit, where meaningful deposit is
-                    the amount of deposit priced at or above the average threshold price
-                    of all loans, weighted by their debt.
+                    The ratio of the 12 hour EMA of debt to the 12 hour EMA of
+                    meaningful deposit, where meaningful deposit is the amount of
+                    deposit priced at or above the average threshold price of all loans,
+                    weighted by their debt.
                   </Info>
                 </span>
               </div>
