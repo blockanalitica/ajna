@@ -228,7 +228,7 @@ const PoolPage = ({ params }) => {
                 prefix="$"
               />
             </CardOpaque>
-            <CardOpaque title="Fees">
+            <CardOpaque title="Reserves">
               <Value
                 value={pool.fees ? pool.fees : 0}
                 className="text-xl"
