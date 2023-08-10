@@ -32,7 +32,11 @@ const Navbar = () => {
       href: `/${network}/auctions`,
       current: rootSegment === "auctions",
     },
-    // { name: "Grants", href: "#", current: rootSegment === "grans" },
+    {
+      name: "Grants",
+      href: `/${network}/grants`,
+      current: rootSegment === "grants",
+    },
   ];
 
   return (
