@@ -2,26 +2,48 @@
 
 import FancyGraph from "@/components/graph/FancyGraph";
 import Value from "@/components/value/Value";
+import { prefillSerieDates, prefillSerieHours } from "@/utils/graph";
 import { compact } from "@/utils/number";
 import { DateTime } from "luxon";
-import { prefillSerieDates, prefillSerieHours } from "@/utils/graph";
 
 const MauTuHistoricGraph = ({ data, headerRight, daysAgo }) => {
   const mau = [];
   const tu = [];
+  const mauUpperBound = [];
+  const mauLowerBound = [];
   data.forEach((row) => {
     mau.push({ x: row.date, y: row.actual_utilization, label: "MAU" });
     tu.push({ x: row.date, y: row.target_utilization, label: "TU" });
+    mauUpperBound.push({
+      x: row.date,
+      y: row.actual_utilization_upper_bound,
+      label: "MAU Upper Bound",
+    });
+    mauLowerBound.push({
+      x: row.date,
+      y: row.actual_utilization_lower_bound,
+      label: "MAU Lower Bound",
+    });
   });
 
   let mauSeries;
   let tuSeries;
+  let mauUpperBoundSeries;
+  let mauLowerBoundSeries;
   if (daysAgo == 30) {
     mauSeries = prefillSerieHours(mau, 30 * 24, { label: "MAU" });
     tuSeries = prefillSerieHours(tu, 30 * 24, { label: "TU" });
+    mauUpperBoundSeries = prefillSerieHours(mauUpperBound, 30 * 24, {
+      label: "MAU Upper Bound",
+    });
+    mauLowerBoundSeries = prefillSerieHours(mauLowerBound, 30 * 24, {
+      label: "MAU Lower Bound",
+    });
   } else {
     mauSeries = prefillSerieDates(mau, 30, { label: "MAU" });
     tuSeries = prefillSerieDates(tu, 30, { label: "TU" });
+    mauUpperBoundSeries = prefillSerieDates(mau, 30, { label: "MAU Upper Bound" });
+    mauLowerBoundSeries = prefillSerieDates(tu, 30, { label: "MAU Lower Bound" });
   }
 
   const series = [
@@ -37,8 +59,27 @@ const MauTuHistoricGraph = ({ data, headerRight, daysAgo }) => {
       backgroundColor: "#B5179E",
       borderColor: "#B5179E",
     },
+    {
+      label: "MAU Upper Bound",
+      data: mauUpperBoundSeries,
+      backgroundColor: "#FF3344",
+      borderColor: "#FF3344",
+      borderDash: [5, 5],
+    },
+    {
+      label: "MAU Lower Bound",
+      data: mauLowerBoundSeries,
+      backgroundColor: "#2A9340",
+      borderColor: "#2A9340",
+      borderDash: [5, 5],
+    },
   ];
-  const defaultTooltipData = [mauSeries.at(-1), tuSeries.at(-1)];
+  const defaultTooltipData = [
+    mauSeries.at(-1),
+    tuSeries.at(-1),
+    mauUpperBoundSeries.at(-1),
+    mauLowerBoundSeries.at(-1),
+  ];
 
   const options = {
     interaction: {
