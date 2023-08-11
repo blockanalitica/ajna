@@ -1,17 +1,38 @@
 "use client";
 
 import { useState } from "react";
-import { useQueryParams, usePageTitle } from "@/hooks";
+import { useQueryParams, usePageTitle, useFetch } from "@/hooks";
+import TokensTable from "@/components/table/specific/TokensTable";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 import SearchInput from "@/components/search/SearchInput";
-import Tokens from "./Tokens";
 
 const TokensPage = () => {
   usePageTitle("Tokens");
   const { queryParams, setQueryParams } = useQueryParams();
   const daysAgo = parseInt(queryParams.get("daysAgo")) || 1;
   const [searchTerm, setSearchTerm] = useState("");
+  const pageSize = 10;
+  const [page, setPage] = useState(1);
+  const [order, setOrder] = useState("-tvl");
+
+  const {
+    data = {},
+    error,
+    isLoading,
+  } = useFetch("/tokens/", {
+    p: page,
+    p_size: pageSize,
+    order,
+    days_ago: daysAgo,
+    search: searchTerm,
+  });
+
+  if (error) {
+    return <p>Failed to load data</p>;
+  }
+
+  const { results, count } = data;
 
   const onDisplaySwitchChange = (value) => {
     setQueryParams({ daysAgo: value });
@@ -20,6 +41,7 @@ const TokensPage = () => {
   const handleSearchChange = (event) => {
     const newSearchTerm = event.target.value;
     setSearchTerm(newSearchTerm);
+    setPage(1);
   };
 
   return (
@@ -39,7 +61,17 @@ const TokensPage = () => {
         />
       </div>
 
-      <Tokens daysAgo={daysAgo} searchTerm={searchTerm} />
+      <TokensTable
+        data={results}
+        currentPage={page}
+        pageSize={pageSize}
+        totalRecords={count}
+        onPageChange={setPage}
+        onOrderChange={setOrder}
+        currentOrder={order}
+        isLoading={isLoading}
+        placeholderRows={5}
+      />
     </>
   );
 };

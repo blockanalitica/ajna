@@ -12,7 +12,7 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 export const useFetch = (path, query) => {
   const params = useParams();
 
-  let qs = queryString.stringify(query, { skipNull: true });
+  let qs = queryString.stringify(query, { skipNull: true, skipEmptyString: true });
   if (qs) {
     qs = `?${qs}`;
   }
