@@ -160,6 +160,14 @@ const PoolPage = ({ params }) => {
             </div>
             <div className="flex justify-between items-center mb-2">
               <div className="flex items-center">
+                <span className="text-sm">Min. debt amount</span>
+              </div>
+              <div>
+                <Value value={pool.min_debt_amount} suffix={pool.quote_token_symbol} />
+              </div>
+            </div>
+            <div className="flex justify-between items-center mb-2">
+              <div className="flex items-center">
                 <span className="text-sm">Utilization</span>
               </div>
               <div>
