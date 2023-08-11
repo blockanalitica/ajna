@@ -238,10 +238,14 @@ const PoolPage = ({ params }) => {
             </CardOpaque>
             <CardOpaque title="Reserves">
               <Value
-                value={pool.fees ? pool.fees : 0}
+                value={pool.reserves ? pool.reserves : 0}
                 className="text-xl"
                 suffix={pool.quote_token_symbol}
-                decimals={pool.fees < 1 ? 5 : 2}
+                decimals={pool.reserves < 1 ? 5 : 2}
+              />
+              <ValueChange
+                value={pool.reserves - pool.prev_reserves}
+                suffix={pool.quote_token_symbol}
               />
             </CardOpaque>
             <CardOpaque title="Ajna Burned">
