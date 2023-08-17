@@ -82,7 +82,7 @@ const PoolPage = ({ params }) => {
           <CryptoIcon name={pool.collateral_token_symbol} size="20" className="mr-1" />1{" "}
           {pool.collateral_token_symbol}
           <span className="px-1">=</span>
-          <Value value={pool.hpb} suffix={` ${pool.quote_token_symbol}`} icon={false} />
+          <Value value={pool.lup} suffix={` ${pool.quote_token_symbol}`} icon={false} />
         </Tag>
         <div className="flex items-baseline mb-5">
           <span className="text-gray-10 text-sm mr-4">Pool Address:</span>
