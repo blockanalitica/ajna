@@ -1,7 +1,12 @@
+"use client";
+
 import PoolsTable from "@/components/table/specific/PoolsTable";
 import { useFetch } from "@/hooks";
+import Button from "@/components/button/Button";
+import { useParams } from "next/navigation";
 
 const TopPools = ({ daysAgo = 1, ...rest }) => {
+  const { network } = useParams();
   const {
     data = {},
     error,
@@ -15,16 +20,22 @@ const TopPools = ({ daysAgo = 1, ...rest }) => {
   if (error) {
     return <p>Failed to load data</p>;
   }
-  let { results } = data;
+  let { results, count = 0 } = data;
   return (
-    <PoolsTable
-      data={results}
-      allowOrder={false}
-      isLoading={isLoading}
-      placeholderRows={5}
-      placeholderFooter={true}
-      {...rest}
-    />
+    <>
+      <div className="flex flex-row justify-between items-center mb-5">
+        <h1 className="text-xl md:text-1xl xl:text-2xl">Top Pools</h1>
+        <Button text={`View all (${count})`} href={`/${network}/pools`} />
+      </div>
+      <PoolsTable
+        data={results}
+        allowOrder={false}
+        isLoading={isLoading}
+        placeholderRows={5}
+        placeholderFooter={true}
+        {...rest}
+      />
+    </>
   );
 };
 
