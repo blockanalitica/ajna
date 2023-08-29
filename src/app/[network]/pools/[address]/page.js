@@ -13,6 +13,7 @@ import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
 import { useFetch, usePageTitle, useQueryParams } from "@/hooks";
 import { shorten } from "@/utils/address";
+import { generateEtherscanUrl } from "@/utils/urls";
 import { DateTime } from "luxon";
 import BucketsGraph from "./BucketsGraph";
 import HistoricGraphs from "./HistoricGraphs";
@@ -21,7 +22,7 @@ import PoolEvents from "./PoolEvents";
 import PoolInfo from "./PoolInfo";
 
 const PoolPage = ({ params }) => {
-  const { address } = params;
+  const { network, address } = params;
   const { queryParams, setQueryParams } = useQueryParams();
   const daysAgo = parseInt(queryParams.get("daysAgo")) || 1;
 
@@ -64,18 +65,32 @@ const PoolPage = ({ params }) => {
         <Breadcrumbs />
         <DisplaySwitch onChange={onDisplaySwitchChange} activeOption={daysAgo} />
       </section>
-      <div className="flex mb-5">
-        <span className="relative flex">
-          <CryptoIcon name={pool.collateral_token_symbol} className="z-10" />
-          <CryptoIcon
-            name={pool.quote_token_symbol}
-            className="relative left-[-10px] z-0"
-          />
-        </span>
+      <div className="flex justify-between mb-5">
+        <div className="flex items-center">
+          <span className="relative flex">
+            <CryptoIcon name={pool.collateral_token_symbol} className="z-10" />
+            <CryptoIcon
+              name={pool.quote_token_symbol}
+              className="relative left-[-10px] z-0"
+            />
+          </span>
 
-        <h1 className="pl-4 text-2xl">
-          {pool.collateral_token_symbol} / {pool.quote_token_symbol}
-        </h1>
+          <h1 className="pl-4 text-2xl">
+            {pool.collateral_token_symbol} / {pool.quote_token_symbol}
+          </h1>
+        </div>
+        <div className="flex items-baseline mb-5">
+          <span className="text-gray-10 text-sm mr-4">Pool Address:</span>
+          <span>{shorten(pool.address)}</span>
+          <CopyToClipboard className="ml-3" text={pool.address} />
+          <a
+            href={generateEtherscanUrl(network, pool.address)}
+            target="_blank"
+            className="ml-3"
+          >
+            <CryptoIcon name="etherscan" size={16} />
+          </a>
+        </div>
       </div>
       <div className="flex flex-col sm:flex-row items-center justify-between">
         <Tag className="flex mb-5">
@@ -84,10 +99,43 @@ const PoolPage = ({ params }) => {
           <span className="px-1">=</span>
           <Value value={pool.hpb} suffix={` ${pool.quote_token_symbol}`} icon={false} />
         </Tag>
-        <div className="flex items-baseline mb-5">
-          <span className="text-gray-10 text-sm mr-4">Pool Address:</span>
-          <span>{shorten(pool.address)}</span>
-          <CopyToClipboard className="ml-3" text={pool.address} />
+        <div className="flex flex-col items-baseline mb-5">
+          <div className="flex justify-between w-full items-center mb-1">
+            <span className="text-gray-10 text-sm mr-4">
+              <CryptoIcon
+                name={pool.collateral_token_symbol}
+                size="20"
+                className="mr-1"
+              />
+            </span>
+            <div className="flex items-center">
+              <span>{shorten(pool.collateral_token_address)}</span>
+              <CopyToClipboard className="ml-3" text={pool.collateral_token_address} />
+              <a
+                href={generateEtherscanUrl(network, pool.collateral_token_address)}
+                target="_blank"
+                className="ml-3"
+              >
+                <CryptoIcon name="etherscan" size={16} />
+              </a>
+            </div>
+          </div>
+          <div className="flex justify-between w-full items-center">
+            <span className="text-gray-10 text-sm mr-4">
+              <CryptoIcon name={pool.quote_token_symbol} size="20" className="mr-1" />
+            </span>
+            <div className="flex items-center">
+              <span>{shorten(pool.quote_token_address)}</span>
+              <CopyToClipboard className="ml-3" text={pool.quote_token_address} />
+              <a
+                href={generateEtherscanUrl(network, pool.quote_token_address)}
+                target="_blank"
+                className="ml-3"
+              >
+                <CryptoIcon name="etherscan" size={16} />
+              </a>
+            </div>
+          </div>
         </div>
       </div>
 

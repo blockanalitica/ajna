@@ -2,8 +2,8 @@
 
 import FancyGraph from "@/components/graph/FancyGraph";
 import Value from "@/components/value/Value";
-import { compact } from "@/utils/number";
 import { prefillSerieDates } from "@/utils/graph";
+import { compact } from "@/utils/number";
 import { DateTime } from "luxon";
 
 const OtherHistoricGraphs = ({
@@ -45,7 +45,7 @@ const OtherHistoricGraphs = ({
     const value = data.y;
     let prefix = "";
     let suffix = "";
-    if (displayOption === "volume") {
+    if (displayOption === "volume" || displayOption === "tvl") {
       prefix = "$";
     } else {
       suffix = displayOption === "pledged_collateral" ? collateralSymbol : quoteSymbol;
