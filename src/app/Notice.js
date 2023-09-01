@@ -1,4 +1,7 @@
-import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
+import {
+  faTriangleExclamation,
+  faArrowUpRightFromSquare,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Notice = () => {
@@ -14,6 +17,13 @@ const Notice = () => {
       <div>
         A griefing vector has been discovered in the protocol. Borrowers should repay
         loans. Lenders are not impacted. There will be a redeployment.
+        <a
+          href="https://blog.summer.fi/ajna-possible-attack-vector/"
+          className="underline hover:text-purple-6 ms-2"
+        >
+          More info
+          <FontAwesomeIcon icon={faArrowUpRightFromSquare} size="xs" className="ms-2" />
+        </a>
       </div>
     </div>
   );
