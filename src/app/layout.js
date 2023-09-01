@@ -6,6 +6,7 @@ import Script from "next/script";
 import { Settings as DTSettings } from "luxon";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
+import Notice from "./Notice";
 
 config.autoAddCss = false;
 
@@ -28,6 +29,7 @@ const RootLayout = ({ children }) => {
       <body>
         <div className="mx-auto max-w-80 px-4">
           <Navbar />
+          <Notice />
           {children}
           <Footer />
         </div>
