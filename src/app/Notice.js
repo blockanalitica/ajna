@@ -1,7 +1,4 @@
-import {
-  faTriangleExclamation,
-  faArrowUpRightFromSquare,
-} from "@fortawesome/free-solid-svg-icons";
+import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Notice = () => {
@@ -15,13 +12,8 @@ const Notice = () => {
         />
       </div>
       <div>
-        Depositing or withdrawing claimable collateral is an advanced feature, meant for
-        Arbitrageurs. Claimable collateral should not be placed at buckets below the
-        external market price.
-        <a href="https://summer.fi/ajna" className="ms-2 underline hover:text-purple-6">
-          Go to summer.fi
-          <FontAwesomeIcon icon={faArrowUpRightFromSquare} size="xs" className="ms-1" />
-        </a>
+        A griefing vector has been discovered in the protocol. Borrowers should repay
+        loans. Lenders are not impacted. There will be a redeployment.
       </div>
     </div>
   );
