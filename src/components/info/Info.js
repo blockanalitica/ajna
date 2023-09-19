@@ -8,14 +8,23 @@ import Offcanvas from "@/components/offcanvas/Offcanvas";
 
 function Info({ title, className, children }) {
   const [isOpen, setIsOpen] = useState(false);
+
+  const toggleOpen = (e) => {
+    if (e) {
+      e.stopPropagation();
+    }
+
+    setIsOpen(!isOpen);
+  };
+
   return (
     <>
       <FontAwesomeIcon
         icon={faCircleQuestion}
         className={classnames("cursor-pointer hover:text-ajna-aqua", className)}
-        onClick={() => setIsOpen(true)}
+        onClick={(e) => toggleOpen(e)}
       />
-      <Offcanvas title={title} isOpen={isOpen} toggle={() => setIsOpen(!open)}>
+      <Offcanvas title={title} isOpen={isOpen} toggle={(e) => toggleOpen(e)}>
         {children}
       </Offcanvas>
     </>
