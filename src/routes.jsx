@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import { NETWORKS } from "@/networks";
 import SimpleRedirect from "@/components/simpleRedirect/SimpleRedirect";
 import Layout from "@/app/layout";
+import Error404 from "@/app/404";
 import Homepage from "@/app/page";
 import Pools from "@/app/pools/page";
 import Pool from "@/app/pools/address/page";
@@ -11,7 +12,6 @@ import Tokens from "@/app/tokens/page";
 import Token from "@/app/tokens/address/page";
 import Auctions from "@/app/auctions/page";
 import Grants from "@/app/grants/page";
-
 import V2Homepage from "@/app/v2/page";
 import V2Pools from "@/app/v2/pools/page";
 import V2Pool from "@/app/v2/pools/address/page";
@@ -65,7 +65,7 @@ const AjnaRoutes = () => {
         {allRoutes.map((route) => route)}
 
         {/* Catch all */}
-        {/* <Route path="*" element={<ErrorPage />} /> */}
+        <Route path="*" element={<Error404 />} />
       </Route>
     </Routes>
   );
