@@ -58,8 +58,6 @@ const TokensPage = () => {
           className="mb-5"
         />
       </div>
-      {/* eslint-disable no-undef */}
-      <button onClick={() => methodDoesNotExist()}>Break the world</button>
 
       <TokensTable
         data={results}
