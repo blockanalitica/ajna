@@ -34,3 +34,6 @@ yarn-error.log*
 .DS_Store
 # Sentry Auth Token
 .sentryclirc
+
+# vite
+/dist/
