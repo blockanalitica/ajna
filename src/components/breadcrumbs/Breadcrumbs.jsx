@@ -9,7 +9,7 @@ const Breadcrumbs = () => {
   const { paths } = smartLocationParts(location);
   const buildLink = useLinkBuilder();
 
-  if (paths.length <= 1) {
+  if (paths.length === 0) {
     return <div></div>;
   }
 
@@ -24,7 +24,6 @@ const Breadcrumbs = () => {
     url: "/" + paths.slice(0, index + 1).join("/"),
   }));
 
-  dynamicPaths.shift(); // remove first element which is network
   // Combine the hard-coded and dynamic paths
   const allPaths = [
     { label: <FontAwesomeIcon icon={faHouse} />, url: "/" },
