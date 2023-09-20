@@ -7,7 +7,7 @@ import { useState } from "react";
 import Search from "@/components/search/Search";
 import { smartLocationParts } from "@/utils/url";
 import NetworkSwitch from "./NetworkSwitch";
-import ajnaLogo from "@/assets/images/logos/AJNA-Logo-LG.svg"
+import ajnaLogo from "@/assets/images/logos/AJNA-Logo-LG.svg";
 
 const Navbar = () => {
   const buildLink = useLinkBuilder();
@@ -36,13 +36,7 @@ const Navbar = () => {
     <nav className="mt-4 mb-10">
       <div className="flex items-center justify-between">
         <Link to={buildLink("/")}>
-          <img
-            src={ajnaLogo}
-            width="130"
-            height="24"
-            alt="Ajna"
-            className="h-auto"
-          />
+          <img src={ajnaLogo} width="130" height="24" alt="Ajna" className="h-auto" />
         </Link>
         <div className="hidden md:flex space-x-4">
           {navigation.map((item) => (
