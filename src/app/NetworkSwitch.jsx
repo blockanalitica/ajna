@@ -43,7 +43,6 @@ const NetworkSwitch = ({ className }) => {
             key={currentNetwork.key}
             name={currentNetwork.icon}
             size="24"
-            priority
           />
         </div>
         <span className="ml-2">{currentNetwork.name}</span>
