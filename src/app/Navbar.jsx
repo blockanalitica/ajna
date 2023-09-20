@@ -7,6 +7,7 @@ import { useState } from "react";
 import Search from "@/components/search/Search";
 import { smartLocationParts } from "@/utils/url";
 import NetworkSwitch from "./NetworkSwitch";
+import ajnaLogo from "@/assets/images/logos/AJNA-Logo-LG.svg"
 
 const Navbar = () => {
   const buildLink = useLinkBuilder();
@@ -36,7 +37,7 @@ const Navbar = () => {
       <div className="flex items-center justify-between">
         <Link to={buildLink("/")}>
           <img
-            src="/assets/images/logos/AJNA-Logo-LG.svg"
+            src={ajnaLogo}
             width="130"
             height="24"
             alt="Ajna"

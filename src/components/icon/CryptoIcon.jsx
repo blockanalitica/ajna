@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Tooltip from "@/components/tooltip/Tooltip";
+import placeholderIcon from "@/assets/images/icon/missing-currency.svg";
 
 const CryptoIcon = ({ name, size = "24", ...rest }) => {
   const [imgSrc, setImgSrc] = useState(
@@ -22,7 +23,7 @@ const CryptoIcon = ({ name, size = "24", ...rest }) => {
           style={{ width: size, height: size }}
           alt={name}
           onError={() => {
-            setImgSrc("/assets/images/icon/missing-currency.svg");
+            setImgSrc(placeholderIcon);
           }}
         />
       </Tooltip>
