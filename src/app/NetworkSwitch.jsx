@@ -39,11 +39,7 @@ const NetworkSwitch = ({ className }) => {
         onClick={() => setOpen(!open)}
       >
         <div>
-          <CryptoIcon
-            key={currentNetwork.key}
-            name={currentNetwork.icon}
-            size="24"
-          />
+          <CryptoIcon key={currentNetwork.key} name={currentNetwork.icon} size="24" />
         </div>
         <span className="ml-2">{currentNetwork.name}</span>
         {networkOptions.length > 1 ? (
