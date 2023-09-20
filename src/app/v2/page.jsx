@@ -1,5 +1,3 @@
-"use client";
-
 import { useQueryParams } from "@/hooks";
 import TotalStats from "./TotalStats";
 import TopPools from "./TopPools";

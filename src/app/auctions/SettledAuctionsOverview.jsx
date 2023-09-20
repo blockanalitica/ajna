@@ -1,5 +1,3 @@
-"use client";
-
 import classnames from "classnames";
 import { useFetch } from "@/hooks";
 import Value from "@/components/value/Value";

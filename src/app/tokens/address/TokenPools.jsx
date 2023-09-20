@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import { faWaterLadder } from "@fortawesome/free-solid-svg-icons";
 import { useFetch } from "@/hooks";

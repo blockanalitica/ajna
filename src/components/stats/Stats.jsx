@@ -4,11 +4,11 @@ const Stats = ({ data, className, ...rest }) => {
   const cols = data.length;
 
   let colClassName = null;
-  if (cols == 5) {
+  if (cols === 5) {
     colClassName = "md:grid-cols-4 lg:grid-cols-5";
-  } else if (cols == 4) {
+  } else if (cols === 4) {
     colClassName = "md:grid-cols-4 lg:grid-cols-4";
-  } else if (cols == 3) {
+  } else if (cols === 3) {
     colClassName = "md:grid-cols-3 lg:grid-cols-3";
   }
 

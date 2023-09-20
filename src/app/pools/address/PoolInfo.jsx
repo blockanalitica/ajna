@@ -1,5 +1,3 @@
-"use client";
-
 import Stats from "@/components/stats/Stats";
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";

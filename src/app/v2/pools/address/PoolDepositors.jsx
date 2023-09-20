@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import { useFetch, useLinkBuilder } from "@/hooks";
 import Table from "@/components/table/Table";

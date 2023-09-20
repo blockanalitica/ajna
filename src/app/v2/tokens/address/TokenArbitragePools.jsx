@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { faPersonSwimming } from "@fortawesome/free-solid-svg-icons";
-import { useFetch } from "@/hooks";
+import { useFetch, useLinkBuilder } from "@/hooks";
 import CryptoIcon from "@/components/icon/CryptoIcon";
 import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";

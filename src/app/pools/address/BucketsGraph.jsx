@@ -1,5 +1,3 @@
-"use client";
-
 import _ from "lodash";
 import Graph from "@/components/graph/Graph";
 import { useFetch } from "@/hooks";

@@ -1,5 +1,3 @@
-"use client";
-
 import FancyGraph from "@/components/graph/FancyGraph";
 import Value from "@/components/value/Value";
 import { prefillSerieDates } from "@/utils/graph";

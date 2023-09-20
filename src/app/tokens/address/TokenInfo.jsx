@@ -1,5 +1,3 @@
-"use client";
-
 import Stats from "@/components/stats/Stats";
 import StatsPlaceholder from "@/components/stats/StatsPlaceholder";
 import Value from "@/components/value/Value";

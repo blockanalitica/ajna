@@ -1,5 +1,3 @@
-"use client";
-
 import { faInfinity } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Stats from "@/components/stats/Stats";

@@ -1,5 +1,3 @@
-"use client";
-
 import Tooltip from "@/components/tooltip/Tooltip";
 
 function DateTimeAgo({

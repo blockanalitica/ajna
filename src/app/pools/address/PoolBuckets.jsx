@@ -1,5 +1,3 @@
-"use client";
-
 import { faBucket } from "@fortawesome/free-solid-svg-icons";
 import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";

@@ -3,11 +3,11 @@ import _ from "lodash";
 
 const StatsPlaceholder = ({ numStats, className, animate = true, ...rest }) => {
   let colClassName = null;
-  if (numStats == 5) {
+  if (numStats === 5) {
     colClassName = "md:grid-cols-4 lg:grid-cols-5";
-  } else if (numStats == 4) {
+  } else if (numStats === 4) {
     colClassName = "md:grid-cols-4 lg:grid-cols-4";
-  } else if (numStats == 3) {
+  } else if (numStats === 3) {
     colClassName = "md:grid-cols-3 lg:grid-cols-3";
   }
 

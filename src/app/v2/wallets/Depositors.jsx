@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import { useFetch, useLinkBuilder } from "@/hooks";
 import Table from "@/components/table/Table";
@@ -9,7 +7,7 @@ import Value from "@/components/value/Value";
 import DateTimeAgo from "@/components/dateTime/DateTimeAgo";
 
 const Depositors = ({ searchTerm }) => {
-  const buildLink = useLinkBuilder()
+  const buildLink = useLinkBuilder();
   const pageSize = 10;
   const [page, setPage] = useState(1);
   const [order, setOrder] = useState("-supply_usd");

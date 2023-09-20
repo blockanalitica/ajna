@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import { faCalendarDays, faInfinity } from "@fortawesome/free-solid-svg-icons";
 import { useFetch, useLinkBuilder } from "@/hooks";

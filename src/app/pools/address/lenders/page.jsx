@@ -82,7 +82,6 @@ const Page = () => {
     <div className="text-sm text-right">
       <ExternalLink
         href={`https://ajna-api.blockanalitica.com/v1/${network}/pools/${address}/lenders-csv/`}
-        target="_blank"
         className="ms-2 text-purple-6 hover:underline"
       >
         CSV

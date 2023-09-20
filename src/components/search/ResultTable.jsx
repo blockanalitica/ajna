@@ -1,5 +1,3 @@
-"use client";
-
 import classnames from "classnames";
 import _ from "lodash";
 import { Link } from "react-router-dom";

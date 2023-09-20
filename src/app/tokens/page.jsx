@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import { useQueryParams, usePageTitle, useFetch } from "@/hooks";
 import TokensTable from "@/components/table/specific/TokensTable";

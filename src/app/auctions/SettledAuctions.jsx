@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import { usePageTitle } from "@/hooks";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";

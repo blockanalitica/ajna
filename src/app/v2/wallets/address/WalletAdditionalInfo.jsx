@@ -1,5 +1,3 @@
-"use client";
-
 import Stats from "@/components/stats/Stats";
 import { DateTime } from "luxon";
 import DateTimeAgo from "@/components/dateTime/DateTimeAgo";

@@ -1,5 +1,3 @@
-"use client";
-
 import { Link, useLocation } from "react-router-dom";
 import { smartLocationParts } from "@/utils/url";
 import { useLinkBuilder } from "@/hooks";

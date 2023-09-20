@@ -1,5 +1,3 @@
-"use client";
-
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import { useFetch } from "@/hooks";
 import { useState } from "react";

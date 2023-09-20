@@ -1,5 +1,3 @@
-"use client";
-
 import FancyGraph from "@/components/graph/FancyGraph";
 import Value from "@/components/value/Value";
 import { prefillSerieDates, prefillSerieHours } from "@/utils/graph";
@@ -30,7 +28,7 @@ const MauTuHistoricGraph = ({ data, headerRight, daysAgo }) => {
   let tuSeries;
   let mauUpperBoundSeries;
   let mauLowerBoundSeries;
-  if (daysAgo == 30) {
+  if (daysAgo === 30) {
     mauSeries = prefillSerieHours(mau, 30 * 24, { label: "MAU" });
     tuSeries = prefillSerieHours(tu, 30 * 24, { label: "TU" });
     mauUpperBoundSeries = prefillSerieHours(mauUpperBound, 30 * 24, {

@@ -1,5 +1,3 @@
-"use client";
-
 import { useFetch } from "@/hooks";
 import TokensTable from "@/components/table/specific/TokensTable";
 import Button from "@/components/button/Button";

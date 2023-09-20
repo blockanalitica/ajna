@@ -1,5 +1,3 @@
-"use client";
-
 function HoursMinutes({ dateTime, ...rest }) {
   if (!dateTime) {
     return null;

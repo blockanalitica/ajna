@@ -1,5 +1,3 @@
-"use client";
-
 import { useFetch } from "@/hooks";
 import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";

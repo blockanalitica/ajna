@@ -1,5 +1,3 @@
-"use client";
-
 import FancyGraph from "@/components/graph/FancyGraph";
 import Value from "@/components/value/Value";
 import { compact } from "@/utils/number";
@@ -16,7 +14,7 @@ const APRHistoricGraph = ({ data, headerRight, daysAgo }) => {
 
   let lendSeries;
   let borrowSeries;
-  if (daysAgo == 30) {
+  if (daysAgo === 30) {
     lendSeries = prefillSerieHours(lendApr, 30 * 24, { label: "Lend APR" });
     borrowSeries = prefillSerieHours(borrowApr, 30 * 24, { label: "Borrow APR" });
   } else {

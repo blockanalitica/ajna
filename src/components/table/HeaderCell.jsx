@@ -1,5 +1,3 @@
-"use client";
-
 import classnames from "classnames";
 import { faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -35,7 +33,9 @@ const OrderSection = ({
       field = `-${orderField}`;
     }
     onOrderChange(field);
-    onPageChange ? onPageChange(1) : null;
+    if (onPageChange) {
+      onPageChange(1);
+    }
   };
 
   return (

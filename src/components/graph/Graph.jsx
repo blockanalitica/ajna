@@ -1,5 +1,3 @@
-"use client";
-
 import { round } from "@/utils/number";
 import { Chart as ChartJS, registerables } from "chart.js";
 import "chartjs-adapter-luxon";

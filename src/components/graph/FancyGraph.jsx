@@ -1,5 +1,3 @@
-"use client";
-
 import _ from "lodash";
 import { useState } from "react";
 import Graph from "./Graph";

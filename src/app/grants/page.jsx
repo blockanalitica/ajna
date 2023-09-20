@@ -1,5 +1,3 @@
-"use client";
-
 import { useQueryParams, usePageTitle } from "@/hooks";
 import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 import Tabs from "@/components/tabs/Tabs";

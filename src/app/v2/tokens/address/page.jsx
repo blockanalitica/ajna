@@ -1,5 +1,3 @@
-"use client";
-
 import { useFetch, useQueryParams, usePageTitle } from "@/hooks";
 import CryptoIcon from "@/components/icon/CryptoIcon";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";

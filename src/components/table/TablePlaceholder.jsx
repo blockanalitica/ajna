@@ -1,5 +1,3 @@
-"use client";
-
 import _ from "lodash";
 import classnames from "classnames";
 import CardBackground from "@/components/card/CardBackground";

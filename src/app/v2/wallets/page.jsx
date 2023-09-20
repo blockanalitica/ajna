@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import { useQueryParams, usePageTitle } from "@/hooks";
 import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";

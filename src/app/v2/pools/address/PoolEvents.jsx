@@ -101,7 +101,6 @@ const PoolEvents = ({ address, ...rest }) => {
           {row.block_number}
           <ExternalLink
             href={generateEtherscanUrl(network, row.transaction_hash, "tx")}
-            target="_blank"
             className="ms-2 hover:text-white"
           >
             <FontAwesomeIcon icon={faArrowUpRightFromSquare} />

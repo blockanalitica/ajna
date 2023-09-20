@@ -130,7 +130,6 @@ const Pool = () => {
               <CopyToClipboard className="ml-3" text={pool.quote_token_address} />
               <ExternalLink
                 href={generateEtherscanUrl(network, pool.quote_token_address)}
-                target="_blank"
                 className="ml-3"
               >
                 <CryptoIcon name="etherscan" size={16} />
