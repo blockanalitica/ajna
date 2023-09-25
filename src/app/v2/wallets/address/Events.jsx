@@ -12,6 +12,7 @@ import Select from "@/components/select/Select";
 import CryptoIcon from "@/components/icon/CryptoIcon";
 import { generateEtherscanUrl, smartLocationParts } from "@/utils/url";
 import ExternalLink from "@/components/externalLink/ExternalLink";
+import EventFormatter from "@/components/events/EventFormatter";
 
 const Events = ({ address, ...rest }) => {
   const location = useLocation();
@@ -90,8 +91,15 @@ const Events = ({ address, ...rest }) => {
       ),
     },
     {
-      header: "Event Data",
-      cell: ({ row }) => <>{row.data}</>,
+      header: "Details",
+      cell: ({ row }) => (
+        <EventFormatter
+          type={row.name}
+          data={row.data}
+          quoteTokenSymbol={row.quote_token_symbol}
+          collateralTokenSymbol={row.collateral_token_symbol}
+        />
+      ),
     },
     {
       header: "Time",

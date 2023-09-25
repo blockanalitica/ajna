@@ -11,16 +11,16 @@ const WalletsPage = () => {
   const { queryParams, setQueryParams } = useQueryParams();
   const [searchTerm, setSearchTerm] = useState("");
 
-  const activeTab = queryParams.get("tab") || "borrowers";
+  const activeTab = queryParams.get("tab") || "depositors";
 
   const tabs = {
-    borrowers: {
-      title: "Borrowers",
-      content: <Borrowers searchTerm={searchTerm} />,
-    },
     depositors: {
       title: "Depositors",
       content: <Depositors searchTerm={searchTerm} />,
+    },
+    borrowers: {
+      title: "Borrowers",
+      content: <Borrowers searchTerm={searchTerm} />,
     },
   };
 

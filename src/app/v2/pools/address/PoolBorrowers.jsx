@@ -1,6 +1,7 @@
 import { faInfinity } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
+import { DateTime } from "luxon";
 import { useFetch, useLinkBuilder } from "@/hooks";
 import Table from "@/components/table/Table";
 import { shorten } from "@/utils/address";
@@ -8,6 +9,7 @@ import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
 import InlineSelect from "@/components/select/InlineSelect";
 import Info from "@/components/info/Info";
+import DateTimeAgo from "@/components/dateTime/DateTimeAgo";
 
 const PoolBorrowers = ({ address, daysAgo }) => {
   const buildLink = useLinkBuilder();
@@ -100,6 +102,21 @@ const PoolBorrowers = ({ address, daysAgo }) => {
           )}
         </>
       ),
+      smallCell: ({ row }) => (
+        <>
+          {isPriceUsd ? (
+            <ValueChange
+              value={row.debt_usd - row.prev_debt_usd}
+              prefix="$"
+            />
+          ) : (
+            <ValueChange
+              value={row.debt - row.prev_debt}
+              suffix={row.quote_token_symbol}
+            />
+          )}
+        </>
+      ),
       headerAlign: "end",
       cellAlign: "end",
       orderField: "debt",
@@ -135,6 +152,13 @@ const PoolBorrowers = ({ address, daysAgo }) => {
       headerAlign: "end",
       cellAlign: "end",
       orderField: "health_rate",
+    },
+    {
+      header: "Latest Activity",
+      cell: ({ row }) => <DateTimeAgo dateTime={DateTime.fromISO(row.last_activity)} />,
+      headerAlign: "end",
+      cellAlign: "end",
+      orderField: "last_activity",
     },
   ];
 

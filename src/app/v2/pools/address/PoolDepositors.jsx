@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useFetch, useLinkBuilder } from "@/hooks";
+import { DateTime } from "luxon";
 import Table from "@/components/table/Table";
 import { shorten } from "@/utils/address";
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
 import InlineSelect from "@/components/select/InlineSelect";
 import Info from "@/components/info/Info";
+import DateTimeAgo from "@/components/dateTime/DateTimeAgo";
 
 const PoolDepositors = ({ address, daysAgo }) => {
   const buildLink = useLinkBuilder();
@@ -100,6 +102,13 @@ const PoolDepositors = ({ address, daysAgo }) => {
       headerAlign: "end",
       cellAlign: "end",
       orderField: "supply_share",
+    },
+    {
+      header: "Latest Activity",
+      cell: ({ row }) => <DateTimeAgo dateTime={DateTime.fromISO(row.last_activity)} />,
+      headerAlign: "end",
+      cellAlign: "end",
+      orderField: "last_activity",
     },
   ];
 
