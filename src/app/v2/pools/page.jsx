@@ -3,7 +3,7 @@ import { useQueryParams, usePageTitle, useFetch } from "@/hooks";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 import SearchInput from "@/components/search/SearchInput";
-import PoolsTableV2 from "@/components/table/specific/PoolsTableV2";
+import PoolsTable from "@/components/table/specific/PoolsTable";
 
 const Pools = () => {
   usePageTitle("Pools");
@@ -59,7 +59,7 @@ const Pools = () => {
         />
       </div>
 
-      <PoolsTableV2
+      <PoolsTable
         data={results}
         currentPage={page}
         pageSize={pageSize}

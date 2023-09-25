@@ -31,8 +31,7 @@ const Pool = () => {
   const { network } = smartLocationParts(location);
   const { queryParams, setQueryParams } = useQueryParams();
   const daysAgo = parseInt(queryParams.get("daysAgo")) || 1;
-  const [activeWalletsTab, setActiveWalletsTab] = useState("borrower");
-  // const activeWalletsTab = queryParams.get("wTab") || "borrower";
+  const [activeWalletsTab, setActiveWalletsTab] = useState("depositor");
 
   const {
     data = {},
@@ -68,19 +67,15 @@ const Pool = () => {
     : 0;
 
   const walletsTabs = {
-    borrower: {
-      title: "Borrower",
-      content: <PoolBorrowers address={address} daysAgo={daysAgo} />,
-    },
     depositor: {
       title: "Depositor",
       content: <PoolDepositors address={address} daysAgo={daysAgo} />,
     },
+    borrower: {
+      title: "Borrower",
+      content: <PoolBorrowers address={address} daysAgo={daysAgo} />,
+    },
   };
-
-  // const onWalletsTabChange = (value) => {
-  //   setQueryParams({ wTab: value });
-  // };
 
   return (
     <>
@@ -88,6 +83,7 @@ const Pool = () => {
         <Breadcrumbs />
         <DisplaySwitch onChange={onDisplaySwitchChange} activeOption={daysAgo} />
       </section>
+
       <div className="flex justify-between mb-5">
         <div className="flex items-center">
           <span className="relative flex">

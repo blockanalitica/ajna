@@ -24,6 +24,7 @@ function Value({
   iconSize = "16",
   ...rest
 }) {
+  value = Number(value);
   if (
     value === undefined ||
     value === null ||

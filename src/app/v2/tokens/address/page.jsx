@@ -1,3 +1,4 @@
+import { useParams } from "react-router-dom";
 import { useFetch, useQueryParams, usePageTitle } from "@/hooks";
 import CryptoIcon from "@/components/icon/CryptoIcon";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
@@ -9,8 +10,8 @@ import TokenInfo from "./TokenInfo";
 import TokenArbitragePools from "./TokenArbitragePools";
 import TokenPools from "./TokenPools";
 
-const TokenPage = ({ params }) => {
-  const { address } = params;
+const TokenPage = () => {
+  const { address } = useParams();
 
   const { queryParams, setQueryParams } = useQueryParams();
   const daysAgo = parseInt(queryParams.get("daysAgo")) || 1;

@@ -1,4 +1,3 @@
-
 # Ajna
 
 Ajna is a protocol for non-custodial, peer-to-peer, permissionless lending, borrowing, and trading. It operates without relying on governance or external price feeds, providing a decentralized solution for users. The protocol comprises pools where lenders and borrowers can interact.
@@ -36,7 +35,7 @@ To get started with Ajna, follow the steps below:
 
 5. Start the development server:
    ```bash
-   npm run dev
+   npm run start
    ```
 
 6. Open your browser and visit `http://localhost:3000` to view the application.
