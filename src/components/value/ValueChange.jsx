@@ -26,7 +26,7 @@ function ValueChange({
   iconSize = "14",
   ...rest
 }) {
-  value = Number(value)
+  value = Number(value);
   if (value === undefined || value === null || isNaN(value)) {
     if (hideIfZero && value === 0) {
       return "";

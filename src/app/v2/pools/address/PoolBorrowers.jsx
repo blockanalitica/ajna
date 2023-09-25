@@ -105,10 +105,7 @@ const PoolBorrowers = ({ address, daysAgo }) => {
       smallCell: ({ row }) => (
         <>
           {isPriceUsd ? (
-            <ValueChange
-              value={row.debt_usd - row.prev_debt_usd}
-              prefix="$"
-            />
+            <ValueChange value={row.debt_usd - row.prev_debt_usd} prefix="$" />
           ) : (
             <ValueChange
               value={row.debt - row.prev_debt}
