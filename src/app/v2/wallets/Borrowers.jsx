@@ -75,7 +75,7 @@ const Borrowers = ({ searchTerm }) => {
       orderField: "last_activity",
     },
     {
-      header: "Earlies Activity",
+      header: "Earliest Activity",
       cell: ({ row }) => (
         <DateTimeAgo dateTime={DateTime.fromISO(row.first_activity)} />
       ),

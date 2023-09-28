@@ -1,7 +1,7 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { useState } from "react";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
-import { useFetch, useQueryParams } from "@/hooks";
+import { useFetch } from "@/hooks";
 import { DateTime } from "luxon";
 import Table from "@/components/table/Table";
 import DateTimeAgo from "@/components/dateTime/DateTimeAgo";
@@ -14,24 +14,23 @@ import { generateEtherscanUrl, smartLocationParts } from "@/utils/url";
 import ExternalLink from "@/components/externalLink/ExternalLink";
 import EventFormatter from "@/components/events/EventFormatter";
 
-const Events = ({ address, block, ...rest }) => {
+const Events = ({ ...rest }) => {
   const location = useLocation();
   const { network } = smartLocationParts(location);
+  const { address, index } = useParams();
   const pageSize = 10;
   const [page, setPage] = useState(1);
   const [order, setOrder] = useState("-order_index");
   const [eventType, setEventType] = useState("all");
-
   const {
     data = {},
     error,
     isLoading,
-  } = useFetch(`/wallets/${address}/events/`, {
+  } = useFetch(`/pools/${address}/buckets/${index}/events`, {
     p: page,
     p_size: pageSize,
     order,
     name: eventType !== "all" ? eventType : null,
-    block,
   });
 
   if (error) {
@@ -43,18 +42,13 @@ const Events = ({ address, block, ...rest }) => {
   const eventTypeMapping = {
     AddCollateral: "Add Collateral",
     AddQuoteToken: "Add Quote Token",
-    AuctionSettle: "Auction Settle",
-    BondWithdrawn: "Bond Withdrawn",
-    DrawDebt: "Draw Debt",
-    Kick: "Kick",
-    KickReserveAuction: "Kick Reserve Auction",
-    LoanStamped: "Loan Stamped",
+    BucketBankruptcy: "Bucket Bankruptcy",
+    BucketTake: "Bucket Take",
+    IncreaseLPAllowance: "Increase LP Allowance",
     MoveQuoteToken: "Move Quote Token",
     RemoveCollateral: "Remove Collateral",
     RemoveQuoteToken: "Remove Quote Token",
-    RepayDebt: "Repay Debt",
-    Settle: "Settle",
-    Take: "Take",
+    TransferLP: "Transfer LP",
   };
 
   const eventTypeOptions = [{ key: "all", value: "All" }];
@@ -71,26 +65,6 @@ const Events = ({ address, block, ...rest }) => {
     {
       header: "Event",
       cell: ({ row }) => <>{eventTypeMapping[row.name]}</>,
-    },
-    {
-      header: "Pool",
-      cell: ({ row }) => (
-        <>
-          <Link
-            to={`/v2/${network}/pools/${row.pool_address}`}
-            className="text-purple-6 hover:underline flex"
-          >
-            <span className="flex">
-              <CryptoIcon name={row.collateral_token_symbol} className="z-10" />
-              <CryptoIcon
-                name={row.quote_token_symbol}
-                className="relative left-[-10px] z-0"
-              />
-            </span>
-            {shorten(row.pool_address)}
-          </Link>
-        </>
-      ),
     },
     {
       header: "Details",
@@ -110,14 +84,6 @@ const Events = ({ address, block, ...rest }) => {
       ),
       smallCell: ({ row }) => (
         <>
-          <Link
-            to={{
-              search: `?block=${row.block_number}`,
-            }}
-            className="me-2 hover:underline"
-          >
-            Time Walk
-          </Link>
           {row.block_number}
           <ExternalLink
             href={generateEtherscanUrl(network, row.transaction_hash, "tx")}

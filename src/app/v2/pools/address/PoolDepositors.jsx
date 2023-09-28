@@ -113,24 +113,22 @@ const PoolDepositors = ({ address, daysAgo }) => {
   ];
 
   return (
-    <>
-      <Table
-        data={results}
-        currentPage={page}
-        pageSize={pageSize}
-        totalRecords={count}
-        onPageChange={setPage}
-        onOrderChange={setOrder}
-        currentOrder={order}
-        isLoading={isLoading}
-        keyField="wallet_address"
-        columns={columns}
-        linkTo={(row) => buildLink(`/wallets/${row.wallet_address}`)}
-        footerRow={footerRow}
-        emptyTitle="No Wallets"
-        emptyContent="There are no wallets"
-      />
-    </>
+    <Table
+      data={results}
+      currentPage={page}
+      pageSize={pageSize}
+      totalRecords={count}
+      onPageChange={setPage}
+      onOrderChange={setOrder}
+      currentOrder={order}
+      isLoading={isLoading}
+      keyField="wallet_address"
+      columns={columns}
+      linkTo={(row) => buildLink(`/wallets/${row.wallet_address}`)}
+      footerRow={footerRow}
+      emptyTitle="No Wallets"
+      emptyContent="There are no wallets"
+    />
   );
 };
 

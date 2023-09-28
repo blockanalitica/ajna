@@ -1,13 +1,13 @@
 import { faBucket } from "@fortawesome/free-solid-svg-icons";
 import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
-import { useFetch } from "@/hooks";
+import { useFetch, useLinkBuilder } from "@/hooks";
 import { faCheckCircle, faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 
-const PoolBuckets = ({ address, ...rest }) => {
-  const pageSize = 5;
+const BucketsTable = ({ address, ...rest }) => {
+  const pageSize = 10;
   const [page, setPage] = useState(1);
   const [order, setOrder] = useState("-bucket_price");
 
@@ -15,7 +15,7 @@ const PoolBuckets = ({ address, ...rest }) => {
     data = {},
     error,
     isLoading,
-  } = useFetch(`/pools/${address}/buckets/`, {
+  } = useFetch(`/pools/${address}/buckets/list/`, {
     p: page,
     p_size: pageSize,
     order,
@@ -112,28 +112,25 @@ const PoolBuckets = ({ address, ...rest }) => {
   ];
 
   return (
-    <div {...rest}>
-      <div className="flex justify-between items-center mb-5">
-        <h1 className="text-xl md:text-1xl xl:text-2xl">Buckets</h1>
-      </div>
-      <Table
-        data={results}
-        keyField="bucket_index"
-        columns={columns}
-        currentPage={page}
-        pageSize={pageSize}
-        totalRecords={count}
-        onPageChange={setPage}
-        onOrderChange={setOrder}
-        currentOrder={order}
-        isLoading={isLoading}
-        emptyIcon={faBucket}
-        emptyTitle="No Buckets"
-        emptyContent="There are no buckets"
-        placeholderRows={pageSize}
-      />
-    </div>
+    <Table
+      data={results}
+      keyField="bucket_index"
+      columns={columns}
+      currentPage={page}
+      pageSize={pageSize}
+      totalRecords={count}
+      onPageChange={setPage}
+      onOrderChange={setOrder}
+      currentOrder={order}
+      isLoading={isLoading}
+      emptyIcon={faBucket}
+      emptyTitle="No Buckets"
+      emptyContent="There are no buckets"
+      placeholderRows={pageSize}
+      linkTo={(row) => String(row.bucket_index)}
+      {...rest}
+    />
   );
 };
 
-export default PoolBuckets;
+export default BucketsTable;

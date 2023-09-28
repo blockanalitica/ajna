@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { usePageTitle } from "@/hooks";
 import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 import GenericPlaceholder from "@/components/GenericPlaceholder";
-import { useFetch } from "@/hooks";
+import { useFetch, useQueryParams } from "@/hooks";
 import { shorten } from "@/utils/address";
 import WalletInfo from "./WalletInfo";
 import Events from "./Events";
@@ -11,8 +11,10 @@ import WalletAdditionalInfo from "./WalletAdditionalInfo";
 
 const Wallet = () => {
   const { address } = useParams();
+  const { queryParams } = useQueryParams();
+  const block = queryParams.get("block");
 
-  const { data = {}, error, isLoading } = useFetch(`/wallets/${address}/`);
+  const { data = {}, error, isLoading } = useFetch(`/wallets/${address}/`, { block });
 
   usePageTitle(`Wallet ${shorten(address)}`);
 
@@ -34,9 +36,9 @@ const Wallet = () => {
       </h1>
       <WalletInfo data={data} className="mb-5" />
 
-      <Pools address={address} className="mb-5" />
+      <Pools address={address} block={block} className="mb-5" />
       <WalletAdditionalInfo data={data} className="mb-5" />
-      <Events address={address} />
+      <Events address={address} block={block} />
     </>
   );
 };

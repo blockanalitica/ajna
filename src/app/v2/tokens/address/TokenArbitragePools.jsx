@@ -120,7 +120,7 @@ const TokenArbitragePools = ({ address, daysAgo, ...rest }) => {
           data={results}
           keyField="address"
           columns={columns}
-          href={(row) => buildLink(`/pools/${row.address}`)}
+          linkTo={(row) => buildLink(`/pools/${row.address}`)}
           currentPage={page}
           pageSize={pageSize}
           totalRecords={count}

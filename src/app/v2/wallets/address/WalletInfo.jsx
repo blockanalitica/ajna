@@ -74,35 +74,6 @@ const WalletInfo = ({ data, ...rest }) => {
       //   </>
       // ),
     },
-    {
-      title: "Health Rate",
-      value: (
-        <>
-          <>
-            {data.health_rate ? (
-              <Value value={data.health_rate} decimals={3} big />
-            ) : (
-              <FontAwesomeIcon icon={faInfinity} />
-            )}
-          </>
-          {/* <ValueChange */}
-          {/*   value={data.pledged_collateral - data.prev_pledged_collateral} */}
-          {/*   suffix={data.collateral_token_symbol} */}
-          {/*   className="text-lg" */}
-          {/* /> */}
-        </>
-      ),
-      // smallValue: (
-      //   <>
-      //     <Value value={data.pledged_collateral_usd} prefix="$" />
-      //     <ValueChange
-      //       value={data.pledged_collateral_usd - data.prev_pledged_collateral_usd}
-      //       prefix="$"
-      //       className="ms-2"
-      //     />
-      //   </>
-      // ),
-    },
   ];
 
   return <Stats data={stats} {...rest} />;

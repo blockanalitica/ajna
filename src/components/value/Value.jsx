@@ -52,7 +52,7 @@ function Value({
   if (newValue !== null) {
     value = newValue;
   }
-  const tooltipPrefix = `${prefix !== "$" ? " " : ""} ${prefix ? prefix : ""}`;
+  const tooltipPrefix = `${prefix !== "$" ? " " : ""}${prefix ? prefix : ""}`;
   const tooltipSuffix = `${suffix !== "%" ? " " : ""}${suffix ? suffix : ""}`;
   const tooltipMessage = `${tooltipPrefix}${rawValue}${tooltipSuffix}`;
 
@@ -92,7 +92,10 @@ function Value({
                 size={small ? "14" : big ? "24" : iconSize}
               />
             ) : (
-              suffix
+              <>
+                {suffix !== "%" ? <>&nbsp;</> : ""}
+                {suffix}
+              </>
             )}
           </>
         ) : null}

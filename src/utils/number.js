@@ -15,9 +15,7 @@ export const compact = (value, decimals = 2, hideZeroDecimals = false) => {
     fmt = fmt + "." + decimal_str;
   }
 
-  return numeral(value)
-    .format(fmt + "a")
-    .toUpperCase();
+  return numeral(value).format(fmt + "a");
 };
 
 export const formatToDecimals = (value, decimals) => {
