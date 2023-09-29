@@ -64,7 +64,13 @@ const TopDepositors = ({ address, daysAgo }) => {
 
   const footerRow = (
     <div className="text-center">
-      <Link className="text-purple-6 hover:underline" to={buildLink("#")}>
+      <Link
+        className="text-purple-6 hover:underline"
+        to={{
+          pathname: "positions",
+          search: `?type=depositor`,
+        }}
+      >
         View all ({count})
       </Link>
     </div>

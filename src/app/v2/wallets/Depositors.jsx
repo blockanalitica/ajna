@@ -62,23 +62,21 @@ const Depositors = ({ searchTerm }) => {
   ];
 
   return (
-    <>
-      <Table
-        data={results}
-        currentPage={page}
-        pageSize={pageSize}
-        totalRecords={count}
-        onPageChange={setPage}
-        onOrderChange={setOrder}
-        currentOrder={order}
-        isLoading={isLoading}
-        keyField="wallet_address"
-        columns={columns}
-        linkTo={(row) => buildLink(`/wallets/${row.wallet_address}`)}
-        emptyTitle="No Wallets"
-        emptyContent="There are no wallets"
-      />
-    </>
+    <Table
+      data={results}
+      currentPage={page}
+      pageSize={pageSize}
+      totalRecords={count}
+      onPageChange={setPage}
+      onOrderChange={setOrder}
+      currentOrder={order}
+      isLoading={isLoading}
+      keyField="wallet_address"
+      columns={columns}
+      linkTo={(row) => buildLink(`/wallets/${row.wallet_address}`)}
+      emptyTitle="No Wallets"
+      emptyContent="There are no wallets"
+    />
   );
 };
 

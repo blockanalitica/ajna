@@ -9,7 +9,7 @@ import InlineSelect from "@/components/select/InlineSelect";
 import Info from "@/components/info/Info";
 import DateTimeAgo from "@/components/dateTime/DateTimeAgo";
 
-const PoolDepositors = ({ address, daysAgo }) => {
+const Depositors = ({ address, daysAgo, search }) => {
   const buildLink = useLinkBuilder();
   const pageSize = 10;
   const [page, setPage] = useState(1);
@@ -26,6 +26,7 @@ const PoolDepositors = ({ address, daysAgo }) => {
     order,
     days_ago: daysAgo,
     type: "depositor",
+    search
   });
 
   if (error) {
@@ -104,6 +105,15 @@ const PoolDepositors = ({ address, daysAgo }) => {
       orderField: "supply_share",
     },
     {
+      header: "Earliest Activity",
+      cell: ({ row }) => (
+        <DateTimeAgo dateTime={DateTime.fromISO(row.first_activity)} />
+      ),
+      headerAlign: "end",
+      cellAlign: "end",
+      orderField: "first_activity",
+    },
+    {
       header: "Latest Activity",
       cell: ({ row }) => <DateTimeAgo dateTime={DateTime.fromISO(row.last_activity)} />,
       headerAlign: "end",
@@ -132,4 +142,4 @@ const PoolDepositors = ({ address, daysAgo }) => {
   );
 };
 
-export default PoolDepositors;
+export default Depositors;

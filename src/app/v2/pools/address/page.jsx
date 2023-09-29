@@ -13,7 +13,7 @@ import Tag from "@/components/tags/Tag";
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
 import TabCard from "@/components/tabs/TabCard";
-import { useFetch, usePageTitle, useQueryParams, useLinkBuilder } from "@/hooks";
+import { useFetch, usePageTitle, useQueryParams } from "@/hooks";
 import { shorten } from "@/utils/address";
 import { DateTime } from "luxon";
 import BucketsGraph from "./BucketsGraph";

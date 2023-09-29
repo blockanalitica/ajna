@@ -9,19 +9,18 @@ import Value from "@/components/value/Value";
 import { prefillSerieDates } from "@/utils/graph";
 import { compact } from "@/utils/number";
 import { DateTime } from "luxon";
+import { parseUTCDateTime } from "@/utils/datetime";
 
-const HistoricGraphs = () => {
-  const { address, poolAddress } = useParams();
+const HistoricGraphs = ({
+  address,
+  poolAddress,
+  collateralTokenSymbol,
+  quoteTokenSymbol,
+}) => {
   const [displayOption, setDisplayOption] = useState("supply");
 
-  const daysAgo = 1; //TODO
-
-  const actualDaysAgo = daysAgo > 7 ? daysAgo : 30;
   const { data, error, isLoading } = useFetch(
-    `/wallets/${address}/pools/${poolAddress}/historic/`,
-    {
-      days_ago: actualDaysAgo,
-    }
+    `/wallets/${address}/pools/${poolAddress}/historic/`
   );
 
   if (error) {
@@ -35,9 +34,7 @@ const HistoricGraphs = () => {
     );
   }
 
-  const {results} = data;
-
-  if (!results || (results && results.length === 0)) {
+  if (data?.length === 0) {
     return (
       <GenericEmptyPlaceholder
         title="No data"
@@ -48,10 +45,9 @@ const HistoricGraphs = () => {
   }
 
   const displayOptions = [
-    { key: "supply", value: "Supply" },
-    { key: "collateral", value: "Collateral" },
+    { key: "supply", value: "Deposit" },
     { key: "debt", value: "Debt" },
-
+    { key: "collateral", value: "Collateral" },
   ];
 
   const headerRight = (
@@ -63,15 +59,40 @@ const HistoricGraphs = () => {
     />
   );
 
-  const serie = results.map((row) => ({ x: row.datetime, y: row[displayOptions] }));
+  const maxDate = DateTime.now().toISO();
+  const minDateTime = DateTime.now().minus({ days: 30 });
+  const minDate = minDateTime.toISO();
+
+  let serie = data.map((row) => ({ x: row.date, y: row[displayOption] }));
+  // Extend series with first value and last value
+  if (serie.length > 0) {
+    const first = parseUTCDateTime(serie.at(0).x);
+
+    let startEl = [];
+    if (minDateTime.startOf("day") < first.startOf("day")) {
+      startEl.push({
+        x: minDate,
+        y: 0,
+      });
+    }
+
+    serie = [
+      ...startEl,
+      ...serie,
+      {
+        ...serie.at(-1),
+        x: maxDate,
+      },
+    ];
+  }
+
   const series = [
     {
-      label: displayOptions,
-      data: prefillSerieDates(serie),
+      label: displayOption,
+      data: serie,
+      stepped: "before",
     },
   ];
-
-  console.log(serie)
 
   const options = {
     interaction: {
@@ -83,6 +104,7 @@ const HistoricGraphs = () => {
         time: {
           unit: "day",
         },
+        max: maxDate,
       },
       y: {
         ticks: {
@@ -94,15 +116,9 @@ const HistoricGraphs = () => {
 
   const valueFormatter = (data) => {
     const value = data.y;
-    let prefix = "";
-    let suffix = "";
-    // if (displayOption === "volume" || displayOption === "tvl") {
-    //   prefix = "$";
-    // } else {
-    //   suffix = displayOption === "pledged_collateral" ? collateralSymbol : quoteSymbol;
-    // }
-
-    return <Value value={value} suffix={suffix} prefix={prefix} big compact />;
+    const suffix =
+      displayOption === "collateral" ? collateralTokenSymbol : quoteTokenSymbol;
+    return <Value value={value} suffix={suffix} big compact />;
   };
 
   const subvalueFormatter = (data) => {
@@ -118,8 +134,8 @@ const HistoricGraphs = () => {
     } else {
       date = DateTime.fromISO(value);
     }
-    const format = daysAgo > 7 ? "LLL dd, y" : "LLL dd, y HH:mm";
-    const suffix = daysAgo > 7 ? "" : " UTC";
+    const format = "LLL dd, y";
+    const suffix = " UTC";
     return `${date.toFormat(format)}${suffix}`;
   };
 

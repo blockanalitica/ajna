@@ -15,6 +15,7 @@ import Grants from "@/app/grants/page";
 import V2Homepage from "@/app/v2/page";
 import V2Pools from "@/app/v2/pools/page";
 import V2Pool from "@/app/v2/pools/address/page";
+import PoolWallets from "@/app/v2/pools/address/positions/page";
 import V2Tokens from "@/app/v2/tokens/page";
 import V2Token from "@/app/v2/tokens/address/page";
 import Wallets from "@/app/v2/wallets/page";
@@ -40,6 +41,7 @@ const AjnaRoutes = () => {
       { path: "", element: <V2Homepage /> },
       { path: "/pools", element: <V2Pools /> },
       { path: "/pools/:address", element: <V2Pool /> },
+      { path: "/pools/:address/positions", element: <PoolWallets /> },
       { path: "/pools/:address/buckets", element: <Buckets /> },
       { path: "/pools/:address/buckets/:index", element: <Bucket /> },
       { path: "/tokens", element: <V2Tokens /> },

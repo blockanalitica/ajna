@@ -7,10 +7,13 @@ import { shorten } from "@/utils/address";
 import Stats from "@/components/stats/Stats";
 import Value from "@/components/value/Value";
 import CryptoIcon from "@/components/icon/CryptoIcon";
-import { faCalendarDays, faInfinity } from "@fortawesome/free-solid-svg-icons";
+import { faInfinity } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import HistoricGraphs from "./HistoricGraphs";
-// import Events from "./Events";
+import CardBackground from "@/components/card/CardBackground";
+import Kpi from "@/components/kpis/Kpi";
+import Events from "./Events";
+import Buckets from "./Buckets";
 // import Pools from "./Pools";
 // import WalletAdditionalInfo from "./WalletAdditionalInfo";
 
@@ -109,9 +112,40 @@ const WalletPoolPosition = () => {
         </div>
       </h1>
 
-      <Stats data={stats} />
+      <Stats data={stats} className="mb-10" />
 
-      <HistoricGraphs />
+      <div className="flex flex-col-reverse md:flex-row md:gap-4">
+        <CardBackground className="md:w-1/3 grid grid-cols-1 place-content-between mb-10">
+          <div></div>
+          <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
+            <Kpi
+              title="Deposit Share"
+              value={<Value value={data.supply_share * 100} suffix="%" />}
+            />
+            <Kpi
+              title="Debt Share"
+              value={<Value value={data.debt_share * 100} suffix="%" dashIfZero />}
+            />
+          </div>
+        </CardBackground>
+        <CardBackground className="md:w-2/3 mb-10">
+          <HistoricGraphs
+            address={address}
+            poolAddress={poolAddress}
+            collateralTokenSymbol={data.collateral_token_symbol}
+            quoteTokenSymbol={data.quote_token_symbol}
+          />
+        </CardBackground>
+      </div>
+
+      <div className="flex flex-col-reverse md:flex-row md:gap-4">
+        <div className="md:w-1/3 grid grid-cols-1 mb-10">
+          <Buckets address={address} poolAddress={poolAddress} quoteTokenSymbol={data.quote_token_symbol}/>
+        </div>
+        <div className="md:w-2/3 grid grid-cols-1 mb-10">
+          <Events address={address} poolAddress={poolAddress} />
+        </div>
+      </div>
     </>
   );
 };

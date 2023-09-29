@@ -25,14 +25,6 @@ const TopBorrowers = ({ address, daysAgo }) => {
 
   const { results, count } = data;
 
-  const footerRow = (
-    <div className="text-center">
-      <Link className="text-purple-6 hover:underline" to={buildLink("#")}>
-        View all ({count})
-      </Link>
-    </div>
-  );
-
   const columns = [
     {
       header: "Wallet",
@@ -62,6 +54,20 @@ const TopBorrowers = ({ address, daysAgo }) => {
       cellAlign: "end",
     },
   ];
+
+  const footerRow = (
+    <div className="text-center">
+      <Link
+        className="text-purple-6 hover:underline"
+        to={{
+          pathname: "positions",
+          search: `?type=borrower`,
+        }}
+      >
+        View all ({count})
+      </Link>
+    </div>
+  );
 
   return (
     <Table
