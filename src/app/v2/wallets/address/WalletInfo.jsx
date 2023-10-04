@@ -1,78 +1,30 @@
-import { faInfinity } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Stats from "@/components/stats/Stats";
 import Value from "@/components/value/Value";
+import ValueChange from "@/components/value/ValueChange";
 
 const WalletInfo = ({ data, ...rest }) => {
   const stats = [
     {
       title: "Deposited",
-      value: (
-        <>
-          <Value value={data.supply_usd} prefix="$" big />
-          {/* <ValueChange */}
-          {/*   value={data.pool_size - data.prev_pool_size} */}
-          {/*   suffix={data.quote_token_symbol} */}
-          {/*   className="text-lg" */}
-          {/* /> */}
-        </>
+      value: <Value value={data.supply_usd} prefix="$" big />,
+      smallValue: (
+        <ValueChange value={data.supply_usd - data.prev_supply_usd} prefix="$" />
       ),
-      // smallValue: (
-      //   <>
-      //     <Value value={data.pool_size_usd} prefix="$" />
-      //     <ValueChange
-      //       value={data.pool_size_usd - data.prev_pool_size_usd}
-      //       prefix="$"
-      //       className="ms-2"
-      //     />
-      //   </>
-      // ),
     },
     {
       title: "Borrowed",
-      value: (
-        <>
-          <Value value={data.debt_usd} prefix="$" big />
-          {/* <ValueChange */}
-          {/*   value={data.debt - data.prev_debt} */}
-          {/*   suffix={data.quote_token_symbol} */}
-          {/*   className="text-lg" */}
-          {/* /> */}
-        </>
-      ),
-      // smallValue: (
-      //   <>
-      //     <Value value={data.debt_usd} prefix="$" />
-      //     <ValueChange
-      //       value={data.debt_usd - data.prev_debt_usd}
-      //       prefix="$"
-      //       className="ms-2"
-      //     />
-      //   </>
-      // ),
+      value: <Value value={data.debt_usd} prefix="$" big />,
+      smallValue: <ValueChange value={data.debt_usd - data.prev_debt_usd} prefix="$" />,
     },
     {
       title: "Collateral",
-      value: (
-        <>
-          <Value value={data.collateral_usd} prefix="$" big />
-          {/* <ValueChange */}
-          {/*   value={data.pledged_collateral - data.prev_pledged_collateral} */}
-          {/*   suffix={data.collateral_token_symbol} */}
-          {/*   className="text-lg" */}
-          {/* /> */}
-        </>
+      value: <Value value={data.collateral_usd} prefix="$" big />,
+      smallValue: (
+        <ValueChange
+          value={data.collateral_usd - data.prev_collateral_usd}
+          prefix="$"
+        />
       ),
-      // smallValue: (
-      //   <>
-      //     <Value value={data.pledged_collateral_usd} prefix="$" />
-      //     <ValueChange
-      //       value={data.pledged_collateral_usd - data.prev_pledged_collateral_usd}
-      //       prefix="$"
-      //       className="ms-2"
-      //     />
-      //   </>
-      // ),
     },
   ];
 

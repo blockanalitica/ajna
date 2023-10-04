@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
-import { useFetch, useQueryParams } from "@/hooks";
+import { faCalendarDays, faClockRotateLeft } from "@fortawesome/free-solid-svg-icons";
+import { useFetch } from "@/hooks";
 import { DateTime } from "luxon";
 import Table from "@/components/table/Table";
 import DateTimeAgo from "@/components/dateTime/DateTimeAgo";
@@ -106,18 +106,21 @@ const Events = ({ address, block, ...rest }) => {
     {
       header: "Time",
       cell: ({ row }) => (
-        <DateTimeAgo dateTime={DateTime.fromISO(row.block_datetime)} />
-      ),
-      smallCell: ({ row }) => (
         <>
           <Link
             to={{
+              pathname: "time-machine",
               search: `?block=${row.block_number}`,
             }}
-            className="me-2 hover:underline"
+            className="text-purple-6 hover:underline flex items-center"
           >
-            Time Walk
+            <FontAwesomeIcon icon={faClockRotateLeft} className="me-1" size="sm" />
+            <DateTimeAgo dateTime={DateTime.fromISO(row.block_datetime)} />
           </Link>
+        </>
+      ),
+      smallCell: ({ row }) => (
+        <>
           {row.block_number}
           <ExternalLink
             href={generateEtherscanUrl(network, row.transaction_hash, "tx")}

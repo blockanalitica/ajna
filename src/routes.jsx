@@ -20,6 +20,7 @@ import V2Tokens from "@/app/v2/tokens/page";
 import V2Token from "@/app/v2/tokens/address/page";
 import Wallets from "@/app/v2/wallets/page";
 import Wallet from "@/app/v2/wallets/address/page";
+import TimeMachine from "@/app/v2/wallets/address/time-machine/page";
 import WalletPoolPosition from "@/app/v2/wallets/address/poolAddress/page";
 import Buckets from "@/app/v2/pools/address/buckets/page";
 import Bucket from "@/app/v2/pools/address/buckets/index/page";
@@ -48,6 +49,7 @@ const AjnaRoutes = () => {
       { path: "/tokens/:address", element: <V2Token /> },
       { path: "/wallets", element: <Wallets /> },
       { path: "/wallets/:address", element: <Wallet /> },
+      { path: "/wallets/:address/time-machine", element: <TimeMachine /> },
       { path: "/wallets/:address/:poolAddress", element: <WalletPoolPosition /> },
     ],
   };

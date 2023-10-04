@@ -1,35 +1,19 @@
-import { useParams, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useParams } from "react-router-dom";
 import { faCheckCircle, faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import GenericPlaceholder from "@/components/GenericPlaceholder";
 import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 import CardBackground from "@/components/card/CardBackground";
-import CardOpaque from "@/components/card/CardOpaque";
-import CopyToClipboard from "@/components/copyToClipboard/CopyToClipboard";
 import CryptoIcon from "@/components/icon/CryptoIcon";
-import Info from "@/components/info/Info";
-import DisplaySwitch from "@/components/switch/DisplaySwitch";
-import Tag from "@/components/tags/Tag";
 import Value from "@/components/value/Value";
-import ValueChange from "@/components/value/ValueChange";
-import TabCard from "@/components/tabs/TabCard";
-import { useFetch, usePageTitle, useQueryParams } from "@/hooks";
-import { shorten } from "@/utils/address";
-import { DateTime } from "luxon";
-import ExternalLink from "@/components/externalLink/ExternalLink";
-import { generateEtherscanUrl, smartLocationParts } from "@/utils/url";
-import Stats from "@/components/stats/Stats";
+import { useFetch, useQueryParams } from "@/hooks";
 import Kpi from "@/components/kpis/Kpi";
 import HistoricGraphs from "./HistoricGraphs";
 import Depositors from "./Depositors";
 import Events from "./Events";
 
-// import BucketsTable from "./BucketsTable";
-// import BucketsGraph from "../BucketsGraph";
-
 const Bucket = () => {
-  const { queryParams, setQueryParams } = useQueryParams();
+  const { queryParams } = useQueryParams();
   const daysAgo = parseInt(queryParams.get("daysAgo")) || 1;
   const { address, index } = useParams();
   const {
@@ -60,7 +44,6 @@ const Bucket = () => {
     <>
       <section className="flex items-center justify-center sm:justify-end md:justify-between mb-10">
         <Breadcrumbs />
-        {/* <DisplaySwitch onChange={onDisplaySwitchChange} activeOption={daysAgo} /> */}
       </section>
       <div className="flex justify-between mb-5">
         <div className="flex items-center">

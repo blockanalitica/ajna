@@ -8,15 +8,15 @@ import Depositors from "./Depositors";
 import Borrowers from "./Borrowers";
 import SearchInput from "@/components/search/SearchInput";
 import Tabs from "@/components/tabs/Tabs";
+import DisplaySwitch from "@/components/switch/DisplaySwitch";
 
 const PoolWallets = () => {
-  usePageTitle("Wallets");
+  usePageTitle("Positions");
   const { address } = useParams();
   const { queryParams, setQueryParams } = useQueryParams();
   const [searchTerm, setSearchTerm] = useState("");
   const activeTab = queryParams.get("type") || "depositor";
-
-  const daysAgo = 1;
+  const daysAgo = parseInt(queryParams.get("daysAgo")) || 1;
 
   const onTabChange = (value) => {
     setQueryParams({ type: value });
@@ -25,6 +25,10 @@ const PoolWallets = () => {
   const handleSearchChange = (event) => {
     const newSearchTerm = event.target.value;
     setSearchTerm(newSearchTerm);
+  };
+
+  const onDisplaySwitchChange = (value) => {
+    setQueryParams({ daysAgo: value });
   };
 
   const { data = {}, error, isLoading } = useFetch(`/pools/${address}/`);
@@ -52,9 +56,10 @@ const PoolWallets = () => {
     <>
       <section className="flex items-center justify-center sm:justify-end md:justify-between mb-10">
         <Breadcrumbs />
+        <DisplaySwitch onChange={onDisplaySwitchChange} activeOption={daysAgo} />
       </section>
 
-      <div className="flex flex-col sm:flex-row justify-between items-center">
+      <div className="flex flex-col sm:flex-row justify-between items-center mb-10">
         <div className="flex items-center">
           <span className="relative flex">
             <CryptoIcon name={pool.collateral_token_symbol} className="z-10" />

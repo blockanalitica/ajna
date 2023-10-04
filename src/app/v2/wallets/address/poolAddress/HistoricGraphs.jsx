@@ -1,4 +1,3 @@
-import { useParams } from "react-router-dom";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import { useFetch } from "@/hooks";
 import { useState } from "react";
@@ -6,7 +5,6 @@ import GenericEmptyPlaceholder from "@/components/GenericEmptyPlaceholder";
 import { faChartBar } from "@fortawesome/free-solid-svg-icons";
 import FancyGraph from "@/components/graph/FancyGraph";
 import Value from "@/components/value/Value";
-import { prefillSerieDates } from "@/utils/graph";
 import { compact } from "@/utils/number";
 import { DateTime } from "luxon";
 import { parseUTCDateTime } from "@/utils/datetime";

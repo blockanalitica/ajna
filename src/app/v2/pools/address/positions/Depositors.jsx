@@ -26,7 +26,7 @@ const Depositors = ({ address, daysAgo, search }) => {
     order,
     days_ago: daysAgo,
     type: "depositor",
-    search
+    search,
   });
 
   if (error) {

@@ -90,7 +90,7 @@ const Table = ({
             }
             return (
               <HeaderCell
-                key={column.header || `col-${colIndex}`}
+                key={`col-${colIndex}`}
                 align={column.headerAlign}
                 orderField={column.orderField}
                 currentOrder={currentOrder}

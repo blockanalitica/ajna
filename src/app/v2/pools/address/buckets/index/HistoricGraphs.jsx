@@ -1,4 +1,4 @@
-import { useParams, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import { useFetch } from "@/hooks";
 import { useState } from "react";
@@ -10,15 +10,14 @@ import { prefillSerieDates } from "@/utils/graph";
 import { compact } from "@/utils/number";
 import { DateTime } from "luxon";
 
-const HistoricGraphs = ({ daysAgo, quoteTokenSymbol, collateralTokenSymbol }) => {
+const HistoricGraphs = ({ quoteTokenSymbol, collateralTokenSymbol }) => {
   const { address, index } = useParams();
   const [displayOption, setDisplayOption] = useState("deposit");
 
-  const actualDaysAgo = daysAgo > 7 ? daysAgo : 30;
   const { data, error, isLoading } = useFetch(
     `/pools/${address}/buckets/${index}/historic/`,
     {
-      days_ago: actualDaysAgo,
+      days_ago: 30,
     }
   );
   if (error) {
@@ -90,8 +89,8 @@ const HistoricGraphs = ({ daysAgo, quoteTokenSymbol, collateralTokenSymbol }) =>
     } else {
       date = DateTime.fromISO(value);
     }
-    const format = daysAgo > 7 ? "LLL dd, y" : "LLL dd, y HH:mm";
-    const suffix = daysAgo > 7 ? "" : " UTC";
+    const format = "LLL dd, y HH:mm";
+    const suffix = " UTC";
     return `${date.toFormat(format)}${suffix}`;
   };
 

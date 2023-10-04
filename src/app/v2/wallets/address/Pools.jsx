@@ -3,12 +3,13 @@ import { faCalendarDays, faInfinity } from "@fortawesome/free-solid-svg-icons";
 import { useFetch } from "@/hooks";
 import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
+import ValueChange from "@/components/value/ValueChange";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CryptoIcon from "@/components/icon/CryptoIcon";
 import InlineSelect from "@/components/select/InlineSelect";
 import Info from "@/components/info/Info";
 
-const Pools = ({ address, block, ...rest }) => {
+const Pools = ({ address, block, daysAgo, ...rest }) => {
   const pageSize = 10;
   const [page, setPage] = useState(1);
   const [order, setOrder] = useState("-debt");
@@ -23,6 +24,7 @@ const Pools = ({ address, block, ...rest }) => {
     p_size: pageSize,
     order,
     block,
+    days_ago: daysAgo,
   });
 
   if (error) {
@@ -77,6 +79,18 @@ const Pools = ({ address, block, ...rest }) => {
           )}
         </>
       ),
+      smallCell: ({ row }) => (
+        <>
+          {isPriceUsd ? (
+            <ValueChange value={row.supply_usd - row.prev_supply_usd} prefix="$" />
+          ) : (
+            <ValueChange
+              value={row.supply - row.prev_supply}
+              suffix={row.quote_token_symbol}
+            />
+          )}
+        </>
+      ),
       headerAlign: "end",
       cellAlign: "end",
       orderField: "supply",
@@ -109,6 +123,21 @@ const Pools = ({ address, block, ...rest }) => {
           )}
         </>
       ),
+      smallCell: ({ row }) => (
+        <>
+          {isPriceUsd ? (
+            <ValueChange
+              value={row.collateral_usd - row.prev_collateral_usd}
+              prefix="$"
+            />
+          ) : (
+            <ValueChange
+              value={row.collateral - row.prev_collateral}
+              suffix={row.collateral_token_symbol}
+            />
+          )}
+        </>
+      ),
       headerAlign: "end",
       cellAlign: "end",
       orderField: "collateral",
@@ -121,6 +150,18 @@ const Pools = ({ address, block, ...rest }) => {
             <Value value={row.debt_usd} prefix="$" />
           ) : (
             <Value value={row.debt} suffix={row.quote_token_symbol} />
+          )}
+        </>
+      ),
+      smallCell: ({ row }) => (
+        <>
+          {isPriceUsd ? (
+            <ValueChange value={row.debt_usd - row.prev_debt_usd} prefix="$" />
+          ) : (
+            <ValueChange
+              value={row.debt - row.prev_debt}
+              suffix={row.quote_token_symbol}
+            />
           )}
         </>
       ),
@@ -169,7 +210,7 @@ const Pools = ({ address, block, ...rest }) => {
       </div>
       <Table
         data={results}
-        keyField="id"
+        keyField="pool_address"
         linkTo={(row) => row.pool_address}
         columns={columns}
         currentPage={page}

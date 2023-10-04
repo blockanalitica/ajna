@@ -28,7 +28,7 @@ const Borrowers = ({ address, daysAgo, search }) => {
     order,
     days_ago: daysAgo,
     type: "borrower",
-    search
+    search,
   });
 
   if (error) {

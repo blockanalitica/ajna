@@ -1,15 +1,13 @@
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
-import { useFetch, useQueryParams } from "@/hooks";
+import { useFetch } from "@/hooks";
 import { DateTime } from "luxon";
 import Table from "@/components/table/Table";
 import DateTimeAgo from "@/components/dateTime/DateTimeAgo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
-import { shorten } from "@/utils/address";
 import Select from "@/components/select/Select";
-import CryptoIcon from "@/components/icon/CryptoIcon";
 import { generateEtherscanUrl, smartLocationParts } from "@/utils/url";
 import ExternalLink from "@/components/externalLink/ExternalLink";
 import EventFormatter from "@/components/events/EventFormatter";

@@ -1,11 +1,9 @@
-import { useParams, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useFetch, useLinkBuilder } from "@/hooks";
 import Table from "@/components/table/Table";
-import { DateTime } from "luxon";
 import { shorten } from "@/utils/address";
 import Value from "@/components/value/Value";
-import DateTimeAgo from "@/components/dateTime/DateTimeAgo";
 
 const Depositors = ({ searchTerm, ...rest }) => {
   const { address, index } = useParams();

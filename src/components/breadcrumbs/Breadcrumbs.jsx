@@ -45,10 +45,7 @@ const Breadcrumbs = () => {
             {index === allPaths.length - 1 ? (
               <span className="font-medium text-gray-4">{path.label}</span>
             ) : (
-              <Link
-                to={buildLink(path.url)}
-                className="text-gray-7 hover:underline"
-              >
+              <Link to={buildLink(path.url)} className="text-gray-7 hover:underline">
                 {path.label}
               </Link>
             )}

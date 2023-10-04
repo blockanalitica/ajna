@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import * as Sentry from "@sentry/react";
 import "@/index.css";
-import App from "@/App.jsx";
+import App from "@/App";
 import {
   BrowserRouter,
   useLocation,

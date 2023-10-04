@@ -140,7 +140,11 @@ const WalletPoolPosition = () => {
 
       <div className="flex flex-col-reverse md:flex-row md:gap-4">
         <div className="md:w-1/3 grid grid-cols-1 mb-10">
-          <Buckets address={address} poolAddress={poolAddress} quoteTokenSymbol={data.quote_token_symbol}/>
+          <Buckets
+            address={address}
+            poolAddress={poolAddress}
+            quoteTokenSymbol={data.quote_token_symbol}
+          />
         </div>
         <div className="md:w-2/3 grid grid-cols-1 mb-10">
           <Events address={address} poolAddress={poolAddress} />
