@@ -1,16 +1,15 @@
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import { faCalendarDays, faInfinity } from "@fortawesome/free-solid-svg-icons";
-import { useFetch, useLinkBuilder } from "@/hooks";
+import { useFetch } from "@/hooks";
 import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
+import ValueChange from "@/components/value/ValueChange";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CryptoIcon from "@/components/icon/CryptoIcon";
 import InlineSelect from "@/components/select/InlineSelect";
 import Info from "@/components/info/Info";
 
-const Pools = ({ address, ...rest }) => {
-  const buildLink = useLinkBuilder();
+const Pools = ({ address, block, daysAgo, ...rest }) => {
   const pageSize = 10;
   const [page, setPage] = useState(1);
   const [order, setOrder] = useState("-debt");
@@ -24,6 +23,8 @@ const Pools = ({ address, ...rest }) => {
     p: page,
     p_size: pageSize,
     order,
+    block,
+    days_ago: daysAgo,
   });
 
   if (error) {
@@ -56,19 +57,14 @@ const Pools = ({ address, ...rest }) => {
       header: "Pool",
       cell: ({ row }) => (
         <>
-          <Link
-            to={buildLink(`/pools/${row.pool_address}`)}
-            className="text-purple-6 hover:underline flex"
-          >
-            <span className="flex">
-              <CryptoIcon name={row.collateral_token_symbol} className="z-10" />
-              <CryptoIcon
-                name={row.quote_token_symbol}
-                className="relative left-[-10px] z-0"
-              />
-            </span>
-            {row.collateral_token_symbol} / {row.quote_token_symbol}
-          </Link>
+          <span className="flex">
+            <CryptoIcon name={row.collateral_token_symbol} className="z-10" />
+            <CryptoIcon
+              name={row.quote_token_symbol}
+              className="relative left-[-10px] z-0"
+            />
+          </span>
+          {row.collateral_token_symbol} / {row.quote_token_symbol}
         </>
       ),
     },
@@ -80,6 +76,18 @@ const Pools = ({ address, ...rest }) => {
             <Value value={row.supply_usd} prefix="$" />
           ) : (
             <Value value={row.supply} suffix={row.quote_token_symbol} />
+          )}
+        </>
+      ),
+      smallCell: ({ row }) => (
+        <>
+          {isPriceUsd ? (
+            <ValueChange value={row.supply_usd - row.prev_supply_usd} prefix="$" />
+          ) : (
+            <ValueChange
+              value={row.supply - row.prev_supply}
+              suffix={row.quote_token_symbol}
+            />
           )}
         </>
       ),
@@ -115,6 +123,21 @@ const Pools = ({ address, ...rest }) => {
           )}
         </>
       ),
+      smallCell: ({ row }) => (
+        <>
+          {isPriceUsd ? (
+            <ValueChange
+              value={row.collateral_usd - row.prev_collateral_usd}
+              prefix="$"
+            />
+          ) : (
+            <ValueChange
+              value={row.collateral - row.prev_collateral}
+              suffix={row.collateral_token_symbol}
+            />
+          )}
+        </>
+      ),
       headerAlign: "end",
       cellAlign: "end",
       orderField: "collateral",
@@ -127,6 +150,18 @@ const Pools = ({ address, ...rest }) => {
             <Value value={row.debt_usd} prefix="$" />
           ) : (
             <Value value={row.debt} suffix={row.quote_token_symbol} />
+          )}
+        </>
+      ),
+      smallCell: ({ row }) => (
+        <>
+          {isPriceUsd ? (
+            <ValueChange value={row.debt_usd - row.prev_debt_usd} prefix="$" />
+          ) : (
+            <ValueChange
+              value={row.debt - row.prev_debt}
+              suffix={row.quote_token_symbol}
+            />
           )}
         </>
       ),
@@ -175,7 +210,8 @@ const Pools = ({ address, ...rest }) => {
       </div>
       <Table
         data={results}
-        keyField="id"
+        keyField="pool_address"
+        linkTo={(row) => row.pool_address}
         columns={columns}
         currentPage={page}
         pageSize={pageSize}

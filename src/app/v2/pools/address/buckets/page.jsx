@@ -1,13 +1,23 @@
-import { faBucket } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCheckCircle,
+  faCircleXmark,
+  faBucket,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useParams } from "react-router-dom";
+import { useState } from "react";
+import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
+import CryptoIcon from "@/components/icon/CryptoIcon";
+import { useFetch } from "@/hooks";
 import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
-import { useFetch } from "@/hooks";
-import { faCheckCircle, faCircleXmark } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import SearchInput from "@/components/search/SearchInput";
 
-const PoolBuckets = ({ address, ...rest }) => {
-  const pageSize = 5;
+const Buckets = () => {
+  const { address } = useParams();
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const pageSize = 10;
   const [page, setPage] = useState(1);
   const [order, setOrder] = useState("-bucket_price");
 
@@ -15,17 +25,28 @@ const PoolBuckets = ({ address, ...rest }) => {
     data = {},
     error,
     isLoading,
-  } = useFetch(`/pools/${address}/buckets/`, {
+  } = useFetch(`/pools/${address}/buckets/list/`, {
     p: page,
     p_size: pageSize,
     order,
+    search: searchTerm,
   });
 
   if (error) {
     return <p>Failed to load data</p>;
   }
 
-  const { results, count } = data;
+  const handleSearchChange = (event) => {
+    const newSearchTerm = event.target.value;
+    setSearchTerm(newSearchTerm);
+  };
+
+  const {
+    results,
+    count,
+    collateral_token_symbol: collateralTokenSymbol,
+    quote_token_symbol: quoteTokenSymbol,
+  } = data;
 
   const columns = [
     {
@@ -112,10 +133,35 @@ const PoolBuckets = ({ address, ...rest }) => {
   ];
 
   return (
-    <div {...rest}>
-      <div className="flex justify-between items-center mb-5">
-        <h1 className="text-xl md:text-1xl xl:text-2xl">Buckets</h1>
+    <>
+      <section className="flex items-center justify-center sm:justify-end md:justify-between mb-10">
+        <Breadcrumbs />
+      </section>
+      <div className="flex justify-between mb-5">
+        <div className="flex items-center">
+          {collateralTokenSymbol && quoteTokenSymbol ? (
+            <>
+              <span className="relative flex">
+                <CryptoIcon name={collateralTokenSymbol} className="z-10" />
+                <CryptoIcon
+                  name={quoteTokenSymbol}
+                  className="relative left-[-10px] z-0"
+                />
+              </span>
+
+              <h1 className="pl-4 text-2xl">
+                {collateralTokenSymbol} / {quoteTokenSymbol} Buckets
+              </h1>
+            </>
+          ) : null}
+        </div>
+        <SearchInput
+          placeholder="Search bucket by index"
+          value={searchTerm}
+          onChange={handleSearchChange}
+        />
       </div>
+
       <Table
         data={results}
         keyField="bucket_index"
@@ -131,9 +177,10 @@ const PoolBuckets = ({ address, ...rest }) => {
         emptyTitle="No Buckets"
         emptyContent="There are no buckets"
         placeholderRows={pageSize}
+        linkTo={(row) => String(row.bucket_index)}
       />
-    </div>
+    </>
   );
 };
 
-export default PoolBuckets;
+export default Buckets;

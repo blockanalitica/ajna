@@ -39,16 +39,13 @@ const Breadcrumbs = () => {
               <FontAwesomeIcon
                 icon={faChevronRight}
                 size="xs"
-                className="text-gray-13 px-5"
+                className="text-gray-13 px-2"
               />
             )}
             {index === allPaths.length - 1 ? (
               <span className="font-medium text-gray-4">{path.label}</span>
             ) : (
-              <Link
-                to={buildLink(path.url)}
-                className="text-gray-7 hover:text-blue-600"
-              >
+              <Link to={buildLink(path.url)} className="text-gray-7 hover:underline">
                 {path.label}
               </Link>
             )}

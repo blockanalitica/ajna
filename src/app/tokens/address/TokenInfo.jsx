@@ -27,7 +27,7 @@ const TokenInfo = ({ address, daysAgo, className, ...rest }) => {
           <ValueChange
             value={results.lended_amount - results.prev_lended_amount}
             suffix={results.symbol}
-            className="text-lg"
+            className="text-lg ms-2"
           />
         </>
       ),
@@ -50,7 +50,7 @@ const TokenInfo = ({ address, daysAgo, className, ...rest }) => {
           <ValueChange
             value={results.borrowed_amount - results.prev_borrowed_amount}
             suffix={results.symbol}
-            className="text-lg"
+            className="text-lg ms-2"
           />
         </>
       ),
@@ -73,7 +73,7 @@ const TokenInfo = ({ address, daysAgo, className, ...rest }) => {
           <ValueChange
             value={results.collateral_amount - results.prev_collateral_amount}
             suffix={results.symbol}
-            className="text-lg"
+            className="text-lg ms-2"
           />
         </>
       ),
@@ -96,7 +96,7 @@ const TokenInfo = ({ address, daysAgo, className, ...rest }) => {
           <ValueChange
             value={results.tvl - results.prev_tvl}
             prefix="$"
-            className="text-lg"
+            className="text-lg ms-2"
           />
         </>
       ),
@@ -108,7 +108,7 @@ const TokenInfo = ({ address, daysAgo, className, ...rest }) => {
           <Value value={results.pool_count} />
           <ValueChange
             value={results.pool_count - results.prev_pool_count}
-            className="text-lg"
+            className="text-lg ms-2"
           />
         </>
       ),

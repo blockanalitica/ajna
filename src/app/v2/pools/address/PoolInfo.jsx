@@ -12,7 +12,7 @@ const PoolInfo = ({ data, ...rest }) => {
           <ValueChange
             value={data.pool_size - data.prev_pool_size}
             suffix={data.quote_token_symbol}
-            className="text-lg"
+            className="text-lg ms-2"
           />
         </>
       ),
@@ -35,7 +35,7 @@ const PoolInfo = ({ data, ...rest }) => {
           <ValueChange
             value={data.debt - data.prev_debt}
             suffix={data.quote_token_symbol}
-            className="text-lg"
+            className="text-lg ms-2"
           />
         </>
       ),
@@ -62,7 +62,7 @@ const PoolInfo = ({ data, ...rest }) => {
           <ValueChange
             value={data.pledged_collateral - data.prev_pledged_collateral}
             suffix={data.collateral_token_symbol}
-            className="text-lg"
+            className="text-lg ms-2"
           />
         </>
       ),

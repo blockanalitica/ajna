@@ -25,11 +25,9 @@ const queryClient = new QueryClient({
 
 function App() {
   return (
-    <>
-      <QueryClientProvider client={queryClient} contextSharing={true}>
-        <AjnaRoutes />
-      </QueryClientProvider>
-    </>
+    <QueryClientProvider client={queryClient} contextSharing={true}>
+      <AjnaRoutes />
+    </QueryClientProvider>
   );
 }
 

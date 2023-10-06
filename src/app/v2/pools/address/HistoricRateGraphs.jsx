@@ -1,12 +1,13 @@
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import { useFetch } from "@/hooks";
 import { useState } from "react";
-import OtherHistoricGraphs from "./OtherHistoricGraphs";
+import APRHistoricGraph from "./APRHistoricGraph";
+import MauTuHistoricGraph from "./MauTuHistoricGraph";
 import GenericEmptyPlaceholder from "@/components/GenericEmptyPlaceholder";
 import { faChartBar } from "@fortawesome/free-solid-svg-icons";
 
-const HistoricGraphs = ({ address, daysAgo, collateralSymbol, quoteSymbol }) => {
-  const [displayOption, setDisplayOption] = useState("tvl");
+const HistoricRateGraphs = ({ address, daysAgo, collateralSymbol, quoteSymbol }) => {
+  const [displayOption, setDisplayOption] = useState("apr");
 
   const actualDaysAgo = daysAgo > 7 ? daysAgo : 30;
   const { data, error, isLoading } = useFetch(
@@ -37,11 +38,8 @@ const HistoricGraphs = ({ address, daysAgo, collateralSymbol, quoteSymbol }) => 
   }
 
   const displayOptions = [
-    { key: "tvl", value: "TVL" },
-    { key: "pool_size", value: "Deposited" },
-    { key: "debt", value: "Borrowed" },
-    { key: "pledged_collateral", value: "Collateral" },
-    { key: "volume", value: "Volume" },
+    { key: "apr", value: "APR" },
+    { key: "mau_tu", value: "MAU/TU" },
   ];
 
   const headerRight = (
@@ -53,16 +51,19 @@ const HistoricGraphs = ({ address, daysAgo, collateralSymbol, quoteSymbol }) => 
     />
   );
 
-  return (
-    <OtherHistoricGraphs
-      data={data}
-      headerRight={headerRight}
-      displayOption={displayOption}
-      collateralSymbol={collateralSymbol}
-      quoteSymbol={quoteSymbol}
-      daysAgo={actualDaysAgo}
-    />
-  );
+  if (displayOption === "apr") {
+    return (
+      <APRHistoricGraph data={data} headerRight={headerRight} daysAgo={actualDaysAgo} />
+    );
+  } else if (displayOption === "mau_tu") {
+    return (
+      <MauTuHistoricGraph
+        data={data}
+        headerRight={headerRight}
+        daysAgo={actualDaysAgo}
+      />
+    );
+  }
 };
 
-export default HistoricGraphs;
+export default HistoricRateGraphs;

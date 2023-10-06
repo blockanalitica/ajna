@@ -1,4 +1,3 @@
-import { round } from "@/utils/number";
 import { Chart as ChartJS, registerables } from "chart.js";
 import "chartjs-adapter-luxon";
 import annotationPlugin from "chartjs-plugin-annotation";
@@ -17,23 +16,19 @@ ChartJS.defaults.font = {
 const Graph = ({ series, type = "line", options, labels, ...rest }) => {
   const defaultOptions = {
     orderSeries: false, // custom option. If true, orderes series by label
-    aspectRatio: 1.5,
+    aspectRatio: 2,
     responsive: true,
-    onResize: (chart) => {
-      const parentRect = chart.canvas.parentNode.getBoundingClientRect();
-      if (
-        parentRect.width < 400 &&
-        chart.config.options.prevParentWidth !== parentRect.width
-      ) {
-        chart.config.options.prevParentWidth = parentRect.width;
-        chart.config.options.aspectRatio = round(
-          parentRect.width / parentRect.height,
-          1
-        );
-      } else if (parentRect.width >= 400 && parentRect.width < 600) {
+    onResize: (chart, size) => {
+      const ratio = chart.config.options.aspectRatio;
+      if (window.innerWidth < 576 && ratio !== 1.5) {
+        chart.config.options.oldAspectRatio = ratio;
         chart.config.options.aspectRatio = 1.5;
-      } else if (parentRect.width >= 600) {
-        chart.config.options.aspectRatio = 2;
+      } else if (
+        window.innerWidth >= 576 &&
+        chart.config.options.oldAspectRatio > 0 &&
+        ratio !== chart.config.options.oldAspectRatio
+      ) {
+        chart.config.options.aspectRatio = chart.config.options.oldAspectRatio;
       }
     },
     fill: false,

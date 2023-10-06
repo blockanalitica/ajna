@@ -1,5 +1,6 @@
 import { useParams, useLocation } from "react-router-dom";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import GenericPlaceholder from "@/components/GenericPlaceholder";
 import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 import CardBackground from "@/components/card/CardBackground";
@@ -11,27 +12,29 @@ import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import Tag from "@/components/tags/Tag";
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
-import Tabs from "@/components/tabs/Tabs";
+import TabCard from "@/components/tabs/TabCard";
 import { useFetch, usePageTitle, useQueryParams } from "@/hooks";
 import { shorten } from "@/utils/address";
 import { DateTime } from "luxon";
 import BucketsGraph from "./BucketsGraph";
 import HistoricGraphs from "./HistoricGraphs";
-import PoolBuckets from "./PoolBuckets";
+import HistoricRateGraphs from "./HistoricRateGraphs";
 import PoolEvents from "./PoolEvents";
 import PoolInfo from "./PoolInfo";
-import PoolDepositors from "./PoolDepositors";
-import PoolBorrowers from "./PoolBorrowers";
+import TopDepositors from "./TopDepositors";
+import TopBorrowers from "./TopBorrowers";
 import ExternalLink from "@/components/externalLink/ExternalLink";
 import { generateEtherscanUrl, smartLocationParts } from "@/utils/url";
+import Kpi from "@/components/kpis/Kpi";
 
 const Pool = () => {
   const { address } = useParams();
+
   const location = useLocation();
   const { network } = smartLocationParts(location);
   const { queryParams, setQueryParams } = useQueryParams();
   const daysAgo = parseInt(queryParams.get("daysAgo")) || 1;
-  const [activeWalletsTab, setActiveWalletsTab] = useState("depositor");
+  const [activeWalletsTab, setActiveWalletsTab] = useState("depositors");
 
   const {
     data = {},
@@ -67,13 +70,13 @@ const Pool = () => {
     : 0;
 
   const walletsTabs = {
-    depositor: {
-      title: "Depositor",
-      content: <PoolDepositors address={address} daysAgo={daysAgo} />,
+    depositors: {
+      title: "Depositors",
+      content: <TopDepositors address={address} daysAgo={daysAgo} />,
     },
-    borrower: {
-      title: "Borrower",
-      content: <PoolBorrowers address={address} daysAgo={daysAgo} />,
+    borrowers: {
+      title: "Borrowers",
+      content: <TopBorrowers address={address} daysAgo={daysAgo} />,
     },
   };
 
@@ -98,60 +101,23 @@ const Pool = () => {
             {pool.collateral_token_symbol} / {pool.quote_token_symbol}
           </h1>
         </div>
-        <div className="flex items-baseline mb-5">
-          <span className="text-gray-10 text-sm mr-4">Pool Address:</span>
-          <span>{shorten(pool.address)}</span>
-          <CopyToClipboard className="ml-3" text={pool.address} />
-          <ExternalLink
-            href={generateEtherscanUrl(network, pool.address)}
-            className="ml-3"
-          >
-            <CryptoIcon name="etherscan" size={16} />
-          </ExternalLink>
-        </div>
-      </div>
-      <div className="flex flex-col sm:flex-row items-center justify-between">
-        <Tag className="flex mb-5">
-          <CryptoIcon name={pool.collateral_token_symbol} size="20" className="mr-1" />1{" "}
-          {pool.collateral_token_symbol}
-          <span className="px-1">=</span>
-          <Value value={pool.lup} suffix={` ${pool.quote_token_symbol}`} icon={false} />
-        </Tag>
-        <div className="flex flex-col items-baseline mb-5">
-          <div className="flex justify-between w-full items-center mb-1">
-            <span className="text-gray-10 text-sm mr-4">
-              <CryptoIcon
-                name={pool.collateral_token_symbol}
-                size="20"
-                className="mr-1"
-              />
-            </span>
-            <div className="flex items-center">
-              <span>{shorten(pool.collateral_token_address)}</span>
-              <CopyToClipboard className="ml-3" text={pool.collateral_token_address} />
-              <ExternalLink
-                href={generateEtherscanUrl(network, pool.collateral_token_address)}
-                className="ml-3"
-              >
-                <CryptoIcon name="etherscan" size={16} />
-              </ExternalLink>
+
+        <div>
+          <Tag className="flex">
+            <CryptoIcon
+              name={pool.collateral_token_symbol}
+              size="20"
+              className="mr-1"
+            />
+            1 {pool.collateral_token_symbol}
+            <span className="px-1">=</span>
+            <Value value={pool.lup} suffix={pool.quote_token_symbol} icon={false} />
+            <div>
+              <Info className="ms-2" title="Token price">
+                Token price is based on Lowest Utilized Price
+              </Info>
             </div>
-          </div>
-          <div className="flex justify-between w-full items-center">
-            <span className="text-gray-10 text-sm mr-4">
-              <CryptoIcon name={pool.quote_token_symbol} size="20" className="mr-1" />
-            </span>
-            <div className="flex items-center">
-              <span>{shorten(pool.quote_token_address)}</span>
-              <CopyToClipboard className="ml-3" text={pool.quote_token_address} />
-              <ExternalLink
-                href={generateEtherscanUrl(network, pool.quote_token_address)}
-                className="ml-3"
-              >
-                <CryptoIcon name="etherscan" size={16} />
-              </ExternalLink>
-            </div>
-          </div>
+          </Tag>
         </div>
       </div>
 
@@ -173,7 +139,7 @@ const Pool = () => {
                   <Value
                     value={pool.pledged_collateral_usd}
                     small
-                    prefix={"$"}
+                    prefix="$"
                     className="text-gray-10"
                   />
                   <Value
@@ -183,7 +149,7 @@ const Pool = () => {
                 </div>
               </div>
             </div>
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center mb-2">
               <div className="flex items-center">
                 <span className="font-bold text-sm">{pool.quote_token_symbol}</span>
               </div>
@@ -191,7 +157,7 @@ const Pool = () => {
                 <Value
                   value={pool.quote_token_balance_usd}
                   small
-                  prefix={"$"}
+                  prefix="$"
                   className="text-gray-10"
                 />
                 <Value
@@ -200,80 +166,50 @@ const Pool = () => {
                 />
               </div>
             </div>
-          </div>
-          <div>
-            <h3 className="text-sm font-bold text-gray-1 font-syncopate uppercase mt-5 mb-3">
-              Pool info
-            </h3>
-            <div className="flex justify-between items-center mb-2">
-              <div className="flex items-center">
-                <span className="text-sm">Lend APR</span>
-              </div>
-              <div>
-                <Value value={pool.lend_rate * 100} suffix="%" />
-              </div>
-            </div>
-            <div className="flex justify-between items-center mb-2">
-              <div className="flex items-center">
-                <span className="text-sm">Borrow APR</span>
-              </div>
-              <div>
-                <Value value={pool.borrow_rate * 100} suffix="%" />
-              </div>
-            </div>
-            <div className="flex justify-between items-center mb-2">
-              <div className="flex items-center">
-                <span className="text-sm">Min. debt amount</span>
-              </div>
-              <div>
-                <Value value={pool.min_debt_amount} suffix={pool.quote_token_symbol} />
-              </div>
-            </div>
-            <div className="flex justify-between items-center mb-2">
-              <div className="flex items-center">
-                <span className="text-sm">Utilization</span>
-              </div>
-              <div>
-                <Value value={pool.utilization * 100} suffix="%" dashIfZero />
-              </div>
-            </div>
-            <div className="flex justify-between items-center mb-2">
-              <div className="flex items-center">
-                <span className="text-sm">
-                  Meaningful Actual Utilization
-                  <Info className="ms-2" title="Meaningful Actual Utilization (MAU)">
-                    The ratio of the 12 hour EMA of debt to the 12 hour EMA of
-                    meaningful deposit, where meaningful deposit is the amount of
-                    deposit priced at or above the average threshold price of all loans,
-                    weighted by their debt.
-                  </Info>
+
+            <div className="flex flex-col items-baseline mb-5">
+              <div className="flex justify-between w-full items-center mb-1">
+                <span className="text-sm flex items-center">
+                  <CryptoIcon
+                    name={pool.collateral_token_symbol}
+                    size={16}
+                    className="mr-1"
+                  />
+                  {pool.collateral_token_symbol} address
                 </span>
+                <div className="flex items-center">
+                  <ExternalLink
+                    href={generateEtherscanUrl(network, pool.collateral_token_address)}
+                    className="mr-3"
+                  >
+                    <CryptoIcon name="etherscan" size={16} />
+                  </ExternalLink>
+                  <CopyToClipboard
+                    className="mr-3"
+                    text={pool.collateral_token_address}
+                  />
+                  <span>{shorten(pool.collateral_token_address)}</span>
+                </div>
               </div>
-              <div>
-                <Value value={pool.actual_utilization * 100} suffix="%" dashIfZero />
-              </div>
-            </div>
-            <div className="flex justify-between items-center mb-2">
-              <div className="flex items-center">
-                <span className="text-sm">
-                  Target Utilization
-                  <Info className="ms-2" title="Target Utilization (TU)">
-                    The ratio of the 3.5 day EMA of system debt to 3.5 day EMA of
-                    LUP*totalCollateral. This may be sampled every half day to determine
-                    whether an interest rate update is available.
-                  </Info>
+              <div className="flex justify-between w-full items-center">
+                <span className="text-sm flex items-center">
+                  <CryptoIcon
+                    name={pool.quote_token_symbol}
+                    size={16}
+                    className="mr-1"
+                  />
+                  {pool.quote_token_symbol} address
                 </span>
-              </div>
-              <div>
-                <Value value={pool.target_utilization * 100} suffix="%" dashIfZero />
-              </div>
-            </div>
-            <div className="flex justify-between items-center mb-2">
-              <div className="flex items-center">
-                <span className=" text-sm">Collateralization</span>
-              </div>
-              <div>
-                <Value value={pool.collateralization * 100} suffix="%" dashIfZero />
+                <div className="flex items-center">
+                  <ExternalLink
+                    href={generateEtherscanUrl(network, pool.quote_token_address)}
+                    className="mr-3"
+                  >
+                    <CryptoIcon name="etherscan" size={16} />
+                  </ExternalLink>
+                  <CopyToClipboard className="mr-3" text={pool.quote_token_address} />
+                  <span>{shorten(pool.quote_token_address)}</span>
+                </div>
               </div>
             </div>
           </div>
@@ -337,20 +273,104 @@ const Pool = () => {
         </CardBackground>
       </div>
 
-      <div className="flex flex-col-reverse md:flex-row md:gap-4">
+      <div className="flex flex-col md:flex-row md:gap-4">
         <CardBackground className="md:w-2/3 col-span-2 mb-10 grid grid-cols-1 place-content-between">
-          <BucketsGraph
+          <HistoricRateGraphs
             address={address}
-            lupIndex={pool.lup_index}
-            htpIndex={pool.htp_index}
+            daysAgo={daysAgo}
+            collateralSymbol={pool.collateral_token_symbol}
+            quoteSymbol={pool.quote_token_symbol}
           />
         </CardBackground>
-
         <CardBackground className="md:w-1/3 grid grid-cols-1 place-content-between mb-10">
           <div>
+            <h3 className="text-sm font-bold text-gray-1 font-syncopate uppercase mb-3">
+              Pool info
+            </h3>
+            <div className="flex justify-between items-center mb-2">
+              <span className="text-sm">Min. debt amount</span>
+              <Value value={pool.min_debt_amount} suffix={pool.quote_token_symbol} />
+            </div>
+            <div className="flex justify-between items-center mb-2">
+              <span className="text-sm">Utilization</span>
+              <Value value={pool.utilization * 100} suffix="%" dashIfZero />
+            </div>
+            <div className="flex justify-between items-center mb-2">
+              <span className="text-sm">Collateralization</span>
+              <Value value={pool.collateralization * 100} suffix="%" dashIfZero />
+            </div>
+
+            <div className="flex justify-between items-center mb-2">
+              <span className="text-sm">Pool address</span>
+              <div className="flex">
+                <ExternalLink
+                  href={generateEtherscanUrl(network, pool.address)}
+                  className="mr-3"
+                >
+                  <CryptoIcon name="etherscan" size={16} />
+                </ExternalLink>
+                <CopyToClipboard className="mr-3" text={pool.address} />
+
+                <span>{shorten(pool.address)}</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
+            <Kpi
+              title="Lend APR"
+              value={<Value value={pool.lend_rate * 100} suffix="%" />}
+            />
+            <Kpi
+              title="Borrow APR"
+              value={<Value value={pool.borrow_rate * 100} suffix="%" />}
+            />
+
+            <Kpi
+              title={
+                <>
+                  MAU
+                  <Info className="ms-2" title="Meaningful Actual Utilization (MAU)">
+                    The ratio of the 12 hour EMA of debt to the 12 hour EMA of
+                    meaningful deposit, where meaningful deposit is the amount of
+                    deposit priced at or above the average threshold price of all loans,
+                    weighted by their debt.
+                  </Info>
+                </>
+              }
+              value={
+                <Value value={pool.actual_utilization * 100} suffix="%" dashIfZero />
+              }
+            />
+
+            <Kpi
+              title={
+                <>
+                  TU
+                  <Info className="ms-2" title="Target Utilization (TU)">
+                    The ratio of the 3.5 day EMA of system debt to 3.5 day EMA of
+                    LUP*totalCollateral. This may be sampled every half day to determine
+                    whether an interest rate update is available.
+                  </Info>
+                </>
+              }
+              value={
+                <Value value={pool.target_utilization * 100} suffix="%" dashIfZero />
+              }
+            />
+          </div>
+        </CardBackground>
+      </div>
+
+      <div className="flex flex-col-reverse md:flex-row md:gap-4">
+        <CardBackground className="md:w-1/3 grid grid-cols-1 place-content-between mb-10">
+          <div className="flex justify-between">
             <h3 className="text-sm font-bold text-gray-1 font-syncopate uppercase mb-5">
               Buckets
             </h3>
+            <div className="text-purple-6 hover:underline">
+              <Link to={"buckets"}>View more</Link>
+            </div>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
             <CardOpaque title="Market Price">
@@ -476,18 +496,28 @@ const Pool = () => {
             </CardOpaque>
           </div>
         </CardBackground>
+        <CardBackground className="md:w-2/3 col-span-2 mb-10 grid grid-cols-1 place-content-between">
+          <BucketsGraph
+            address={address}
+            lupIndex={pool.lup_index}
+            htpIndex={pool.htp_index}
+          />
+        </CardBackground>
       </div>
-      <PoolBuckets address={address} className="mb-10" />
-      <div className="flex justify-between items-center mb-5">
-        <h1 className="text-xl md:text-1xl xl:text-2xl">Positions</h1>
+
+      <div className="flex flex md:gap-4">
+        <div className="w-1/3">
+          <div className="flex justify-between items-center mb-5">
+            <h1 className="text-xl md:text-1xl xl:text-2xl">Positions</h1>
+          </div>
+          <TabCard
+            tabs={walletsTabs}
+            activeTab={activeWalletsTab}
+            onTabChange={(value) => setActiveWalletsTab(value)}
+          />
+        </div>
+        <PoolEvents address={address} className="mb-10 w-2/3" />
       </div>
-      <Tabs
-        tabs={walletsTabs}
-        activeTab={activeWalletsTab}
-        onTabChange={(value) => setActiveWalletsTab(value)}
-        className="mb-10"
-      />
-      <PoolEvents address={address} />
     </>
   );
 };

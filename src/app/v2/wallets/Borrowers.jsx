@@ -1,5 +1,3 @@
-import { faInfinity } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { useFetch, useLinkBuilder } from "@/hooks";
 import Table from "@/components/table/Table";
@@ -53,21 +51,6 @@ const Borrowers = ({ searchTerm }) => {
       orderField: "debt_usd",
     },
     {
-      header: "Health Rate",
-      cell: ({ row }) => (
-        <>
-          {row.health_rate ? (
-            <Value value={row.health_rate} decimals={3} />
-          ) : (
-            <FontAwesomeIcon icon={faInfinity} />
-          )}
-        </>
-      ),
-      headerAlign: "end",
-      cellAlign: "end",
-      orderField: "health_rate",
-    },
-    {
       header: "Latest Activity",
       cell: ({ row }) => <DateTimeAgo dateTime={DateTime.fromISO(row.last_activity)} />,
       headerAlign: "end",
@@ -75,7 +58,7 @@ const Borrowers = ({ searchTerm }) => {
       orderField: "last_activity",
     },
     {
-      header: "Earlies Activity",
+      header: "Earliest Activity",
       cell: ({ row }) => (
         <DateTimeAgo dateTime={DateTime.fromISO(row.first_activity)} />
       ),
@@ -86,23 +69,21 @@ const Borrowers = ({ searchTerm }) => {
   ];
 
   return (
-    <>
-      <Table
-        data={results}
-        currentPage={page}
-        pageSize={pageSize}
-        totalRecords={count}
-        onPageChange={setPage}
-        onOrderChange={setOrder}
-        currentOrder={order}
-        isLoading={isLoading}
-        keyField="wallet_address"
-        columns={columns}
-        linkTo={(row) => buildLink(`/wallets/${row.wallet_address}`)}
-        emptyTitle="No Wallets"
-        emptyContent="There are no wallets"
-      />
-    </>
+    <Table
+      data={results}
+      currentPage={page}
+      pageSize={pageSize}
+      totalRecords={count}
+      onPageChange={setPage}
+      onOrderChange={setOrder}
+      currentOrder={order}
+      isLoading={isLoading}
+      keyField="wallet_address"
+      columns={columns}
+      linkTo={(row) => buildLink(`/wallets/${row.wallet_address}`)}
+      emptyTitle="No Wallets"
+      emptyContent="There are no wallets"
+    />
   );
 };
 

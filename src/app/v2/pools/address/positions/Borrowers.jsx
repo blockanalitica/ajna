@@ -11,7 +11,7 @@ import InlineSelect from "@/components/select/InlineSelect";
 import Info from "@/components/info/Info";
 import DateTimeAgo from "@/components/dateTime/DateTimeAgo";
 
-const PoolBorrowers = ({ address, daysAgo }) => {
+const Borrowers = ({ address, daysAgo, search }) => {
   const buildLink = useLinkBuilder();
   const pageSize = 10;
   const [page, setPage] = useState(1);
@@ -28,6 +28,7 @@ const PoolBorrowers = ({ address, daysAgo }) => {
     order,
     days_ago: daysAgo,
     type: "borrower",
+    search,
   });
 
   if (error) {
@@ -151,6 +152,15 @@ const PoolBorrowers = ({ address, daysAgo }) => {
       orderField: "health_rate",
     },
     {
+      header: "Earliest Activity",
+      cell: ({ row }) => (
+        <DateTimeAgo dateTime={DateTime.fromISO(row.first_activity)} />
+      ),
+      headerAlign: "end",
+      cellAlign: "end",
+      orderField: "first_activity",
+    },
+    {
       header: "Latest Activity",
       cell: ({ row }) => <DateTimeAgo dateTime={DateTime.fromISO(row.last_activity)} />,
       headerAlign: "end",
@@ -181,4 +191,4 @@ const PoolBorrowers = ({ address, daysAgo }) => {
   );
 };
 
-export default PoolBorrowers;
+export default Borrowers;
