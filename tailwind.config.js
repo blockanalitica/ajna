@@ -108,6 +108,7 @@ module.exports = {
     fontFamily: {
       rubik: ["Rubik_Regular", "Inter", "sans-serif"],
       syncopate: ["Syncopate_Bold", "monospace"],
+      mono: ["Courier New", "monospace"],
     },
   },
   plugins: [],

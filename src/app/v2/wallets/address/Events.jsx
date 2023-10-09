@@ -7,7 +7,7 @@ import Table from "@/components/table/Table";
 import DateTimeAgo from "@/components/dateTime/DateTimeAgo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
-import { shorten } from "@/utils/address";
+import Address from "@/components/address/Address";
 import Select from "@/components/select/Select";
 import CryptoIcon from "@/components/icon/CryptoIcon";
 import { generateEtherscanUrl, smartLocationParts } from "@/utils/url";
@@ -87,7 +87,7 @@ const Events = ({ address, block, ...rest }) => {
                 className="relative left-[-10px] z-0"
               />
             </span>
-            {shorten(row.pool_address)}
+            <Address address={row.pool_address} />
           </Link>
         </>
       ),

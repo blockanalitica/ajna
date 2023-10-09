@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useFetch, useLinkBuilder } from "@/hooks";
 import Table from "@/components/table/Table";
-import { shorten } from "@/utils/address";
+import Address from "@/components/address/Address";
 import Value from "@/components/value/Value";
 
 const Depositors = ({ searchTerm, ...rest }) => {
@@ -31,7 +31,7 @@ const Depositors = ({ searchTerm, ...rest }) => {
   const columns = [
     {
       header: "Wallet",
-      cell: ({ row }) => <>{shorten(row.wallet_address)}</>,
+      cell: ({ row }) => <Address address={row.wallet_address} />,
       orderField: "wallet_address",
     },
     {
@@ -42,22 +42,6 @@ const Depositors = ({ searchTerm, ...rest }) => {
       cellAlign: "end",
       orderField: "deposit",
     },
-    // {
-    //   header: "Latest Activity",
-    //   cell: ({ row }) => <DateTimeAgo dateTime={DateTime.fromISO(row.last_activity)} />,
-    //   headerAlign: "end",
-    //   cellAlign: "end",
-    //   orderField: "last_activity",
-    // },
-    // {
-    //   header: "Earliest Activity",
-    //   cell: ({ row }) => (
-    //     <DateTimeAgo dateTime={DateTime.fromISO(row.first_activity)} />
-    //   ),
-    //   headerAlign: "end",
-    //   cellAlign: "end",
-    //   orderField: "first_activity",
-    // },
   ];
 
   return (

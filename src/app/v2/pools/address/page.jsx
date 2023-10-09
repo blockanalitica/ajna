@@ -13,8 +13,8 @@ import Tag from "@/components/tags/Tag";
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
 import TabCard from "@/components/tabs/TabCard";
+import Address from "@/components/address/Address";
 import { useFetch, usePageTitle, useQueryParams } from "@/hooks";
-import { shorten } from "@/utils/address";
 import { DateTime } from "luxon";
 import BucketsGraph from "./BucketsGraph";
 import HistoricGraphs from "./HistoricGraphs";
@@ -188,7 +188,7 @@ const Pool = () => {
                     className="mr-3"
                     text={pool.collateral_token_address}
                   />
-                  <span>{shorten(pool.collateral_token_address)}</span>
+                  <Address address={pool.collateral_token_address} />
                 </div>
               </div>
               <div className="flex justify-between w-full items-center">
@@ -208,7 +208,7 @@ const Pool = () => {
                     <CryptoIcon name="etherscan" size={16} />
                   </ExternalLink>
                   <CopyToClipboard className="mr-3" text={pool.quote_token_address} />
-                  <span>{shorten(pool.quote_token_address)}</span>
+                  <Address address={pool.quote_token_address} />
                 </div>
               </div>
             </div>
@@ -311,7 +311,7 @@ const Pool = () => {
                 </ExternalLink>
                 <CopyToClipboard className="mr-3" text={pool.address} />
 
-                <span>{shorten(pool.address)}</span>
+                <Address address={pool.address} />
               </div>
             </div>
           </div>

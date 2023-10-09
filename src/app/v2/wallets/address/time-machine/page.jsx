@@ -3,6 +3,7 @@ import { usePageTitle } from "@/hooks";
 import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 import GenericPlaceholder from "@/components/GenericPlaceholder";
 import { useFetch, useQueryParams } from "@/hooks";
+import Address from "@/components/address/Address";
 import { shorten } from "@/utils/address";
 import WalletInfo from "../WalletInfo";
 import Events from "../Events";
@@ -31,7 +32,7 @@ const TimeMachine = () => {
       </section>
 
       <h1 className="text-xl md:text-1xl xl:text-2xl mb-5">
-        Wallet {shorten(address)} on block {block}
+        Wallet <Address address={address} /> on block {block}
       </h1>
       <WalletInfo data={data} className="mb-5" />
       <Pools address={address} block={block} className="mb-5" />
