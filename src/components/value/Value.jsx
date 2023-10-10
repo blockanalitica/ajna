@@ -11,7 +11,7 @@ function Value({
   value,
   prefix,
   suffix,
-  decimals = 2,
+  decimals,
   compact = true,
   compact100k = false,
   hideIfZero,
@@ -38,16 +38,18 @@ function Value({
   }
   const rawValue = value;
 
+  let numDecimals = decimals !== undefined ? decimals : value < 1.1 ? 5 : 2;
+
   const showCompactNum = compact100k === true && value >= 100000;
   if (compact === true || showCompactNum) {
-    value = compactNumber(value, decimals, true);
+    value = compactNumber(value, numDecimals, true);
   } else {
-    value = formatToDecimals(value, decimals);
+    value = formatToDecimals(value, numDecimals);
   }
 
   const { prefix: prefixPrefix, value: newValue } = resolveSmallNumbers(
     rawValue,
-    decimals
+    numDecimals
   );
   if (newValue !== null) {
     value = newValue;

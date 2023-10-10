@@ -26,24 +26,12 @@ const Buckets = ({ address, poolAddress, quoteTokenSymbol, ...rest }) => {
   const columns = [
     {
       header: "Price",
-      cell: ({ row }) => (
-        <Value
-          value={row.bucket_price}
-          suffix={quoteTokenSymbol}
-          decimals={row.bucket_price < 1 ? 5 : 2}
-        />
-      ),
+      cell: ({ row }) => <Value value={row.bucket_price} suffix={quoteTokenSymbol} />,
       smallCell: ({ row }) => <>Index: {row.bucket_index}</>,
     },
     {
       header: "Deposit",
-      cell: ({ row }) => (
-        <Value
-          value={row.deposit}
-          suffix={quoteTokenSymbol}
-          decimals={row.deposit < 1 ? 5 : 2}
-        />
-      ),
+      cell: ({ row }) => <Value value={row.deposit} suffix={quoteTokenSymbol} />,
     },
   ];
 

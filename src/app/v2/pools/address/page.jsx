@@ -245,7 +245,6 @@ const Pool = () => {
                   value={pool.reserves ? pool.reserves : 0}
                   className="text-xl"
                   suffix={pool.quote_token_symbol}
-                  decimals={pool.reserves < 1 ? 5 : 2}
                 />
               }
               smallValue={
@@ -396,7 +395,6 @@ const Pool = () => {
                     compact100k={true}
                     compact={false}
                     dashIfZero
-                    decimals={currentCollateralPrice < 1.1 ? 5 : 2}
                   />
 
                   <ValueChange
@@ -405,11 +403,6 @@ const Pool = () => {
                     compact100k={true}
                     compact={false}
                     className="text-sm"
-                    decimals={
-                      Math.abs(currentCollateralPrice - prevCollateralPrice) < 1.1
-                        ? 5
-                        : 2
-                    }
                   />
                 </div>
               }
@@ -420,7 +413,6 @@ const Pool = () => {
                   compact100k={true}
                   compact={false}
                   hideIfZero
-                  decimals={pool.collateral_token_underlying_price < 1.1 ? 5 : 2}
                 />
               }
             />
@@ -438,17 +430,11 @@ const Pool = () => {
               }
               value={
                 <div className="flex flex-col">
-                  <Value
-                    value={pool.lup}
-                    suffix={pool.quote_token_symbol}
-                    dashIfZero
-                    decimals={pool.lup < 1.1 ? 5 : 2}
-                  />
+                  <Value value={pool.lup} suffix={pool.quote_token_symbol} dashIfZero />
 
                   <ValueChange
                     value={pool.lup - pool.prev_lup}
                     suffix={pool.quote_token_symbol}
-                    decimals={Math.abs(pool.lup - pool.prev_lup) < 1.1 ? 5 : 2}
                     className="text-sm"
                   />
                 </div>
@@ -467,17 +453,11 @@ const Pool = () => {
               }
               value={
                 <div className="flex flex-col">
-                  <Value
-                    value={pool.htp}
-                    suffix={pool.quote_token_symbol}
-                    dashIfZero
-                    decimals={pool.htp < 1.1 ? 5 : 2}
-                  />
+                  <Value value={pool.htp} suffix={pool.quote_token_symbol} dashIfZero />
 
                   <ValueChange
                     value={pool.htp - pool.prev_htp}
                     suffix={pool.quote_token_symbol}
-                    decimals={Math.abs(pool.htp - pool.prev_htp) < 1.1 ? 5 : 2}
                     className="text-sm"
                   />
                 </div>
@@ -496,17 +476,11 @@ const Pool = () => {
               }
               value={
                 <div className="flex flex-col">
-                  <Value
-                    value={pool.hpb}
-                    suffix={pool.quote_token_symbol}
-                    dashIfZero
-                    decimals={pool.hpb < 1.1 ? 5 : 2}
-                  />
+                  <Value value={pool.hpb} suffix={pool.quote_token_symbol} dashIfZero />
 
                   <ValueChange
                     value={pool.hpb - pool.prev_hpb}
                     suffix={pool.quote_token_symbol}
-                    decimals={Math.abs(pool.hpb - pool.prev_hpb) < 1.1 ? 5 : 2}
                     className="text-sm"
                   />
                 </div>
