@@ -4,6 +4,7 @@ import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 import GenericPlaceholder from "@/components/GenericPlaceholder";
 import { useFetch } from "@/hooks";
 import { shorten } from "@/utils/address";
+import Address from "@/components/address/Address";
 import Stats from "@/components/stats/Stats";
 import Value from "@/components/value/Value";
 import CryptoIcon from "@/components/icon/CryptoIcon";
@@ -14,8 +15,6 @@ import CardBackground from "@/components/card/CardBackground";
 import Kpi from "@/components/kpis/Kpi";
 import Events from "./Events";
 import Buckets from "./Buckets";
-// import Pools from "./Pools";
-// import WalletAdditionalInfo from "./WalletAdditionalInfo";
 
 const WalletPoolPosition = () => {
   const { address, poolAddress } = useParams();
@@ -96,7 +95,9 @@ const WalletPoolPosition = () => {
       </section>
 
       <h1 className="text-xl md:text-1xl xl:text-2xl mb-5 flex">
-        <div>Wallet {shorten(address)} position in</div>
+        <div>
+          Wallet <Address address={address} /> position in
+        </div>
         <div className="flex items-center pl-3">
           <span className="relative flex">
             <CryptoIcon name={data.collateral_token_symbol} className="z-10" />

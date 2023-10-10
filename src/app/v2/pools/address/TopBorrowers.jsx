@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useFetch, useLinkBuilder } from "@/hooks";
 import Table from "@/components/table/Table";
-import { shorten } from "@/utils/address";
+import Address from "@/components/address/Address";
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
 
@@ -28,7 +28,7 @@ const TopBorrowers = ({ address, daysAgo }) => {
   const columns = [
     {
       header: "Wallet",
-      cell: ({ row }) => <>{shorten(row.wallet_address)}</>,
+      cell: ({ row }) => <Address address={row.wallet_address} />,
     },
     {
       header: "Collateral",

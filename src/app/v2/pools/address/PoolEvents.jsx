@@ -5,9 +5,9 @@ import { useFetch, useLinkBuilder } from "@/hooks";
 import { DateTime } from "luxon";
 import Table from "@/components/table/Table";
 import DateTimeAgo from "@/components/dateTime/DateTimeAgo";
+import Address from "@/components/address/Address";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
-import { shorten } from "@/utils/address";
 import Select from "@/components/select/Select";
 import { generateEtherscanUrl, smartLocationParts } from "@/utils/url";
 import ExternalLink from "@/components/externalLink/ExternalLink";
@@ -87,7 +87,7 @@ const PoolEvents = ({ address, ...rest }) => {
               to={buildLink(`/wallets/${address}`)}
               className="text-purple-6 hover:underline flex"
             >
-              {shorten(address)}
+              <Address address={address} />
             </Link>
           ))}
         </div>

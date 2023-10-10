@@ -4,6 +4,7 @@ import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 import GenericPlaceholder from "@/components/GenericPlaceholder";
 import { useFetch, useQueryParams } from "@/hooks";
 import { shorten } from "@/utils/address";
+import Address from "@/components/address/Address";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import WalletInfo from "./WalletInfo";
 import Events from "./Events";
@@ -43,7 +44,7 @@ const Wallet = () => {
       </section>
 
       <h1 className="text-xl md:text-1xl xl:text-2xl mb-5">
-        Wallet {shorten(address)}
+        Wallet <Address address={address} />
       </h1>
       <WalletInfo data={data} className="mb-5" />
 

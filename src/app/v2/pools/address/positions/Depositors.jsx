@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useFetch, useLinkBuilder } from "@/hooks";
 import { DateTime } from "luxon";
 import Table from "@/components/table/Table";
-import { shorten } from "@/utils/address";
+import Address from "@/components/address/Address";
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
 import InlineSelect from "@/components/select/InlineSelect";
@@ -58,7 +58,7 @@ const Depositors = ({ address, daysAgo, search }) => {
   const columns = [
     {
       header: "Wallet",
-      cell: ({ row }) => <>{shorten(row.wallet_address)}</>,
+      cell: ({ row }) => <Address address={row.wallet_address} />,
     },
     {
       header: "Deposited",

@@ -13,7 +13,7 @@ function ValueChange({
   value,
   prefix,
   suffix,
-  decimals = 2,
+  decimals,
   className,
   hideIfZero = true,
   dashIfZero = false,
@@ -35,6 +35,8 @@ function ValueChange({
       return "-";
     }
   }
+
+  let numDecimals = decimals !== undefined ? decimals : Math.abs(value) < 1.1 ? 5 : 2;
 
   let spanClass = "";
   let iconPlace = "";
@@ -71,7 +73,7 @@ function ValueChange({
   const theValue = value;
   const showCompactNum = compact100k === true && value >= 100000;
 
-  const normalValue = formatToDecimals(value, decimals);
+  const normalValue = formatToDecimals(value, numDecimals);
   if (hideIfZero && normalValue === "0") {
     return "";
   }
@@ -80,14 +82,14 @@ function ValueChange({
   }
 
   if (compact === true || showCompactNum) {
-    value = compactNumber(value, decimals, true);
+    value = compactNumber(value, numDecimals, true);
   } else {
     value = normalValue;
   }
 
   const { prefix: prefixPrefix, value: newValue } = resolveSmallNumbers(
     theValue,
-    decimals
+    numDecimals
   );
   if (newValue !== null) {
     value = newValue;

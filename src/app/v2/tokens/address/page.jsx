@@ -47,12 +47,7 @@ const TokenPage = () => {
         <Tag className="flex mb-5">
           <CryptoIcon name={token.symbol} size="20" className="mr-1" />1 {token.symbol}
           <span className="px-1">=</span>
-          <Value
-            value={token.underlying_price}
-            prefix="$"
-            compact={false}
-            decimals={token.underlying_price < 1 ? 5 : 2}
-          />
+          <Value value={token.underlying_price} prefix="$" compact={false} />
         </Tag>
       </div>
 

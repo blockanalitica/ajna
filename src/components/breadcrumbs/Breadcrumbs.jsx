@@ -3,6 +3,7 @@ import { smartLocationParts } from "@/utils/url";
 import { useLinkBuilder } from "@/hooks";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse, faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import Address from "@/components/address/Address";
 
 const Breadcrumbs = () => {
   const location = useLocation();
@@ -14,15 +15,22 @@ const Breadcrumbs = () => {
   }
 
   // Create a new path object for each segment in the URL
-  const dynamicPaths = paths.map((segment, index) => ({
-    label: segment
+  const dynamicPaths = paths.map((segment, index) => {
+    let label = segment
       .split("-") // Split the segment by hyphens to capitalize each word
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" "),
+      .join(" ");
 
-    // Build the URL by concatenating previous segments
-    url: "/" + paths.slice(0, index + 1).join("/"),
-  }));
+    if (label.startsWith("0x")) {
+      label = <Address address={label} />;
+    }
+
+    return {
+      label: label,
+      // Build the URL by concatenating previous segments
+      url: "/" + paths.slice(0, index + 1).join("/"),
+    };
+  });
 
   // Combine the hard-coded and dynamic paths
   const allPaths = [

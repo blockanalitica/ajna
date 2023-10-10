@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useFetch, useLinkBuilder } from "@/hooks";
 import Table from "@/components/table/Table";
 import { DateTime } from "luxon";
-import { shorten } from "@/utils/address";
+import Address from "@/components/address/Address";
 import Value from "@/components/value/Value";
 import DateTimeAgo from "@/components/dateTime/DateTimeAgo";
 
@@ -33,7 +33,7 @@ const Borrowers = ({ searchTerm }) => {
   const columns = [
     {
       header: "Wallet",
-      cell: ({ row }) => <>{shorten(row.wallet_address)}</>,
+      cell: ({ row }) => <Address address={row.wallet_address} />,
     },
     {
       header: "Collateral",
