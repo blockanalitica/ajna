@@ -3,7 +3,7 @@ import { shorten } from "@/utils/address";
 
 const Address = ({ address, className }) => {
   return (
-    <span className={classnames("font-mono font-bold normal-case", className)}>
+    <span className={classnames("normal-case", className)}>
       {shorten(address)}
     </span>
   );

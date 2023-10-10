@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import GenericPlaceholder from "@/components/GenericPlaceholder";
 import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 import CardBackground from "@/components/card/CardBackground";
-import CardOpaque from "@/components/card/CardOpaque";
 import CopyToClipboard from "@/components/copyToClipboard/CopyToClipboard";
 import CryptoIcon from "@/components/icon/CryptoIcon";
 import Info from "@/components/info/Info";
@@ -215,11 +214,14 @@ const Pool = () => {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
-            <CardOpaque title="TVL">
-              <Value value={pool.tvl} prefix="$" className="text-xl" dashIfZero />
-              <ValueChange value={pool.tvl - pool.prev_tvl} prefix="$" />
-            </CardOpaque>
-            <CardOpaque
+            <Kpi
+              title="TVL"
+              value={
+                <Value value={pool.tvl} prefix="$" className="text-xl" dashIfZero />
+              }
+              smallValue={<ValueChange value={pool.tvl - pool.prev_tvl} prefix="$" />}
+            />
+            <Kpi
               title={
                 <span>
                   Volume (today)
@@ -228,38 +230,49 @@ const Pool = () => {
                   </Info>
                 </span>
               }
-            >
-              <Value
-                value={pool.volume ? pool.volume : 0}
-                className="text-xl"
-                prefix="$"
-              />
-            </CardOpaque>
-            <CardOpaque title="Reserves">
-              <Value
-                value={pool.reserves ? pool.reserves : 0}
-                className="text-xl"
-                suffix={pool.quote_token_symbol}
-                decimals={pool.reserves < 1 ? 5 : 2}
-              />
-              <ValueChange
-                value={pool.reserves - pool.prev_reserves}
-                suffix={pool.quote_token_symbol}
-              />
-            </CardOpaque>
-            <CardOpaque title="Ajna Burned">
-              <Value
-                value={pool.total_ajna_burned}
-                prefix={"🔥 "}
-                icon={false}
-                className="text-xl"
-              />
-              <ValueChange
-                value={pool.total_ajna_burned - pool.prev_total_ajna_burned}
-                prefix={"🔥 "}
-                icon={false}
-              />
-            </CardOpaque>
+              value={
+                <Value
+                  value={pool.volume ? pool.volume : 0}
+                  className="text-xl"
+                  prefix="$"
+                />
+              }
+            />
+            <Kpi
+              title="Reserves"
+              value={
+                <Value
+                  value={pool.reserves ? pool.reserves : 0}
+                  className="text-xl"
+                  suffix={pool.quote_token_symbol}
+                  decimals={pool.reserves < 1 ? 5 : 2}
+                />
+              }
+              smallValue={
+                <ValueChange
+                  value={pool.reserves - pool.prev_reserves}
+                  suffix={pool.quote_token_symbol}
+                />
+              }
+            />
+            <Kpi
+              title="Ajna Burned"
+              value={
+                <Value
+                  value={pool.total_ajna_burned}
+                  prefix={"🔥 "}
+                  icon={false}
+                  className="text-xl"
+                />
+              }
+              smallValue={
+                <ValueChange
+                  value={pool.total_ajna_burned - pool.prev_total_ajna_burned}
+                  prefix={"🔥 "}
+                  icon={false}
+                />
+              }
+            />
           </div>
         </CardBackground>
 
@@ -373,28 +386,34 @@ const Pool = () => {
             </div>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
-            <CardOpaque title="Market Price">
-              <Value
-                value={currentCollateralPrice}
-                suffix={pool.quote_token_symbol}
-                compact100k={true}
-                compact={false}
-                className="text-xl"
-                dashIfZero
-                decimals={currentCollateralPrice < 1.1 ? 5 : 2}
-              />
-              <div className="h-6">
-                <ValueChange
-                  value={currentCollateralPrice - prevCollateralPrice}
-                  suffix={pool.quote_token_symbol}
-                  compact100k={true}
-                  compact={false}
-                  decimals={
-                    Math.abs(currentCollateralPrice - prevCollateralPrice) < 1.1 ? 5 : 2
-                  }
-                />
-              </div>
-              <span className="text-sm text-gray-10">
+            <Kpi
+              title="Market Price"
+              value={
+                <div className="flex flex-col">
+                  <Value
+                    value={currentCollateralPrice}
+                    suffix={pool.quote_token_symbol}
+                    compact100k={true}
+                    compact={false}
+                    dashIfZero
+                    decimals={currentCollateralPrice < 1.1 ? 5 : 2}
+                  />
+
+                  <ValueChange
+                    value={currentCollateralPrice - prevCollateralPrice}
+                    suffix={pool.quote_token_symbol}
+                    compact100k={true}
+                    compact={false}
+                    className="text-sm"
+                    decimals={
+                      Math.abs(currentCollateralPrice - prevCollateralPrice) < 1.1
+                        ? 5
+                        : 2
+                    }
+                  />
+                </div>
+              }
+              smallValue={
                 <Value
                   value={pool.collateral_token_underlying_price}
                   prefix="$"
@@ -403,9 +422,9 @@ const Pool = () => {
                   hideIfZero
                   decimals={pool.collateral_token_underlying_price < 1.1 ? 5 : 2}
                 />
-              </span>
-            </CardOpaque>
-            <CardOpaque
+              }
+            />
+            <Kpi
               title={
                 <span>
                   LUP
@@ -417,26 +436,26 @@ const Pool = () => {
                   </Info>
                 </span>
               }
-            >
-              <Value
-                value={pool.lup}
-                suffix={pool.quote_token_symbol}
-                className="text-xl"
-                dashIfZero
-                decimals={pool.lup < 1.1 ? 5 : 2}
-              />
-              <div className="h-6">
-                <ValueChange
-                  value={pool.lup - pool.prev_lup}
-                  suffix={pool.quote_token_symbol}
-                  decimals={Math.abs(pool.lup - pool.prev_lup) < 1.1 ? 5 : 2}
-                />
-              </div>
-              <span className="text-sm text-gray-10">
-                Bucket #: {pool.lup_index ? pool.lup_index : "-"}
-              </span>
-            </CardOpaque>
-            <CardOpaque
+              value={
+                <div className="flex flex-col">
+                  <Value
+                    value={pool.lup}
+                    suffix={pool.quote_token_symbol}
+                    dashIfZero
+                    decimals={pool.lup < 1.1 ? 5 : 2}
+                  />
+
+                  <ValueChange
+                    value={pool.lup - pool.prev_lup}
+                    suffix={pool.quote_token_symbol}
+                    decimals={Math.abs(pool.lup - pool.prev_lup) < 1.1 ? 5 : 2}
+                    className="text-sm"
+                  />
+                </div>
+              }
+              smallValue={<>Bucket #: {pool.lup_index ? pool.lup_index : "-"}</>}
+            />
+            <Kpi
               title={
                 <span>
                   HTP
@@ -446,26 +465,26 @@ const Pool = () => {
                   </Info>
                 </span>
               }
-            >
-              <Value
-                value={pool.htp}
-                suffix={pool.quote_token_symbol}
-                className="text-xl"
-                dashIfZero
-                decimals={pool.htp < 1.1 ? 5 : 2}
-              />
-              <div className="h-6">
-                <ValueChange
-                  value={pool.htp - pool.prev_htp}
-                  suffix={pool.quote_token_symbol}
-                  decimals={Math.abs(pool.htp - pool.prev_htp) < 1.1 ? 5 : 2}
-                />
-              </div>
-              <span className="text-sm text-gray-10">
-                Bucket #: {pool.htp_index ? pool.htp_index : "-"}
-              </span>
-            </CardOpaque>
-            <CardOpaque
+              value={
+                <div className="flex flex-col">
+                  <Value
+                    value={pool.htp}
+                    suffix={pool.quote_token_symbol}
+                    dashIfZero
+                    decimals={pool.htp < 1.1 ? 5 : 2}
+                  />
+
+                  <ValueChange
+                    value={pool.htp - pool.prev_htp}
+                    suffix={pool.quote_token_symbol}
+                    decimals={Math.abs(pool.htp - pool.prev_htp) < 1.1 ? 5 : 2}
+                    className="text-sm"
+                  />
+                </div>
+              }
+              smallValue={<>Bucket #: {pool.htp_index ? pool.htp_index : "-"}</>}
+            />
+            <Kpi
               title={
                 <span>
                   HPB
@@ -475,25 +494,25 @@ const Pool = () => {
                   </Info>
                 </span>
               }
-            >
-              <Value
-                value={pool.hpb}
-                suffix={pool.quote_token_symbol}
-                className="text-xl"
-                dashIfZero
-                decimals={pool.hpb < 1.1 ? 5 : 2}
-              />
-              <div className="h-6">
-                <ValueChange
-                  value={pool.hpb - pool.prev_hpb}
-                  suffix={pool.quote_token_symbol}
-                  decimals={Math.abs(pool.hpb - pool.prev_hpb) < 1.1 ? 5 : 2}
-                />
-              </div>
-              <span className="text-sm text-gray-10">
-                Bucket #: {pool.hpb_index ? pool.hpb_index : "-"}
-              </span>
-            </CardOpaque>
+              value={
+                <div className="flex flex-col">
+                  <Value
+                    value={pool.hpb}
+                    suffix={pool.quote_token_symbol}
+                    dashIfZero
+                    decimals={pool.hpb < 1.1 ? 5 : 2}
+                  />
+
+                  <ValueChange
+                    value={pool.hpb - pool.prev_hpb}
+                    suffix={pool.quote_token_symbol}
+                    decimals={Math.abs(pool.hpb - pool.prev_hpb) < 1.1 ? 5 : 2}
+                    className="text-sm"
+                  />
+                </div>
+              }
+              smallValue={<>Bucket #: {pool.hpb_index ? pool.hpb_index : "-"}</>}
+            />
           </div>
         </CardBackground>
         <CardBackground className="md:w-2/3 col-span-2 mb-10 grid grid-cols-1 place-content-between">
