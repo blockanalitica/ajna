@@ -5,6 +5,7 @@ import SearchInput from "@/components/search/SearchInput";
 import Tabs from "@/components/tabs/Tabs";
 import Borrowers from "./Borrowers";
 import Depositors from "./Depositors";
+import AtRisk from "./AtRisk";
 
 const WalletsPage = () => {
   usePageTitle("Wallets");
@@ -21,6 +22,10 @@ const WalletsPage = () => {
     borrowers: {
       title: "Borrowers",
       content: <Borrowers searchTerm={searchTerm} />,
+    },
+    "at-risk": {
+      title: "At Risk",
+      content: <AtRisk />,
     },
   };
 
@@ -41,12 +46,14 @@ const WalletsPage = () => {
 
       <div className="flex flex-col sm:flex-row justify-between items-center">
         <h1 className="text-xl md:text-1xl xl:text-2xl mb-5">Wallets</h1>
-        <SearchInput
-          placeholder="Search wallets"
-          value={searchTerm}
-          onChange={handleSearchChange}
-          className="mb-5"
-        />
+        {activeTab !== "at-risk" ? (
+          <SearchInput
+            placeholder="Search wallets"
+            value={searchTerm}
+            onChange={handleSearchChange}
+            className="mb-5"
+          />
+        ) : null}
       </div>
 
       <Tabs tabs={tabs} activeTab={activeTab} onTabChange={onTabChange} />
