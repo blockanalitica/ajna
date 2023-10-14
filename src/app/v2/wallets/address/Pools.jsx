@@ -187,7 +187,15 @@ const Pools = ({ address, block, daysAgo, ...rest }) => {
       orderField: "debt_share",
     },
     {
-      header: "Health Rate",
+      header: (
+        <span>
+          Health Rate
+          <Info className="ms-2" title="Health Rate">
+            Calculated as LUP / (loan debt / loan collateral). If value is &lt;1, loan
+            is undercollateralized and can be Kicked into auction.
+          </Info>
+        </span>
+      ),
       cell: ({ row }) => (
         <>
           {row.health_rate ? (

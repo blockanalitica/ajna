@@ -24,6 +24,9 @@ import TimeMachine from "@/app/v2/wallets/address/time-machine/page";
 import WalletPoolPosition from "@/app/v2/wallets/address/poolAddress/page";
 import Buckets from "@/app/v2/pools/address/buckets/page";
 import Bucket from "@/app/v2/pools/address/buckets/index/page";
+import V2Auctions from "@/app/v2/auctions/page";
+import Auction from "@/app/v2/auctions/auction_uid/page";
+import V2Grants from "@/app/v2/grants/page";
 
 const AjnaRoutes = () => {
   const routes = {
@@ -51,6 +54,9 @@ const AjnaRoutes = () => {
       { path: "/wallets/:address", element: <Wallet /> },
       { path: "/wallets/:address/time-machine", element: <TimeMachine /> },
       { path: "/wallets/:address/:poolAddress", element: <WalletPoolPosition /> },
+      { path: "/auctions", element: <V2Auctions /> },
+      { path: "/auctions/:auction_uid", element: <Auction /> },
+      { path: "/grants", element: <V2Grants /> },
     ],
   };
 

@@ -332,10 +332,22 @@ const Pool = () => {
             <Kpi
               title="Lend APR"
               value={<Value value={pool.lend_rate * 100} suffix="%" />}
+              smallValue={
+                <ValueChange
+                  value={(pool.lend_rate - pool.prev_lend_rate) * 100}
+                  suffix="%"
+                />
+              }
             />
             <Kpi
               title="Borrow APR"
               value={<Value value={pool.borrow_rate * 100} suffix="%" />}
+              smallValue={
+                <ValueChange
+                  value={(pool.borrow_rate - pool.prev_borrow_rate) * 100}
+                  suffix="%"
+                />
+              }
             />
 
             <Kpi
@@ -353,6 +365,12 @@ const Pool = () => {
               value={
                 <Value value={pool.actual_utilization * 100} suffix="%" dashIfZero />
               }
+              smallValue={
+                <ValueChange
+                  value={(pool.actual_utilization - pool.prev_actual_utilization) * 100}
+                  suffix="%"
+                />
+              }
             />
 
             <Kpi
@@ -368,6 +386,12 @@ const Pool = () => {
               }
               value={
                 <Value value={pool.target_utilization * 100} suffix="%" dashIfZero />
+              }
+              smallValue={
+                <ValueChange
+                  value={(pool.target_utilization - pool.prev_target_utilization) * 100}
+                  suffix="%"
+                />
               }
             />
           </div>
