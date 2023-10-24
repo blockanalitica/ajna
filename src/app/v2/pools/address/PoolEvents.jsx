@@ -1,20 +1,19 @@
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
-import { useFetch, useLinkBuilder } from "@/hooks";
+import { useFetch } from "@/hooks";
 import { DateTime } from "luxon";
 import Table from "@/components/table/Table";
 import DateTimeAgo from "@/components/dateTime/DateTimeAgo";
-import Address from "@/components/address/Address";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import Select from "@/components/select/Select";
 import { generateEtherscanUrl, smartLocationParts } from "@/utils/url";
 import ExternalLink from "@/components/externalLink/ExternalLink";
 import EventFormatter from "@/components/events/EventFormatter";
+import { EVENT_TYPE_MAPPING } from "@/utils/constants";
 
 const PoolEvents = ({ address, ...rest }) => {
-  const buildLink = useLinkBuilder();
   const location = useLocation();
   const { network } = smartLocationParts(location);
   const pageSize = 10;
@@ -36,27 +35,8 @@ const PoolEvents = ({ address, ...rest }) => {
     return <p>Failed to load data</p>;
   }
 
-  const eventTypeMapping = {
-    AddCollateral: "Add Collateral",
-    AddQuoteToken: "Add Quote Token",
-    AuctionSettle: "Auction Settle",
-    BondWithdrawn: "Bond Withdrawn",
-    DrawDebt: "Draw Debt",
-    Kick: "Kick",
-    KickReserveAuction: "Kick Reserve Auction",
-    LoanStamped: "Loan Stamped",
-    MoveQuoteToken: "Move Quote Token",
-    PoolCreated: "Pool Created",
-    RemoveCollateral: "Remove Collateral",
-    RemoveQuoteToken: "Remove Quote Token",
-    RepayDebt: "Repay Debt",
-    Settle: "Settle",
-    Take: "Take",
-    UpdateInterestRate: "Update Interest Rate",
-  };
-
   const eventTypeOptions = [{ key: "all", value: "All" }];
-  Object.entries(eventTypeMapping).forEach(([key, value]) => {
+  Object.entries(EVENT_TYPE_MAPPING).forEach(([key, value]) => {
     eventTypeOptions.push({ key, value });
   });
 
@@ -75,24 +55,7 @@ const PoolEvents = ({ address, ...rest }) => {
   const columns = [
     {
       header: "Event",
-      cell: ({ row }) => <>{eventTypeMapping[row.name]}</>,
-      smallCell: ({ row }) => <>{row.name}</>,
-    },
-    {
-      header: "Wallets",
-      cell: ({ row }) => (
-        <div className="flex flex-col">
-          {row.wallet_addresses?.map((address) => (
-            <Link
-              key={`wallet-link-${address}`}
-              to={buildLink(`/wallets/${address}`)}
-              className="text-purple-6 hover:underline flex"
-            >
-              <Address address={address} />
-            </Link>
-          ))}
-        </div>
-      ),
+      cell: ({ row }) => <>{EVENT_TYPE_MAPPING[row.name]}</>,
     },
     {
       header: "Details",
@@ -104,6 +67,7 @@ const PoolEvents = ({ address, ...rest }) => {
           collateralTokenSymbol={collateralTokenSymbol}
         />
       ),
+      cellSize: "2.5fr",
     },
     {
       header: "Time",
@@ -153,7 +117,9 @@ const PoolEvents = ({ address, ...rest }) => {
         currentOrder={order}
         isLoading={isLoading}
         emptyIcon={faCalendarDays}
-        emptyTitle="No Events"
+        emptyTitle={`No ${
+          EVENT_TYPE_MAPPING[eventType] ? EVENT_TYPE_MAPPING[eventType] : ""
+        } Events`}
         emptyContent="There are no events"
         placeholderRows={pageSize}
       />

@@ -29,6 +29,14 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
     case "AddCollateral":
       content = (
         <EventData>
+          <EventValue title="Actor">
+            <Link
+              to={buildLink(`wallets/${data.actor}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.actor} />
+            </Link>
+          </EventValue>
           <EventValue title="Amount">
             <Value value={data.amount} suffix={collateralTokenSymbol} />
           </EventValue>
@@ -43,6 +51,14 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
     case "AddQuoteToken":
       content = (
         <EventData>
+          <EventValue title="Lender">
+            <Link
+              to={buildLink(`wallets/${data.lender}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.lender} />
+            </Link>
+          </EventValue>
           <EventValue title="Amount">
             <Value value={data.amount} suffix={quoteTokenSymbol} />
           </EventValue>
@@ -54,6 +70,14 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
     case "ApproveLPTransferors":
       content = (
         <EventData>
+          <EventValue title="Lender">
+            <Link
+              to={buildLink(`wallets/${data.lender}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.lender} />
+            </Link>
+          </EventValue>
           <EventValue title="Transferors">
             {data.transferors?.map((transferor) => (
               <div className="me-2 flex items-center" key={transferor}>
@@ -72,6 +96,14 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
     case "AuctionSettle":
       content = (
         <EventData>
+          <EventValue title="Borrower">
+            <Link
+              to={buildLink(`wallets/${data.borrower}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.borrower} />
+            </Link>
+          </EventValue>
           <EventValue title="Collateral">
             <Value value={data.collateral} suffix={collateralTokenSymbol} />
           </EventValue>
@@ -82,9 +114,6 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
     case "BondWithdrawn":
       content = (
         <EventData>
-          <EventValue title="Amount">
-            <Value value={data.amount} suffix={quoteTokenSymbol} />
-          </EventValue>
           <EventValue title="Kicker">
             <Link
               to={buildLink(`wallets/${data.kicker}`)}
@@ -101,16 +130,36 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
               <Address address={data.reciever} />
             </Link>
           </EventValue>
+          <EventValue title="Amount">
+            <Value value={data.amount} suffix={quoteTokenSymbol} />
+          </EventValue>
         </EventData>
       );
       break;
 
     case "BucketBankruptcy":
+      content = (
+        <EventData>
+          <EventValue title="Index">{data.index}</EventValue>
+          <EventValue title="LP Forfeited">
+            <Value value={data.lpForfeited} suffix={quoteTokenSymbol} />
+          </EventValue>
+        </EventData>
+      );
+
       break;
 
     case "BucketTake":
       content = (
         <EventData>
+          <EventValue title="Borrower">
+            <Link
+              to={buildLink(`wallets/${data.borrower}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.borrower} />
+            </Link>
+          </EventValue>
           <EventValue title="Debt">
             <Value value={data.amount} suffix={quoteTokenSymbol} />
           </EventValue>
@@ -161,6 +210,14 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
     case "DrawDebt":
       content = (
         <EventData>
+          <EventValue title="Borrower">
+            <Link
+              to={buildLink(`wallets/${data.borrower}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.borrower} />
+            </Link>
+          </EventValue>
           <EventValue title="Amount Borrowed">
             <Value value={data.amountBorrowed} suffix={quoteTokenSymbol} />
           </EventValue>
@@ -174,6 +231,14 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
     case "DrawDebtNFT":
       content = (
         <EventData>
+          <EventValue title="Borrower">
+            <Link
+              to={buildLink(`wallets/${data.borrower}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.borrower} />
+            </Link>
+          </EventValue>
           <EventValue title="Amount Borrowed">
             <Value value={data.amountBorrowed} suffix={quoteTokenSymbol} />
           </EventValue>
@@ -192,6 +257,14 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
     case "IncreaseLPAllowance":
       content = (
         <EventData>
+          <EventValue title="Owner">
+            <Link
+              to={buildLink(`wallets/${data.owner}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.owner} />
+            </Link>
+          </EventValue>
           <EventValue title="Spender">
             <Address address={data.spender} />
             <CopyToClipboard className="ms-2" text={data.spender} />
@@ -213,6 +286,14 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
     case "Kick":
       content = (
         <EventData>
+          <EventValue title="Borrower">
+            <Link
+              to={buildLink(`wallets/${data.borrower}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.borrower} />
+            </Link>
+          </EventValue>
           <EventValue title="Debt">
             <Value value={data.debt} suffix={quoteTokenSymbol} />
           </EventValue>
@@ -228,28 +309,58 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
 
     case "KickReserveAuction":
       content = (
-        <div className="flex flex-col">
-          <div>
-            <span className="text-gray-6 text-sm pe-1">Auction Price:</span>
+        <EventData>
+          <EventValue title="Auction Price">
             <Value value={data.auctionPrice} suffix={quoteTokenSymbol} />
-          </div>
-          <div className="text-sm">
-            <span className="text-gray-6">Claimable Reserves Remaining:</span>{" "}
+          </EventValue>
+          <EventValue title="Claimable Reserves Remaining">
             <Value value={data.claimableReservesRemaining} suffix={quoteTokenSymbol} />
-          </div>
-        </div>
+          </EventValue>
+        </EventData>
       );
       break;
 
     case "LoanStamped":
+      content = (
+        <EventData>
+          <EventValue title="Borrower">
+            <Link
+              to={buildLink(`wallets/${data.borrower}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.borrower} />
+            </Link>
+          </EventValue>
+        </EventData>
+      );
       break;
 
     case "MergeOrRemoveCollateralNFT":
+      content = (
+        <EventData>
+          <EventValue title="Actor">
+            <Link
+              to={buildLink(`wallets/${data.actor}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.actor} />
+            </Link>
+          </EventValue>
+        </EventData>
+      );
       break;
 
     case "MoveQuoteToken":
       content = (
         <EventData>
+          <EventValue title="Lender">
+            <Link
+              to={buildLink(`wallets/${data.lender}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.lender} />
+            </Link>
+          </EventValue>
           <EventValue title="Amount">
             <Value value={data.amount} suffix={quoteTokenSymbol} />
           </EventValue>
@@ -269,6 +380,14 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
     case "RemoveCollateral":
       content = (
         <EventData>
+          <EventValue title="Claimer">
+            <Link
+              to={buildLink(`wallets/${data.claimer}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.claimer} />
+            </Link>
+          </EventValue>
           <EventValue title="Amount">
             <Value value={data.amount} suffix={collateralTokenSymbol} />
           </EventValue>
@@ -280,6 +399,14 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
     case "RemoveQuoteToken":
       content = (
         <EventData>
+          <EventValue title="Lender">
+            <Link
+              to={buildLink(`wallets/${data.lender}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.lender} />
+            </Link>
+          </EventValue>
           <EventValue title="Amount">
             <Value value={data.amount} suffix={quoteTokenSymbol} />
           </EventValue>
@@ -291,6 +418,14 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
     case "RepayDebt":
       content = (
         <EventData>
+          <EventValue title="Borrower">
+            <Link
+              to={buildLink(`wallets/${data.borrower}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.borrower} />
+            </Link>
+          </EventValue>
           <EventValue title="Quote Repaid">
             <Value value={data.quoteRepaid} suffix={quoteTokenSymbol} />
           </EventValue>
@@ -302,6 +437,17 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
       break;
 
     case "ReserveAuction":
+      content = (
+        <EventData>
+          <EventValue title="Auction Price">
+            <Value value={data.auctionPrice} suffix={quoteTokenSymbol} />
+          </EventValue>
+          <EventValue title="Claimable Reserves Remaining">
+            <Value value={data.claimableReservesRemaining} suffix={quoteTokenSymbol} />
+          </EventValue>
+          <EventValue title="Current Burn Epoch">{data.currentBurnEpoch}</EventValue>
+        </EventData>
+      );
       break;
 
     case "ResetInterestRate":
@@ -316,6 +462,14 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
     case "Settle":
       content = (
         <EventData>
+          <EventValue title="Borrower">
+            <Link
+              to={buildLink(`wallets/${data.borrower}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.borrower} />
+            </Link>
+          </EventValue>
           <EventValue title="Settled Debt">
             <Value value={data.settledDebt} suffix={quoteTokenSymbol} />
           </EventValue>
@@ -326,6 +480,14 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
     case "Take":
       content = (
         <EventData>
+          <EventValue title="Borrower">
+            <Link
+              to={buildLink(`wallets/${data.borrower}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.borrower} />
+            </Link>
+          </EventValue>
           <EventValue title="Debt">
             <Value value={data.amount} suffix={quoteTokenSymbol} />
           </EventValue>
@@ -342,6 +504,14 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
     case "TransferLP":
       content = (
         <EventData>
+          <EventValue title="Owner">
+            <Link
+              to={buildLink(`wallets/${data.owner}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.owner} />
+            </Link>
+          </EventValue>
           <EventValue title="New Owner">
             <Link
               to={buildLink(`wallets/${data.newOwner}`)}
@@ -362,22 +532,24 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
 
     case "UpdateInterestRate":
       content = (
-        <div className="flex flex-col">
-          <div className="flex items-center">
-            <Value value={data.oldRate * 100} suffix="%" />
-            <FontAwesomeIcon
-              icon={faArrowRightLong}
-              size="sm"
-              className="text-gray-6 px-1"
+        <EventData>
+          <EventValue title="Interest Rate">
+            <div className="flex items-center me-3">
+              <Value value={data.oldRate * 100} suffix="%" />
+              <FontAwesomeIcon
+                icon={faArrowRightLong}
+                size="sm"
+                className="text-gray-6 px-1"
+              />
+              <Value value={data.newRate * 100} suffix="%" />
+            </div>
+            <ValueChange
+              value={(data.newRate - data.oldRate) * 100}
+              suffix="%"
+              className="text-sm"
             />
-            <Value value={data.newRate * 100} suffix="%" />
-          </div>
-          <ValueChange
-            value={(data.newRate - data.oldRate) * 100}
-            suffix="%"
-            className="text-sm"
-          />
-        </div>
+          </EventValue>
+        </EventData>
       );
       break;
 

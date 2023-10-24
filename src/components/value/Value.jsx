@@ -38,7 +38,7 @@ function Value({
   }
   const rawValue = value;
 
-  let numDecimals = decimals !== undefined ? decimals : value < 1.1 ? 5 : 2;
+  let numDecimals = decimals !== undefined ? decimals : value < 1.01 ? 5 : 2;
 
   const showCompactNum = compact100k === true && value >= 100000;
   if (compact === true || showCompactNum) {

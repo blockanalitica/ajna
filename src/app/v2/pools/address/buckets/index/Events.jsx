@@ -11,6 +11,7 @@ import Select from "@/components/select/Select";
 import { generateEtherscanUrl, smartLocationParts } from "@/utils/url";
 import ExternalLink from "@/components/externalLink/ExternalLink";
 import EventFormatter from "@/components/events/EventFormatter";
+import { EVENT_TYPE_MAPPING, BUCKET_EVENTS } from "@/utils/constants";
 
 const Events = ({ ...rest }) => {
   const location = useLocation();
@@ -37,21 +38,9 @@ const Events = ({ ...rest }) => {
 
   const { results, count } = data;
 
-  const eventTypeMapping = {
-    AddCollateral: "Add Collateral",
-    AddQuoteToken: "Add Quote Token",
-    BucketBankruptcy: "Bucket Bankruptcy",
-    BucketTake: "Bucket Take",
-    IncreaseLPAllowance: "Increase LP Allowance",
-    MoveQuoteToken: "Move Quote Token",
-    RemoveCollateral: "Remove Collateral",
-    RemoveQuoteToken: "Remove Quote Token",
-    TransferLP: "Transfer LP",
-  };
-
   const eventTypeOptions = [{ key: "all", value: "All" }];
-  Object.entries(eventTypeMapping).forEach(([key, value]) => {
-    eventTypeOptions.push({ key, value });
+  BUCKET_EVENTS.forEach((key) => {
+    eventTypeOptions.push({ key, value: EVENT_TYPE_MAPPING[key] });
   });
 
   const onEventTypeOptionChange = (event) => {
@@ -62,7 +51,7 @@ const Events = ({ ...rest }) => {
   const columns = [
     {
       header: "Event",
-      cell: ({ row }) => <>{eventTypeMapping[row.name]}</>,
+      cell: ({ row }) => <>{EVENT_TYPE_MAPPING[row.name]}</>,
     },
     {
       header: "Details",
@@ -74,6 +63,7 @@ const Events = ({ ...rest }) => {
           collateralTokenSymbol={row.collateral_token_symbol}
         />
       ),
+      cellSize: "2.5fr",
     },
     {
       header: "Time",
@@ -124,7 +114,7 @@ const Events = ({ ...rest }) => {
         isLoading={isLoading}
         emptyIcon={faCalendarDays}
         emptyTitle={`No ${
-          eventTypeMapping[eventType] ? eventTypeMapping[eventType] : ""
+          EVENT_TYPE_MAPPING[eventType] ? EVENT_TYPE_MAPPING[eventType] : ""
         } Events`}
         emptyContent="There are no events"
         placeholderRows={pageSize}

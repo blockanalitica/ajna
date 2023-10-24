@@ -19,6 +19,7 @@ export const EVENT_TYPE_MAPPING = {
   LoanStamped: "Loan Stamped",
   MergeOrRemoveCollateralNFT: "Merge Or Remove Collateral NFT",
   MoveQuoteToken: "Move Quote Token",
+  PoolCreated: "Pool Created",
   RemoveCollateral: "Remove Collateral",
   RemoveQuoteToken: "Remove Quote Token",
   RepayDebt: "Repay Debt",
@@ -55,6 +56,19 @@ export const WALLET_EVENTS = [
   "Settle",
   "Take",
   "TransferLP",
+];
+
+export const BUCKET_EVENTS = [
+  "AddQuoteToken",
+  "RemoveQuoteToken",
+  "MoveQuoteToken",
+  "AddCollateral",
+  "AddCollateralNFT",
+  "RemoveCollateral",
+  "BucketTake",
+  "IncreaseLPAllowance",
+  "TransferLP",
+  "BucketBankruptcy",
 ];
 
 export const POOL_EVENTS = [];

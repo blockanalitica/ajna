@@ -36,7 +36,7 @@ function ValueChange({
     }
   }
 
-  let numDecimals = decimals !== undefined ? decimals : Math.abs(value) < 1.1 ? 5 : 2;
+  let numDecimals = decimals !== undefined ? decimals : Math.abs(value) < 1.01 ? 5 : 2;
 
   let spanClass = "";
   let iconPlace = "";
