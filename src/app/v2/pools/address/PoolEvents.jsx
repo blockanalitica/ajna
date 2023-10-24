@@ -76,6 +76,7 @@ const PoolEvents = ({ address, ...rest }) => {
     {
       header: "Event",
       cell: ({ row }) => <>{eventTypeMapping[row.name]}</>,
+      smallCell: ({ row }) => <>{row.name}</>,
     },
     {
       header: "Wallets",

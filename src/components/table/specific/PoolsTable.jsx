@@ -6,6 +6,7 @@ import InlineSelect from "@/components/select/InlineSelect";
 import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
+import Tag from "@/components/tags/Tag";
 
 const PoolsTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
   const buildLink = useLinkBuilder();
@@ -34,6 +35,15 @@ const PoolsTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
           <span className="font-medium pl-4">
             {row.collateral_token_symbol} / {row.quote_token_symbol}
           </span>
+        </>
+      ),
+      smallCell: ({ row }) => (
+        <>
+          {row.erc === "erc721" ? (
+            <Tag size="xs">
+              NFT {row.allowed_token_ids?.length > 0 ? "Subset" : "Collection"} Pool
+            </Tag>
+          ) : null}
         </>
       ),
       cellSize: "1.5fr",

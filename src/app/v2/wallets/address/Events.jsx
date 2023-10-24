@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { faCalendarDays, faClockRotateLeft } from "@fortawesome/free-solid-svg-icons";
-import { useFetch } from "@/hooks";
+import { useFetch, useLinkBuilder } from "@/hooks";
 import { DateTime } from "luxon";
 import Table from "@/components/table/Table";
 import DateTimeAgo from "@/components/dateTime/DateTimeAgo";
@@ -13,8 +13,10 @@ import CryptoIcon from "@/components/icon/CryptoIcon";
 import { generateEtherscanUrl, smartLocationParts } from "@/utils/url";
 import ExternalLink from "@/components/externalLink/ExternalLink";
 import EventFormatter from "@/components/events/EventFormatter";
+import { EVENT_TYPE_MAPPING, WALLET_EVENTS } from "@/utils/constants";
 
 const Events = ({ address, block, ...rest }) => {
+  const buildLink = useLinkBuilder();
   const location = useLocation();
   const { network } = smartLocationParts(location);
   const pageSize = 10;
@@ -40,26 +42,9 @@ const Events = ({ address, block, ...rest }) => {
 
   const { results, count } = data;
 
-  const eventTypeMapping = {
-    AddCollateral: "Add Collateral",
-    AddQuoteToken: "Add Quote Token",
-    AuctionSettle: "Auction Settle",
-    BondWithdrawn: "Bond Withdrawn",
-    DrawDebt: "Draw Debt",
-    Kick: "Kick",
-    KickReserveAuction: "Kick Reserve Auction",
-    LoanStamped: "Loan Stamped",
-    MoveQuoteToken: "Move Quote Token",
-    RemoveCollateral: "Remove Collateral",
-    RemoveQuoteToken: "Remove Quote Token",
-    RepayDebt: "Repay Debt",
-    Settle: "Settle",
-    Take: "Take",
-  };
-
   const eventTypeOptions = [{ key: "all", value: "All" }];
-  Object.entries(eventTypeMapping).forEach(([key, value]) => {
-    eventTypeOptions.push({ key, value });
+  WALLET_EVENTS.forEach((key) => {
+    eventTypeOptions.push({ key, value: EVENT_TYPE_MAPPING[key] });
   });
 
   const onEventTypeOptionChange = (event) => {
@@ -70,14 +55,14 @@ const Events = ({ address, block, ...rest }) => {
   const columns = [
     {
       header: "Event",
-      cell: ({ row }) => <>{eventTypeMapping[row.name]}</>,
+      cell: ({ row }) => <>{EVENT_TYPE_MAPPING[row.name]}</>,
     },
     {
       header: "Pool",
       cell: ({ row }) => (
         <>
           <Link
-            to={`/v2/${network}/pools/${row.pool_address}`}
+            to={buildLink(`pools/${row.pool_address}`)}
             className="text-purple-6 hover:underline flex"
           >
             <span className="flex">
@@ -102,6 +87,7 @@ const Events = ({ address, block, ...rest }) => {
           collateralTokenSymbol={row.collateral_token_symbol}
         />
       ),
+      cellSize: "2.5fr",
     },
     {
       header: "Time",
@@ -163,7 +149,7 @@ const Events = ({ address, block, ...rest }) => {
         isLoading={isLoading}
         emptyIcon={faCalendarDays}
         emptyTitle={`No ${
-          eventTypeMapping[eventType] ? eventTypeMapping[eventType] : ""
+          EVENT_TYPE_MAPPING[eventType] ? EVENT_TYPE_MAPPING[eventType] : ""
         } Events`}
         emptyContent="There are no events"
         placeholderRows={pageSize}
