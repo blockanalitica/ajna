@@ -22,6 +22,7 @@ import PoolEvents from "./PoolEvents";
 import PoolInfo from "./PoolInfo";
 import TopDepositors from "./TopDepositors";
 import TopBorrowers from "./TopBorrowers";
+import AllowedTokenIds from "./AllowedTokenIds";
 import ExternalLink from "@/components/externalLink/ExternalLink";
 import { generateEtherscanUrl, smartLocationParts } from "@/utils/url";
 import Kpi from "@/components/kpis/Kpi";
@@ -99,6 +100,11 @@ const Pool = () => {
           <h1 className="pl-4 text-2xl">
             {pool.collateral_token_symbol} / {pool.quote_token_symbol}
           </h1>
+          {pool.erc === "erc721" ? (
+            <Tag size="md" className="ms-4">
+              NFT {pool.allowed_token_ids?.length > 0 ? "Subset" : "Collection"} Pool
+            </Tag>
+          ) : null}
         </div>
 
         <div>
@@ -118,6 +124,16 @@ const Pool = () => {
             </div>
           </Tag>
         </div>
+      </div>
+
+      <div>
+        {pool.erc === "erc721" && pool.allowed_token_ids?.length > 0 ? (
+          <AllowedTokenIds
+            tokenIds={pool.allowed_token_ids}
+            collateralTokenSymbol={pool.collateral_token_symbol}
+            className="mb-5"
+          />
+        ) : null}
       </div>
 
       <PoolInfo data={pool} className="mb-10" />

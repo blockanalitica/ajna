@@ -1,179 +1,556 @@
+import _ from "lodash";
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
 import { faArrowRightLong } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Address from "@/components/address/Address";
+import CopyToClipboard from "@/components/copyToClipboard/CopyToClipboard";
+import { Link } from "react-router-dom";
+import { useLinkBuilder } from "@/hooks";
+
+const EventValue = ({ title, children }) => {
+  return (
+    <div>
+      <div className="text-gray-6 text-xs">{title}</div>
+      <div className="text-sm flex items-center">{children}</div>
+    </div>
+  );
+};
+
+const EventData = ({ children }) => {
+  return <div className="flex flex-row space-x-4">{children}</div>;
+};
 
 const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol }) => {
+  const buildLink = useLinkBuilder();
   let content;
 
   switch (type) {
-    case "UpdateInterestRate":
+    case "AddCollateral":
       content = (
-        <div className="flex flex-col">
-          <div className="flex items-center">
-            <Value value={data.oldRate * 100} suffix="%" />
-            <FontAwesomeIcon
-              icon={faArrowRightLong}
-              size="sm"
-              className="text-gray-6 px-1"
-            />
-            <Value value={data.newRate * 100} suffix="%" />
-          </div>
-          <ValueChange
-            value={(data.newRate - data.oldRate) * 100}
-            suffix="%"
-            className="text-sm"
-          />
-        </div>
+        <EventData>
+          <EventValue title="Actor">
+            <Link
+              to={buildLink(`wallets/${data.actor}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.actor} />
+            </Link>
+          </EventValue>
+          <EventValue title="Amount">
+            <Value value={data.amount} suffix={collateralTokenSymbol} />
+          </EventValue>
+          <EventValue title="Bucket">{data.index}</EventValue>
+        </EventData>
       );
+      break;
+
+    case "AddCollateralNFT":
       break;
 
     case "AddQuoteToken":
       content = (
-        <div className="flex flex-col">
-          <Value value={data.amount} suffix={quoteTokenSymbol} />
-          <div className="text-sm">
-            <span className="text-gray-6">Bucket:</span> {data.index}
-          </div>
-        </div>
+        <EventData>
+          <EventValue title="Lender">
+            <Link
+              to={buildLink(`wallets/${data.lender}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.lender} />
+            </Link>
+          </EventValue>
+          <EventValue title="Amount">
+            <Value value={data.amount} suffix={quoteTokenSymbol} />
+          </EventValue>
+          <EventValue title="Bucket">{data.index}</EventValue>
+        </EventData>
       );
       break;
 
-    case "RemoveQuoteToken":
+    case "ApproveLPTransferors":
       content = (
-        <div className="flex flex-col">
-          <Value value={data.amount} suffix={quoteTokenSymbol} />
-          <div className="text-sm">
-            <span className="text-gray-6">Bucket:</span> {data.index}
-          </div>
-        </div>
+        <EventData>
+          <EventValue title="Lender">
+            <Link
+              to={buildLink(`wallets/${data.lender}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.lender} />
+            </Link>
+          </EventValue>
+          <EventValue title="Transferors">
+            {data.transferors?.map((transferor) => (
+              <div className="me-2 flex items-center" key={transferor}>
+                <Address address={transferor} />
+                <CopyToClipboard className="ms-2" text={transferor} />
+              </div>
+            ))}
+          </EventValue>
+        </EventData>
+      );
+      break;
+
+    case "AuctionNFTSettle":
+      break;
+
+    case "AuctionSettle":
+      content = (
+        <EventData>
+          <EventValue title="Borrower">
+            <Link
+              to={buildLink(`wallets/${data.borrower}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.borrower} />
+            </Link>
+          </EventValue>
+          <EventValue title="Collateral">
+            <Value value={data.collateral} suffix={collateralTokenSymbol} />
+          </EventValue>
+        </EventData>
+      );
+      break;
+
+    case "BondWithdrawn":
+      content = (
+        <EventData>
+          <EventValue title="Kicker">
+            <Link
+              to={buildLink(`wallets/${data.kicker}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.kicker} />
+            </Link>
+          </EventValue>
+          <EventValue title="Reciever">
+            <Link
+              to={buildLink(`wallets/${data.reciever}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.reciever} />
+            </Link>
+          </EventValue>
+          <EventValue title="Amount">
+            <Value value={data.amount} suffix={quoteTokenSymbol} />
+          </EventValue>
+        </EventData>
+      );
+      break;
+
+    case "BucketBankruptcy":
+      content = (
+        <EventData>
+          <EventValue title="Index">{data.index}</EventValue>
+          <EventValue title="LP Forfeited">
+            <Value value={data.lpForfeited} suffix={quoteTokenSymbol} />
+          </EventValue>
+        </EventData>
+      );
+
+      break;
+
+    case "BucketTake":
+      content = (
+        <EventData>
+          <EventValue title="Borrower">
+            <Link
+              to={buildLink(`wallets/${data.borrower}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.borrower} />
+            </Link>
+          </EventValue>
+          <EventValue title="Debt">
+            <Value value={data.amount} suffix={quoteTokenSymbol} />
+          </EventValue>
+          <EventValue title="Collateral">
+            <Value value={data.collateral} suffix={collateralTokenSymbol} />
+          </EventValue>
+          <EventValue title="Bond Change">
+            <Value value={data.bondChange} suffix={quoteTokenSymbol} />
+          </EventValue>
+          <EventValue title="Bucket">{data.index}</EventValue>
+        </EventData>
+      );
+      break;
+
+    case "BucketTakeLPAwarded":
+      content = (
+        <EventData>
+          <EventValue title="Kicker">
+            <Link
+              to={buildLink(`wallets/${data.kicker}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.kicker} />
+            </Link>
+          </EventValue>
+          <EventValue title="Taker">
+            <Link
+              to={buildLink(`wallets/${data.taker}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.taker} />
+            </Link>
+          </EventValue>
+
+          <EventValue title="Kicker LP Awarded">
+            <Value value={data.lpAwardedKicker} suffix={quoteTokenSymbol} />
+          </EventValue>
+          <EventValue title="Taker LP Awarded">
+            <Value value={data.lpAwardedTaker} suffix={quoteTokenSymbol} />
+          </EventValue>
+        </EventData>
+      );
+      break;
+
+    case "DecreaseLPAllowance":
+      break;
+
+    case "DrawDebt":
+      content = (
+        <EventData>
+          <EventValue title="Borrower">
+            <Link
+              to={buildLink(`wallets/${data.borrower}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.borrower} />
+            </Link>
+          </EventValue>
+          <EventValue title="Amount Borrowed">
+            <Value value={data.amountBorrowed} suffix={quoteTokenSymbol} />
+          </EventValue>
+          <EventValue title="Collateral Pledged">
+            <Value value={data.collateralPledged} suffix={collateralTokenSymbol} />
+          </EventValue>
+        </EventData>
+      );
+      break;
+
+    case "DrawDebtNFT":
+      content = (
+        <EventData>
+          <EventValue title="Borrower">
+            <Link
+              to={buildLink(`wallets/${data.borrower}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.borrower} />
+            </Link>
+          </EventValue>
+          <EventValue title="Amount Borrowed">
+            <Value value={data.amountBorrowed} suffix={quoteTokenSymbol} />
+          </EventValue>
+          {data.tokenIdsPledged?.length > 0 ? (
+            <EventValue title="Token Ids Pledged">
+              {data.tokenIdsPledged.join(", ")}
+            </EventValue>
+          ) : null}
+        </EventData>
+      );
+      break;
+
+    case "Flashloan":
+      break;
+
+    case "IncreaseLPAllowance":
+      content = (
+        <EventData>
+          <EventValue title="Owner">
+            <Link
+              to={buildLink(`wallets/${data.owner}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.owner} />
+            </Link>
+          </EventValue>
+          <EventValue title="Spender">
+            <Address address={data.spender} />
+            <CopyToClipboard className="ms-2" text={data.spender} />
+          </EventValue>
+          {data.indexes?.length > 0 ? (
+            <EventValue title="Indexes">
+              {_.zip(data.indexes, data.amounts).map(([index, amount]) => (
+                <div className="me-2 inline-block" key={index}>
+                  {index}: <Value value={amount} suffix={quoteTokenSymbol} />
+                </div>
+              ))}
+            </EventValue>
+          ) : null}
+        </EventData>
+      );
+
+      break;
+
+    case "Kick":
+      content = (
+        <EventData>
+          <EventValue title="Borrower">
+            <Link
+              to={buildLink(`wallets/${data.borrower}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.borrower} />
+            </Link>
+          </EventValue>
+          <EventValue title="Debt">
+            <Value value={data.debt} suffix={quoteTokenSymbol} />
+          </EventValue>
+          <EventValue title="Collateral">
+            <Value value={data.collateral} suffix={collateralTokenSymbol} />
+          </EventValue>
+          <EventValue title="Bond">
+            <Value value={data.bond} suffix={quoteTokenSymbol} />
+          </EventValue>
+        </EventData>
+      );
+      break;
+
+    case "KickReserveAuction":
+      content = (
+        <EventData>
+          <EventValue title="Auction Price">
+            <Value value={data.auctionPrice} suffix={quoteTokenSymbol} />
+          </EventValue>
+          <EventValue title="Claimable Reserves Remaining">
+            <Value value={data.claimableReservesRemaining} suffix={quoteTokenSymbol} />
+          </EventValue>
+        </EventData>
+      );
+      break;
+
+    case "LoanStamped":
+      content = (
+        <EventData>
+          <EventValue title="Borrower">
+            <Link
+              to={buildLink(`wallets/${data.borrower}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.borrower} />
+            </Link>
+          </EventValue>
+        </EventData>
+      );
+      break;
+
+    case "MergeOrRemoveCollateralNFT":
+      content = (
+        <EventData>
+          <EventValue title="Actor">
+            <Link
+              to={buildLink(`wallets/${data.actor}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.actor} />
+            </Link>
+          </EventValue>
+        </EventData>
       );
       break;
 
     case "MoveQuoteToken":
       content = (
-        <div className="flex flex-col">
-          <Value value={data.amount} suffix={quoteTokenSymbol} />
-          <div className="text-sm">
-            <span className="text-gray-6">Bucket:</span> {data.from}
+        <EventData>
+          <EventValue title="Lender">
+            <Link
+              to={buildLink(`wallets/${data.lender}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.lender} />
+            </Link>
+          </EventValue>
+          <EventValue title="Amount">
+            <Value value={data.amount} suffix={quoteTokenSymbol} />
+          </EventValue>
+          <EventValue title="Bucket">
+            {data.from}
             <FontAwesomeIcon
               icon={faArrowRightLong}
               size="sm"
               className="text-gray-6 px-1"
             />
             {data.to}
-          </div>
-        </div>
-      );
-      break;
-
-    case "AddCollateral":
-      content = (
-        <div className="flex flex-col">
-          <Value value={data.amount} suffix={collateralTokenSymbol} />
-          <div className="text-sm">
-            <span className="text-gray-6">Bucket:</span> {data.index}
-          </div>
-        </div>
+          </EventValue>
+        </EventData>
       );
       break;
 
     case "RemoveCollateral":
       content = (
-        <div className="flex flex-col">
-          <Value value={data.amount} suffix={collateralTokenSymbol} />
-          <div className="text-sm">
-            <span className="text-gray-6">Bucket:</span> {data.index}
-          </div>
-        </div>
+        <EventData>
+          <EventValue title="Claimer">
+            <Link
+              to={buildLink(`wallets/${data.claimer}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.claimer} />
+            </Link>
+          </EventValue>
+          <EventValue title="Amount">
+            <Value value={data.amount} suffix={collateralTokenSymbol} />
+          </EventValue>
+          <EventValue title="Bucket">{data.index}</EventValue>
+        </EventData>
       );
       break;
 
-    case "Kick":
+    case "RemoveQuoteToken":
       content = (
-        <div className="flex flex-row space-x-2">
-          <div>
-            <span className="text-gray-6 text-sm pe-1">Debt:</span>
-            <Value value={data.debt} suffix={quoteTokenSymbol} />
-          </div>
-          <div>
-            <span className="text-gray-6 text-sm pe-1">Collateral:</span>
-            <Value value={data.collateral} suffix={collateralTokenSymbol} />
-          </div>
-          <div>
-            <span className="text-gray-6 text-sm pe-1">Bond:</span>
-            <Value value={data.bond} suffix={quoteTokenSymbol} />
-          </div>
-        </div>
-      );
-      break;
-
-    case "KickReserveAuction":
-      content = (
-        <div className="flex flex-col">
-          <div>
-            <span className="text-gray-6 text-sm pe-1">Auction Price:</span>
-            <Value value={data.auctionPrice} suffix={quoteTokenSymbol} />
-          </div>
-          <div className="text-sm">
-            <span className="text-gray-6">Claimable Reserves Remaining:</span>{" "}
-            <Value value={data.claimableReservesRemaining} suffix={quoteTokenSymbol} />
-          </div>
-        </div>
-      );
-      break;
-
-    case "Take":
-      content = (
-        <div className="flex flex-row space-x-2">
-          <div>
-            <span className="text-gray-6 text-sm pe-1">Debt:</span>
+        <EventData>
+          <EventValue title="Lender">
+            <Link
+              to={buildLink(`wallets/${data.lender}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.lender} />
+            </Link>
+          </EventValue>
+          <EventValue title="Amount">
             <Value value={data.amount} suffix={quoteTokenSymbol} />
-          </div>
-          <div>
-            <span className="text-gray-6 text-sm pe-1">Collateral:</span>
-            <Value value={data.collateral} suffix={collateralTokenSymbol} />
-          </div>
-          <div>
-            <span className="text-gray-6 text-sm pe-1">Bond Change:</span>
-            <Value value={data.bondChange} suffix={quoteTokenSymbol} />
-          </div>
-        </div>
-      );
-      break;
-
-    case "AuctionSettle":
-      content = <Value value={data.collateral} suffix={collateralTokenSymbol} />;
-      break;
-
-    case "BondWithdrawn":
-      content = <Value value={data.amount} suffix={quoteTokenSymbol} />;
-      break;
-
-    case "DrawDebt":
-      content = (
-        <div className="flex flex-col">
-          <Value value={data.amountBorrowed} suffix={quoteTokenSymbol} />
-          <div className="text-sm">
-            <Value value={data.collateralPledged} suffix={collateralTokenSymbol} />
-          </div>
-        </div>
+          </EventValue>
+          <EventValue title="Bucket">{data.index}</EventValue>
+        </EventData>
       );
       break;
 
     case "RepayDebt":
       content = (
-        <div className="flex flex-col">
-          <Value value={data.quoteRepaid} suffix={quoteTokenSymbol} />
-          <div className="text-sm">
+        <EventData>
+          <EventValue title="Borrower">
+            <Link
+              to={buildLink(`wallets/${data.borrower}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.borrower} />
+            </Link>
+          </EventValue>
+          <EventValue title="Quote Repaid">
+            <Value value={data.quoteRepaid} suffix={quoteTokenSymbol} />
+          </EventValue>
+          <EventValue title="Collateral Pulled">
             <Value value={data.collateralPulled} suffix={collateralTokenSymbol} />
-          </div>
-        </div>
+          </EventValue>
+        </EventData>
       );
       break;
 
+    case "ReserveAuction":
+      content = (
+        <EventData>
+          <EventValue title="Auction Price">
+            <Value value={data.auctionPrice} suffix={quoteTokenSymbol} />
+          </EventValue>
+          <EventValue title="Claimable Reserves Remaining">
+            <Value value={data.claimableReservesRemaining} suffix={quoteTokenSymbol} />
+          </EventValue>
+          <EventValue title="Current Burn Epoch">{data.currentBurnEpoch}</EventValue>
+        </EventData>
+      );
+      break;
+
+    case "ResetInterestRate":
+      break;
+
+    case "RevokeLPAllowance":
+      break;
+
+    case "RevokeLPTransferors":
+      break;
+
     case "Settle":
-      content = <Value value={data.settledDebt} suffix={quoteTokenSymbol} />;
+      content = (
+        <EventData>
+          <EventValue title="Borrower">
+            <Link
+              to={buildLink(`wallets/${data.borrower}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.borrower} />
+            </Link>
+          </EventValue>
+          <EventValue title="Settled Debt">
+            <Value value={data.settledDebt} suffix={quoteTokenSymbol} />
+          </EventValue>
+        </EventData>
+      );
+      break;
+
+    case "Take":
+      content = (
+        <EventData>
+          <EventValue title="Borrower">
+            <Link
+              to={buildLink(`wallets/${data.borrower}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.borrower} />
+            </Link>
+          </EventValue>
+          <EventValue title="Debt">
+            <Value value={data.amount} suffix={quoteTokenSymbol} />
+          </EventValue>
+          <EventValue title="Collateral">
+            <Value value={data.collateral} suffix={collateralTokenSymbol} />
+          </EventValue>
+          <EventValue title="Bond Change">
+            <Value value={data.bondChange} suffix={quoteTokenSymbol} />
+          </EventValue>
+        </EventData>
+      );
+      break;
+
+    case "TransferLP":
+      content = (
+        <EventData>
+          <EventValue title="Owner">
+            <Link
+              to={buildLink(`wallets/${data.owner}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.owner} />
+            </Link>
+          </EventValue>
+          <EventValue title="New Owner">
+            <Link
+              to={buildLink(`wallets/${data.newOwner}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.newOwner} />
+            </Link>
+          </EventValue>
+          <EventValue title="LP">
+            <Value value={data.lp} suffix={quoteTokenSymbol} />
+          </EventValue>
+          {data.indexes?.length > 0 ? (
+            <EventValue title="Indexes">{data.indexes.join(", ")}</EventValue>
+          ) : null}
+        </EventData>
+      );
+      break;
+
+    case "UpdateInterestRate":
+      content = (
+        <EventData>
+          <EventValue title="Interest Rate">
+            <div className="flex items-center me-3">
+              <Value value={data.oldRate * 100} suffix="%" />
+              <FontAwesomeIcon
+                icon={faArrowRightLong}
+                size="sm"
+                className="text-gray-6 px-1"
+              />
+              <Value value={data.newRate * 100} suffix="%" />
+            </div>
+            <ValueChange
+              value={(data.newRate - data.oldRate) * 100}
+              suffix="%"
+              className="text-sm"
+            />
+          </EventValue>
+        </EventData>
+      );
       break;
 
     default:
