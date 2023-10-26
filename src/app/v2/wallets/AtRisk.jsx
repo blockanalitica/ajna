@@ -80,14 +80,14 @@ const AtRisk = () => {
         </span>
       ),
       cell: ({ row }) => (
-        <Value value={row.price_change * 100} suffix="%" decimals={0} />
+        <Value value={row.price_change * 100} suffix="%" decimals={2} />
       ),
       headerAlign: "end",
       cellAlign: "end",
       orderField: "price_change",
     },
     {
-      header: "Collateral Liquidated",
+      header: "Collateral",
       cell: ({ row }) => (
         <Value value={row.collateral} suffix={row.collateral_token_symbol} />
       ),
@@ -97,12 +97,30 @@ const AtRisk = () => {
       orderField: "collateral",
     },
     {
-      header: "Debt Repaid",
+      header: "Debt",
       cell: ({ row }) => <Value value={row.debt} suffix={row.quote_token_symbol} />,
       smallCell: ({ row }) => <Value value={row.debt_usd} prefix="$" />,
       headerAlign: "end",
       cellAlign: "end",
       orderField: "debt",
+    },
+    {
+      header: (
+        <span>
+          TP
+          <Info className="ms-2" title="Threshold Price (TP)">
+            Threshold Price (TP) is the price at which the value of the collateral
+            equals the value of the debt. By taking a loan’s debt and dividing it by the
+            amount of collateral pledged, the loan’s threshold price, TP, can be
+            calculated.
+          </Info>
+        </span>
+      ),
+      cell: ({ row }) => (
+        <Value value={row.threshold_price} suffix={row.quote_token_symbol} />
+      ),
+      headerAlign: "end",
+      cellAlign: "end",
     },
     {
       header: (
@@ -149,7 +167,9 @@ const AtRisk = () => {
         isLoading={isLoading}
         keyField="wallet_address"
         columns={columns}
-        linkTo={(row) => buildLink(`/wallets/${row.wallet_address}`)}
+        linkTo={(row) =>
+          buildLink(`/wallets/${row.wallet_address}/${row.pool_address}`)
+        }
         emptyTitle="No Wallets"
         emptyContent="There are no wallets"
       />

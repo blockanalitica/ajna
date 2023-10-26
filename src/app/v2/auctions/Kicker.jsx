@@ -65,6 +65,15 @@ const Kicker = () => {
     {
       header: "Debt",
       cell: ({ row }) => <Value value={row.debt} suffix={row.quote_token_symbol} />,
+      smallCell: ({ row }) => <Value value={row.debt_usd} prefix="$" />,
+      headerAlign: "end",
+      cellAlign: "end",
+    },
+    {
+      header: "Threshold Price",
+      cell: ({ row }) => (
+        <Value value={row.threshold_price} suffix={row.quote_token_symbol} />
+      ),
       headerAlign: "end",
       cellAlign: "end",
     },
@@ -79,11 +88,12 @@ const Kicker = () => {
       cell: ({ row }) => (
         <Value value={row.collateral} suffix={row.collateral_token_symbol} />
       ),
+      smallCell: ({ row }) => <Value value={row.collateral_usd} prefix="$" />,
       headerAlign: "end",
       cellAlign: "end",
     },
     {
-      header: "Collateral",
+      header: "dsf",
       cell: ({ row }) => (
         <SecondaryButton
           text={
@@ -104,6 +114,12 @@ const Kicker = () => {
     },
   ];
 
+  const footerRow = (
+    <div className="text-xs text-gray-13 text-end">
+      USD rices are caclualted using market price at current time
+    </div>
+  );
+
   return (
     <Table
       data={results}
@@ -114,11 +130,12 @@ const Kicker = () => {
       onOrderChange={setOrder}
       currentOrder={order}
       isLoading={isLoading}
-      keyField="uid"
+      keyField="wallet_address"
       columns={columns}
       emptyIcon={faGavel}
       emptyTitle="No loans to kick"
       emptyContent="There are no loans to kick"
+      footerRow={footerRow}
     />
   );
 };

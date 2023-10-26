@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useParams, Link, useLocation } from "react-router-dom";
 import { usePageTitle } from "@/hooks";
 import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
@@ -9,6 +10,8 @@ import CopyToClipboard from "@/components/copyToClipboard/CopyToClipboard";
 import { generateEtherscanUrl, smartLocationParts } from "@/utils/url";
 import Stats from "@/components/stats/Stats";
 import Value from "@/components/value/Value";
+import ValueChange from "@/components/value/ValueChange";
+import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import CryptoIcon from "@/components/icon/CryptoIcon";
 import { faInfinity } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -25,12 +28,13 @@ const WalletPoolPosition = () => {
   const location = useLocation();
   const { network } = smartLocationParts(location);
   const { address, poolAddress } = useParams();
+  const [daysAgo, setDaysAgo] = useState(1);
 
   const {
     data = {},
     error,
     isLoading,
-  } = useFetch(`/wallets/${address}/pools/${poolAddress}/`);
+  } = useFetch(`/wallets/${address}/pools/${poolAddress}/`, { days_ago: daysAgo });
 
   usePageTitle(`Wallet ${shorten(address)}`);
 
@@ -46,12 +50,21 @@ const WalletPoolPosition = () => {
       title: "Deposited",
       value: (
         <>
-          <Value value={data.supply} suffix={data.quote_token_symbol} />
+          <Value
+            value={data.supply}
+            suffix={data.quote_token_symbol}
+            className="pe-3"
+          />
+          <ValueChange
+            value={data.supply - data.prev_supply}
+            suffix={data.quote_token_symbol}
+          />
         </>
       ),
       smallValue: (
         <>
-          <Value value={data.supply_usd} prefix="$" />
+          <Value value={data.supply_usd} prefix="$" className="pe-3" />
+          <ValueChange value={data.supply_usd - data.prev_supply_usd} prefix="$" />
         </>
       ),
     },
@@ -59,12 +72,17 @@ const WalletPoolPosition = () => {
       title: "Borrowed",
       value: (
         <>
-          <Value value={data.debt} suffix={data.quote_token_symbol} />
+          <Value value={data.debt} suffix={data.quote_token_symbol} className="pe-3" />
+          <ValueChange
+            value={data.debt - data.prev_debt}
+            suffix={data.quote_token_symbol}
+          />
         </>
       ),
       smallValue: (
         <>
-          <Value value={data.debt_usd} prefix="$" />
+          <Value value={data.debt_usd} prefix="$" className="pe-3" />
+          <ValueChange value={data.debt_usd - data.prev_debt_usd} prefix="$" />
         </>
       ),
     },
@@ -72,17 +90,28 @@ const WalletPoolPosition = () => {
       title: "Collateral",
       value: (
         <>
-          <Value value={data.collateral} suffix={data.collateral_token_symbol} />
+          <Value
+            value={data.collateral}
+            suffix={data.collateral_token_symbol}
+            className="pe-3"
+          />
+          <ValueChange
+            value={data.collateral - data.prev_collateral}
+            suffix={data.collateral_token_symbol}
+          />
         </>
       ),
       smallValue: (
         <>
-          <Value value={data.collateral_usd} prefix="$" />
+          <Value value={data.collateral_usd} prefix="$" className="pe-3" />
+          <ValueChange
+            value={data.collateral_usd - data.prev_collateral_usd}
+            prefix="$"
+          />
         </>
       ),
     },
     {
-      // title: "Health Rate",
       title: (
         <span>
           Health Rate
@@ -108,13 +137,11 @@ const WalletPoolPosition = () => {
     <>
       <section className="flex items-center justify-between mb-10">
         <Breadcrumbs />
+        <DisplaySwitch onChange={setDaysAgo} activeOption={daysAgo} />
       </section>
 
       <h1 className="text-xl md:text-1xl xl:text-2xl mb-5 flex">
-        <div>
-          Wallet <Address address={address} /> position in
-        </div>
-        <div className="flex items-center pl-3">
+        <div className="flex items-center pr-3">
           <span className="relative flex">
             <CryptoIcon name={data.collateral_token_symbol} className="z-10" />
             <CryptoIcon
@@ -126,6 +153,9 @@ const WalletPoolPosition = () => {
           <h1 className="text-2xl">
             {data.collateral_token_symbol} / {data.quote_token_symbol}
           </h1>
+        </div>
+        <div>
+          Wallet <Address address={address} />
         </div>
       </h1>
 
@@ -155,6 +185,16 @@ const WalletPoolPosition = () => {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
             <Kpi
+              title="LUP"
+              value={<Value value={data.lup} suffix={data.quote_token_symbol} />}
+            />
+            <Kpi
+              title="Threshold Price"
+              value={
+                <Value value={data.threshold_price} suffix={data.quote_token_symbol} />
+              }
+            />
+            <Kpi
               title="Deposit Share"
               value={<Value value={data.supply_share * 100} suffix="%" />}
             />
@@ -174,7 +214,7 @@ const WalletPoolPosition = () => {
         </CardBackground>
       </div>
 
-      <div className="flex flex-col-reverse md:flex-row md:gap-4">
+      <div className="flex flex-col-reverse md:flex-row md:gap-4 items-baseline">
         <div className="md:w-1/3 grid grid-cols-1 mb-10">
           <Buckets
             address={address}

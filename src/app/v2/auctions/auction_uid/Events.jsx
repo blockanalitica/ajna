@@ -14,6 +14,19 @@ import { smartLocationParts } from "@/utils/url";
 import Address from "@/components/address/Address";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 
+const EventValue = ({ title, children }) => {
+  return (
+    <div>
+      <div className="text-gray-6 text-xs">{title}</div>
+      <div className="text-sm flex items-center">{children}</div>
+    </div>
+  );
+};
+
+const EventData = ({ children }) => {
+  return <div className="flex flex-row space-x-4">{children}</div>;
+};
+
 const AuctionEventFormatter = ({
   type,
   event,
@@ -25,102 +38,89 @@ const AuctionEventFormatter = ({
   switch (type) {
     case "Kick":
       content = (
-        <div className="flex flex-col">
-          <div className="flex items-center">
-            <span className="text-gray-6 text-sm pe-1">Kicker:</span>
+        <EventData>
+          <EventValue title="Kicker">
             <Address address={event.data.kicker} className="pe-3" />
             <ExternalLink href={generateEtherscanUrl(network, event.data.kicker)}>
               <CryptoIcon name="etherscan" size={16} />
             </ExternalLink>
             <CopyToClipboard className="mx-3" text={event.data.kicker} />
-          </div>
-          <div>
-            <span className="text-gray-6 text-sm pe-1">Debt:</span>
+          </EventValue>
+          <EventValue title="Debt">
             <Value value={event.data.debt} suffix={quoteTokenSymbol} />
-          </div>
-          <div>
-            <span className="text-gray-6 text-sm pe-1">Collateral:</span>
+          </EventValue>
+          <EventValue title="Collateral">
             <Value value={event.data.collateral} suffix={collateralTokenSymbol} />
-          </div>
-          <div>
-            <span className="text-gray-6 text-sm pe-1">Bond:</span>
+          </EventValue>
+          <EventValue title="Bond">
             <Value value={event.data.bond} suffix={quoteTokenSymbol} />
-          </div>
-        </div>
+          </EventValue>
+        </EventData>
       );
       break;
     case "Take":
       content = (
-        <div className="flex flex-col">
-          <div className="flex items-center">
-            <span className="text-gray-6 text-sm pe-1">Taker:</span>
+        <EventData>
+          <EventValue title="Taker">
             <Address address={event.data.taker} className="pe-3" />
             <ExternalLink href={generateEtherscanUrl(network, event.data.taker)}>
               <CryptoIcon name="etherscan" size={16} />
             </ExternalLink>
             <CopyToClipboard className="mx-3" text={event.data.taker} />
-          </div>
-          <div>
-            <span className="text-gray-6 text-sm pe-1">Debt:</span>
+          </EventValue>
+          <EventValue title="Debt">
             <Value value={event.data.amount} suffix={quoteTokenSymbol} />
-          </div>
-          <div>
-            <span className="text-gray-6 text-sm pe-1">Collateral:</span>
+          </EventValue>
+          <EventValue title="Collateral">
             <Value value={event.data.collateral} suffix={collateralTokenSymbol} />
-          </div>
-          <div>
-            <span className="text-gray-6 text-sm pe-1">Bond Change:</span>
+          </EventValue>
+          <EventValue title="Bond Change">
             <Value value={event.data.bondChange} suffix={quoteTokenSymbol} />
-          </div>
-        </div>
+          </EventValue>
+        </EventData>
       );
       break;
 
     case "Bucket Take":
       content = (
-        <div className="flex flex-col">
-          <div className="flex items-center">
-            <span className="text-gray-6 text-sm pe-1">Taker:</span>
+        <EventData>
+          <EventValue title="Taker">
             <Address address={event.data.taker} className="pe-3" />
             <ExternalLink href={generateEtherscanUrl(network, event.data.taker)}>
               <CryptoIcon name="etherscan" size={16} />
             </ExternalLink>
             <CopyToClipboard className="mx-3" text={event.data.taker} />
-          </div>
-          <div>
-            <span className="text-gray-6 text-sm pe-1">Bucket Index:</span>
-            {event.data.index}
-          </div>
-          <div>
-            <span className="text-gray-6 text-sm pe-1">Debt:</span>
+          </EventValue>
+          <EventValue title="Bucket Index">{event.data.index}</EventValue>
+          <EventValue title="Debt">
             <Value value={event.data.amount} suffix={quoteTokenSymbol} />
-          </div>
-          <div>
-            <span className="text-gray-6 text-sm pe-1">Collateral:</span>
+          </EventValue>
+          <EventValue title="Collateral">
             <Value value={event.data.collateral} suffix={collateralTokenSymbol} />
-          </div>
-          <div>
-            <span className="text-gray-6 text-sm pe-1">Bond Change:</span>
+          </EventValue>
+          <EventValue title="Bond Change">
             <Value value={event.data.bondChange} suffix={quoteTokenSymbol} />
-          </div>
-        </div>
+          </EventValue>
+        </EventData>
       );
       break;
 
     case "Auction Settle":
       content = (
-        <div>
-          <span className="text-gray-6 text-sm pe-1">Collateral:</span>
-          <Value value={event.data.collateral} suffix={collateralTokenSymbol} />
-        </div>
+        <EventData>
+          <EventValue title="Collateral">
+            <Value value={event.data.collateral} suffix={collateralTokenSymbol} />
+          </EventValue>
+        </EventData>
       );
       break;
     case "Settle":
       content = (
-        <div>
-          <span className="text-gray-6 text-sm pe-1">Settled Debt:</span>
-          <Value value={event.data.settled_debt} suffix={quoteTokenSymbol} />
-        </div>
+        <EventData>
+          <EventValue title="Settled Debt">
+            <Value value={event.data.settled_debt} suffix={quoteTokenSymbol} />
+          </EventValue>
+        </EventData>
       );
       break;
 
@@ -168,6 +168,7 @@ const Events = ({ auction_uid, quoteTokenSymbol, collateralTokenSymbol }) => {
           network={network}
         />
       ),
+      cellSize: "2.5fr",
     },
     {
       header: "Time",
