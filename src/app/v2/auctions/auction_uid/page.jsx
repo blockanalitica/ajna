@@ -11,10 +11,10 @@ import Tag from "@/components/tags/Tag";
 import Value from "@/components/value/Value";
 import ExternalLink from "@/components/externalLink/ExternalLink";
 import CopyToClipboard from "@/components/copyToClipboard/CopyToClipboard";
-import Stats from "@/components/stats/Stats";
 import CardBackground from "@/components/card/CardBackground";
 import Address from "@/components/address/Address";
 import Events from "./Events";
+import AuctionStats from "./AuctionStats";
 
 const Auction = () => {
   const { auction_uid } = useParams();
@@ -29,46 +29,6 @@ const Auction = () => {
   if (isLoading) {
     return <GenericPlaceholder />;
   }
-
-  const stats = [
-    {
-      title: "Collateral",
-      value: (
-        <Value value={data.collateral} suffix={data.collateral_token_symbol} big />
-      ),
-      smallValue: (
-        <>
-          {!data.settled ? (
-            <>
-              <span className="pr-1">Remaining:</span>
-              <Value
-                value={data.collateral_remaining}
-                suffix={data.collateral_token_symbol}
-              />
-            </>
-          ) : null}
-        </>
-      ),
-    },
-    {
-      title: "Debt",
-      value: <Value value={data.debt} suffix={data.quote_token_symbol} big />,
-      smallValue: (
-        <>
-          {!data.settled ? (
-            <>
-              <span className="pr-1">Remaining:</span>
-              <Value value={data.debt_remaining} suffix={data.quote_token_symbol} />
-            </>
-          ) : null}
-        </>
-      ),
-    },
-    {
-      title: "Bond",
-      value: <Value value={data.bond} suffix={data.quote_token_symbol} big />,
-    },
-  ];
 
   return (
     <>
@@ -117,7 +77,7 @@ const Auction = () => {
         </div>
       ) : null}
 
-      <Stats data={stats} className="mt-10 mb-10" />
+      <AuctionStats data={data} className="mt-5 mb-5" />
 
       <div className="flex flex-col md:flex-row md:gap-4">
         <CardBackground className="md:w-1/3 col-span-2 mb-10 grid grid-cols-1 place-content-between">
@@ -182,6 +142,9 @@ const Auction = () => {
                 </Link>
               </div>
             </div>
+          </div>
+          <div className="text-xs text-gray-13 text-end pt-5">
+            * price is caclualted using USD market price at kick time
           </div>
         </CardBackground>
         <div className="md:w-2/3 mb-10">

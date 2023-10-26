@@ -77,6 +77,7 @@ const ActiveAuctions = () => {
     {
       header: "LUP",
       cell: ({ row }) => <Value value={row.lup} suffix={row.quote_token_symbol} />,
+      smallCell: ({ row }) => <Value value={row.lup_usd} prefix="$" />,
       headerAlign: "end",
       cellAlign: "end",
     },
@@ -86,6 +87,7 @@ const ActiveAuctions = () => {
       cell: ({ row }) => (
         <Value value={row.collateral_remaining} suffix={row.collateral_token_symbol} />
       ),
+      smallCell: ({ row }) => <Value value={row.collateral_remaining_usd} prefix="$" />,
       headerAlign: "end",
       cellAlign: "end",
     },
@@ -94,10 +96,17 @@ const ActiveAuctions = () => {
       cell: ({ row }) => (
         <Value value={row.debt_remaining} suffix={row.quote_token_symbol} />
       ),
+      smallCell: ({ row }) => <Value value={row.debt_remaining_usd} prefix="$" />,
       headerAlign: "end",
       cellAlign: "end",
     },
   ];
+
+  const footerRow = (
+    <div className="text-xs text-gray-13 text-end">
+      USD rices are caclualted using market price at kick time
+    </div>
+  );
 
   return (
     <Table
@@ -115,6 +124,7 @@ const ActiveAuctions = () => {
       emptyTitle="No Auctions"
       emptyContent="There are no active auctions"
       linkTo={(row) => buildLink(`auctions/${row.uid}`)}
+      footerRow={footerRow}
     />
   );
 };
