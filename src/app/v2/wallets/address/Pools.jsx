@@ -5,9 +5,10 @@ import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import CryptoIcon from "@/components/icon/CryptoIcon";
 import InlineSelect from "@/components/select/InlineSelect";
 import Info from "@/components/info/Info";
+import Tag from "@/components/tags/Tag";
+import PoolName from "@/components/poolName/PoolName";
 
 const Pools = ({ address, block, daysAgo, ...rest }) => {
   const pageSize = 10;
@@ -56,16 +57,10 @@ const Pools = ({ address, block, daysAgo, ...rest }) => {
     {
       header: "Pool",
       cell: ({ row }) => (
-        <>
-          <span className="flex">
-            <CryptoIcon name={row.collateral_token_symbol} className="z-10" />
-            <CryptoIcon
-              name={row.quote_token_symbol}
-              className="relative left-[-10px] z-0"
-            />
-          </span>
-          {row.collateral_token_symbol} / {row.quote_token_symbol}
-        </>
+        <PoolName
+          collateralSymbol={row.collateral_token_symbol}
+          quoteSymbol={row.quote_token_symbol}
+        />
       ),
     },
     {
@@ -198,10 +193,16 @@ const Pools = ({ address, block, daysAgo, ...rest }) => {
       ),
       cell: ({ row }) => (
         <>
-          {row.health_rate ? (
-            <Value value={row.health_rate} decimals={3} />
+          {row.in_liquidation ? (
+            <Tag size="md">In Liquidation</Tag>
           ) : (
-            <FontAwesomeIcon icon={faInfinity} />
+            <>
+              {row.health_rate ? (
+                <Value value={row.health_rate} decimals={3} />
+              ) : (
+                <FontAwesomeIcon icon={faInfinity} />
+              )}
+            </>
           )}
         </>
       ),

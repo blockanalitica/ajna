@@ -10,6 +10,7 @@ import ValueChange from "@/components/value/ValueChange";
 import InlineSelect from "@/components/select/InlineSelect";
 import Info from "@/components/info/Info";
 import DateTimeAgo from "@/components/dateTime/DateTimeAgo";
+import Tag from "@/components/tags/Tag";
 
 const Borrowers = ({ address, daysAgo, search }) => {
   const buildLink = useLinkBuilder();
@@ -61,6 +62,9 @@ const Borrowers = ({ address, daysAgo, search }) => {
     {
       header: "Wallet",
       cell: ({ row }) => <Address address={row.wallet_address} />,
+      smallCell: ({ row }) => (
+        <>{row.in_liquidation ? <Tag size="xs">In Liquidation</Tag> : null}</>
+      ),
     },
     {
       header: "Collateral",

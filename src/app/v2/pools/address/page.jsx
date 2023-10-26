@@ -25,6 +25,7 @@ import TopBorrowers from "./TopBorrowers";
 import AllowedTokenIds from "./AllowedTokenIds";
 import ExternalLink from "@/components/externalLink/ExternalLink";
 import { generateEtherscanUrl, smartLocationParts } from "@/utils/url";
+import PoolName from "@/components/poolName/PoolName";
 import Kpi from "@/components/kpis/Kpi";
 
 const Pool = () => {
@@ -89,17 +90,12 @@ const Pool = () => {
 
       <div className="flex justify-between mb-5">
         <div className="flex items-center">
-          <span className="relative flex">
-            <CryptoIcon name={pool.collateral_token_symbol} className="z-10" />
-            <CryptoIcon
-              name={pool.quote_token_symbol}
-              className="relative left-[-10px] z-0"
-            />
-          </span>
-
-          <h1 className="pl-4 text-2xl">
-            {pool.collateral_token_symbol} / {pool.quote_token_symbol}
-          </h1>
+          <PoolName
+            collateralSymbol={pool.collateral_token_symbol}
+            quoteSymbol={pool.quote_token_symbol}
+            size="xl"
+            className="font-syncopate"
+          />
           {pool.erc === "erc721" ? (
             <Tag size="md" className="ms-4">
               NFT {pool.allowed_token_ids?.length > 0 ? "Subset" : "Collection"} Pool

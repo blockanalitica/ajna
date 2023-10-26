@@ -7,7 +7,7 @@ import Address from "@/components/address/Address";
 import Value from "@/components/value/Value";
 import DateTimeAgo from "@/components/dateTime/DateTimeAgo";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
-import CryptoIcon from "@/components/icon/CryptoIcon";
+import PoolName from "@/components/poolName/PoolName";
 
 const AtRisk = () => {
   const buildLink = useLinkBuilder();
@@ -49,18 +49,10 @@ const AtRisk = () => {
     {
       header: "Pool",
       cell: ({ row }) => (
-        <>
-          <span className="relative hidden sm:flex">
-            <CryptoIcon name={row.collateral_token_symbol} className="z-10" />
-            <CryptoIcon
-              name={row.quote_token_symbol}
-              className="relative left-[-10px] z-0"
-            />
-          </span>
-          <span className="font-medium">
-            {row.collateral_token_symbol} / {row.quote_token_symbol}
-          </span>
-        </>
+        <PoolName
+          collateralSymbol={row.collateral_token_symbol}
+          quoteSymbol={row.quote_token_symbol}
+        />
       ),
       cellSize: "1.5fr",
     },

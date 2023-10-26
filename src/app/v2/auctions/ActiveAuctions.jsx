@@ -5,9 +5,9 @@ import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
 import HoursMinutes from "@/components/dateTime/HoursMinutes";
 import { DateTime } from "luxon";
-import CryptoIcon from "@/components/icon/CryptoIcon";
 import { parseUTCDateTime } from "@/utils/datetime";
 import Address from "@/components/address/Address";
+import PoolName from "@/components/poolName/PoolName";
 
 const ActiveAuctions = () => {
   usePageTitle("Active Auctions");
@@ -36,18 +36,10 @@ const ActiveAuctions = () => {
     {
       header: "Pool",
       cell: ({ row }) => (
-        <>
-          <span className="relative hidden sm:flex">
-            <CryptoIcon name={row.collateral_token_symbol} className="z-10" />
-            <CryptoIcon
-              name={row.quote_token_symbol}
-              className="relative left-[-10px] z-0"
-            />
-          </span>
-          <span className="font-medium">
-            {row.collateral_token_symbol} / {row.quote_token_symbol}
-          </span>
-        </>
+        <PoolName
+          collateralSymbol={row.collateral_token_symbol}
+          quoteSymbol={row.quote_token_symbol}
+        />
       ),
       cellSize: "1.5fr",
     },

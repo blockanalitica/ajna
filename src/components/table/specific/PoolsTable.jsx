@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { faWaterLadder } from "@fortawesome/free-solid-svg-icons";
 import { useLinkBuilder } from "@/hooks";
-import CryptoIcon from "@/components/icon/CryptoIcon";
 import InlineSelect from "@/components/select/InlineSelect";
 import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
 import Tag from "@/components/tags/Tag";
+import PoolName from "@/components/poolName/PoolName";
 
 const PoolsTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
   const buildLink = useLinkBuilder();
@@ -24,23 +24,15 @@ const PoolsTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
     {
       header: "Collateral / Quote",
       cell: ({ row }) => (
-        <>
-          <span className="relative hidden sm:flex">
-            <CryptoIcon name={row.collateral_token_symbol} className="z-10" />
-            <CryptoIcon
-              name={row.quote_token_symbol}
-              className="relative left-[-10px] z-0"
-            />
-          </span>
-          <span className="font-medium pl-4">
-            {row.collateral_token_symbol} / {row.quote_token_symbol}
-          </span>
-        </>
+        <PoolName
+          collateralSymbol={row.collateral_token_symbol}
+          quoteSymbol={row.quote_token_symbol}
+        />
       ),
       smallCell: ({ row }) => (
         <>
           {row.erc === "erc721" ? (
-            <Tag size="xs">
+            <Tag size="xs" className="ms-9">
               NFT {row.allowed_token_ids?.length > 0 ? "Subset" : "Collection"} Pool
             </Tag>
           ) : null}

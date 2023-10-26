@@ -7,11 +7,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
-import CryptoIcon from "@/components/icon/CryptoIcon";
 import { useFetch } from "@/hooks";
 import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
 import SearchInput from "@/components/search/SearchInput";
+import PoolName from "@/components/poolName/PoolName";
 
 const Buckets = () => {
   const { address } = useParams();
@@ -118,17 +118,13 @@ const Buckets = () => {
         <div className="flex items-center">
           {collateralTokenSymbol && quoteTokenSymbol ? (
             <>
-              <span className="relative flex">
-                <CryptoIcon name={collateralTokenSymbol} className="z-10" />
-                <CryptoIcon
-                  name={quoteTokenSymbol}
-                  className="relative left-[-10px] z-0"
-                />
-              </span>
-
-              <h1 className="pl-4 text-2xl">
-                {collateralTokenSymbol} / {quoteTokenSymbol} Buckets
-              </h1>
+              <PoolName
+                collateralSymbol={collateralTokenSymbol}
+                quoteSymbol={quoteTokenSymbol}
+                size="xl"
+                className="font-syncopate"
+              />
+              <div className="text-2xl font-syncopate uppercase pl-3">Buckets</div>
             </>
           ) : null}
         </div>

@@ -17,6 +17,7 @@ import { faInfinity } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import HistoricGraphs from "./HistoricGraphs";
 import CardBackground from "@/components/card/CardBackground";
+import Tag from "@/components/tags/Tag";
 import Kpi from "@/components/kpis/Kpi";
 import Info from "@/components/info/Info";
 import ExternalLink from "@/components/externalLink/ExternalLink";
@@ -123,10 +124,16 @@ const WalletPoolPosition = () => {
       ),
       value: (
         <>
-          {data.health_rate ? (
-            <Value value={data.health_rate} decimals={3} />
+          {data.in_liquidation ? (
+            <Tag>In Liquidation</Tag>
           ) : (
-            <FontAwesomeIcon icon={faInfinity} />
+            <>
+              {data.health_rate ? (
+                <Value value={data.health_rate} decimals={3} />
+              ) : (
+                <FontAwesomeIcon icon={faInfinity} />
+              )}
+            </>
           )}
         </>
       ),

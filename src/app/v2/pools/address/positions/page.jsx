@@ -2,13 +2,13 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 import GenericPlaceholder from "@/components/GenericPlaceholder";
 import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
-import CryptoIcon from "@/components/icon/CryptoIcon";
 import { useFetch, usePageTitle, useQueryParams } from "@/hooks";
 import Depositors from "./Depositors";
 import Borrowers from "./Borrowers";
 import SearchInput from "@/components/search/SearchInput";
 import Tabs from "@/components/tabs/Tabs";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
+import PoolName from "@/components/poolName/PoolName";
 
 const PoolWallets = () => {
   usePageTitle("Positions");
@@ -61,16 +61,12 @@ const PoolWallets = () => {
 
       <div className="flex flex-col sm:flex-row justify-between items-center mb-10">
         <div className="flex items-center">
-          <span className="relative flex">
-            <CryptoIcon name={pool.collateral_token_symbol} className="z-10" />
-            <CryptoIcon
-              name={pool.quote_token_symbol}
-              className="relative left-[-10px] z-0"
-            />
-          </span>
-          <h1 className="pl-4 text-2xl">
-            {pool.collateral_token_symbol} / {pool.quote_token_symbol} Positions
-          </h1>
+          <PoolName
+            collateralSymbol={pool.collateral_token_symbol}
+            quoteSymbol={pool.quote_token_symbol}
+            size="xl"
+            className="font-syncopate"
+          />
         </div>
         <SearchInput
           placeholder="Search wallets"
