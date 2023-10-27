@@ -15,7 +15,7 @@ const TopDepositors = ({ address, daysAgo }) => {
     isLoading,
   } = useFetch(`/pools/${address}/positions/`, {
     p: 1,
-    p_size: 8,
+    p_size: 4,
     order: "-supply",
     days_ago: daysAgo,
     type: "depositor",

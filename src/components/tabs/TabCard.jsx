@@ -4,7 +4,7 @@ import CardBackground from "@/components/card/CardBackground";
 const TabCard = ({ tabs, activeTab, onTabChange, ...rest }) => {
   return (
     <CardBackground {...rest}>
-      <div className="flex gap-x-10 border-b border-gray-13 mb-8">
+      <div className="flex gap-x-10 border-b border-gray-13 mb-6">
         {Object.entries(tabs).map(([key, tab]) => (
           <div
             key={`tab-${key}`}

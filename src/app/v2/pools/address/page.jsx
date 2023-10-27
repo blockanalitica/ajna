@@ -23,6 +23,7 @@ import PoolInfo from "./PoolInfo";
 import TopDepositors from "./TopDepositors";
 import TopBorrowers from "./TopBorrowers";
 import AllowedTokenIds from "./AllowedTokenIds";
+import Auctions from "./Auctions";
 import ExternalLink from "@/components/externalLink/ExternalLink";
 import { generateEtherscanUrl, smartLocationParts } from "@/utils/url";
 import PoolName from "@/components/poolName/PoolName";
@@ -545,7 +546,13 @@ const Pool = () => {
             onTabChange={(value) => setActiveWalletsTab(value)}
           />
         </div>
-        <PoolEvents address={address} className="mb-10 w-2/3" />
+        <PoolEvents address={address} className="w-2/3" />
+      </div>
+      <div>
+        <div className="flex justify-between items-center mb-5">
+          <h1 className="text-xl md:text-1xl xl:text-2xl">Auctions</h1>
+        </div>
+        <Auctions poolAddress={address} />
       </div>
     </>
   );
