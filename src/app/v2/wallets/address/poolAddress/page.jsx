@@ -21,6 +21,7 @@ import Tag from "@/components/tags/Tag";
 import Kpi from "@/components/kpis/Kpi";
 import Info from "@/components/info/Info";
 import ExternalLink from "@/components/externalLink/ExternalLink";
+import PoolName from "@/components/poolName/PoolName";
 import Events from "./Events";
 import Buckets from "./Buckets";
 
@@ -147,20 +148,12 @@ const WalletPoolPosition = () => {
         <DisplaySwitch onChange={setDaysAgo} activeOption={daysAgo} />
       </section>
 
-      <h1 className="text-xl md:text-1xl xl:text-2xl mb-5 flex">
-        <div className="flex items-center pr-3">
-          <span className="relative flex">
-            <CryptoIcon name={data.collateral_token_symbol} className="z-10" />
-            <CryptoIcon
-              name={data.quote_token_symbol}
-              className="relative left-[-10px] z-0"
-            />
-          </span>
-
-          <h1 className="text-2xl">
-            {data.collateral_token_symbol} / {data.quote_token_symbol}
-          </h1>
-        </div>
+      <h1 className="text-xl md:text-1xl xl:text-2xl mb-5 flex gap-x-3">
+        <PoolName
+          collateralSymbol={data.collateral_token_symbol}
+          quoteSymbol={data.quote_token_symbol}
+          size="xl"
+        />
         <div>
           Wallet <Address address={address} />
         </div>

@@ -27,6 +27,7 @@ import Bucket from "@/app/v2/pools/address/buckets/index/page";
 import V2Auctions from "@/app/v2/auctions/page";
 import Auction from "@/app/v2/auctions/auction_uid/page";
 import V2Grants from "@/app/v2/grants/page";
+import ReserveAuction from "@/app/v2/reserve-auctions/uid/page";
 
 const AjnaRoutes = () => {
   const routes = {
@@ -56,6 +57,7 @@ const AjnaRoutes = () => {
       { path: "/wallets/:address/:poolAddress", element: <WalletPoolPosition /> },
       { path: "/auctions", element: <V2Auctions /> },
       { path: "/auctions/:auction_uid", element: <Auction /> },
+      { path: "/reserve-auctions/:uid", element: <ReserveAuction /> },
       { path: "/grants", element: <V2Grants /> },
     ],
   };

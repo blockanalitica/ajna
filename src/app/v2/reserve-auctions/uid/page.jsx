@@ -7,23 +7,23 @@ import SecondaryButton from "@/components/button/SecondaryButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { generateEtherscanUrl, smartLocationParts } from "@/utils/url";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
-import Tag from "@/components/tags/Tag";
 import Value from "@/components/value/Value";
 import ExternalLink from "@/components/externalLink/ExternalLink";
 import CopyToClipboard from "@/components/copyToClipboard/CopyToClipboard";
 import CardBackground from "@/components/card/CardBackground";
 import Address from "@/components/address/Address";
-import PoolName from "@/components/poolName/PoolName";
 import Events from "./Events";
-import AuctionStats from "./AuctionStats";
+import ReserveAuctionStats from "./ReserveAuctionStats";
+import PoolName from "@/components/poolName/PoolName";
+import Kpi from "@/components/kpis/Kpi";
 
-const Auction = () => {
-  const { auction_uid } = useParams();
+const ReserveAuction = () => {
+  const { uid } = useParams();
   const location = useLocation();
   const { network } = smartLocationParts(location);
   const buildLink = useLinkBuilder();
 
-  const { data = {}, error, isLoading } = useFetch(`/auctions/${auction_uid}/`);
+  const { data = {}, error, isLoading } = useFetch(`/reserve-auctions/${uid}/`);
   if (error) {
     return <p>Failed to load data</p>;
   }
@@ -38,16 +38,16 @@ const Auction = () => {
       </section>
 
       <div className="flex items-center justify-between">
-        <div className="flex text-xl md:text-1xl xl:text-2xl items-center font-syncopate uppercase gap-3">
+        <div className="flex text-xl md:text-1xl xl:text-2xl items-center font-syncopate uppercase gap-x-3">
           <PoolName
             collateralSymbol={data.collateral_token_symbol}
             quoteSymbol={data.quote_token_symbol}
             size="xl"
           />
-          Auction
+          Reserve Auction
         </div>
 
-        {!data.settled ? (
+        {data.claimable_reserves_remaining > 0 ? (
           <SecondaryButton
             text={
               <>
@@ -59,21 +59,12 @@ const Auction = () => {
                 />
               </>
             }
-            href={`https://app.ajna.finance/pools/${data.pool_address}/auctions`}
+            href={`https://app.ajna.finance/pools/${data.pool_address}/reserves`}
           />
         ) : null}
       </div>
 
-      {!data.settled ? (
-        <div className="inline-block mt-3">
-          <Tag className="flex">
-            <span className="pr-2">LUP:</span>
-            <Value value={data.lup} suffix={data.quote_token_symbol} />
-          </Tag>
-        </div>
-      ) : null}
-
-      <AuctionStats data={data} className="mt-5 mb-5" />
+      <ReserveAuctionStats data={data} className="mt-5 mb-5" />
 
       <div className="flex flex-col md:flex-row md:gap-4">
         <CardBackground className="md:w-1/3 col-span-2 mb-10 grid grid-cols-1 place-content-between">
@@ -81,36 +72,6 @@ const Auction = () => {
             <h3 className="text-sm font-bold text-gray-1 font-syncopate uppercase mb-3">
               Info
             </h3>
-            <div className="flex justify-between items-center mb-2">
-              <span className="text-sm">Borrower</span>
-              <div className="flex">
-                <ExternalLink href={generateEtherscanUrl(network, data.borrower)}>
-                  <CryptoIcon name="etherscan" size={16} />
-                </ExternalLink>
-                <CopyToClipboard className="mx-3" text={data.borrower} />
-
-                <Link
-                  className="text-purple-6 hover:underline"
-                  to={buildLink(`/wallets/${data.borrower}`)}
-                >
-                  <Address address={data.borrower} />
-                </Link>
-              </div>
-            </div>
-
-            {data.borrower !== data.borrower_eoa ? (
-              <div className="flex justify-between items-center mb-2">
-                <span className="text-sm">Borrower EOA</span>
-                <div className="flex">
-                  <ExternalLink href={generateEtherscanUrl(network, data.borrower_eoa)}>
-                    <CryptoIcon name="etherscan" size={16} />
-                  </ExternalLink>
-                  <CopyToClipboard className="mx-3" text={data.borrower_eoa} />
-                  <Address address={data.borrower_eoa} />
-                </div>
-              </div>
-            ) : null}
-
             <div className="flex justify-between items-center mb-2">
               <span className="text-sm">Kicker</span>
               <div className="flex">
@@ -139,23 +100,30 @@ const Auction = () => {
               </div>
             </div>
           </div>
-          <div className="text-xs text-gray-13 text-end pt-5">
-            * price is caclualted using USD market price at kick time
+          <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
+            <Kpi
+              title="Kicker Award"
+              value={
+                <Value value={data.kicker_award} suffix={data.quote_token_symbol} />
+              }
+            />
+            <Kpi
+              title="Last Take price"
+              value={
+                <Value value={data.last_take_price} suffix={data.quote_token_symbol} />
+              }
+            />
           </div>
         </CardBackground>
         <div className="md:w-2/3 mb-10">
           <h3 className="text-lg font-bold text-gray-1 font-syncopate uppercase mb-4">
             Activity
           </h3>
-          <Events
-            auction_uid={auction_uid}
-            quoteTokenSymbol={data.quote_token_symbol}
-            collateralTokenSymbol={data.collateral_token_symbol}
-          />
+          <Events uid={uid} quoteTokenSymbol={data.quote_token_symbol} />
         </div>
       </div>
     </>
   );
 };
 
-export default Auction;
+export default ReserveAuction;
