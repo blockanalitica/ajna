@@ -47,7 +47,7 @@ const ReserveAuctionEventFormatter = ({ type, event, quoteTokenSymbol, network }
             <Value value={event.data.claimable_reserves} suffix={quoteTokenSymbol} />
           </EventValue>
           <EventValue title="Starting Price">
-            <Value value={event.data.starting_price} suffix={quoteTokenSymbol} />
+            <Value value={event.data.starting_price} suffix="AJNA" />
           </EventValue>
         </EventData>
       );
@@ -69,7 +69,7 @@ const ReserveAuctionEventFormatter = ({ type, event, quoteTokenSymbol, network }
             <Value value={event.data.ajna_burned} suffix="AJNA" />
           </EventValue>
           <EventValue title="Auction Price">
-            <Value value={event.data.auction_price} suffix={quoteTokenSymbol} />
+            <Value value={event.data.auction_price} suffix="AJNA" />
           </EventValue>
         </EventData>
       );

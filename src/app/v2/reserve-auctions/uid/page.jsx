@@ -109,9 +109,7 @@ const ReserveAuction = () => {
             />
             <Kpi
               title="Last Take price"
-              value={
-                <Value value={data.last_take_price} suffix={data.quote_token_symbol} />
-              }
+              value={<Value value={data.last_take_price} suffix="AJNA" />}
             />
           </div>
         </CardBackground>
