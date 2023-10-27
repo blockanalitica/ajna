@@ -5,11 +5,10 @@ import Value from "@/components/value/Value";
 import DateTimeAgo from "@/components/dateTime/DateTimeAgo";
 import { parseUTCDateTime } from "@/utils/datetime";
 import Address from "@/components/address/Address";
-import PoolName from "@/components/poolName/PoolName";
 
-const SettledAuctionsTable = ({ daysAgo }) => {
+const AuctionsSettled = ({ poolAddress }) => {
   const buildLink = useLinkBuilder();
-  const pageSize = 10;
+  const pageSize = 5;
   const [page, setPage] = useState(1);
   const [order, setOrder] = useState("-settle_time");
 
@@ -17,11 +16,10 @@ const SettledAuctionsTable = ({ daysAgo }) => {
     data = {},
     error,
     isLoading,
-  } = useFetch("/auctions/settled/", {
+  } = useFetch(`/pools/${poolAddress}/auctions/settled/`, {
     p: page,
     p_size: pageSize,
     order,
-    days_ago: daysAgo,
   });
 
   if (error) {
@@ -30,21 +28,7 @@ const SettledAuctionsTable = ({ daysAgo }) => {
 
   const { results = [], count } = data;
 
-  if (results.length === 0) {
-    return null;
-  }
-
   const columns = [
-    {
-      header: "Pool",
-      cell: ({ row }) => (
-        <PoolName
-          collateralSymbol={row.collateral_token_symbol}
-          quoteSymbol={row.quote_token_symbol}
-        />
-      ),
-      visibleAfter: "sm",
-    },
     {
       header: "Borrower",
       cell: ({ row }) => <Address address={row.borrower} />,
@@ -77,6 +61,12 @@ const SettledAuctionsTable = ({ daysAgo }) => {
     },
   ];
 
+  const footerRow = (
+    <div className="text-xs text-gray-13 text-end">
+      USD prices are caclualted using market price at kick time
+    </div>
+  );
+
   return (
     <Table
       data={results}
@@ -90,8 +80,9 @@ const SettledAuctionsTable = ({ daysAgo }) => {
       keyField="uid"
       columns={columns}
       linkTo={(row) => buildLink(`auctions/${row.uid}`)}
+      footerRow={footerRow}
     />
   );
 };
 
-export default SettledAuctionsTable;
+export default AuctionsSettled;

@@ -16,7 +16,7 @@ import { EVENT_TYPE_MAPPING } from "@/utils/constants";
 const PoolEvents = ({ address, ...rest }) => {
   const location = useLocation();
   const { network } = smartLocationParts(location);
-  const pageSize = 10;
+  const pageSize = 6;
   const [page, setPage] = useState(1);
   const [order, setOrder] = useState("-order_index");
   const [eventType, setEventType] = useState("all");

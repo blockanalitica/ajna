@@ -13,7 +13,7 @@ const TopBorrowers = ({ address, daysAgo }) => {
     isLoading,
   } = useFetch(`/pools/${address}/positions/`, {
     p: 1,
-    p_size: 8,
+    p_size: 4,
     order: "-debt",
     days_ago: daysAgo,
     type: "borrower",

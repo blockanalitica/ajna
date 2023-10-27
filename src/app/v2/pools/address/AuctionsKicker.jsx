@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { faGavel } from "@fortawesome/free-solid-svg-icons";
-import { useFetch, usePageTitle, useLinkBuilder } from "@/hooks";
+import { useFetch, useLinkBuilder } from "@/hooks";
 import { Link } from "react-router-dom";
 import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
@@ -8,12 +8,10 @@ import SecondaryButton from "@/components/button/SecondaryButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import Address from "@/components/address/Address";
-import PoolName from "@/components/poolName/PoolName";
 
-const Kicker = () => {
-  usePageTitle("Active Auctions");
+const AuctionsKicker = ({ poolAddress }) => {
   const buildLink = useLinkBuilder();
-  const pageSize = 10;
+  const pageSize = 5;
   const [page, setPage] = useState(1);
   const [order, setOrder] = useState("-debt");
 
@@ -21,7 +19,7 @@ const Kicker = () => {
     data = {},
     error,
     isLoading,
-  } = useFetch("/auctions/to-kick/", {
+  } = useFetch(`/pools/${poolAddress}/auctions/to-kick/`, {
     p: page,
     p_size: pageSize,
     order,
@@ -34,15 +32,6 @@ const Kicker = () => {
   const { results, count } = data;
 
   const columns = [
-    {
-      header: "Pool",
-      cell: ({ row }) => (
-        <PoolName
-          collateralSymbol={row.collateral_token_symbol}
-          quoteSymbol={row.quote_token_symbol}
-        />
-      ),
-    },
     {
       header: "Borrower",
       cell: ({ row }) => (
@@ -132,4 +121,4 @@ const Kicker = () => {
   );
 };
 
-export default Kicker;
+export default AuctionsKicker;
