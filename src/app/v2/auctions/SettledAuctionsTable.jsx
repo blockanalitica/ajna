@@ -3,9 +3,9 @@ import { useFetch, useLinkBuilder } from "@/hooks";
 import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
 import DateTimeAgo from "@/components/dateTime/DateTimeAgo";
-import CryptoIcon from "@/components/icon/CryptoIcon";
 import { parseUTCDateTime } from "@/utils/datetime";
 import Address from "@/components/address/Address";
+import PoolName from "@/components/poolName/PoolName";
 
 const SettledAuctionsTable = ({ daysAgo }) => {
   const buildLink = useLinkBuilder();
@@ -38,18 +38,10 @@ const SettledAuctionsTable = ({ daysAgo }) => {
     {
       header: "Pool",
       cell: ({ row }) => (
-        <>
-          <span className="relative hidden md:flex">
-            <CryptoIcon name={row.collateral_token_symbol} className="z-10" />
-            <CryptoIcon
-              name={row.debt_token_symbol}
-              className="relative left-[-10px] z-0"
-            />
-          </span>
-          <span className="font-medium">
-            {row.collateral_token_symbol} / {row.debt_token_symbol}
-          </span>
-        </>
+        <PoolName
+          collateralSymbol={row.collateral_token_symbol}
+          quoteSymbol={row.quote_token_symbol}
+        />
       ),
       visibleAfter: "sm",
     },

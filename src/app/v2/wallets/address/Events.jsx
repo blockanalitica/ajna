@@ -66,10 +66,15 @@ const Events = ({ address, block, ...rest }) => {
             className="text-purple-6 hover:underline flex"
           >
             <span className="flex">
-              <CryptoIcon name={row.collateral_token_symbol} className="z-10" />
               <CryptoIcon
+                name={row.collateral_token_symbol}
+                className="z-10"
+                size="22"
+              />
+              <CryptoIcon
+                size="22"
                 name={row.quote_token_symbol}
-                className="relative left-[-10px] z-0"
+                className="relative left-[-11px] z-0"
               />
             </span>
             <Address address={row.pool_address} />

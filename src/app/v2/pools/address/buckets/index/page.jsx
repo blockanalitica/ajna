@@ -4,10 +4,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import GenericPlaceholder from "@/components/GenericPlaceholder";
 import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 import CardBackground from "@/components/card/CardBackground";
-import CryptoIcon from "@/components/icon/CryptoIcon";
 import Value from "@/components/value/Value";
 import { useFetch, useQueryParams } from "@/hooks";
 import Kpi from "@/components/kpis/Kpi";
+import PoolName from "@/components/poolName/PoolName";
 import HistoricGraphs from "./HistoricGraphs";
 import Depositors from "./Depositors";
 import Events from "./Events";
@@ -47,14 +47,15 @@ const Bucket = () => {
       </section>
       <div className="flex justify-between mb-5">
         <div className="flex items-center">
-          <span className="relative flex">
-            <CryptoIcon name={collateralTokenSymbol} className="z-10" />
-            <CryptoIcon name={quoteTokenSymbol} className="relative left-[-10px] z-0" />
-          </span>
-
-          <h1 className="pl-4 text-2xl">
-            {collateralTokenSymbol} / {quoteTokenSymbol} Bucket {bucketIndex}
-          </h1>
+          <PoolName
+            collateralSymbol={collateralTokenSymbol}
+            quoteSymbol={quoteTokenSymbol}
+            size="xl"
+            className="font-syncopate"
+          />
+          <div className="text-2xl font-syncopate uppercase pl-3">
+            Bucket {bucketIndex}
+          </div>
         </div>
       </div>
       <div className="flex flex-col-reverse md:flex-row md:gap-4">

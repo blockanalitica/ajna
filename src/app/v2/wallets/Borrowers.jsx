@@ -5,6 +5,7 @@ import { DateTime } from "luxon";
 import Address from "@/components/address/Address";
 import Value from "@/components/value/Value";
 import DateTimeAgo from "@/components/dateTime/DateTimeAgo";
+import Tag from "@/components/tags/Tag";
 
 const Borrowers = ({ searchTerm }) => {
   const buildLink = useLinkBuilder();
@@ -34,6 +35,9 @@ const Borrowers = ({ searchTerm }) => {
     {
       header: "Wallet",
       cell: ({ row }) => <Address address={row.wallet_address} />,
+      smallCell: ({ row }) => (
+        <>{row.in_liquidation ? <Tag size="xs">In Liquidation</Tag> : null}</>
+      ),
     },
     {
       header: "Collateral",

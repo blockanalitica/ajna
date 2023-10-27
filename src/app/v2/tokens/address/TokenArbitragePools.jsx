@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { faPersonSwimming } from "@fortawesome/free-solid-svg-icons";
 import { useFetch, useLinkBuilder } from "@/hooks";
-import CryptoIcon from "@/components/icon/CryptoIcon";
 import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import PoolName from "@/components/poolName/PoolName";
 
 const TokenArbitragePools = ({ address, daysAgo, ...rest }) => {
   const buildLink = useLinkBuilder();
@@ -44,18 +44,10 @@ const TokenArbitragePools = ({ address, daysAgo, ...rest }) => {
     {
       header: "Collateral / Quote",
       cell: ({ row }) => (
-        <>
-          <span className="relative hidden sm:flex">
-            <CryptoIcon name={row.collateral_token_symbol} className="z-10" />
-            <CryptoIcon
-              name={row.quote_token_symbol}
-              className="relative left-[-10px] z-0"
-            />
-          </span>
-          <span className="font-medium pl-1">
-            {row.collateral_token_symbol} / {row.quote_token_symbol}
-          </span>
-        </>
+        <PoolName
+          collateralSymbol={row.collateral_token_symbol}
+          quoteSymbol={row.quote_token_symbol}
+        />
       ),
     },
     {
