@@ -60,6 +60,24 @@ const AjnaRoutes = () => {
       { path: "/reserve-auctions/:uid", element: <ReserveAuction /> },
       { path: "/grants", element: <V2Grants /> },
     ],
+    v3: [
+      { path: "", element: <V2Homepage /> },
+      { path: "/pools", element: <V2Pools /> },
+      { path: "/pools/:address", element: <V2Pool /> },
+      { path: "/pools/:address/positions", element: <PoolWallets /> },
+      { path: "/pools/:address/buckets", element: <Buckets /> },
+      { path: "/pools/:address/buckets/:index", element: <Bucket /> },
+      { path: "/tokens", element: <V2Tokens /> },
+      { path: "/tokens/:address", element: <V2Token /> },
+      { path: "/wallets", element: <Wallets /> },
+      { path: "/wallets/:address", element: <Wallet /> },
+      { path: "/wallets/:address/time-machine", element: <TimeMachine /> },
+      { path: "/wallets/:address/:poolAddress", element: <WalletPoolPosition /> },
+      { path: "/auctions", element: <V2Auctions /> },
+      { path: "/auctions/:auction_uid", element: <Auction /> },
+      { path: "/reserve-auctions/:uid", element: <ReserveAuction /> },
+      { path: "/grants", element: <V2Grants /> },
+    ],
   };
 
   const allRoutes = [];
