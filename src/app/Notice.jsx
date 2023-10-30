@@ -15,8 +15,8 @@ const Notice = () => {
         />
       </div>
       <div>
-        A griefing vector has been discovered in the protocol. Borrowers should repay
-        loans. Lenders are not impacted. There will be a redeployment.
+        A griefing vector was discovered in the protocol. Users should repay debt, pull
+        all collateral, and remove all liquidity before redeployment.
         <a
           href="https://blog.summer.fi/ajna-possible-attack-vector/"
           className="underline hover:text-purple-6 ms-2"

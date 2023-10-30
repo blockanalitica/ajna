@@ -14,7 +14,7 @@ const RootLayout = () => {
     <main>
       <div className="mx-auto max-w-80 px-4">
         <Navbar />
-        {version === "v1" ? <Notice /> : null}
+        {version !== "v3" ? <Notice /> : null}
         <Outlet />
         <Footer />
       </div>
