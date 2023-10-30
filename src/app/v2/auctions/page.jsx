@@ -5,7 +5,7 @@ import SettledAuctions from "./SettledAuctions";
 import Tabs from "@/components/tabs/Tabs";
 import Kicker from "./Kicker";
 import ActiveReserveAuctions from "./ActiveReserveAuctions";
-import SettledReserveAuctions from "./SettledReserveAuctions";
+import ExpiredReserveAuctions from "./ExpiredReserveAuctions";
 
 const Auctions = () => {
   const { queryParams, setQueryParams } = useQueryParams();
@@ -32,9 +32,9 @@ const Auctions = () => {
       title: "Active Reserves",
       content: <ActiveReserveAuctions />,
     },
-    "settled-reserves": {
-      title: "Settled Reserves",
-      content: <SettledReserveAuctions />,
+    "expired-reserves": {
+      title: "Expired Reserves",
+      content: <ExpiredReserveAuctions />,
     },
   };
 

@@ -3,7 +3,7 @@ import Tabs from "@/components/tabs/Tabs";
 import AuctionsKicker from "./AuctionsKicker";
 import AuctionsActive from "./AuctionsActive";
 import AuctionsSettled from "./AuctionsSettled";
-import ReserveAuctionsSettled from "./ReserveAuctionsSettled";
+import ReserveAuctionsExpired from "./ReserveAuctionsExpired";
 import ReserveAuctionsActive from "./ReserveAuctionsActive";
 
 const Auctions = ({ poolAddress, ...rest }) => {
@@ -30,9 +30,9 @@ const Auctions = ({ poolAddress, ...rest }) => {
       title: "Active Reserves",
       content: <ReserveAuctionsActive poolAddress={poolAddress} />,
     },
-    "settled-reserves": {
-      title: "Settled Reserves",
-      content: <ReserveAuctionsSettled poolAddress={poolAddress} />,
+    "expired-reserves": {
+      title: "Expired Reserves",
+      content: <ReserveAuctionsExpired poolAddress={poolAddress} />,
     },
   };
 

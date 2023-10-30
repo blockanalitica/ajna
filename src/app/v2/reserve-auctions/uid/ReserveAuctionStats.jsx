@@ -4,10 +4,14 @@ import Stats from "@/components/stats/Stats";
 const ReserveAuctionStats = ({ data, ...rest }) => {
   const stats = [
     {
-      title: `${!data.settled ? "Remaining / Claimable Reserves" : "Claimed Reserves"}`,
+      title: `${
+        !data.type === "active"
+          ? "Remaining / Claimable Reserves"
+          : "Claimable Reserves"
+      }`,
       value: (
         <>
-          {!data.settled ? (
+          {!data.type === "active" ? (
             <>
               <Value
                 value={data.claimable_reserves_remaining}

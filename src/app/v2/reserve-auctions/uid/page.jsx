@@ -47,7 +47,7 @@ const ReserveAuction = () => {
           Reserve Auction
         </div>
 
-        {data.claimable_reserves_remaining > 0 ? (
+        {data.type === "active" ? (
           <SecondaryButton
             text={
               <>
