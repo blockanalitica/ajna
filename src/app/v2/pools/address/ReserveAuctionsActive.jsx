@@ -3,7 +3,8 @@ import { faGavel } from "@fortawesome/free-solid-svg-icons";
 import { useFetch, useLinkBuilder } from "@/hooks";
 import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
-import PoolName from "@/components/poolName/PoolName";
+import HoursMinutes from "@/components/dateTime/HoursMinutes";
+import { parseUTCDateTime } from "@/utils/datetime";
 
 const ReserveAuctionsActive = ({ poolAddress }) => {
   const buildLink = useLinkBuilder();
@@ -29,15 +30,12 @@ const ReserveAuctionsActive = ({ poolAddress }) => {
 
   const columns = [
     {
-      header: "Pool",
+      header: "Time Remaining",
       cell: ({ row }) => (
-        <PoolName
-          collateralSymbol={row.collateral_token_symbol}
-          quoteSymbol={row.quote_token_symbol}
+        <HoursMinutes
+          dateTime={parseUTCDateTime(row.kick_datetime).plus({ hours: 72 })}
         />
       ),
-      cellSize: "1.5fr",
-      orderField: "pool_address",
     },
     {
       header: "Claimable Reserves Remaining",
@@ -59,10 +57,23 @@ const ReserveAuctionsActive = ({ poolAddress }) => {
     },
     {
       header: "Last Take Price",
-      cell: ({ row }) => <Value value={row.last_take_price} suffix="AJNA" />,
+      cell: ({ row }) => (
+        <Value
+          value={row.take_count > 0 ? row.last_take_price : 0}
+          suffix="AJNA"
+          dashIfZero
+        />
+      ),
       headerAlign: "end",
       cellAlign: "end",
       orderField: "last_take_price",
+    },
+    {
+      header: "# Takes",
+      cell: ({ row }) => <>{row.take_count}</>,
+      headerAlign: "end",
+      cellAlign: "end",
+      orderField: "take_count",
     },
     {
       header: "🔥",

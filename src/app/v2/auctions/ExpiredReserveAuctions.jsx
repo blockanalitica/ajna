@@ -5,8 +5,8 @@ import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
 import PoolName from "@/components/poolName/PoolName";
 
-const SettledReserveAuctions = () => {
-  usePageTitle("Settled Reserve Auctions");
+const ExpiredReserveAuctions = () => {
+  usePageTitle("Expired Reserve Auctions");
   const buildLink = useLinkBuilder();
   const pageSize = 10;
   const [page, setPage] = useState(1);
@@ -16,7 +16,7 @@ const SettledReserveAuctions = () => {
     data = {},
     error,
     isLoading,
-  } = useFetch("/reserve-auctions/settled/", {
+  } = useFetch("/reserve-auctions/expired/", {
     p: page,
     p_size: pageSize,
     order,
@@ -51,17 +51,16 @@ const SettledReserveAuctions = () => {
     },
     {
       header: "Last Take Price",
-      cell: ({ row }) => <Value value={row.last_take_price} suffix="AJNA" />,
+      cell: ({ row }) => (
+        <Value
+          value={row.take_count > 0 ? row.last_take_price : 0}
+          suffix="AJNA"
+          dashIfZero
+        />
+      ),
       headerAlign: "end",
       cellAlign: "end",
       orderField: "last_take_price",
-    },
-    {
-      header: "🔥",
-      cell: ({ row }) => <Value value={row.ajna_burned} suffix="AJNA" />,
-      headerAlign: "end",
-      cellAlign: "end",
-      orderField: "ajna_burned",
     },
     {
       header: "# Takes",
@@ -69,6 +68,13 @@ const SettledReserveAuctions = () => {
       headerAlign: "end",
       cellAlign: "end",
       orderField: "take_count",
+    },
+    {
+      header: "🔥",
+      cell: ({ row }) => <Value value={row.ajna_burned} suffix="AJNA" />,
+      headerAlign: "end",
+      cellAlign: "end",
+      orderField: "ajna_burned",
     },
   ];
 
@@ -85,11 +91,11 @@ const SettledReserveAuctions = () => {
       keyField="uid"
       columns={columns}
       emptyIcon={faGavel}
-      emptyTitle="No Settled Reserve Auctions"
-      emptyContent="There are no settled reserve auctions"
+      emptyTitle="No Expired Reserve Auctions"
+      emptyContent="There are no expired reserve auctions"
       linkTo={(row) => buildLink(`reserve-auctions/${row.uid}`)}
     />
   );
 };
 
-export default SettledReserveAuctions;
+export default ExpiredReserveAuctions;

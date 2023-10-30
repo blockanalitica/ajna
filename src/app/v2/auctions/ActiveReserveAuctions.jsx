@@ -4,6 +4,8 @@ import { useFetch, usePageTitle, useLinkBuilder } from "@/hooks";
 import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
 import PoolName from "@/components/poolName/PoolName";
+import HoursMinutes from "@/components/dateTime/HoursMinutes";
+import { parseUTCDateTime } from "@/utils/datetime";
 
 const ActiveReserveAuctions = () => {
   usePageTitle("Active Reserve Auctions");
@@ -37,8 +39,15 @@ const ActiveReserveAuctions = () => {
           quoteSymbol={row.quote_token_symbol}
         />
       ),
-      cellSize: "1.5fr",
       orderField: "pool_address",
+    },
+    {
+      header: "Time Remaining",
+      cell: ({ row }) => (
+        <HoursMinutes
+          dateTime={parseUTCDateTime(row.kick_datetime).plus({ hours: 72 })}
+        />
+      ),
     },
     {
       header: "Claimable Reserves Remaining",
@@ -60,7 +69,13 @@ const ActiveReserveAuctions = () => {
     },
     {
       header: "Last Take Price",
-      cell: ({ row }) => <Value value={row.last_take_price} suffix="AJNA" />,
+      cell: ({ row }) => (
+        <Value
+          value={row.take_count > 0 ? row.last_take_price : 0}
+          suffix="AJNA"
+          dashIfZero
+        />
+      ),
       headerAlign: "end",
       cellAlign: "end",
       orderField: "last_take_price",

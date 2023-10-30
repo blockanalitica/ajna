@@ -3,9 +3,8 @@ import { faGavel } from "@fortawesome/free-solid-svg-icons";
 import { useFetch, useLinkBuilder } from "@/hooks";
 import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
-import PoolName from "@/components/poolName/PoolName";
 
-const ReserveAuctionsSettled = ({ poolAddress }) => {
+const ReserveAuctionsExpired = ({ poolAddress }) => {
   const buildLink = useLinkBuilder();
   const pageSize = 10;
   const [page, setPage] = useState(1);
@@ -15,7 +14,7 @@ const ReserveAuctionsSettled = ({ poolAddress }) => {
     data = {},
     error,
     isLoading,
-  } = useFetch(`/pools/${poolAddress}/reserve-auctions/settled/`, {
+  } = useFetch(`/pools/${poolAddress}/reserve-auctions/expired/`, {
     p: page,
     p_size: pageSize,
     order,
@@ -29,16 +28,10 @@ const ReserveAuctionsSettled = ({ poolAddress }) => {
 
   const columns = [
     {
-      header: "Pool",
-      cell: ({ row }) => (
-        <PoolName
-          collateralSymbol={row.collateral_token_symbol}
-          quoteSymbol={row.quote_token_symbol}
-        />
-      ),
-      cellSize: "1.5fr",
-      orderField: "pool_address",
+      header: "Block",
+      cell: ({ row }) => <>{row.block_number}</>,
     },
+
     {
       header: "Claimed Reserves",
       cell: ({ row }) => (
@@ -50,17 +43,16 @@ const ReserveAuctionsSettled = ({ poolAddress }) => {
     },
     {
       header: "Last Take Price",
-      cell: ({ row }) => <Value value={row.last_take_price} suffix="AJNA" />,
+      cell: ({ row }) => (
+        <Value
+          value={row.take_count > 0 ? row.last_take_price : 0}
+          suffix="AJNA"
+          dashIfZero
+        />
+      ),
       headerAlign: "end",
       cellAlign: "end",
       orderField: "last_take_price",
-    },
-    {
-      header: "🔥",
-      cell: ({ row }) => <Value value={row.ajna_burned} suffix="AJNA" />,
-      headerAlign: "end",
-      cellAlign: "end",
-      orderField: "ajna_burned",
     },
     {
       header: "# Takes",
@@ -68,6 +60,13 @@ const ReserveAuctionsSettled = ({ poolAddress }) => {
       headerAlign: "end",
       cellAlign: "end",
       orderField: "take_count",
+    },
+    {
+      header: "🔥",
+      cell: ({ row }) => <Value value={row.ajna_burned} suffix="AJNA" />,
+      headerAlign: "end",
+      cellAlign: "end",
+      orderField: "ajna_burned",
     },
   ];
 
@@ -84,11 +83,11 @@ const ReserveAuctionsSettled = ({ poolAddress }) => {
       keyField="uid"
       columns={columns}
       emptyIcon={faGavel}
-      emptyTitle="No Settled Reserve Auctions"
-      emptyContent="There are no settled reserve auctions"
+      emptyTitle="No Expired Reserve Auctions"
+      emptyContent="There are no expired reserve auctions"
       linkTo={(row) => buildLink(`reserve-auctions/${row.uid}`)}
     />
   );
 };
 
-export default ReserveAuctionsSettled;
+export default ReserveAuctionsExpired;
