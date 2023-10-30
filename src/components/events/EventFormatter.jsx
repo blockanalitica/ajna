@@ -91,6 +91,18 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
       break;
 
     case "AuctionNFTSettle":
+      content = (
+        <EventData>
+          <EventValue title="Borrower">
+            <Link
+              to={buildLink(`wallets/${data.borrower}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.borrower} />
+            </Link>
+          </EventValue>
+        </EventData>
+      );
       break;
 
     case "AuctionSettle":

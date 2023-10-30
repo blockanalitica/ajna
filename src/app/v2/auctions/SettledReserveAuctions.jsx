@@ -51,9 +51,7 @@ const SettledReserveAuctions = () => {
     },
     {
       header: "Last Take Price",
-      cell: ({ row }) => (
-        <Value value={row.last_take_price} suffix={row.quote_token_symbol} />
-      ),
+      cell: ({ row }) => <Value value={row.last_take_price} suffix="AJNA" />,
       headerAlign: "end",
       cellAlign: "end",
       orderField: "last_take_price",
