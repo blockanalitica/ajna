@@ -40,20 +40,20 @@ const AuctionEventFormatter = ({
       content = (
         <EventData>
           <EventValue title="Kicker">
-            <Address address={event.data.kicker} className="pe-3" />
+            <Address address={event.data.kicker} className="pe-2" />
             <ExternalLink href={generateEtherscanUrl(network, event.data.kicker)}>
-              <CryptoIcon name="etherscan" size={16} />
+              <CryptoIcon name="etherscan" size={14} />
             </ExternalLink>
-            <CopyToClipboard className="mx-3" text={event.data.kicker} />
+            <CopyToClipboard className="mx-2" text={event.data.kicker} size="sm" />
           </EventValue>
           <EventValue title="Debt">
-            <Value value={event.data.debt} suffix={quoteTokenSymbol} />
+            <Value value={event.data.debt} suffix={quoteTokenSymbol} small />
           </EventValue>
           <EventValue title="Collateral">
-            <Value value={event.data.collateral} suffix={collateralTokenSymbol} />
+            <Value value={event.data.collateral} suffix={collateralTokenSymbol} small />
           </EventValue>
           <EventValue title="Bond">
-            <Value value={event.data.bond} suffix={quoteTokenSymbol} />
+            <Value value={event.data.bond} suffix={quoteTokenSymbol} small />
           </EventValue>
         </EventData>
       );
@@ -62,20 +62,20 @@ const AuctionEventFormatter = ({
       content = (
         <EventData>
           <EventValue title="Taker">
-            <Address address={event.data.taker} className="pe-3" />
+            <Address address={event.data.taker} className="pe-2" />
             <ExternalLink href={generateEtherscanUrl(network, event.data.taker)}>
-              <CryptoIcon name="etherscan" size={16} />
+              <CryptoIcon name="etherscan" size={14} />
             </ExternalLink>
-            <CopyToClipboard className="mx-3" text={event.data.taker} />
+            <CopyToClipboard className="mx-2" text={event.data.taker} size="sm" />
           </EventValue>
           <EventValue title="Debt">
-            <Value value={event.data.amount} suffix={quoteTokenSymbol} />
+            <Value value={event.data.amount} suffix={quoteTokenSymbol} small />
           </EventValue>
           <EventValue title="Collateral">
-            <Value value={event.data.collateral} suffix={collateralTokenSymbol} />
+            <Value value={event.data.collateral} suffix={collateralTokenSymbol} small />
           </EventValue>
           <EventValue title="Bond Change">
-            <Value value={event.data.bondChange} suffix={quoteTokenSymbol} />
+            <Value value={event.data.bondChange} suffix={quoteTokenSymbol} small />
           </EventValue>
         </EventData>
       );
@@ -85,21 +85,21 @@ const AuctionEventFormatter = ({
       content = (
         <EventData>
           <EventValue title="Taker">
-            <Address address={event.data.taker} className="pe-3" />
+            <Address address={event.data.taker} className="pe-2" />
             <ExternalLink href={generateEtherscanUrl(network, event.data.taker)}>
-              <CryptoIcon name="etherscan" size={16} />
+              <CryptoIcon name="etherscan" size={14} />
             </ExternalLink>
-            <CopyToClipboard className="mx-3" text={event.data.taker} />
+            <CopyToClipboard className="mx-2" text={event.data.taker} size="sm" />
           </EventValue>
           <EventValue title="Bucket Index">{event.data.index}</EventValue>
           <EventValue title="Debt">
-            <Value value={event.data.amount} suffix={quoteTokenSymbol} />
+            <Value value={event.data.amount} suffix={quoteTokenSymbol} small />
           </EventValue>
           <EventValue title="Collateral">
-            <Value value={event.data.collateral} suffix={collateralTokenSymbol} />
+            <Value value={event.data.collateral} suffix={collateralTokenSymbol} small />
           </EventValue>
           <EventValue title="Bond Change">
-            <Value value={event.data.bondChange} suffix={quoteTokenSymbol} />
+            <Value value={event.data.bondChange} suffix={quoteTokenSymbol} small />
           </EventValue>
         </EventData>
       );
@@ -109,16 +109,28 @@ const AuctionEventFormatter = ({
       content = (
         <EventData>
           <EventValue title="Collateral">
-            <Value value={event.data.collateral} suffix={collateralTokenSymbol} />
+            <Value value={event.data.collateral} suffix={collateralTokenSymbol} small />
           </EventValue>
         </EventData>
       );
       break;
+
+    case "Auction NFT Settle":
+      content = (
+        <EventData>
+          <EventValue title="Collateral">
+            <Value value={event.data.collateral} suffix={collateralTokenSymbol} small />
+          </EventValue>
+          <EventValue title="Index">{event.data.index}</EventValue>
+        </EventData>
+      );
+      break;
+
     case "Settle":
       content = (
         <EventData>
           <EventValue title="Settled Debt">
-            <Value value={event.data.settled_debt} suffix={quoteTokenSymbol} />
+            <Value value={event.data.settled_debt} suffix={quoteTokenSymbol} small />
           </EventValue>
         </EventData>
       );
