@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { faGavel } from "@fortawesome/free-solid-svg-icons";
 import { useFetch, usePageTitle, useLinkBuilder } from "@/hooks";
+import { DateTime } from "luxon";
+import DateTimeAgo from "@/components/dateTime/DateTimeAgo";
+import { faGavel } from "@fortawesome/free-solid-svg-icons";
 import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
 import PoolName from "@/components/poolName/PoolName";
@@ -75,6 +77,16 @@ const ExpiredReserveAuctions = () => {
       headerAlign: "end",
       cellAlign: "end",
       orderField: "ajna_burned",
+    },
+    {
+      header: "Start Time",
+      cell: ({ row }) => (
+        <DateTimeAgo dateTime={DateTime.fromISO(row.block_datetime)} />
+      ),
+      smallCell: ({ row }) => <>{row.block_number}</>,
+      headerAlign: "end",
+      cellAlign: "end",
+      orderField: "block_number",
     },
   ];
 

@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { DateTime } from "luxon";
+import DateTimeAgo from "@/components/dateTime/DateTimeAgo";
 import { faGavel } from "@fortawesome/free-solid-svg-icons";
 import { useFetch, useLinkBuilder } from "@/hooks";
 import Table from "@/components/table/Table";
@@ -27,11 +29,6 @@ const ReserveAuctionsExpired = ({ poolAddress }) => {
   const { results, count } = data;
 
   const columns = [
-    {
-      header: "Block",
-      cell: ({ row }) => <>{row.block_number}</>,
-    },
-
     {
       header: "Claimed Reserves",
       cell: ({ row }) => (
@@ -67,6 +64,16 @@ const ReserveAuctionsExpired = ({ poolAddress }) => {
       headerAlign: "end",
       cellAlign: "end",
       orderField: "ajna_burned",
+    },
+    {
+      header: "Start Time",
+      cell: ({ row }) => (
+        <DateTimeAgo dateTime={DateTime.fromISO(row.block_datetime)} />
+      ),
+      smallCell: ({ row }) => <>{row.block_number}</>,
+      headerAlign: "end",
+      cellAlign: "end",
+      orderField: "block_number",
     },
   ];
 

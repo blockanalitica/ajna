@@ -57,6 +57,10 @@ const AjnaRoutes = () => {
       { path: "/wallets/:address/:poolAddress", element: <WalletPoolPosition /> },
       { path: "/auctions", element: <V2Auctions /> },
       { path: "/auctions/:auction_uid", element: <Auction /> },
+      {
+        path: "/reserve-auctions",
+        element: <SimpleRedirect replace to="/auctions" beSmart />,
+      },
       { path: "/reserve-auctions/:uid", element: <ReserveAuction /> },
       { path: "/grants", element: <V2Grants /> },
     ],
@@ -75,6 +79,10 @@ const AjnaRoutes = () => {
       { path: "/wallets/:address/:poolAddress", element: <WalletPoolPosition /> },
       { path: "/auctions", element: <V2Auctions /> },
       { path: "/auctions/:auction_uid", element: <Auction /> },
+      {
+        path: "/reserve-auctions",
+        element: <SimpleRedirect replace to="/auctions" beSmart />,
+      },
       { path: "/reserve-auctions/:uid", element: <ReserveAuction /> },
       { path: "/grants", element: <V2Grants /> },
     ],

@@ -1,9 +1,18 @@
 import React from "react";
-import { Navigate, useParams, generatePath } from "react-router-dom";
+import { Navigate, useParams, generatePath, useLocation } from "react-router-dom";
+import { smartLocationParts } from "@/utils/url";
+import urlJoin from "url-join";
 
 function SimpleRedirect(props) {
-  const { to, replace, state } = props;
+  let { to, replace, state, beSmart } = props;
   const params = useParams();
+  const location = useLocation();
+
+  if (beSmart === true) {
+    const { version, network } = smartLocationParts(location);
+    to = urlJoin("/", version, network, to);
+  }
+
   const redirectWithParams = generatePath(to, params);
 
   return <Navigate to={redirectWithParams} replace={replace} state={state} />;

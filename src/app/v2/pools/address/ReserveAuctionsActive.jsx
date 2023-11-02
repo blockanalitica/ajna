@@ -10,7 +10,7 @@ const ReserveAuctionsActive = ({ poolAddress }) => {
   const buildLink = useLinkBuilder();
   const pageSize = 10;
   const [page, setPage] = useState(1);
-  const [order, setOrder] = useState("-block_number");
+  const [order, setOrder] = useState("-kick_datetime");
 
   const {
     data = {},
@@ -36,6 +36,7 @@ const ReserveAuctionsActive = ({ poolAddress }) => {
           dateTime={parseUTCDateTime(row.kick_datetime).plus({ hours: 72 })}
         />
       ),
+      orderField: "kick_datetime",
     },
     {
       header: "Claimable Reserves Remaining",

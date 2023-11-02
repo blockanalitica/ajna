@@ -16,6 +16,7 @@ const ReserveAuctionStats = ({ data, ...rest }) => {
               <Value
                 value={data.claimable_reserves_remaining}
                 suffix={data.quote_token_symbol}
+                big
               />
               <span className="px-1">/</span>
             </>
