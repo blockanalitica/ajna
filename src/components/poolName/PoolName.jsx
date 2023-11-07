@@ -6,6 +6,10 @@ function PoolName({ collateralSymbol, quoteSymbol, className, size = "md" }) {
   let rightIconClasses = "";
   let textClasses = "";
   switch (size) {
+    case "sm":
+      iconSize = "16";
+      rightIconClasses = "left-[-8px]";
+      break;
     case "md":
       iconSize = "22";
       rightIconClasses = "left-[-11px]";
