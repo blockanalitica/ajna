@@ -2,7 +2,7 @@ import { useState } from "react";
 import { usePageTitle, useFetch, useLinkBuilder } from "@/hooks";
 import { Link } from "react-router-dom";
 import { DateTime } from "luxon";
-import CardBackground from "@/components/card/CardBackground";
+import CardOpaque from "@/components/card/CardOpaque";
 import Address from "@/components/address/Address";
 import PoolName from "@/components/poolName/PoolName";
 import Value from "@/components/value/Value";
@@ -206,7 +206,7 @@ const Notifications = () => {
   return (
     <>
       {results?.map((row) => (
-        <CardBackground className="mb-5" key={row.key}>
+        <CardOpaque className="mb-5" key={row.key}>
           <NotificationFormatter notification={row} />
 
           <div className="flex">
@@ -214,7 +214,7 @@ const Notifications = () => {
               <DateTimeAgo dateTime={DateTime.fromISO(row.datetime)} />
             </div>
           </div>
-        </CardBackground>
+        </CardOpaque>
       ))}
 
       {totalPages > 1 ? (

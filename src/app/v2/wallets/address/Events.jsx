@@ -130,7 +130,7 @@ const Events = ({ address, block, ...rest }) => {
   return (
     <div {...rest}>
       <div className="flex flex-col sm:flex-row justify-between items-center">
-        <h1 className="text-xl md:text-1xl xl:text-2xl mb-5">Activity</h1>
+        <h1 className="text-xl md:text-1xl xl:text-2xl mb-5">Events</h1>
         <div className="text-sm text-gray-6 mb-5">
           Showing:
           <Select

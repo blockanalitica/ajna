@@ -13,7 +13,7 @@ import CopyToClipboard from "@/components/copyToClipboard/CopyToClipboard";
 import WalletInfo from "./WalletInfo";
 import Events from "./Events";
 import Pools from "./Pools";
-import WalletAdditionalInfo from "./WalletAdditionalInfo";
+import ActivityHeatmap from "./ActivityHeatmap";
 
 const Wallet = () => {
   const { address } = useParams();
@@ -68,8 +68,11 @@ const Wallet = () => {
 
       <WalletInfo data={data} className="mb-5" />
 
-      <Pools address={address} block={block} daysAgo={daysAgo} className="mb-5" />
-      <WalletAdditionalInfo data={data} className="mb-5" />
+      <Pools address={address} block={block} daysAgo={daysAgo} className="mb-10" />
+      <div className="flex flex-col sm:flex-row justify-between items-center">
+        <h1 className="text-xl md:text-1xl xl:text-2xl mb-5">Activity</h1>
+      </div>
+      <ActivityHeatmap address={address} className="mb-10" />
       <Events address={address} block={block} />
     </>
   );
