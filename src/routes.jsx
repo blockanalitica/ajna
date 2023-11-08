@@ -28,6 +28,7 @@ import V2Auctions from "@/app/v2/auctions/page";
 import Auction from "@/app/v2/auctions/auction_uid/page";
 import V2Grants from "@/app/v2/grants/page";
 import ReserveAuction from "@/app/v2/reserve-auctions/uid/page";
+import Notifications from "@/app/v2/notifications/page";
 
 const AjnaRoutes = () => {
   const routes = {
@@ -63,6 +64,7 @@ const AjnaRoutes = () => {
       },
       { path: "/reserve-auctions/:uid", element: <ReserveAuction /> },
       { path: "/grants", element: <V2Grants /> },
+      { path: "/notifications", element: <Notifications /> },
     ],
     v3: [
       { path: "", element: <V2Homepage /> },
@@ -85,6 +87,7 @@ const AjnaRoutes = () => {
       },
       { path: "/reserve-auctions/:uid", element: <ReserveAuction /> },
       { path: "/grants", element: <V2Grants /> },
+      { path: "/notifications", element: <Notifications /> },
     ],
   };
 
