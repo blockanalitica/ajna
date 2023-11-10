@@ -62,6 +62,14 @@ const Kicker = () => {
       cellAlign: "end",
     },
     {
+      header: "Neutral Price",
+      cell: ({ row }) => (
+        <Value value={row.neutral_price} suffix={row.quote_token_symbol} />
+      ),
+      headerAlign: "end",
+      cellAlign: "end",
+    },
+    {
       header: "Threshold Price",
       cell: ({ row }) => (
         <Value value={row.threshold_price} suffix={row.quote_token_symbol} />
