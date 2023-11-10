@@ -16,6 +16,7 @@ import Address from "@/components/address/Address";
 import PoolName from "@/components/poolName/PoolName";
 import Events from "./Events";
 import AuctionStats from "./AuctionStats";
+import Kpi from "@/components/kpis/Kpi";
 
 const Auction = () => {
   const { auction_uid } = useParams();
@@ -139,8 +140,18 @@ const Auction = () => {
               </div>
             </div>
           </div>
-          <div className="text-xs text-gray-13 text-end pt-5">
-            * price is caclualted using USD market price at kick time
+          <div>
+            <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
+              <Kpi
+                title="Neutral Price"
+                value={
+                  <Value value={data.neutral_price} suffix={data.quote_token_symbol} />
+                }
+              />
+            </div>
+            <div className="text-xs text-gray-13 text-end pt-5">
+              * price is caclualted using USD market price at kick time
+            </div>
           </div>
         </CardBackground>
         <div className="md:w-2/3 mb-10">
