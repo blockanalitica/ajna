@@ -168,6 +168,8 @@ const Events = ({ auction_uid, quoteTokenSymbol, collateralTokenSymbol }) => {
     {
       header: "Event",
       cell: ({ row }) => <>{row.event}</>,
+      cellSize: "minmax(120px, auto)",
+      sticky: true,
     },
     {
       header: "Details",

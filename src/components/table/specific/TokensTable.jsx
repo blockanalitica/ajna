@@ -28,7 +28,8 @@ const TokensTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
       smallCell: ({ row }) => (
         <span className="hidden sm:inline-block ml-8">{row.name}</span>
       ),
-      cellSize: "1.5fr",
+      cellSize: "minmax(120px, auto)",
+      sticky: true,
     },
     {
       header: "Price",
@@ -52,7 +53,6 @@ const TokensTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
       headerAlign: "end",
       cellAlign: "end",
       orderField: "price",
-      visibleAfter: "md",
     },
 
     {
@@ -72,7 +72,6 @@ const TokensTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
       headerAlign: "end",
       cellAlign: "end",
       orderField: "pool_count",
-      visibleAfter: "sm",
     },
   ];
 

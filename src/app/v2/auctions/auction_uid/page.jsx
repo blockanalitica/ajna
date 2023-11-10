@@ -38,17 +38,23 @@ const Auction = () => {
         <Breadcrumbs />
       </section>
 
-      <div className="flex items-center justify-between">
-        <div className="flex text-xl md:text-1xl xl:text-2xl items-center font-syncopate uppercase gap-3">
-          <PoolName
-            collateralSymbol={data.collateral_token_symbol}
-            quoteSymbol={data.quote_token_symbol}
-            size="xl"
-          />
-          Auction
-        </div>
+      <div className="flex flex-col sm:flex-row text-2xl items-center font-syncopate uppercase gap-2 mb-5">
+        <PoolName
+          collateralSymbol={data.collateral_token_symbol}
+          quoteSymbol={data.quote_token_symbol}
+          size="xl"
+        />
+        Auction
+      </div>
 
-        {!data.settled ? (
+      {!data.settled ? (
+        <div className="flex justify-between">
+          <div className="inline-block">
+            <Tag className="flex">
+              <span className="pr-2">LUP:</span>
+              <Value value={data.lup} suffix={data.quote_token_symbol} />
+            </Tag>
+          </div>
           <SecondaryButton
             text={
               <>
@@ -62,22 +68,13 @@ const Auction = () => {
             }
             href={`https://app.ajna.finance/pools/${data.pool_address}/auctions`}
           />
-        ) : null}
-      </div>
-
-      {!data.settled ? (
-        <div className="inline-block mt-3">
-          <Tag className="flex">
-            <span className="pr-2">LUP:</span>
-            <Value value={data.lup} suffix={data.quote_token_symbol} />
-          </Tag>
         </div>
       ) : null}
 
       <AuctionStats data={data} className="mt-5 mb-5" />
 
-      <div className="flex flex-col md:flex-row md:gap-4">
-        <CardBackground className="md:w-1/3 col-span-2 mb-10 grid grid-cols-1 place-content-between">
+      <div className="flex flex-col lg:flex-row md:gap-4">
+        <CardBackground className="lg:w-1/3 col-span-2 mb-10 grid grid-cols-1 place-content-between">
           <div>
             <h3 className="text-sm font-bold text-gray-1 font-syncopate uppercase mb-3">
               Info
@@ -141,7 +138,7 @@ const Auction = () => {
             </div>
           </div>
           <div>
-            <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
+            <div className="grid grid-cols-2 gap-4 mt-4">
               <Kpi
                 title="Neutral Price"
                 value={
@@ -154,7 +151,7 @@ const Auction = () => {
             </div>
           </div>
         </CardBackground>
-        <div className="md:w-2/3 mb-10">
+        <div className="lg:w-2/3 mb-10">
           <h3 className="text-lg font-bold text-gray-1 font-syncopate uppercase mb-4">
             Activity
           </h3>

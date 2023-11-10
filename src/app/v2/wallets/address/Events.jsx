@@ -56,6 +56,8 @@ const Events = ({ address, block, ...rest }) => {
     {
       header: "Event",
       cell: ({ row }) => <>{EVENT_TYPE_MAPPING[row.name]}</>,
+      cellSize: "minmax(120px, auto)",
+      sticky: true,
     },
     {
       header: "Pool",

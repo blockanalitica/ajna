@@ -13,6 +13,7 @@ function PoolName({ collateralSymbol, quoteSymbol, className, size = "md" }) {
     case "md":
       iconSize = "22";
       rightIconClasses = "left-[-11px]";
+      textClasses = "text-xs lg:text-base";
       break;
     case "xl":
       iconSize = "32";

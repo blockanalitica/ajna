@@ -11,7 +11,7 @@ import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import Tag from "@/components/tags/Tag";
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
-import TabCard from "@/components/tabs/TabCard";
+import Tabs from "@/components/tabs/Tabs";
 import Address from "@/components/address/Address";
 import { useFetch, usePageTitle, useQueryParams } from "@/hooks";
 import { DateTime } from "luxon";
@@ -89,8 +89,8 @@ const Pool = () => {
         <DisplaySwitch onChange={onDisplaySwitchChange} activeOption={daysAgo} />
       </section>
 
-      <div className="flex justify-between mb-5">
-        <div className="flex items-center">
+      <div className="flex flex-col sm:flex-row justify-between">
+        <div className="flex items-center  mb-5">
           <PoolName
             collateralSymbol={pool.collateral_token_symbol}
             quoteSymbol={pool.quote_token_symbol}
@@ -104,7 +104,7 @@ const Pool = () => {
           ) : null}
         </div>
 
-        <div>
+        <div className="flex items-center mb-5">
           <Tag className="flex">
             <CryptoIcon
               name={pool.collateral_token_symbol}
@@ -133,9 +133,9 @@ const Pool = () => {
         ) : null}
       </div>
 
-      <PoolInfo data={pool} className="mb-10" />
-      <div className="flex flex-col-reverse md:flex-row md:gap-4">
-        <CardBackground className="md:w-1/3 grid grid-cols-1 place-content-between mb-10">
+      <PoolInfo data={pool} className="mb-5" />
+      <div className="flex flex-col-reverse lg:flex-row lg:gap-4">
+        <CardBackground className="lg:w-1/3 grid grid-cols-1 place-content-between mb-5">
           <div>
             <h3 className="text-sm font-bold text-gray-1 font-syncopate uppercase mb-5">
               Total tokens locked
@@ -226,7 +226,7 @@ const Pool = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
+          <div className="grid grid-cols-2 gap-4 mt-4">
             <Kpi
               title="TVL"
               value={
@@ -288,7 +288,7 @@ const Pool = () => {
           </div>
         </CardBackground>
 
-        <CardBackground className="md:w-2/3 col-span-2 mb-10 grid grid-cols-1 place-content-between">
+        <CardBackground className="lg:w-2/3 col-span-2 mb-5 grid grid-cols-1 place-content-between">
           <HistoricGraphs
             address={address}
             daysAgo={daysAgo}
@@ -298,8 +298,8 @@ const Pool = () => {
         </CardBackground>
       </div>
 
-      <div className="flex flex-col md:flex-row md:gap-4">
-        <CardBackground className="md:w-2/3 col-span-2 mb-10 grid grid-cols-1 place-content-between">
+      <div className="flex flex-col lg:flex-row lg:gap-4">
+        <CardBackground className="lg:w-2/3 col-span-2 mb-10 grid grid-cols-1 place-content-between mb-5">
           <HistoricRateGraphs
             address={address}
             daysAgo={daysAgo}
@@ -307,7 +307,7 @@ const Pool = () => {
             quoteSymbol={pool.quote_token_symbol}
           />
         </CardBackground>
-        <CardBackground className="md:w-1/3 grid grid-cols-1 place-content-between mb-10">
+        <CardBackground className="lg:w-1/3 grid grid-cols-1 place-content-between mb-5">
           <div>
             <h3 className="text-sm font-bold text-gray-1 font-syncopate uppercase mb-3">
               Pool info
@@ -341,7 +341,7 @@ const Pool = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
+          <div className="grid grid-cols-2 gap-4 mt-4">
             <Kpi
               title="Lend APR"
               value={<Value value={pool.lend_rate * 100} suffix="%" />}
@@ -411,8 +411,8 @@ const Pool = () => {
         </CardBackground>
       </div>
 
-      <div className="flex flex-col-reverse md:flex-row md:gap-4">
-        <CardBackground className="md:w-1/3 grid grid-cols-1 place-content-between mb-10">
+      <div className="flex flex-col-reverse lg:flex-row lg:gap-4">
+        <CardBackground className="lg:w-1/3 grid grid-cols-1 place-content-between mb-5">
           <div className="flex justify-between">
             <h3 className="text-sm font-bold text-gray-1 font-syncopate uppercase mb-5">
               Buckets
@@ -421,7 +421,7 @@ const Pool = () => {
               <Link to={"buckets"}>View more</Link>
             </div>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
+          <div className="grid grid-cols-2 gap-4 mt-4">
             <Kpi
               title="Market Price"
               value={
@@ -526,7 +526,7 @@ const Pool = () => {
             />
           </div>
         </CardBackground>
-        <CardBackground className="md:w-2/3 col-span-2 mb-10 grid grid-cols-1 place-content-between">
+        <CardBackground className="lg:w-2/3 col-span-2 mb-5 grid grid-cols-1 place-content-between">
           <BucketsGraph
             address={address}
             lupIndex={pool.lup_index}
@@ -535,22 +535,22 @@ const Pool = () => {
         </CardBackground>
       </div>
 
-      <div className="flex flex md:gap-4">
-        <div className="w-1/3">
-          <div className="flex justify-between items-center mb-5">
+      <div className="flex flex flex-col lg:flex-row lg:gap-4 mt-5">
+        <div className="lg:w-1/3 mb-5">
+          <div className="mb-5">
             <h1 className="text-xl md:text-1xl xl:text-2xl">Positions</h1>
           </div>
-          <TabCard
+          <Tabs
             tabs={walletsTabs}
             activeTab={activeWalletsTab}
             onTabChange={(value) => setActiveWalletsTab(value)}
           />
         </div>
-        <PoolEvents address={address} className="w-2/3" />
+        <PoolEvents address={address} className="lg:w-2/3 mb-5" />
       </div>
       <div>
         <div className="flex justify-between items-center mb-5">
-          <h1 className="text-xl md:text-1xl xl:text-2xl">Auctions</h1>
+          <h1 className="text-xl lg:text-1xl xl:text-2xl">Auctions</h1>
         </div>
         <Auctions poolAddress={address} />
       </div>

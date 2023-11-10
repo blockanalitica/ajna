@@ -1,7 +1,6 @@
 import classnames from "classnames";
 import _ from "lodash";
 import { useMediaQuery } from "@/hooks";
-import CardBackground from "@/components/card/CardBackground";
 import Pagination from "@/components/pagination/Pagination";
 import GenericEmptyPlaceholder from "@/components/GenericEmptyPlaceholder";
 import { Link } from "react-router-dom";
@@ -76,48 +75,20 @@ const Table = ({
 
   return (
     <div className={className}>
-      <CardBackground className="!p-0" {...rest}>
+      <div
+        className="bg-gray-24 border-gray-20 border rounded-3xl shadow-md p-0"
+        {...rest}
+      >
         <div
-          className={classnames(
-            "grid gap-3 text-gray-4 border-b border-gray-19 text-sm px-6 sm:px-9 py-5"
-          )}
-          style={{ gridTemplateColumns: cellSizes }}
+          className="grid gap-0 overflow-x-auto"
+          style={{
+            gridTemplateColumns: data.length > 0 ? cellSizes : false,
+            gridTemplateRows: `minmax(50px, max-content) repeat(${data.length}, minmax(70px, max-content))`,
+          }}
         >
-          {columns.map((column, colIndex) => {
-            const isVisible = column.visibleAfter ? media[column.visibleAfter] : true;
-            if (!isVisible) {
-              return null;
-            }
-            return (
-              <HeaderCell
-                key={`col-${colIndex}`}
-                align={column.headerAlign}
-                orderField={column.orderField}
-                currentOrder={currentOrder}
-                onOrderChange={onOrderChange}
-                onPageChange={onPageChange}
-                allowOrder={allowOrder}
-              >
-                {column.header}
-              </HeaderCell>
-            );
-          })}
-        </div>
-        <div className="mx-2 sm:mx-5">
           {data.length > 0 ? (
-            data.map((row, index) => (
-              <RowComponent
-                key={row[keyField]}
-                className={classnames(
-                  "block grid gap-3 border-b border-gray-20 px-4 min-h-[78px]",
-                  {
-                    "cursor-pointer hover:text-gray-7": !!linkTo,
-                    "last:border-b-0": !footerRow,
-                  }
-                )}
-                style={{ gridTemplateColumns: cellSizes }}
-                to={_.isFunction(linkTo) ? linkTo(row) : linkTo}
-              >
+            <>
+              <div className={classnames("contents text-gray-4 text-sm")}>
                 {columns.map((column, colIndex) => {
                   const isVisible = column.visibleAfter
                     ? media[column.visibleAfter]
@@ -126,31 +97,72 @@ const Table = ({
                     return null;
                   }
                   return (
-                    <div
-                      key={`row-${row[keyField]}-${colIndex}`}
-                      className={classnames(
-                        "flex items-center py-4",
-                        justifyMapping[column.cellAlign || "start"]
-                      )}
+                    <HeaderCell
+                      key={`col-${colIndex}`}
+                      align={column.headerAlign}
+                      orderField={column.orderField}
+                      currentOrder={currentOrder}
+                      onOrderChange={onOrderChange}
+                      onPageChange={onPageChange}
+                      allowOrder={allowOrder}
+                      className={classnames("p-3", {
+                        "sticky left-0 z-10 bg-gray-24 rounded-tl-3xl": column?.sticky,
+                      })}
                     >
-                      <div
-                        className={classnames(
-                          "flex flex-col",
-                          itemsMapping[column.cellAlign || "start"]
-                        )}
-                      >
-                        <div className="flex">{column["cell"]({ row, index })}</div>
-                        <div className="flex text-sm text-gray-6">
-                          {column["smallCell"]
-                            ? column["smallCell"]({ row, index })
-                            : null}
-                        </div>
-                      </div>
-                    </div>
+                      {column.header}
+                    </HeaderCell>
                   );
                 })}
-              </RowComponent>
-            ))
+              </div>
+
+              {data.map((row, index) => (
+                <RowComponent
+                  key={row[keyField]}
+                  className={classnames("contents", {
+                    "cursor-pointer hover:text-gray-7": !!linkTo,
+                  })}
+                  style={{ gridTemplateColumns: cellSizes }}
+                  to={_.isFunction(linkTo) ? linkTo(row) : linkTo}
+                >
+                  {columns.map((column, colIndex) => {
+                    const isVisible = column.visibleAfter
+                      ? media[column.visibleAfter]
+                      : true;
+                    if (!isVisible) {
+                      return null;
+                    }
+                    return (
+                      <div
+                        key={`row-${row[keyField]}-${colIndex}`}
+                        className={classnames(
+                          "flex items-center border-b border-gray-19 px-4 py-3",
+                          justifyMapping[column.cellAlign || "start"],
+                          {
+                            "border-b-0 rounded-bl-3xl":
+                              !footerRow && index === data.length - 1,
+                            "sticky left-0 z-10 bg-gray-24": column?.sticky,
+                          }
+                        )}
+                      >
+                        <div
+                          className={classnames(
+                            "flex flex-col",
+                            itemsMapping[column.cellAlign || "start"]
+                          )}
+                        >
+                          <div className="flex">{column["cell"]({ row, index })}</div>
+                          <div className="flex text-sm text-gray-6">
+                            {column["smallCell"]
+                              ? column["smallCell"]({ row, index })
+                              : null}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </RowComponent>
+              ))}
+            </>
           ) : (
             <GenericEmptyPlaceholder
               title={emptyTitle}
@@ -162,7 +174,7 @@ const Table = ({
         {footerRow && data.length > 0 ? (
           <div className="px-9 py-5 text-gray-7">{footerRow}</div>
         ) : null}
-      </CardBackground>
+      </div>
       {totalPages > 1 ? (
         <Pagination
           currentPage={currentPage}

@@ -39,7 +39,6 @@ const TokenArbitragePools = ({ address, daysAgo, ...rest }) => {
         <span className="font-syncopate text-gray-7">{index + 1}</span>
       ),
       cellSize: "0.2fr",
-      visibleAfter: "sm",
     },
     {
       header: "Collateral / Quote",
@@ -49,6 +48,8 @@ const TokenArbitragePools = ({ address, daysAgo, ...rest }) => {
           quoteSymbol={row.quote_token_symbol}
         />
       ),
+      cellSize: "minmax(120px, auto)",
+      sticky: true,
     },
     {
       header: "Market Price",

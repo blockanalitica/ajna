@@ -3,7 +3,7 @@ import classnames from "classnames";
 const Tabs = ({ tabs, activeTab, onTabChange, className }) => {
   return (
     <div className={classnames("", className)}>
-      <div className="flex gap-x-10 border-b border-gray-13 mb-8">
+      <div className="flex flex-wrap gap-x-10 border-b border-gray-13 mb-8">
         {Object.entries(tabs).map(([key, tab]) => (
           <div
             key={`tab-${key}`}

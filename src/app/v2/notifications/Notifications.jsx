@@ -18,7 +18,7 @@ const NotificationFormatter = ({ notification }) => {
       content = (
         <>
           <div className="font-syncopate uppercase text-sm mb-2">Collateral Added</div>
-          <div className="gap-x-1 flex items-end mb-2">
+          <div className="gap-x-1 flex flex-wrap items-end mb-2">
             <Link
               to={buildLink(`/wallets/${notification.data.actor.toLowerCase()}`)}
               className="text-purple-6 hover:underline"
@@ -53,7 +53,7 @@ const NotificationFormatter = ({ notification }) => {
       content = (
         <>
           <div className="font-syncopate uppercase text-sm mb-2">Quote Token Added</div>
-          <div className="gap-x-1 flex items-end mb-2">
+          <div className="gap-x-1 flex flex-wrap items-end mb-2">
             <Link
               to={buildLink(
                 `/wallets/${notification.data.wallet_address.toLowerCase()}`
@@ -90,7 +90,7 @@ const NotificationFormatter = ({ notification }) => {
       content = (
         <>
           <div className="font-syncopate uppercase text-sm mb-2">Auction Kicked</div>
-          <div className="gap-x-1 flex items-end mb-2">
+          <div className="gap-x-1 flex flex-wrap items-end mb-2">
             New
             <Link
               to={buildLink(`/auctions/${notification.data.auction_uid}`)}
@@ -118,7 +118,7 @@ const NotificationFormatter = ({ notification }) => {
       content = (
         <>
           <div className="font-syncopate uppercase text-sm mb-2">Auction Settled</div>
-          <div className="gap-x-1 flex items-end mb-2">
+          <div className="gap-x-1 flex flex-wrap items-end mb-2">
             <Link
               to={buildLink(`/auctions/${notification.data.auction_uid}`)}
               className="text-purple-6 hover:underline"
@@ -145,7 +145,7 @@ const NotificationFormatter = ({ notification }) => {
       content = (
         <>
           <div className="font-syncopate uppercase text-sm mb-2">Debt Drawed</div>
-          <div className="gap-x-1 flex items-end mb-2">
+          <div className="gap-x-1 flex flex-wrap items-end mb-2">
             <Link
               to={buildLink(
                 `/wallets/${notification.data.wallet_address.toLowerCase()}`

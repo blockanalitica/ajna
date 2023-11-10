@@ -42,6 +42,8 @@ const AuctionsKicker = ({ poolAddress }) => {
           <Address address={row.wallet_address} />
         </Link>
       ),
+      cellSize: "minmax(140px, auto)",
+      sticky: true,
     },
     {
       header: "Debt",

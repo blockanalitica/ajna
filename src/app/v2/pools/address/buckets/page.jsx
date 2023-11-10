@@ -55,7 +55,8 @@ const Buckets = () => {
         <span className="font-syncopate text-gray-7">{row.bucket_index}</span>
       ),
       orderField: "bucket_index",
-      cellSize: "0.2fr",
+      cellSize: "minmax(80px, auto)",
+      sticky: true,
     },
     {
       header: "Bucket Price",
@@ -83,7 +84,6 @@ const Buckets = () => {
       headerAlign: "end",
       cellAlign: "end",
       orderField: "collateral",
-      visibleAfter: "md",
     },
     {
       header: "Quote",
@@ -94,7 +94,6 @@ const Buckets = () => {
       headerAlign: "end",
       cellAlign: "end",
       orderField: "deposit",
-      visibleAfter: "md",
     },
     {
       header: "Utilized Bucket",
@@ -111,27 +110,27 @@ const Buckets = () => {
 
   return (
     <>
-      <section className="flex items-center justify-center sm:justify-end md:justify-between mb-10">
+      <section className="mb-10">
         <Breadcrumbs />
       </section>
-      <div className="flex justify-between mb-5">
-        <div className="flex items-center">
-          {collateralTokenSymbol && quoteTokenSymbol ? (
-            <>
-              <PoolName
-                collateralSymbol={collateralTokenSymbol}
-                quoteSymbol={quoteTokenSymbol}
-                size="xl"
-                className="font-syncopate"
-              />
-              <div className="text-2xl font-syncopate uppercase pl-3">Buckets</div>
-            </>
-          ) : null}
+      <div className="flex flex-col items-center sm:flex-row justify-between">
+        <div className="flex flex-col sm:flex-row items-center mb-5">
+          {isLoading ? null : (
+            <PoolName
+              collateralSymbol={collateralTokenSymbol}
+              quoteSymbol={quoteTokenSymbol}
+              size="xl"
+              className="font-syncopate"
+            />
+          )}
+          <div className="text-2xl font-syncopate uppercase pl-3">Buckets</div>
         </div>
+
         <SearchInput
-          placeholder="Search bucket by index"
+          placeholder="Search bucket by index "
           value={searchTerm}
           onChange={handleSearchChange}
+          className="mb-5"
         />
       </div>
 

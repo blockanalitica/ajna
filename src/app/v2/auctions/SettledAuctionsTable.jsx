@@ -43,7 +43,6 @@ const SettledAuctionsTable = ({ daysAgo }) => {
           quoteSymbol={row.quote_token_symbol}
         />
       ),
-      visibleAfter: "sm",
     },
     {
       header: "Borrower",
@@ -73,7 +72,6 @@ const SettledAuctionsTable = ({ daysAgo }) => {
       headerAlign: "end",
       cellAlign: "end",
       orderField: "settle_time",
-      visibleAfter: "sm",
     },
   ];
 
