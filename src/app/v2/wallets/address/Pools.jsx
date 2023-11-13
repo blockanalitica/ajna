@@ -62,6 +62,8 @@ const Pools = ({ address, block, daysAgo, ...rest }) => {
           quoteSymbol={row.quote_token_symbol}
         />
       ),
+      cellSize: "minmax(120px, auto)",
+      sticky: true,
     },
     {
       header: "Deposited",

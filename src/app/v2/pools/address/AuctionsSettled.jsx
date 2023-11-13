@@ -32,6 +32,8 @@ const AuctionsSettled = ({ poolAddress }) => {
     {
       header: "Borrower",
       cell: ({ row }) => <Address address={row.borrower} />,
+      cellSize: "minmax(140px, auto)",
+      sticky: true,
     },
     {
       header: "Collateral",
@@ -57,7 +59,6 @@ const AuctionsSettled = ({ poolAddress }) => {
       headerAlign: "end",
       cellAlign: "end",
       orderField: "settle_time",
-      visibleAfter: "sm",
     },
   ];
 

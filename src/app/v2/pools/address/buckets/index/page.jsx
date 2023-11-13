@@ -42,20 +42,18 @@ const Bucket = () => {
 
   return (
     <>
-      <section className="flex items-center justify-center sm:justify-end md:justify-between mb-10">
+      <section className="mb-10">
         <Breadcrumbs />
       </section>
-      <div className="flex justify-between mb-5">
-        <div className="flex items-center">
-          <PoolName
-            collateralSymbol={collateralTokenSymbol}
-            quoteSymbol={quoteTokenSymbol}
-            size="xl"
-            className="font-syncopate"
-          />
-          <div className="text-2xl font-syncopate uppercase pl-3">
-            Bucket {bucketIndex}
-          </div>
+      <div className="flex flex-col sm:flex-row items-center">
+        <PoolName
+          collateralSymbol={collateralTokenSymbol}
+          quoteSymbol={quoteTokenSymbol}
+          size="xl"
+          className="font-syncopate mb-5"
+        />
+        <div className="text-2xl font-syncopate uppercase pl-3 mb-5">
+          Bucket {bucketIndex}
         </div>
       </div>
       <div className="flex flex-col-reverse md:flex-row md:gap-4">
@@ -101,11 +99,11 @@ const Bucket = () => {
         </CardBackground>
       </div>
       <div className="flex flex-col-reverse md:flex-row md:gap-4">
-        <div className="md:w-1/3">
+        <div className="md:w-1/3 mb-5">
           <h1 className="text-xl md:text-1xl xl:text-2xl mb-5">Depositors</h1>
           <Depositors />
         </div>
-        <Events className="md:w-2/3" />
+        <Events className="md:w-2/3 col-span-2 grid grid-cols-1 mb-5" />
       </div>
     </>
   );

@@ -29,6 +29,7 @@ const TopBorrowers = ({ address, daysAgo }) => {
     {
       header: "Wallet",
       cell: ({ row }) => <Address address={row.wallet_address} />,
+      sticky: true,
     },
     {
       header: "Collateral",

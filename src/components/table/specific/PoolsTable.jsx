@@ -33,12 +33,16 @@ const PoolsTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
         <>
           {row.erc === "erc721" ? (
             <Tag size="xs" className="ms-9">
-              NFT {row.allowed_token_ids?.length > 0 ? "Subset" : "Collection"} Pool
+              NFT{" "}
+              <span className="hidden lg:inline">
+                {row.allowed_token_ids?.length > 0 ? "Subset" : "Collection"} Pool
+              </span>
             </Tag>
           ) : null}
         </>
       ),
-      cellSize: "1.5fr",
+      cellSize: "minmax(120px, auto)",
+      sticky: true,
     },
     {
       header: "Collateral",
@@ -72,7 +76,6 @@ const PoolsTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
       headerAlign: "end",
       cellAlign: "end",
       orderField: isPriceUsd ? "pledged_collateral_usd" : "pledged_collateral",
-      visibleAfter: "md",
     },
     {
       header: "Quote",
@@ -103,7 +106,6 @@ const PoolsTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
       headerAlign: "end",
       cellAlign: "end",
       orderField: isPriceUsd ? "pool_size_usd" : "pool_size",
-      visibleAfter: "md",
     },
     {
       header: "Debt",
@@ -131,7 +133,6 @@ const PoolsTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
       headerAlign: "end",
       cellAlign: "end",
       orderField: isPriceUsd ? "debt_usd" : "debt",
-      visibleAfter: "md",
     },
     {
       header: "TVL",
@@ -160,7 +161,6 @@ const PoolsTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
       headerAlign: "end",
       cellAlign: "end",
       orderField: "lend_rate",
-      visibleAfter: "lg",
     },
     {
       header: "Borrow APR",
@@ -177,7 +177,6 @@ const PoolsTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
       headerAlign: "end",
       cellAlign: "end",
       orderField: "borrow_rate",
-      visibleAfter: "lg",
     },
     {
       header: "🔥",
@@ -194,7 +193,6 @@ const PoolsTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
       cellAlign: "end",
       orderField: "total_ajna_burned",
       cellSize: "0.5fr",
-      visibleAfter: "lg",
     },
   ];
 

@@ -15,7 +15,7 @@ const TopDepositors = ({ address, daysAgo }) => {
     isLoading,
   } = useFetch(`/pools/${address}/positions/`, {
     p: 1,
-    p_size: 4,
+    p_size: 5,
     order: "-supply",
     days_ago: daysAgo,
     type: "depositor",
@@ -31,6 +31,8 @@ const TopDepositors = ({ address, daysAgo }) => {
     {
       header: "Wallet",
       cell: ({ row }) => <Address address={row.wallet_address} />,
+      sticky: true,
+      cellSize: "minmax(150px, auto)",
     },
     {
       header: "Deposited",

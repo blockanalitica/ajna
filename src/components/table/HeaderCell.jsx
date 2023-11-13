@@ -66,6 +66,7 @@ const HeaderCell = ({
   onPageChange,
   allowOrder = true,
   children,
+  className,
 }) => {
   // We're doing aerobatics with the alignment because tailwind can't figure out
   // composed strigs, so we need to map it out for it to be recognised and compiled
@@ -82,7 +83,8 @@ const HeaderCell = ({
   return (
     <div
       className={classnames(
-        "flex items-center",
+        "flex items-center border-b border-gray-19",
+        className,
         justifyMapping[align || "start"],
         textMapping[align || "start"]
       )}

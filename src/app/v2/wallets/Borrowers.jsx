@@ -38,6 +38,8 @@ const Borrowers = ({ searchTerm }) => {
       smallCell: ({ row }) => (
         <>{row.in_liquidation ? <Tag size="xs">In Liquidation</Tag> : null}</>
       ),
+      cellSize: "minmax(150px, auto)",
+      sticky: true,
     },
     {
       header: "Collateral",

@@ -56,6 +56,8 @@ const PoolEvents = ({ address, ...rest }) => {
     {
       header: "Event",
       cell: ({ row }) => <>{EVENT_TYPE_MAPPING[row.name]}</>,
+      cellSize: "minmax(130px, auto)",
+      sticky: true,
     },
     {
       header: "Details",

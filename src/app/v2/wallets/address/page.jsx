@@ -44,13 +44,13 @@ const Wallet = () => {
 
   return (
     <>
-      <section className="flex items-center justify-between mb-10">
+      <section className="flex items-center justify-center sm:justify-end md:justify-between mb-10">
         <Breadcrumbs />
         <DisplaySwitch onChange={onDisplaySwitchChange} activeOption={daysAgo} />
       </section>
 
-      <div className="flex justify-between items-center mb-5">
-        <h1 className="text-xl md:text-1xl xl:text-2xl">
+      <div className="flex flex-col sm:flex-row justify-between items-center mb-5">
+        <h1 className="text-xl md:text-1xl xl:text-2xl mb-3">
           Wallet <Address address={address} />
         </h1>
 
