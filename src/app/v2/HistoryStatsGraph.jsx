@@ -5,6 +5,7 @@ import Value from "@/components/value/Value";
 import { DateTime } from "luxon";
 import { compact } from "@/utils/number";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
+import { prefillSerieDates } from "@/utils/graph";
 
 const HistoryStatsGraph = ({ daysAgo, className, ...rest }) => {
   const [displayOption, setDisplayOption] = useState("tvl");
@@ -27,10 +28,11 @@ const HistoryStatsGraph = ({ daysAgo, className, ...rest }) => {
     );
   }
 
+  const serie = data.map((row) => ({ x: row.dt, y: row.amount }));
   const series = [
     {
       label: displayOption,
-      data: data.map((row) => ({ x: row.dt, y: row.amount })),
+      data: prefillSerieDates(serie),
     },
   ];
 

@@ -155,7 +155,7 @@ export const prefillSerieDates = (serie, days = 30, additionalSeriesData = null)
   if (fakedDays <= 0) {
     return serie;
   }
-  const startDate = DateTime.fromISO(serie[0].x);
+  const startDate = serie.length > 0 ? DateTime.fromISO(serie[0].x) : DateTime.now();
   const fakes = _.range(fakedDays).map((days) => {
     return {
       ...additionalSeriesData,

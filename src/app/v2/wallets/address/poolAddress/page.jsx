@@ -189,6 +189,16 @@ const WalletPoolPosition = () => {
               value={<Value value={data.lup} suffix={data.quote_token_symbol} />}
             />
             <Kpi
+              title="Neutral Price"
+              value={
+                <Value
+                  value={data.neutral_price}
+                  suffix={data.quote_token_symbol}
+                  dashIfZero
+                />
+              }
+            />
+            <Kpi
               title="Threshold Price"
               value={
                 <Value value={data.threshold_price} suffix={data.quote_token_symbol} />
