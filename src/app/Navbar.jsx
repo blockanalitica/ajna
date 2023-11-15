@@ -1,4 +1,5 @@
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faBell } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classnames from "classnames";
 import { useLinkBuilder } from "@/hooks";
@@ -14,23 +15,45 @@ const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
 
   const location = useLocation();
-  const { paths } = smartLocationParts(location);
+  const { paths, version } = smartLocationParts(location);
   const rootSegment = paths && paths.length > 0 ? paths[0] : null;
-
-  const navigation = [
-    { name: "Pools", href: buildLink("pools"), current: rootSegment === "pools" },
-    { name: "Tokens", href: buildLink("tokens"), current: rootSegment === "tokens" },
-    {
-      name: "Auctions",
-      href: buildLink("auctions"),
-      current: rootSegment === "auctions",
-    },
-    // {
-    //   name: "Grants",
-    //   href: `/${network}/grants`,
-    //   current: rootSegment === "grants",
-    // },
-  ];
+  let navigation = [];
+  if (version === "v1") {
+    navigation = [
+      { name: "Pools", href: buildLink("pools"), current: rootSegment === "pools" },
+      { name: "Tokens", href: buildLink("tokens"), current: rootSegment === "tokens" },
+      {
+        name: "Auctions",
+        href: buildLink("auctions"),
+        current: rootSegment === "auctions",
+      },
+    ];
+  } else {
+    navigation = [
+      { name: "Pools", href: buildLink("pools"), current: rootSegment === "pools" },
+      { name: "Tokens", href: buildLink("tokens"), current: rootSegment === "tokens" },
+      {
+        name: "Auctions",
+        href: buildLink("auctions"),
+        current: rootSegment === "auctions",
+      },
+      {
+        name: "Wallets",
+        href: buildLink("wallets"),
+        current: rootSegment === "wallets",
+      },
+      {
+        name: "Grants",
+        href: buildLink("grants"),
+        current: rootSegment === "grants",
+      },
+      {
+        name: <FontAwesomeIcon icon={faBell} />,
+        href: buildLink("notifications"),
+        current: rootSegment === "notifications",
+      },
+    ];
+  }
 
   return (
     <nav className="mt-4 mb-10">

@@ -205,6 +205,8 @@ const Notifications = () => {
 
   return (
     <>
+      {count === 0 ? <span className="text-gray-6">No notifications</span> : null}
+
       {results?.map((row) => (
         <CardOpaque className="mb-5" key={row.key}>
           <NotificationFormatter notification={row} />

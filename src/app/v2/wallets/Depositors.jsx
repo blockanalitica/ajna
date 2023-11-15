@@ -5,6 +5,7 @@ import { DateTime } from "luxon";
 import Address from "@/components/address/Address";
 import Value from "@/components/value/Value";
 import DateTimeAgo from "@/components/dateTime/DateTimeAgo";
+import TokenIcons from "./TokenIcons";
 
 const Depositors = ({ searchTerm }) => {
   const buildLink = useLinkBuilder();
@@ -34,6 +35,12 @@ const Depositors = ({ searchTerm }) => {
     {
       header: "Wallet",
       cell: ({ row }) => <Address address={row.wallet_address} />,
+    },
+    {
+      header: "Tokens Supplied",
+      cell: ({ row }) => <TokenIcons tokens={row.tokens} />,
+      headerAlign: "center",
+      cellAlign: "center",
     },
     {
       header: "Deposited",

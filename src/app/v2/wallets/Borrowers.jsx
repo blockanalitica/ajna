@@ -6,6 +6,7 @@ import Address from "@/components/address/Address";
 import Value from "@/components/value/Value";
 import DateTimeAgo from "@/components/dateTime/DateTimeAgo";
 import Tag from "@/components/tags/Tag";
+import TokenIcons from "./TokenIcons";
 
 const Borrowers = ({ searchTerm }) => {
   const buildLink = useLinkBuilder();
@@ -42,6 +43,12 @@ const Borrowers = ({ searchTerm }) => {
       sticky: true,
     },
     {
+      header: "Tokens Borrowed",
+      cell: ({ row }) => <TokenIcons tokens={row.tokens} />,
+      headerAlign: "center",
+      cellAlign: "center",
+    },
+    {
       header: "Collateral",
       cell: ({ row }) => <Value value={row.collateral_usd} prefix="$" />,
       headerAlign: "end",
@@ -51,7 +58,6 @@ const Borrowers = ({ searchTerm }) => {
     {
       header: "Debt",
       cell: ({ row }) => <Value value={row.debt_usd} prefix="$" />,
-
       headerAlign: "end",
       cellAlign: "end",
       orderField: "debt_usd",
