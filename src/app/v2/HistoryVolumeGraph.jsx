@@ -3,6 +3,7 @@ import { useFetch } from "@/hooks";
 import Value from "@/components/value/Value";
 import { DateTime } from "luxon";
 import { compact } from "@/utils/number";
+import { prefillSerieDates } from "@/utils/graph";
 
 const HistoryVolumeGraph = ({ daysAgo, className, ...rest }) => {
   const {
@@ -23,10 +24,11 @@ const HistoryVolumeGraph = ({ daysAgo, className, ...rest }) => {
     );
   }
 
+  const serie = data.map((row) => ({ x: row.dt, y: row.amount }));
   const series = [
     {
       label: "Volume",
-      data: data.map((row) => ({ x: row.dt, y: row.amount })),
+      data: prefillSerieDates(serie),
     },
   ];
 
@@ -50,10 +52,16 @@ const HistoryVolumeGraph = ({ daysAgo, className, ...rest }) => {
   };
 
   const valueFormatter = (data) => {
+    if (!data) {
+      return null;
+    }
     return <Value value={data.y} prefix="$" big compact />;
   };
 
   const subvalueFormatter = (data) => {
+    if (!data) {
+      return null;
+    }
     const value = data.x;
     let date = DateTime.fromISO(value);
     return `${date.toFormat("LLL dd, y")}`;
