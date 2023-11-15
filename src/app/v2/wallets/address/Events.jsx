@@ -102,7 +102,7 @@ const Events = ({ address, block, ...rest }) => {
         <>
           <Link
             to={{
-              pathname: "time-machine",
+              pathname: buildLink(`wallets/${address}/time-machine`),
               search: `?block=${row.block_number}`,
             }}
             className="text-purple-6 hover:underline flex items-center"

@@ -67,6 +67,12 @@ const HistoryVolumeGraph = ({ daysAgo, className, ...rest }) => {
     return `${date.toFormat("LLL dd, y")}`;
   };
 
+  const headerRight = (
+    <span className="bg-primary-8 text-sm px-4 text-center md:text-xs md:py-1 rounded-lg">
+      Volume
+    </span>
+  );
+
   return (
     <FancyGraph
       type="bar"
@@ -75,6 +81,7 @@ const HistoryVolumeGraph = ({ daysAgo, className, ...rest }) => {
       options={options}
       valueFormatter={valueFormatter}
       subvalueFormatter={subvalueFormatter}
+      headerRight={headerRight}
     />
   );
 };
