@@ -9,7 +9,7 @@ const TokenIcons = ({ tokens, className }) => {
     <div className="flex flex-col items-center">
       <div className={classnames("flex items-center gap-1", className)}>
         {tokensToShow.map((token) => (
-          <CryptoIcon name={token} />
+          <CryptoIcon key={token} name={token} />
         ))}
       </div>
 

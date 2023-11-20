@@ -115,53 +115,57 @@ const Table = ({
                 })}
               </div>
 
-              {data.map((row, index) => (
-                <RowComponent
-                  key={row[keyField]}
-                  className={classnames("contents", {
-                    "cursor-pointer hover:text-gray-7": !!linkTo,
-                  })}
-                  style={{ gridTemplateColumns: cellSizes }}
-                  to={_.isFunction(linkTo) ? linkTo(row) : linkTo}
-                >
-                  {columns.map((column, colIndex) => {
-                    const isVisible = column.visibleAfter
-                      ? media[column.visibleAfter]
-                      : true;
-                    if (!isVisible) {
-                      return null;
-                    }
-                    return (
-                      <div
-                        key={`row-${row[keyField]}-${colIndex}`}
-                        className={classnames(
-                          "flex items-center border-b border-gray-19 px-4 py-3",
-                          justifyMapping[column.cellAlign || "start"],
-                          {
-                            "border-b-0 rounded-bl-3xl":
-                              !footerRow && index === data.length - 1,
-                            "sticky left-0 z-10 bg-gray-24": column?.sticky,
-                          }
-                        )}
-                      >
+              {data.map((row, index) => {
+                const rowKey = _.isFunction(keyField) ? keyField(row) : row[keyField];
+                // console.log()
+                return (
+                  <RowComponent
+                    key={rowKey}
+                    className={classnames("contents", {
+                      "cursor-pointer hover:text-gray-7": !!linkTo,
+                    })}
+                    style={{ gridTemplateColumns: cellSizes }}
+                    to={_.isFunction(linkTo) ? linkTo(row) : linkTo}
+                  >
+                    {columns.map((column, colIndex) => {
+                      const isVisible = column.visibleAfter
+                        ? media[column.visibleAfter]
+                        : true;
+                      if (!isVisible) {
+                        return null;
+                      }
+                      return (
                         <div
+                          key={`row-${rowKey}-${colIndex}`}
                           className={classnames(
-                            "flex flex-col",
-                            itemsMapping[column.cellAlign || "start"]
+                            "flex items-center border-b border-gray-19 px-4 py-3",
+                            justifyMapping[column.cellAlign || "start"],
+                            {
+                              "border-b-0 rounded-bl-3xl":
+                                !footerRow && index === data.length - 1,
+                              "sticky left-0 z-10 bg-gray-24": column?.sticky,
+                            }
                           )}
                         >
-                          <div className="flex">{column["cell"]({ row, index })}</div>
-                          <div className="flex text-sm text-gray-6">
-                            {column["smallCell"]
-                              ? column["smallCell"]({ row, index })
-                              : null}
+                          <div
+                            className={classnames(
+                              "flex flex-col",
+                              itemsMapping[column.cellAlign || "start"]
+                            )}
+                          >
+                            <div className="flex">{column["cell"]({ row, index })}</div>
+                            <div className="flex text-sm text-gray-6">
+                              {column["smallCell"]
+                                ? column["smallCell"]({ row, index })
+                                : null}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    );
-                  })}
-                </RowComponent>
-              ))}
+                      );
+                    })}
+                  </RowComponent>
+                );
+              })}
             </>
           ) : (
             <GenericEmptyPlaceholder

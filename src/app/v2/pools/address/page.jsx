@@ -28,6 +28,7 @@ import ExternalLink from "@/components/externalLink/ExternalLink";
 import { generateEtherscanUrl, smartLocationParts } from "@/utils/url";
 import PoolName from "@/components/poolName/PoolName";
 import Kpi from "@/components/kpis/Kpi";
+import AtRiskGraphs from "./AtRiskGraphs";
 
 const Pool = () => {
   const { address } = useParams();
@@ -546,14 +547,19 @@ const Pool = () => {
             onTabChange={(value) => setActiveWalletsTab(value)}
           />
         </div>
-        <PoolEvents address={address} className="lg:w-2/3 mb-5" />
+        <PoolEvents address={address} className="lg:w-2/3 mb-10" />
       </div>
-      <div>
+      <div className="mb-10">
         <div className="flex justify-between items-center mb-5">
           <h1 className="text-xl lg:text-1xl xl:text-2xl">Auctions</h1>
         </div>
         <Auctions poolAddress={address} />
       </div>
+
+      <AtRiskGraphs
+        poolAddress={address}
+        collateralSymbol={pool.collateral_token_symbol}
+      />
     </>
   );
 };

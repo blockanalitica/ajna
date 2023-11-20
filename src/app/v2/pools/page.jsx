@@ -9,9 +9,10 @@ const Pools = () => {
   usePageTitle("Pools");
   const { queryParams, setQueryParams } = useQueryParams();
   const daysAgo = parseInt(queryParams.get("daysAgo")) || 1;
+  const page = parseInt(queryParams.get("p")) || 1;
+
   const [searchTerm, setSearchTerm] = useState("");
   const pageSize = 10;
-  const [page, setPage] = useState(1);
   const [order, setOrder] = useState("-tvl");
 
   const {
@@ -24,6 +25,7 @@ const Pools = () => {
     order,
     days_ago: daysAgo,
     search: searchTerm,
+    // filter: filter
   });
 
   if (error) {
@@ -36,10 +38,14 @@ const Pools = () => {
     setQueryParams({ daysAgo: value });
   };
 
+  const onPageChange = (value) => {
+    setQueryParams({ p: value });
+  };
+
   const handleSearchChange = (event) => {
     const newSearchTerm = event.target.value;
     setSearchTerm(newSearchTerm);
-    setPage(1);
+    onPageChange(1);
   };
 
   return (
@@ -64,7 +70,7 @@ const Pools = () => {
         currentPage={page}
         pageSize={pageSize}
         totalRecords={count}
-        onPageChange={setPage}
+        onPageChange={onPageChange}
         onOrderChange={setOrder}
         currentOrder={order}
         isLoading={isLoading}
