@@ -9,9 +9,9 @@ const TokensPage = () => {
   usePageTitle("Tokens");
   const { queryParams, setQueryParams } = useQueryParams();
   const daysAgo = parseInt(queryParams.get("daysAgo")) || 1;
+  const page = parseInt(queryParams.get("p")) || 1;
   const [searchTerm, setSearchTerm] = useState("");
   const pageSize = 10;
-  const [page, setPage] = useState(1);
   const [order, setOrder] = useState("-tvl");
 
   const {
@@ -35,11 +35,14 @@ const TokensPage = () => {
   const onDisplaySwitchChange = (value) => {
     setQueryParams({ daysAgo: value });
   };
+  const onPageChange = (value) => {
+    setQueryParams({ p: value });
+  };
 
   const handleSearchChange = (event) => {
     const newSearchTerm = event.target.value;
     setSearchTerm(newSearchTerm);
-    setPage(1);
+    onPageChange(1);
   };
 
   return (
@@ -64,7 +67,7 @@ const TokensPage = () => {
         currentPage={page}
         pageSize={pageSize}
         totalRecords={count}
-        onPageChange={setPage}
+        onPageChange={onPageChange}
         onOrderChange={setOrder}
         currentOrder={order}
         isLoading={isLoading}

@@ -157,7 +157,7 @@ const AtRisk = () => {
         onOrderChange={setOrder}
         currentOrder={order}
         isLoading={isLoading}
-        keyField="wallet_address"
+        keyField={(row) => `${row.pool_address}_${row.wallet_address}`}
         columns={columns}
         linkTo={(row) =>
           buildLink(`/wallets/${row.wallet_address}/${row.pool_address}`)
