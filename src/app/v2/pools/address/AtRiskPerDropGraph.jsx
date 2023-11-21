@@ -2,6 +2,8 @@ import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import { useState } from "react";
 import FancyGraph from "@/components/graph/FancyGraph";
 import Value from "@/components/value/Value";
+import { faChartBar } from "@fortawesome/free-solid-svg-icons";
+import GenericEmptyPlaceholder from "@/components/GenericEmptyPlaceholder";
 import { compact } from "@/utils/number";
 import { sortArray } from "@/utils/array";
 
@@ -72,24 +74,43 @@ const AtRiskPerDropGraph = ({ data, collateralSymbol }) => {
     { key: "asc", value: "Price increase" },
   ];
 
-  const headerRight = (
-    <DisplaySwitch
-      options={displayOptions}
-      onChange={setDisplayOption}
-      activeOption={displayOption}
-      small
-    />
-  );
+  let content;
+  if (seriesData.length === 0) {
+    content = (
+      <GenericEmptyPlaceholder
+        title="No Data"
+        content="There is no data"
+        icon={faChartBar}
+      />
+    );
+  } else {
+    content = (
+      <FancyGraph
+        type="bar"
+        key={`at-risk-${displayOption}`}
+        series={series}
+        options={options}
+        valueFormatter={valueFormatter}
+        subvalueFormatter={subvalueFormatter}
+      />
+    );
+  }
+
   return (
-    <FancyGraph
-      type="bar"
-      key={`cumulative-at-risk-${displayOption}`}
-      series={series}
-      options={options}
-      valueFormatter={valueFormatter}
-      subvalueFormatter={subvalueFormatter}
-      headerRight={headerRight}
-    />
+    <>
+      <div className="flex flex-col-reverse justify-between xl:flex-row">
+        <h2 className="font-syncopate uppercase mb-3">Per drop</h2>
+        <div className="mb-4 flex justify-center items-start">
+          <DisplaySwitch
+            options={displayOptions}
+            onChange={setDisplayOption}
+            activeOption={displayOption}
+            small
+          />
+        </div>
+      </div>
+      {content}
+    </>
   );
 };
 

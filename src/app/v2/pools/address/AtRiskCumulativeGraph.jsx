@@ -3,7 +3,9 @@ import { useState } from "react";
 import FancyGraph from "@/components/graph/FancyGraph";
 import Value from "@/components/value/Value";
 import { compact } from "@/utils/number";
+import { faChartLine } from "@fortawesome/free-solid-svg-icons";
 import { sortArray } from "@/utils/array";
+import GenericEmptyPlaceholder from "@/components/GenericEmptyPlaceholder";
 
 const AtRiskCumulativeGraph = ({ data, collateralSymbol }) => {
   const [displayOption, setDisplayOption] = useState("desc");
@@ -75,24 +77,43 @@ const AtRiskCumulativeGraph = ({ data, collateralSymbol }) => {
     { key: "asc", value: "Price increase" },
   ];
 
-  const headerRight = (
-    <DisplaySwitch
-      options={displayOptions}
-      onChange={setDisplayOption}
-      activeOption={displayOption}
-      small
-    />
-  );
+  let content;
+  if (seriesData.length === 0) {
+    content = (
+      <GenericEmptyPlaceholder
+        title="No Data"
+        content="There is no data"
+        icon={faChartLine}
+      />
+    );
+  } else {
+    content = (
+      <FancyGraph
+        type="line"
+        key={`cumulative-at-risk-${displayOption}`}
+        series={series}
+        options={options}
+        valueFormatter={valueFormatter}
+        subvalueFormatter={subvalueFormatter}
+      />
+    );
+  }
+
   return (
-    <FancyGraph
-      type="line"
-      key={`cumulative-at-risk-${displayOption}`}
-      series={series}
-      options={options}
-      valueFormatter={valueFormatter}
-      subvalueFormatter={subvalueFormatter}
-      headerRight={headerRight}
-    />
+    <>
+      <div className="flex flex-col-reverse justify-between xl:flex-row">
+        <h2 className="font-syncopate uppercase mb-3">Cumulative per drop</h2>
+        <div className="mb-4 flex justify-center items-start">
+          <DisplaySwitch
+            options={displayOptions}
+            onChange={setDisplayOption}
+            activeOption={displayOption}
+            small
+          />
+        </div>
+      </div>
+      {content}
+    </>
   );
 };
 
