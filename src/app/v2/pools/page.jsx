@@ -4,12 +4,14 @@ import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 import SearchInput from "@/components/search/SearchInput";
 import PoolsTable from "@/components/table/specific/PoolsTable";
+import Filters from "./Filters";
 
 const Pools = () => {
   usePageTitle("Pools");
   const { queryParams, setQueryParams } = useQueryParams();
   const daysAgo = parseInt(queryParams.get("daysAgo")) || 1;
   const page = parseInt(queryParams.get("p")) || 1;
+  const filter = queryParams.get("filter");
 
   const [searchTerm, setSearchTerm] = useState("");
   const pageSize = 10;
@@ -25,7 +27,7 @@ const Pools = () => {
     order,
     days_ago: daysAgo,
     search: searchTerm,
-    // filter: filter
+    filter: filter,
   });
 
   if (error) {
@@ -57,12 +59,14 @@ const Pools = () => {
 
       <div className="flex flex-col sm:flex-row justify-between items-center">
         <h1 className="text-xl md:text-1xl xl:text-2xl mb-5">Pools</h1>
-        <SearchInput
-          placeholder="Search pools"
-          value={searchTerm}
-          onChange={handleSearchChange}
-          className="mb-5"
-        />
+        <div className="flex items-center mb-5 gap-4">
+          <Filters />
+          <SearchInput
+            placeholder="Search pools"
+            value={searchTerm}
+            onChange={handleSearchChange}
+          />
+        </div>
       </div>
 
       <PoolsTable
