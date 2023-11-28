@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { faCalendarDays, faInfinity } from "@fortawesome/free-solid-svg-icons";
-import { useFetch } from "@/hooks";
+import { useFetch, useLinkBuilder } from "@/hooks";
 import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
@@ -11,6 +11,7 @@ import Tag from "@/components/tags/Tag";
 import PoolName from "@/components/poolName/PoolName";
 
 const Pools = ({ address, block, daysAgo, ...rest }) => {
+  const buildLink = useLinkBuilder();
   const pageSize = 10;
   const [page, setPage] = useState(1);
   const [order, setOrder] = useState("-debt");
@@ -222,7 +223,7 @@ const Pools = ({ address, block, daysAgo, ...rest }) => {
       <Table
         data={results}
         keyField="pool_address"
-        linkTo={(row) => row.pool_address}
+        linkTo={(row) => buildLink(`wallets/${address}/${row.pool_address}`)}
         columns={columns}
         currentPage={page}
         pageSize={pageSize}
