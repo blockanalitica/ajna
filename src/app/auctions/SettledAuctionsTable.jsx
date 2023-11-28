@@ -55,12 +55,12 @@ const SettledAuctionsTable = ({ daysAgo }) => {
           <span className="relative hidden md:flex">
             <CryptoIcon name={row.collateral_token_symbol} className="z-10" />
             <CryptoIcon
-              name={row.debt_token_symbol}
+              name={row.quote_token_symbol}
               className="relative left-[-10px] z-0"
             />
           </span>
           <span className="font-medium md:pl-2">
-            {row.collateral_token_symbol} / {row.debt_token_symbol}
+            {row.collateral_token_symbol} / {row.quote_token_symbol}
           </span>
         </Link>
       ),
@@ -114,7 +114,7 @@ const SettledAuctionsTable = ({ daysAgo }) => {
     },
     {
       header: "Debt",
-      cell: ({ row }) => <Value value={row.debt} suffix={row.debt_token_symbol} />,
+      cell: ({ row }) => <Value value={row.debt} suffix={row.quote_token_symbol} />,
       smallCell: ({ row }) => <Value value={row.debt_usd} prefix="$" />,
       headerAlign: "end",
       cellAlign: "end",
