@@ -463,6 +463,26 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
       break;
 
     case "ResetInterestRate":
+      content = (
+        <EventData>
+          <EventValue title="Interest Rate">
+            <div className="flex items-center me-3">
+              <Value value={data.oldRate * 100} suffix="%" />
+              <FontAwesomeIcon
+                icon={faArrowRightLong}
+                size="sm"
+                className="text-gray-6 px-1"
+              />
+              <Value value={data.newRate * 100} suffix="%" />
+            </div>
+            <ValueChange
+              value={(data.newRate - data.oldRate) * 100}
+              suffix="%"
+              className="text-sm"
+            />
+          </EventValue>
+        </EventData>
+      );
       break;
 
     case "RevokeLPAllowance":
