@@ -7,5 +7,8 @@ export const NETWORKS = {
     { name: "Ethereum", key: "ethereum", icon: "ETH" },
     { name: "Goerli", key: "goerli", icon: "GO" },
   ],
-  v3: [{ name: "Goerli", key: "goerli", icon: "GO" }],
+  v3: [
+    { name: "Ethereum", key: "ethereum", icon: "ETH" },
+    { name: "Goerli", key: "goerli", icon: "GO" },
+  ],
 };
