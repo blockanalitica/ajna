@@ -4,7 +4,7 @@ import placeholderIcon from "@/assets/images/icon/missing-currency.svg";
 
 const CryptoIcon = ({ name, size = "24", ...rest }) => {
   const [imgSrc, setImgSrc] = useState(
-    `https://icons.blockanalitica.com/currency/${(name || "").toLowerCase()}.svg`
+    `https://icons.blockanalitica.com/currency/${(name || "").toLowerCase()}.svg`,
   );
 
   return (

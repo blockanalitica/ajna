@@ -33,7 +33,7 @@ export const tooltipTitleDateTime = (
   tooltipItems,
   showDate = true,
   showTime = true,
-  format = null
+  format = null,
 ) => {
   if (!format) {
     format = "LLL dd, yyyy HH:mm:ss";
@@ -55,7 +55,7 @@ export const barGraphDataLimiter = (
   labelKey,
   valueKey,
   percentLimit = 2,
-  limit = true
+  limit = true,
 ) => {
   const sortedObjs = _.sortBy(data, valueKey).reverse();
   const total = data.reduce((total, row) => total + row[valueKey], 0);
@@ -107,7 +107,7 @@ export const barGraphSeriesCountLimiter = (
   labelKey,
   valueKey,
   number = 10,
-  limit = true
+  limit = true,
 ) => {
   const sortedObjs = _.sortBy(data, valueKey).reverse();
 

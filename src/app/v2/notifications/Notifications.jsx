@@ -56,7 +56,7 @@ const NotificationFormatter = ({ notification }) => {
           <div className="gap-x-1 flex flex-wrap items-end mb-2">
             <Link
               to={buildLink(
-                `/wallets/${notification.data.wallet_address.toLowerCase()}`
+                `/wallets/${notification.data.wallet_address.toLowerCase()}`,
               )}
               className="text-purple-6 hover:underline"
             >
@@ -148,7 +148,7 @@ const NotificationFormatter = ({ notification }) => {
           <div className="gap-x-1 flex flex-wrap items-end mb-2">
             <Link
               to={buildLink(
-                `/wallets/${notification.data.wallet_address.toLowerCase()}`
+                `/wallets/${notification.data.wallet_address.toLowerCase()}`,
               )}
               className="text-purple-6 hover:underline"
             >

@@ -86,7 +86,7 @@ const HeaderCell = ({
         "flex items-center border-b border-gray-19",
         className,
         justifyMapping[align || "start"],
-        textMapping[align || "start"]
+        textMapping[align || "start"],
       )}
     >
       {allowOrder && orderField ? (

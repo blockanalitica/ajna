@@ -70,7 +70,7 @@ const Navbar = () => {
                 "rounded-md px-4 py-2 text-l font-medium hover:text-ajna-aqua",
                 {
                   "text-ajna-aqua": item.current,
-                }
+                },
               )}
             >
               {item.name}
@@ -88,7 +88,7 @@ const Navbar = () => {
             className={classnames(
               "inline-flex items-center justify-center rounded-md bg-gray-800 p-2",
               "text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none",
-              "focus:ring- focus:ring-offset-2 focus:ring-offset-gray-800"
+              "focus:ring- focus:ring-offset-2 focus:ring-offset-gray-800",
             )}
             onClick={() => setOpen(!isOpen)}
           >
@@ -113,7 +113,7 @@ const Navbar = () => {
                   "block rounded-md px-3 py-2 text-base font-medium my-2",
                   {
                     "text-ajna-aqua": item.current,
-                  }
+                  },
                 )}
               >
                 {item.name}

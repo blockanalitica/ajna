@@ -14,7 +14,7 @@ const SearchInput = ({ className, ...rest }) => {
         placeholder="Search"
         className={classnames(
           "bg-gray-24 ps-12 pe-5 rounded-full border border-gray-20 text-gray-3",
-          "focus:border-purple-to outline-none w-full p-2"
+          "focus:border-purple-to outline-none w-full p-2",
         )}
         {...rest}
       />

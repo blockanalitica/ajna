@@ -9,7 +9,7 @@ const Tag = ({ children, className, size = "lg" }) => (
         "px-2 py-1 text-xs": size === "md",
         "px-2 py-1 text-[0.65rem]/3": size === "xs",
       },
-      className
+      className,
     )}
   >
     {children}

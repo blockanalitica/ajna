@@ -15,7 +15,7 @@ const SettledAuctionsGraph = ({ daysAgo, totalCollateralUsd, totalDebtUsd }) => 
 
   const { data, error, isLoading } = useFetch(
     `/auctions/settled/graphs/${displayOption}/`,
-    { days_ago: daysAgo }
+    { days_ago: daysAgo },
   );
 
   if (error) {

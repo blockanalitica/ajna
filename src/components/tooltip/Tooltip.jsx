@@ -9,7 +9,7 @@ const Tooltop = ({ children, message, className, wrapperClassName }) => (
         "hidden bg-gray-20 text-white text-xs rounded-lg px-2 py-1 absolute z-100",
         "group-hover:inline-block bottom-full pointer-events-none",
         "text-center left-1/2 -translate-x-1/2 font-normal whitespace-nowrap w-max",
-        className
+        className,
       )}
     >
       {message}

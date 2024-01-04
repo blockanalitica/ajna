@@ -67,7 +67,7 @@ const Heatmap = ({ data, monthsAgo = 12 }) => {
   return (
     <div
       className={classnames(
-        "bg-gray-dark/30 border-gray-20 border rounded-3xl shadow-md p-5"
+        "bg-gray-dark/30 border-gray-20 border rounded-3xl shadow-md p-5",
       )}
     >
       <table className="border-separate border-spacing-1.5">
@@ -124,7 +124,7 @@ const Heatmap = ({ data, monthsAgo = 12 }) => {
                       className={classnames(
                         "opacity-0 bg-gray-20 text-white text-xs rounded-lg px-2 py-1 absolute z-10",
                         "group-hover:opacity-100 bottom-full pointer-events-none transition-all duration-300",
-                        "text-center left-1/2 -translate-x-1/2 font-normal whitespace-nowrap"
+                        "text-center left-1/2 -translate-x-1/2 font-normal whitespace-nowrap",
                       )}
                     >
                       {cell > 0 ? cell : "No"} events on{" "}

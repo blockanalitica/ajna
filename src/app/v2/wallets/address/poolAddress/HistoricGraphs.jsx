@@ -18,7 +18,7 @@ const HistoricGraphs = ({
   const [displayOption, setDisplayOption] = useState("supply");
 
   const { data, error, isLoading } = useFetch(
-    `/wallets/${address}/pools/${poolAddress}/historic/`
+    `/wallets/${address}/pools/${poolAddress}/historic/`,
   );
 
   if (error) {

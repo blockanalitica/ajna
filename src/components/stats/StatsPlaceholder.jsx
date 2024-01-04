@@ -17,7 +17,7 @@ const StatsPlaceholder = ({ numStats, className, animate = true, ...rest }) => {
         "grid grid-cols-1 gap-4 sm:grid-cols-2",
         { "animate-pulse": animate },
         colClassName,
-        className
+        className,
       )}
       {...rest}
     >
@@ -26,7 +26,7 @@ const StatsPlaceholder = ({ numStats, className, animate = true, ...rest }) => {
           key={value}
           className={classnames(
             "bg-gray-dark/30 border-gray-20 border rounded-3xl",
-            "px-6 py-4 h-[122px]"
+            "px-6 py-4 h-[122px]",
           )}
         >
           <div className="h-5 bg-gray-21 opacity-70 rounded-lg"></div>

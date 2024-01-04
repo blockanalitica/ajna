@@ -19,7 +19,7 @@ const Select = ({ options, className, ...rest }) => {
           "inline-block bg-transparent border border-gray-20 rounded-2xl cursor-pointer",
           "text-left pl-4 pr-8 py-1 outline-0",
           "appearance-none focus:outline-none",
-          "hover:border-purple-to focus:border-purple-to"
+          "hover:border-purple-to focus:border-purple-to",
         )}
         {...rest}
       >

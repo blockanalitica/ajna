@@ -89,7 +89,7 @@ function ValueChange({
 
   const { prefix: prefixPrefix, value: newValue } = resolveSmallNumbers(
     theValue,
-    numDecimals
+    numDecimals,
   );
   if (newValue !== null) {
     value = newValue;

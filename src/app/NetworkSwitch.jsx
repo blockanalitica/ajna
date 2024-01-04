@@ -35,7 +35,7 @@ const NetworkSwitch = ({ className }) => {
       <button
         className={classnames(
           "focus:outline-none text-gray-4 rounded-3xl text-sm px-4 py-2 text-center inline-flex items-center",
-          { "hover:ring-2 hover:ring-purple-from": networkOptions.length > 1 }
+          { "hover:ring-2 hover:ring-purple-from": networkOptions.length > 1 },
         )}
         type="button"
         onClick={() => setOpen(!open)}

@@ -31,7 +31,7 @@ const ResultTable = ({
             key={_.isString(column.header) ? column.header : `col-${colIndex}`}
             className={classnames(
               "flex items-center",
-              justifyMapping[column.cellAlign || "start"]
+              justifyMapping[column.cellAlign || "start"],
             )}
           >
             {column.header}
@@ -58,7 +58,7 @@ const ResultTable = ({
               className={classnames(
                 "block grid gap-3  last:border-b-0",
                 gridColumnClassName,
-                { "cursor-pointer hover:text-gray-7": !!linkTo }
+                { "cursor-pointer hover:text-gray-7": !!linkTo },
               )}
               to={_.isFunction(linkTo) ? linkTo(row) : linkTo}
             >
@@ -67,7 +67,7 @@ const ResultTable = ({
                   key={`row-${row[keyField]}-${colIndex}`}
                   className={classnames(
                     "flex items-center py-3",
-                    justifyMapping[column.cellAlign || "start"]
+                    justifyMapping[column.cellAlign || "start"],
                   )}
                 >
                   {column["cell"]({ row, index })}

@@ -38,7 +38,7 @@ const BucketsGraph = ({ address, lupIndex, htpIndex }) => {
       rows.map((row) => ({
         bucketPrice: row.bucket_price,
         bucketIndex: row.bucket_index,
-      }))
+      })),
     );
 
     series.push({
