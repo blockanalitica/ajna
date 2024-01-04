@@ -9,9 +9,9 @@ import { smartLocationParts } from "@/utils/url";
 
 const NetworkSwitch = ({ className }) => {
   const location = useLocation();
-  const { network } = smartLocationParts(location);
-
-  let networkOptions = NETWORKS.v1;
+  const { network, version } = smartLocationParts(location);
+  console.log(version);
+  let networkOptions = NETWORKS[version];
   if (import.meta.env.PROD) {
     networkOptions = networkOptions.filter((obj) => {
       return obj.key !== "goerli";
@@ -27,6 +27,8 @@ const NetworkSwitch = ({ className }) => {
   if (!currentNetwork) {
     return null;
   }
+
+  const versionPrefix = version !== "v1" ? `/${version}` : null;
 
   return (
     <div className={classnames("relative", className)}>
@@ -60,7 +62,7 @@ const NetworkSwitch = ({ className }) => {
           {networkOptions.map((item) => (
             <div key={item.key}>
               <Link
-                to={`/${item.key}`}
+                to={`${versionPrefix}/${item.key}`}
                 className="flex items-center rounded-2xl px-3 py-2.5 hover:text-gray-7 text-gray-4 text-sm bg-gray-22"
                 onClick={() => setOpen(false)}
               >
