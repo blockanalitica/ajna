@@ -17,7 +17,7 @@ const Stats = ({ data, className, ...rest }) => {
       className={classnames(
         "grid grid-cols-1 gap-4 sm:grid-cols-2",
         colClassName,
-        className
+        className,
       )}
       {...rest}
     >

@@ -143,13 +143,13 @@ const Table = ({
                               "border-b-0 rounded-bl-3xl":
                                 !footerRow && index === data.length - 1,
                               "sticky left-0 z-10 bg-gray-24": column?.sticky,
-                            }
+                            },
                           )}
                         >
                           <div
                             className={classnames(
                               "flex flex-col",
-                              itemsMapping[column.cellAlign || "start"]
+                              itemsMapping[column.cellAlign || "start"],
                             )}
                           >
                             <div className="flex">{column["cell"]({ row, index })}</div>

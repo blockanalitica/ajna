@@ -18,7 +18,7 @@ const HistoricGraphs = ({ quoteTokenSymbol, collateralTokenSymbol }) => {
     `/pools/${address}/buckets/${index}/historic/`,
     {
       days_ago: 30,
-    }
+    },
   );
   if (error) {
     return <p>Failed to load data</p>;

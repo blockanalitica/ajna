@@ -9,7 +9,7 @@ const Tabs = ({ tabs, activeTab, onTabChange, className }) => {
             key={`tab-${key}`}
             className={classnames(
               "font-semibold uppercase cursor-pointer hover:text-ajna-aqua",
-              { "text-primary-5 border-b-2": key === activeTab }
+              { "text-primary-5 border-b-2": key === activeTab },
             )}
             onClick={() => onTabChange(key)}
           >

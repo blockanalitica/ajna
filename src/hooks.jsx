@@ -36,7 +36,7 @@ export const useFetch = (path, query, options) => {
       const { data } = await axios.get(url);
       return data;
     },
-    settings
+    settings,
   );
   // Potential todo:
   // -> dispatch and action

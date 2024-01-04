@@ -19,7 +19,7 @@ const SettledAuctionsOverview = ({ daysAgo, className }) => {
       <div
         className={classnames(
           "flex flex-col md:flex-row md:gap-4 animate-pulse",
-          className
+          className,
         )}
       >
         <CardBackground className="md:w-1/3 grid grid-cols-1 place-content-between mb-10 h-60">

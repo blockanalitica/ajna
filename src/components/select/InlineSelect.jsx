@@ -5,7 +5,7 @@ const InlineSelect = ({ options, ...rest }) => {
     <select
       className={classnames(
         "inline-block bg-transparent focus:border-0 focus:ring-0 outline-0 text-center",
-        "cursor-pointer hover:text-ajna-lavender"
+        "cursor-pointer hover:text-ajna-lavender",
       )}
       {...rest}
     >

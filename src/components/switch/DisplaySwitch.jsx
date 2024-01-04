@@ -44,7 +44,7 @@ const DisplaySwitch = ({
                 "bg-primary-8": option.key === activeOption,
                 "px-5": small === false,
                 "text-sm px-4 md:text-xs md:py-1": small === true,
-              }
+              },
             )}
             onClick={() => onOptionClick(option.key)}
           >

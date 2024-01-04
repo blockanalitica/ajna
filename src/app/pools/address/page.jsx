@@ -40,7 +40,7 @@ const Pool = () => {
   const { results: pool } = data;
 
   usePageTitle(
-    pool ? `${pool.collateral_token_symbol} / ${pool.quote_token_symbol}` : "Pool"
+    pool ? `${pool.collateral_token_symbol} / ${pool.quote_token_symbol}` : "Pool",
   );
 
   if (error) {

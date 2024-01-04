@@ -42,6 +42,8 @@ const Graph = ({ series, type = "line", options, labels, ...rest }) => {
       tooltip: {
         usePointStyle: true,
         boxPadding: 5,
+        titleFont: { weight: "normal" },
+        titleColor: "rgb(174, 175, 194)",
         footerColor: "#ccc",
         footerFont: { weight: "400" },
       },

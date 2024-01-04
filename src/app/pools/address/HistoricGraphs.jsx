@@ -15,7 +15,7 @@ const HistoricGraphs = ({ address, daysAgo, collateralSymbol, quoteSymbol }) => 
     `/pools/${address}/historic/${displayOption}/`,
     {
       days_ago: actualDaysAgo,
-    }
+    },
   );
   if (error) {
     return <p>Failed to load data</p>;

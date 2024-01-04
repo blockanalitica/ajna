@@ -19,7 +19,7 @@ const TablePlaceholder = ({ rows = 3, footer = false }) => {
               key={`ph-${value}`}
               className={classnames(
                 "border-b border-gray-20 p-4 min-h-[78px] grid gap-3 grid-cols-table-placeholder items-center",
-                { "last:border-b-0": !footer }
+                { "last:border-b-0": !footer },
               )}
             >
               <div className="h-6 bg-gray-21 opacity-30 rounded-lg"></div>

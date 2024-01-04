@@ -49,7 +49,7 @@ function Value({
 
   const { prefix: prefixPrefix, value: newValue } = resolveSmallNumbers(
     rawValue,
-    numDecimals
+    numDecimals,
   );
   if (newValue !== null) {
     value = newValue;
