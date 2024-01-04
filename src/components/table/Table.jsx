@@ -117,7 +117,6 @@ const Table = ({
 
               {data.map((row, index) => {
                 const rowKey = _.isFunction(keyField) ? keyField(row) : row[keyField];
-                // console.log()
                 return (
                   <RowComponent
                     key={rowKey}
