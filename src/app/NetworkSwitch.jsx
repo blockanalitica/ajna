@@ -10,7 +10,7 @@ import { smartLocationParts } from "@/utils/url";
 const NetworkSwitch = ({ className }) => {
   const location = useLocation();
   const { network, version } = smartLocationParts(location);
-  console.log(version);
+
   let networkOptions = NETWORKS[version];
   if (import.meta.env.PROD) {
     networkOptions = networkOptions.filter((obj) => {
