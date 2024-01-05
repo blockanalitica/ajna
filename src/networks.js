@@ -12,5 +12,7 @@ export const NETWORKS = {
     { name: "Goerli", key: "goerli", icon: "ETH" },
     { name: "Base", key: "base", icon: "base" },
     { name: "Arbitrum", key: "arbitrum", icon: "arb" },
+    { name: "Optimism", key: "optimism", icon: "op" },
+    { name: "Polygon PoS", key: "polygon", icon: "polygon_pos" },
   ],
 };
