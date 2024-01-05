@@ -11,5 +11,6 @@ export const NETWORKS = {
     { name: "Ethereum", key: "ethereum", icon: "ETH" },
     { name: "Goerli", key: "goerli", icon: "ETH" },
     { name: "Base", key: "base", icon: "base" },
+    { name: "Arbitrum", key: "arbitrum", icon: "arb" },
   ],
 };
