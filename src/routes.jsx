@@ -113,7 +113,7 @@ const AjnaRoutes = () => {
     networks.forEach((network) => {
       routes[version].forEach((route) => {
         let v = "";
-        if (version !== "v1") {
+        if (version !== "v3") {
           v = `${version}/`;
         }
         const url = `${v}${network.key}${route.path}`;
