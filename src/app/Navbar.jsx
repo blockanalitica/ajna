@@ -15,7 +15,7 @@ const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
 
   const location = useLocation();
-  const { paths, version } = smartLocationParts(location);
+  const { paths, version, network } = smartLocationParts(location);
   const rootSegment = paths && paths.length > 0 ? paths[0] : null;
   let navigation = [];
   if (version === "v1") {
@@ -42,17 +42,21 @@ const Navbar = () => {
         href: buildLink("wallets"),
         current: rootSegment === "wallets",
       },
-      {
-        name: "Grants",
-        href: buildLink("grants"),
-        current: rootSegment === "grants",
-      },
+
       {
         name: <FontAwesomeIcon icon={faBell} />,
         href: buildLink("notifications"),
         current: rootSegment === "notifications",
       },
     ];
+
+    if (["goerli", "ethereum"].includes(network)) {
+      navigation.splice(4, 0, {
+        name: "Grants",
+        href: buildLink("grants"),
+        current: rootSegment === "grants",
+      });
+    }
   }
 
   return (
