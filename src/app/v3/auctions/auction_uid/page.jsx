@@ -66,7 +66,7 @@ const Auction = () => {
                 />
               </>
             }
-            href={`https://app.ajna.finance/pools/${data.pool_address}/auctions`}
+            href={`https://ajnafi.com/${network}/pools/${data.pool_address}/auctions`}
           />
         </div>
       ) : null}

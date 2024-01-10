@@ -59,7 +59,7 @@ const ReserveAuction = () => {
                 />
               </>
             }
-            href={`https://app.ajna.finance/pools/${data.pool_address}/reserves`}
+            href={`https://ajnafi.com/${network}/pools/${data.pool_address}/reserves`}
           />
         ) : null}
       </div>

@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { faGavel } from "@fortawesome/free-solid-svg-icons";
 import { useFetch, usePageTitle, useLinkBuilder } from "@/hooks";
-import { Link } from "react-router-dom";
+import { smartLocationParts } from "@/utils/url";
+import { Link, useLocation } from "react-router-dom";
 import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
 import SecondaryButton from "@/components/button/SecondaryButton";
@@ -12,6 +13,8 @@ import PoolName from "@/components/poolName/PoolName";
 
 const Kicker = () => {
   usePageTitle("Active Auctions");
+  const location = useLocation();
+  const { network } = smartLocationParts(location);
   const buildLink = useLinkBuilder();
   const pageSize = 10;
   const [page, setPage] = useState(1);
@@ -106,7 +109,7 @@ const Kicker = () => {
               />
             </>
           }
-          href={`https://app.ajna.finance/pools/${row.pool_address}/manage`}
+          href={`https://ajnafi.com/${network}/pools/${row.pool_address}/kicker`}
         />
       ),
       headerAlign: "end",
