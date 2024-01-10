@@ -358,6 +358,12 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
               <Address address={data.actor} />
             </Link>
           </EventValue>
+          <EventValue title="Collateral Merged">
+            <Value value={data.collateralMerged} suffix={collateralTokenSymbol} />
+          </EventValue>
+          <EventValue title="To Index Lps">
+            <Value value={data.toIndexLps} />
+          </EventValue>
         </EventData>
       );
       break;
