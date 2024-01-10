@@ -40,9 +40,6 @@ const ReserveAuctionEventFormatter = ({ type, event, quoteTokenSymbol, network }
             </ExternalLink>
             <CopyToClipboard className="mx-3" text={event.data.kicker} />
           </EventValue>
-          <EventValue title="Award">
-            <Value value={event.data.kicker_award} suffix={quoteTokenSymbol} />
-          </EventValue>
           <EventValue title="Claimable Reserves">
             <Value value={event.data.claimable_reserves} suffix={quoteTokenSymbol} />
           </EventValue>

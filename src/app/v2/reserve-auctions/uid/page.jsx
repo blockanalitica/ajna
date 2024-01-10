@@ -102,12 +102,6 @@ const ReserveAuction = () => {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
             <Kpi
-              title="Kicker Award"
-              value={
-                <Value value={data.kicker_award} suffix={data.quote_token_symbol} />
-              }
-            />
-            <Kpi
               title="Last Take price"
               value={
                 <Value
