@@ -27,27 +27,33 @@ const EventData = ({ children }) => {
   return <div className="flex flex-row space-x-4">{children}</div>;
 };
 
-const ReserveAuctionEventFormatter = ({ type, event, quoteTokenSymbol, network }) => {
+const AuctionEventFormatter = ({
+  type,
+  event,
+  quoteTokenSymbol,
+  collateralTokenSymbol,
+  network,
+}) => {
   let content;
   switch (type) {
     case "Kick":
       content = (
         <EventData>
           <EventValue title="Kicker">
-            <Address address={event.data.kicker} className="pe-3" />
+            <Address address={event.data.kicker} className="pe-2" />
             <ExternalLink href={generateEtherscanUrl(network, event.data.kicker)}>
-              <CryptoIcon name="etherscan" size={16} />
+              <CryptoIcon name="etherscan" size={14} />
             </ExternalLink>
-            <CopyToClipboard className="mx-3" text={event.data.kicker} />
+            <CopyToClipboard className="mx-2" text={event.data.kicker} size="sm" />
           </EventValue>
-          <EventValue title="Award">
-            <Value value={event.data.kicker_award} suffix={quoteTokenSymbol} />
+          <EventValue title="Debt">
+            <Value value={event.data.debt} suffix={quoteTokenSymbol} small />
           </EventValue>
-          <EventValue title="Claimable Reserves">
-            <Value value={event.data.claimable_reserves} suffix={quoteTokenSymbol} />
+          <EventValue title="Collateral">
+            <Value value={event.data.collateral} suffix={collateralTokenSymbol} small />
           </EventValue>
-          <EventValue title="Starting Price">
-            <Value value={event.data.starting_price} suffix="AJNA" />
+          <EventValue title="Bond">
+            <Value value={event.data.bond} suffix={quoteTokenSymbol} small />
           </EventValue>
         </EventData>
       );
@@ -56,24 +62,80 @@ const ReserveAuctionEventFormatter = ({ type, event, quoteTokenSymbol, network }
       content = (
         <EventData>
           <EventValue title="Taker">
-            <Address address={event.data.taker} className="pe-3" />
+            <Address address={event.data.taker} className="pe-2" />
             <ExternalLink href={generateEtherscanUrl(network, event.data.taker)}>
-              <CryptoIcon name="etherscan" size={16} />
+              <CryptoIcon name="etherscan" size={14} />
             </ExternalLink>
-            <CopyToClipboard className="mx-3" text={event.data.taker} />
+            <CopyToClipboard className="mx-2" text={event.data.taker} size="sm" />
           </EventValue>
-          <EventValue title="Quote Purchased">
-            <Value value={event.data.quote_purchased} suffix={quoteTokenSymbol} />
+          <EventValue title="Debt">
+            <Value value={event.data.amount} suffix={quoteTokenSymbol} small />
           </EventValue>
-          <EventValue title="Ajna Burned">
-            <Value value={event.data.ajna_burned} suffix="AJNA" />
+          <EventValue title="Collateral">
+            <Value value={event.data.collateral} suffix={collateralTokenSymbol} small />
           </EventValue>
-          <EventValue title="Auction Price">
-            <Value value={event.data.auction_price} suffix="AJNA" />
+          <EventValue title="Bond Change">
+            <Value value={event.data.bondChange} suffix={quoteTokenSymbol} small />
           </EventValue>
         </EventData>
       );
       break;
+
+    case "Bucket Take":
+      content = (
+        <EventData>
+          <EventValue title="Taker">
+            <Address address={event.data.taker} className="pe-2" />
+            <ExternalLink href={generateEtherscanUrl(network, event.data.taker)}>
+              <CryptoIcon name="etherscan" size={14} />
+            </ExternalLink>
+            <CopyToClipboard className="mx-2" text={event.data.taker} size="sm" />
+          </EventValue>
+          <EventValue title="Bucket Index">{event.data.index}</EventValue>
+          <EventValue title="Debt">
+            <Value value={event.data.amount} suffix={quoteTokenSymbol} small />
+          </EventValue>
+          <EventValue title="Collateral">
+            <Value value={event.data.collateral} suffix={collateralTokenSymbol} small />
+          </EventValue>
+          <EventValue title="Bond Change">
+            <Value value={event.data.bondChange} suffix={quoteTokenSymbol} small />
+          </EventValue>
+        </EventData>
+      );
+      break;
+
+    case "Auction Settle":
+      content = (
+        <EventData>
+          <EventValue title="Collateral">
+            <Value value={event.data.collateral} suffix={collateralTokenSymbol} small />
+          </EventValue>
+        </EventData>
+      );
+      break;
+
+    case "Auction NFT Settle":
+      content = (
+        <EventData>
+          <EventValue title="Collateral">
+            <Value value={event.data.collateral} suffix={collateralTokenSymbol} small />
+          </EventValue>
+          <EventValue title="Index">{event.data.index}</EventValue>
+        </EventData>
+      );
+      break;
+
+    case "Settle":
+      content = (
+        <EventData>
+          <EventValue title="Settled Debt">
+            <Value value={event.data.settled_debt} suffix={quoteTokenSymbol} small />
+          </EventValue>
+        </EventData>
+      );
+      break;
+
     default:
     // pass
   }
@@ -81,7 +143,7 @@ const ReserveAuctionEventFormatter = ({ type, event, quoteTokenSymbol, network }
   return <>{content}</>;
 };
 
-const Events = ({ uid, quoteTokenSymbol }) => {
+const Events = ({ auction_uid, quoteTokenSymbol, collateralTokenSymbol }) => {
   const location = useLocation();
   const { network } = smartLocationParts(location);
   const pageSize = 10;
@@ -91,7 +153,7 @@ const Events = ({ uid, quoteTokenSymbol }) => {
     data = {},
     error,
     isLoading,
-  } = useFetch(`/reserve-auctions/${uid}/events/`, {
+  } = useFetch(`/auctions/${auction_uid}/events/`, {
     p: page,
     p_size: pageSize,
   });
@@ -106,19 +168,21 @@ const Events = ({ uid, quoteTokenSymbol }) => {
     {
       header: "Event",
       cell: ({ row }) => <>{row.event}</>,
-      cellSize: ".5fr",
+      cellSize: "minmax(120px, auto)",
+      sticky: true,
     },
     {
       header: "Details",
       cell: ({ row }) => (
-        <ReserveAuctionEventFormatter
+        <AuctionEventFormatter
           type={row.event}
           event={row}
           quoteTokenSymbol={quoteTokenSymbol}
+          collateralTokenSymbol={collateralTokenSymbol}
           network={network}
         />
       ),
-      cellSize: "3fr",
+      cellSize: "2.5fr",
     },
     {
       header: "Time",

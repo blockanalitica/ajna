@@ -157,7 +157,6 @@ const ActiveAuctions = () => {
           />
         </>
       ),
-
       headerAlign: "end",
       cellAlign: "end",
       visibleAfter: "lg",
