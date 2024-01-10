@@ -16,14 +16,16 @@ const AllowedTokenIds = ({ tokenIds, collateralTokenSymbol, className }) => {
       <CryptoIcon name={collateralTokenSymbol} />
       <div>Allowed IDs</div>
 
-      {tokens.map((tokenId) => (
-        <div
-          key={tokenId}
-          className="rounded-xl bg-gray-2 text-black text-sm px-2 truncate max-w-[5rem]"
-        >
-          #{tokenId}
-        </div>
-      ))}
+      <div className="flex flex-wrap gap-1">
+        {tokens.map((tokenId) => (
+          <div
+            key={tokenId}
+            className="rounded-xl bg-gray-2 text-black text-sm px-2 truncate max-w-[5rem]"
+          >
+            #{tokenId}
+          </div>
+        ))}
+      </div>
       {tokenIds.length > 3 ? (
         <button
           className="text-purple-6 hover:underline"

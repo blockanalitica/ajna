@@ -42,13 +42,17 @@ const TokensTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
         />
       ),
       smallCell: ({ row }) => (
-        <ValueChange
-          value={row.underlying_price - row.prev_underlying_price}
-          prefix="$"
-          decimals={
-            Math.abs(row.underlying_price - row.prev_underlying_price) < 1 ? 5 : 2
-          }
-        />
+        <>
+          {row.prev_underlying_price ? (
+            <ValueChange
+              value={row.underlying_price - row.prev_underlying_price}
+              prefix="$"
+              decimals={
+                Math.abs(row.underlying_price - row.prev_underlying_price) < 1 ? 5 : 2
+              }
+            />
+          ) : null}
+        </>
       ),
       headerAlign: "end",
       cellAlign: "end",
