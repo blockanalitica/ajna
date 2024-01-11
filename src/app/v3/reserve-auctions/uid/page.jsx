@@ -1,6 +1,6 @@
 import { useParams, useLocation, Link } from "react-router-dom";
 import { useFetch, useLinkBuilder } from "@/hooks";
-import CryptoIcon from "@/components/icon/CryptoIcon";
+import EtherscanIcon from "@/components/icon/EtherscanIcon";
 import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 import GenericPlaceholder from "@/components/GenericPlaceholder";
 import SecondaryButton from "@/components/button/SecondaryButton";
@@ -76,7 +76,7 @@ const ReserveAuction = () => {
               <span className="text-sm">Kicker</span>
               <div className="flex">
                 <ExternalLink href={generateEtherscanUrl(network, data.kicker)}>
-                  <CryptoIcon name="etherscan" size={16} />
+                  <EtherscanIcon network={network} size={16} />
                 </ExternalLink>
                 <CopyToClipboard className="mx-3" text={data.kicker} />
 
@@ -88,7 +88,7 @@ const ReserveAuction = () => {
               <span className="text-sm">Pool</span>
               <div className="flex">
                 <ExternalLink href={generateEtherscanUrl(network, data.pool_address)}>
-                  <CryptoIcon name="etherscan" size={16} />
+                  <EtherscanIcon network={network} size={16} />
                 </ExternalLink>
                 <CopyToClipboard className="mx-3" text={data.pool_address} />
                 <Link

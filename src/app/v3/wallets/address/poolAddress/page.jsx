@@ -12,7 +12,7 @@ import Stats from "@/components/stats/Stats";
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
-import CryptoIcon from "@/components/icon/CryptoIcon";
+import EtherscanIcon from "@/components/icon/EtherscanIcon";
 import { faInfinity } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import HistoricGraphs from "./HistoricGraphs";
@@ -171,7 +171,7 @@ const WalletPoolPosition = () => {
               <span className="text-sm">Pool</span>
               <div className="flex">
                 <ExternalLink href={generateEtherscanUrl(network, data.pool_address)}>
-                  <CryptoIcon name="etherscan" size={16} />
+                  <EtherscanIcon network={network} size={16} />
                 </ExternalLink>
                 <CopyToClipboard className="mx-3" text={data.pool_address} />
                 <Link

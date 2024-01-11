@@ -1,6 +1,6 @@
 import { useParams, useLocation, Link } from "react-router-dom";
 import { useFetch, useLinkBuilder } from "@/hooks";
-import CryptoIcon from "@/components/icon/CryptoIcon";
+import EtherscanIcon from "@/components/icon/EtherscanIcon";
 import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 import GenericPlaceholder from "@/components/GenericPlaceholder";
 import SecondaryButton from "@/components/button/SecondaryButton";
@@ -83,7 +83,7 @@ const Auction = () => {
               <span className="text-sm">Borrower</span>
               <div className="flex">
                 <ExternalLink href={generateEtherscanUrl(network, data.borrower)}>
-                  <CryptoIcon name="etherscan" size={16} />
+                  <EtherscanIcon network={network} size={16} />
                 </ExternalLink>
                 <CopyToClipboard className="mx-3" text={data.borrower} />
 
@@ -101,7 +101,7 @@ const Auction = () => {
                 <span className="text-sm">Borrower EOA</span>
                 <div className="flex">
                   <ExternalLink href={generateEtherscanUrl(network, data.borrower_eoa)}>
-                    <CryptoIcon name="etherscan" size={16} />
+                    <EtherscanIcon network={network} size={16} />
                   </ExternalLink>
                   <CopyToClipboard className="mx-3" text={data.borrower_eoa} />
                   <Address address={data.borrower_eoa} />
@@ -113,7 +113,7 @@ const Auction = () => {
               <span className="text-sm">Kicker</span>
               <div className="flex">
                 <ExternalLink href={generateEtherscanUrl(network, data.kicker)}>
-                  <CryptoIcon name="etherscan" size={16} />
+                  <EtherscanIcon network={network} size={16} />
                 </ExternalLink>
                 <CopyToClipboard className="mx-3" text={data.kicker} />
 
@@ -125,7 +125,7 @@ const Auction = () => {
               <span className="text-sm">Pool</span>
               <div className="flex">
                 <ExternalLink href={generateEtherscanUrl(network, data.pool_address)}>
-                  <CryptoIcon name="etherscan" size={16} />
+                  <EtherscanIcon network={network} size={16} />
                 </ExternalLink>
                 <CopyToClipboard className="mx-3" text={data.pool_address} />
                 <Link

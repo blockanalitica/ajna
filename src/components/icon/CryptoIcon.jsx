@@ -2,7 +2,7 @@ import { useState } from "react";
 import Tooltip from "@/components/tooltip/Tooltip";
 import placeholderIcon from "@/assets/images/icon/missing-currency.svg";
 
-const CryptoIcon = ({ name, size = "24", ...rest }) => {
+const CryptoIcon = ({ name, size = "24", alt = null, ...rest }) => {
   const [imgSrc, setImgSrc] = useState(
     `https://icons.blockanalitica.com/currency/${(name || "").toLowerCase()}.svg`,
   );
@@ -17,11 +17,11 @@ const CryptoIcon = ({ name, size = "24", ...rest }) => {
       }}
       {...rest}
     >
-      <Tooltip message={name}>
+      <Tooltip message={alt || name}>
         <img
           src={imgSrc}
           style={{ width: size, height: size }}
-          alt={name}
+          alt={alt || name}
           onError={() => {
             setImgSrc(placeholderIcon);
           }}
