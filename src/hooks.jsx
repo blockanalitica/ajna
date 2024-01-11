@@ -153,7 +153,7 @@ export const useSmartNavigate = () => {
 export const useLinkBuilder = () => {
   const location = useLocation();
   let { version, network } = smartLocationParts(location);
-  if (version === "v1") {
+  if (version === "v3") {
     version = "";
   }
 

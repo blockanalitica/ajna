@@ -5,16 +5,16 @@ export const SLASH_REGEX = /^\/?|\/?$/g;
 export const smartLocationParts = (location) => {
   const pathname = location.pathname.replace(SLASH_REGEX, "");
   const paths = pathname.split("/");
-  let version = "v1";
+  let version = "v3";
   let network = "ethereum";
   let otherPaths = paths;
 
   if (paths.length > 0) {
-    const v1networks = NETWORKS["v1"];
+    const v1networks = NETWORKS["v3"];
     const v1networkOptions = v1networks.map((n) => n.key);
 
     if (v1networkOptions.includes(paths[0])) {
-      version = "v1";
+      version = "v3";
       network = paths[0];
       otherPaths = paths.slice(1);
     } else if (paths.length > 1) {
