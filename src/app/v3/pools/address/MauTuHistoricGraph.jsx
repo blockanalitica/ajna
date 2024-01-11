@@ -40,8 +40,12 @@ const MauTuHistoricGraph = ({ data, headerRight, daysAgo }) => {
   } else {
     mauSeries = prefillSerieDates(mau, 30, { label: "MAU" });
     tuSeries = prefillSerieDates(tu, 30, { label: "TU" });
-    mauUpperBoundSeries = prefillSerieDates(mau, 30, { label: "MAU Upper Bound" });
-    mauLowerBoundSeries = prefillSerieDates(tu, 30, { label: "MAU Lower Bound" });
+    mauUpperBoundSeries = prefillSerieDates(mauUpperBound, 30, {
+      label: "MAU Upper Bound",
+    });
+    mauLowerBoundSeries = prefillSerieDates(mauLowerBound, 30, {
+      label: "MAU Lower Bound",
+    });
   }
 
   const series = [

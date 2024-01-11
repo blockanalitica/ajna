@@ -178,6 +178,57 @@ const NotificationFormatter = ({ notification }) => {
       );
       break;
 
+    case "WalletAtRisk":
+      content = (
+        <>
+          <div className="font-syncopate uppercase text-sm mb-2">Wallet at Risk</div>
+          <div className="gap-x-1 flex flex-wrap items-end mb-2">
+            <PoolName
+              collateralSymbol={notification.collateral_token_symbol}
+              quoteSymbol={notification.quote_token_symbol}
+              size="sm"
+            />
+            wallet
+            <Link
+              to={buildLink(
+                `/wallets/${notification.data.wallet_address.toLowerCase()}/${
+                  notification.pool_address
+                }`,
+              )}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={notification.data.wallet_address} />
+            </Link>
+            is at risk of being liquidated
+            <Link
+              to={buildLink(`/pool/${notification.pool_address}`)}
+              className="text-purple-6 hover:underline"
+            ></Link>
+          </div>
+          <div className="flex gap-x-5 mb-2">
+            <div>
+              <div className="text-gray-6 text-xs">Collateral</div>
+              <div className="text-sm flex items-center">
+                <Value
+                  value={notification.data.collateral}
+                  suffix={notification.collateral_token_symbol}
+                />
+              </div>
+            </div>
+            <div>
+              <div className="text-gray-6 text-xs">Debt</div>
+              <div className="text-sm flex items-center">
+                <Value
+                  value={notification.data.debt}
+                  suffix={notification.quote_token_symbol}
+                />
+              </div>
+            </div>
+          </div>
+        </>
+      );
+      break;
+
     default:
     // pass
   }
