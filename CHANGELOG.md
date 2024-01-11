@@ -1,5 +1,67 @@
 # Changelog
 
+## [1.1.0](https://github.com/blockanalitica/ajna/compare/v1.0.0...v1.1.0) (2024-01-11)
+
+
+### Features
+
+* add base chain to networks ([#166](https://github.com/blockanalitica/ajna/issues/166)) ([e6871c4](https://github.com/blockanalitica/ajna/commit/e6871c45bc0c009916283c26ced73aca0f68feae))
+* Add min. debt amount to pool info ([#130](https://github.com/blockanalitica/ajna/issues/130)) ([1042973](https://github.com/blockanalitica/ajna/commit/1042973618f26d7f3f84a8438149e5b7bd08fac1))
+* add token addresses to Pool page ([#136](https://github.com/blockanalitica/ajna/issues/136)) ([3660d26](https://github.com/blockanalitica/ajna/commit/3660d262b6fe8ffb98fb1b2532fe7feaa677256f))
+* add upper and lower bound for MAU ([#132](https://github.com/blockanalitica/ajna/issues/132)) ([f12516a](https://github.com/blockanalitica/ajna/commit/f12516ae6a9364522af9e74127f05328e1ee3e6f))
+* added link to more info in notice ([#138](https://github.com/blockanalitica/ajna/issues/138)) ([6b1dccb](https://github.com/blockanalitica/ajna/commit/6b1dccb8a6f1d957960d97376635ec248d951f3c))
+* allow v3 ethereum ([#165](https://github.com/blockanalitica/ajna/issues/165)) ([fe9bfdf](https://github.com/blockanalitica/ajna/commit/fe9bfdfffffa653c849fe744e308cf37783b17ae))
+* arbitrum ([#168](https://github.com/blockanalitica/ajna/issues/168)) ([605507a](https://github.com/blockanalitica/ajna/commit/605507a4ff407d64a27a9c603f6569c8f83c279f))
+* auctions and reserve auctions ([#149](https://github.com/blockanalitica/ajna/issues/149)) ([ca637d9](https://github.com/blockanalitica/ajna/commit/ca637d9291ce285a3fd4e2d1583d621d46aba6a1))
+* duplicated v2 into v3 code and url fixes ([#170](https://github.com/blockanalitica/ajna/issues/170)) ([1949bcd](https://github.com/blockanalitica/ajna/commit/1949bcd3ad14c37480edaee3c6ec323035427f55))
+* event styling ([#146](https://github.com/blockanalitica/ajna/issues/146)) ([ebfbe8c](https://github.com/blockanalitica/ajna/commit/ebfbe8c514f00923cebb3b2dafbaa9afefa0972f))
+* foramt ResetInterestRate event ([#164](https://github.com/blockanalitica/ajna/issues/164)) ([8330853](https://github.com/blockanalitica/ajna/commit/8330853e57151ae4725681a801a43d6af712b4f1))
+* from next.js to react (vite) ([#140](https://github.com/blockanalitica/ajna/issues/140)) ([bd41bd9](https://github.com/blockanalitica/ajna/commit/bd41bd9171a527af2f0da2fa3c738f46b5937647))
+* grants ([#129](https://github.com/blockanalitica/ajna/issues/129)) ([f0efd43](https://github.com/blockanalitica/ajna/commit/f0efd43c015b69534ea54eeda5c8bc3ae2f0c150))
+* more v2 ([#142](https://github.com/blockanalitica/ajna/issues/142)) ([de36dd6](https://github.com/blockanalitica/ajna/commit/de36dd65dee46c7211de2dde434ed93a731cdaf6))
+* more v2 stuff ([#145](https://github.com/blockanalitica/ajna/issues/145)) ([17c14a9](https://github.com/blockanalitica/ajna/commit/17c14a93442f69b5d3089ca4ea1c38ac27779db3))
+* notice ([#137](https://github.com/blockanalitica/ajna/issues/137)) ([5aaa785](https://github.com/blockanalitica/ajna/commit/5aaa78503a30cc72dd9704b0520a38d5fd70b217))
+* notifications and activity heatmap ([#156](https://github.com/blockanalitica/ajna/issues/156)) ([3c094f7](https://github.com/blockanalitica/ajna/commit/3c094f75b15107c176472cc785d9b4e39a604118))
+* pool at risk ([#161](https://github.com/blockanalitica/ajna/issues/161)) ([3395cf9](https://github.com/blockanalitica/ajna/commit/3395cf920c1323e65b72ddeba08e4297ca81ecc8))
+* pool filters ([#162](https://github.com/blockanalitica/ajna/issues/162)) ([43d7854](https://github.com/blockanalitica/ajna/commit/43d78543fc8fb3f585e8526ce092d55bd45c4a6b))
+* replace v1 urls with v3 for redeploy ([#173](https://github.com/blockanalitica/ajna/issues/173)) ([1ce1eed](https://github.com/blockanalitica/ajna/commit/1ce1eed517578a6561189aa5cd414ea8ed16a61e))
+* show neutral price in auction kicker table ([#157](https://github.com/blockanalitica/ajna/issues/157)) ([1a727f5](https://github.com/blockanalitica/ajna/commit/1a727f57cb7a1fd4b5d75e944d3539c19f1a0198))
+* show total # of pools and tokens on frontpage ([#135](https://github.com/blockanalitica/ajna/issues/135)) ([19a9e3e](https://github.com/blockanalitica/ajna/commit/19a9e3e5ff006e9b2bb7cc4daa0ba9b3accc48d5))
+* some of the v2 pages ([#139](https://github.com/blockanalitica/ajna/issues/139)) ([b25ba37](https://github.com/blockanalitica/ajna/commit/b25ba37b6fbce3edf105beff1b26571be5dde48d))
+* some style changes ([#143](https://github.com/blockanalitica/ajna/issues/143)) ([0bc1424](https://github.com/blockanalitica/ajna/commit/0bc1424f494ec6708b436176d0630c77c833aab1))
+* stats history ([#155](https://github.com/blockanalitica/ajna/issues/155)) ([13a90cb](https://github.com/blockanalitica/ajna/commit/13a90cb61f09f03bc10d750467fd477d6c1bbb6a))
+* UI changes for v2/v3 ([#160](https://github.com/blockanalitica/ajna/issues/160)) ([2d08ab8](https://github.com/blockanalitica/ajna/commit/2d08ab8a7bbb4463acf7ed717bdb8b25fc6aebc9))
+* updated requirements ([#167](https://github.com/blockanalitica/ajna/issues/167)) ([e5ae5c2](https://github.com/blockanalitica/ajna/commit/e5ae5c2de9d54a384442dd84350d910cfb6dd2f2))
+* v2 auctions stuff and other changes ([#147](https://github.com/blockanalitica/ajna/issues/147)) ([87a26ee](https://github.com/blockanalitica/ajna/commit/87a26ee3d9902977c860044902392ab6bdce206b))
+* v2 style changes ([#148](https://github.com/blockanalitica/ajna/issues/148)) ([10dd323](https://github.com/blockanalitica/ajna/commit/10dd3239535b76fc0772c617fd0952b8cbb073ba))
+* v3 ([#152](https://github.com/blockanalitica/ajna/issues/152)) ([ce876de](https://github.com/blockanalitica/ajna/commit/ce876de628f6210a8e37e81d1193ac40f5776ec9))
+* v3 optimism and polygon ([#169](https://github.com/blockanalitica/ajna/issues/169)) ([c9aba55](https://github.com/blockanalitica/ajna/commit/c9aba55d92462c9bd51adb396e8c8a4f2a3412b1))
+* wallets at risk ([#144](https://github.com/blockanalitica/ajna/issues/144)) ([84556bf](https://github.com/blockanalitica/ajna/commit/84556bf8a97378a82260bb538ede47020e44abad))
+
+
+### Bug Fixes
+
+* auctions and reserve auctions ([#154](https://github.com/blockanalitica/ajna/issues/154)) ([f1a8b5a](https://github.com/blockanalitica/ajna/commit/f1a8b5a437e1e8c17d0bbdb8610e04f454e79db8))
+* Change info text for health rate ([#126](https://github.com/blockanalitica/ajna/issues/126)) ([87b2739](https://github.com/blockanalitica/ajna/commit/87b2739d125154358ed93bf54da30ed94164e197))
+* Change info text for health rate again ([#127](https://github.com/blockanalitica/ajna/issues/127)) ([4598d63](https://github.com/blockanalitica/ajna/commit/4598d639a9a606f3dff2ed8e6d668f4eaa668f1a))
+* change pool price to lup not hpb ([#134](https://github.com/blockanalitica/ajna/issues/134)) ([f2cbea9](https://github.com/blockanalitica/ajna/commit/f2cbea9013c1b4b4c3bb4cad623fab274ca5d24d))
+* Change text of MAU info ([#124](https://github.com/blockanalitica/ajna/issues/124)) ([5f44b8a](https://github.com/blockanalitica/ajna/commit/5f44b8af8af9d35b668c5e90b188c6d9fbd995e0))
+* couple minor fixes ([#163](https://github.com/blockanalitica/ajna/issues/163)) ([d10a215](https://github.com/blockanalitica/ajna/commit/d10a2155ab9cdae18b0c1d644ea2c34ee025e471))
+* event formatter and reserve auctions ajna symbol ([#150](https://github.com/blockanalitica/ajna/issues/150)) ([e355b30](https://github.com/blockanalitica/ajna/commit/e355b306b07bc55ba9db4cdf8184f3a931dde391))
+* mau/tu graph &gt; 30 days ([#175](https://github.com/blockanalitica/ajna/issues/175)) ([b13c94a](https://github.com/blockanalitica/ajna/commit/b13c94ab59d48b6fdb26fcd8d77adf9fd611d66f))
+* MergeOrRemoveCollateralNFT event formatter ([#174](https://github.com/blockanalitica/ajna/issues/174)) ([2284df0](https://github.com/blockanalitica/ajna/commit/2284df0e822b631a628858a7dd7c3767a585acb4))
+* mobile designs ([#158](https://github.com/blockanalitica/ajna/issues/158)) ([de1fc4e](https://github.com/blockanalitica/ajna/commit/de1fc4e796f02670b1eb9b5aaaed6ef8fce65898))
+* NFT UI, token price, sentry error boundary ([#171](https://github.com/blockanalitica/ajna/issues/171)) ([108f706](https://github.com/blockanalitica/ajna/commit/108f706ffce69c1f80d33a0400234b2cff297b33))
+* pool and token search ([#133](https://github.com/blockanalitica/ajna/issues/133)) ([197c8b3](https://github.com/blockanalitica/ajna/commit/197c8b3542e9167431cb069217e3a7954ee0869b))
+* removed grants from all except goerli and ethereum ([#172](https://github.com/blockanalitica/ajna/issues/172)) ([b903354](https://github.com/blockanalitica/ajna/commit/b9033548e85b28ce7d7ce11e9741061f8c85e9d6))
+* rename Fees to Reserves ([#128](https://github.com/blockanalitica/ajna/issues/128)) ([1658d79](https://github.com/blockanalitica/ajna/commit/1658d79530dcbc8fcc3ee107573e360fccdb6350))
+* reserve auctions ([#153](https://github.com/blockanalitica/ajna/issues/153)) ([787ee99](https://github.com/blockanalitica/ajna/commit/787ee994c843db94ee5df91c5ec3300242b27451))
+* updated notice ([#151](https://github.com/blockanalitica/ajna/issues/151)) ([672c511](https://github.com/blockanalitica/ajna/commit/672c5114fe8f95b3bb9ff6afdd75fab6fc752efb))
+* use reserves instead of fees ([#131](https://github.com/blockanalitica/ajna/issues/131)) ([b73b028](https://github.com/blockanalitica/ajna/commit/b73b028edc2985cdec672b017e2291e392ec5556))
+* v2 events and other minor fixes ([#141](https://github.com/blockanalitica/ajna/issues/141)) ([ab0fa65](https://github.com/blockanalitica/ajna/commit/ab0fa6593481718c502ffaf6c93c1c4d95d7033b))
+* v3 ([#159](https://github.com/blockanalitica/ajna/issues/159)) ([29fb0dd](https://github.com/blockanalitica/ajna/commit/29fb0dda13537d57aa13fc847090b58a3ace8356))
+* WalletAtRisk notification format ([#176](https://github.com/blockanalitica/ajna/issues/176)) ([e8e3a6a](https://github.com/blockanalitica/ajna/commit/e8e3a6a14db1150749bbc8c319fe9da0149d1431))
+
 ## 1.0.0 (2023-08-02)
 
 
