@@ -7,7 +7,7 @@ import { shorten } from "@/utils/address";
 import Address from "@/components/address/Address";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import { generateEtherscanUrl, smartLocationParts } from "@/utils/url";
-import CryptoIcon from "@/components/icon/CryptoIcon";
+import EtherscanIcon from "@/components/icon/EtherscanIcon";
 import ExternalLink from "@/components/externalLink/ExternalLink";
 import CopyToClipboard from "@/components/copyToClipboard/CopyToClipboard";
 import WalletInfo from "./WalletInfo";
@@ -60,7 +60,7 @@ const Wallet = () => {
             <Address address={data.eoa} />
             <CopyToClipboard className="mx-3" text={data.eoa} />
             <ExternalLink href={generateEtherscanUrl(network, data.eoa)}>
-              <CryptoIcon name="etherscan" size={16} />
+              <EtherscanIcon network={network} size={16} />
             </ExternalLink>
           </div>
         ) : null}

@@ -5,7 +5,7 @@ import { DateTime } from "luxon";
 import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
 import DateTimeAgo from "@/components/dateTime/DateTimeAgo";
-import CryptoIcon from "@/components/icon/CryptoIcon";
+import EtherscanIcon from "@/components/icon/EtherscanIcon";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { generateEtherscanUrl } from "@/utils/url";
 import CopyToClipboard from "@/components/copyToClipboard/CopyToClipboard";
@@ -36,7 +36,7 @@ const ReserveAuctionEventFormatter = ({ type, event, quoteTokenSymbol, network }
           <EventValue title="Kicker">
             <Address address={event.data.kicker} className="pe-3" />
             <ExternalLink href={generateEtherscanUrl(network, event.data.kicker)}>
-              <CryptoIcon name="etherscan" size={16} />
+              <EtherscanIcon network={network} size={16} />
             </ExternalLink>
             <CopyToClipboard className="mx-3" text={event.data.kicker} />
           </EventValue>
@@ -55,7 +55,7 @@ const ReserveAuctionEventFormatter = ({ type, event, quoteTokenSymbol, network }
           <EventValue title="Taker">
             <Address address={event.data.taker} className="pe-3" />
             <ExternalLink href={generateEtherscanUrl(network, event.data.taker)}>
-              <CryptoIcon name="etherscan" size={16} />
+              <EtherscanIcon network={network} size={16} />
             </ExternalLink>
             <CopyToClipboard className="mx-3" text={event.data.taker} />
           </EventValue>

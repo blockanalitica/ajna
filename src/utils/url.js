@@ -35,9 +35,24 @@ export const smartLocationParts = (location) => {
 export const generateEtherscanUrl = (network, address, path = "address") => {
   let domain = "etherscan.io";
 
-  if (network === "goerli") {
-    domain = "goerli.etherscan.io";
+  switch (network) {
+    case "goerli":
+      domain = "goerli.etherscan.io";
+      break;
+    case "base":
+      domain = "basescan.org";
+      break;
+    case "arbitrum":
+      domain = "arbiscan.io";
+      break;
+    case "optimism":
+      domain = "optimistic.etherscan.io";
+      break;
+    case "polygon":
+      domain = "polygonscan.com";
+      break;
+    default:
+    // pass
   }
-
   return `https://${domain}/${path}/${address}`;
 };

@@ -6,6 +6,7 @@ import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 import CardBackground from "@/components/card/CardBackground";
 import CopyToClipboard from "@/components/copyToClipboard/CopyToClipboard";
 import CryptoIcon from "@/components/icon/CryptoIcon";
+import EtherscanIcon from "@/components/icon/EtherscanIcon";
 import Info from "@/components/info/Info";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import Tag from "@/components/tags/Tag";
@@ -195,7 +196,7 @@ const Pool = () => {
                     href={generateEtherscanUrl(network, pool.collateral_token_address)}
                     className="mr-3"
                   >
-                    <CryptoIcon name="etherscan" size={16} />
+                    <EtherscanIcon network={network} size={16} />
                   </ExternalLink>
                   <CopyToClipboard
                     className="mr-3"
@@ -218,7 +219,7 @@ const Pool = () => {
                     href={generateEtherscanUrl(network, pool.quote_token_address)}
                     className="mr-3"
                   >
-                    <CryptoIcon name="etherscan" size={16} />
+                    <EtherscanIcon network={network} size={16} />
                   </ExternalLink>
                   <CopyToClipboard className="mr-3" text={pool.quote_token_address} />
                   <Address address={pool.quote_token_address} />
@@ -333,7 +334,7 @@ const Pool = () => {
                   href={generateEtherscanUrl(network, pool.address)}
                   className="mr-3"
                 >
-                  <CryptoIcon name="etherscan" size={16} />
+                  <EtherscanIcon network={network} size={16} />
                 </ExternalLink>
                 <CopyToClipboard className="mr-3" text={pool.address} />
 
