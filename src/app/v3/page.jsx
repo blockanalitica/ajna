@@ -1,43 +1,65 @@
-import { useQueryParams } from "@/hooks";
-import TotalStats from "./TotalStats";
-import TopPools from "./TopPools";
-import TopTokens from "./TopTokens";
-import HistoryStatsGraph from "./HistoryStatsGraph";
-import HistoryVolumeGraph from "./HistoryVolumeGraph";
+import { useState } from "react";
+import { useQueryParams, usePageTitle, useFetch } from "@/hooks";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
-import CardBackground from "@/components/card/CardBackground";
+import NetworksTable from "./NetworksTable";
+import NetworksInfo from "./NetworksInfo";
+import HistoricGraphs from "./HistoricGraphs";
+import { Link } from "react-router-dom";
+import ajnaLogo from "@/assets/images/logos/AJNA-Logo-LG.svg";
 
 const Page = () => {
+  usePageTitle("Info Ajna Dashboard");
   const { queryParams, setQueryParams } = useQueryParams();
   const daysAgo = parseInt(queryParams.get("daysAgo")) || 1;
+  const [order, setOrder] = useState("-tvl");
+
+  const {
+    data = {},
+    error,
+    isLoading,
+  } = useFetch(
+    "/overall/",
+    {
+      order,
+      days_ago: daysAgo,
+    },
+    null,
+    true,
+  );
+
+  if (error) {
+    return <p>Failed to load data</p>;
+  }
+
+  const { results, totals } = data;
 
   const onDisplaySwitchChange = (value) => {
     setQueryParams({ daysAgo: value });
   };
 
   return (
-    <>
-      <section className="flex items-center justify-center sm:justify-end mb-10">
-        <DisplaySwitch onChange={onDisplaySwitchChange} activeOption={daysAgo} />
-      </section>
+    <div>
+      <nav className="flex flex-col md:flex-row items-center justify-center md:justify-between mb-5">
+        <Link to="/" className="mb-5">
+          <img src={ajnaLogo} width="130" height="24" alt="Ajna" className="h-auto" />
+        </Link>
+        <div className="mb-5">
+          <DisplaySwitch onChange={onDisplaySwitchChange} activeOption={daysAgo} />
+        </div>
+      </nav>
 
-      <TotalStats className="mb-10" daysAgo={daysAgo} />
+      <NetworksInfo data={totals} isLoading={isLoading} className="mb-10" />
 
-      <div className="flex flex-col-reverse md:flex-row md:gap-4">
-        <CardBackground className="md:w-1/2 mb-10">
-          <HistoryStatsGraph />
-        </CardBackground>
-        <CardBackground className="md:w-1/2 mb-10">
-          <HistoryVolumeGraph />
-        </CardBackground>
-      </div>
+      <NetworksTable
+        data={results}
+        onOrderChange={setOrder}
+        currentOrder={order}
+        isLoading={isLoading}
+        className="mb-10"
+      />
 
-      <div className="mb-10">
-        <TopPools daysAgo={daysAgo} />
-      </div>
-
-      <TopTokens daysAgo={daysAgo} />
-    </>
+      {isLoading ? null : <HistoricGraphs days_ago={daysAgo} totals={totals} />}
+    </div>
   );
 };
 

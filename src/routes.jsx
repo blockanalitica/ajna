@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import { NETWORKS } from "@/networks";
 import SimpleRedirect from "@/components/simpleRedirect/SimpleRedirect";
 import Layout from "@/app/layout";
+import LayoutSimple from "@/app/layoutSimple";
 import Error404 from "@/app/404";
 import Homepage from "@/app/page";
 import Pools from "@/app/pools/page";
@@ -29,23 +30,24 @@ import Auction from "@/app/v2/auctions/auction_uid/page";
 import V2Grants from "@/app/v2/grants/page";
 import ReserveAuction from "@/app/v2/reserve-auctions/uid/page";
 import Notifications from "@/app/v2/notifications/page";
+import V3NetworkHomepage from "@/app/v3/network/page";
+import V3Pools from "@/app/v3/network/pools/page";
+import V3Pool from "@/app/v3/network/pools/address/page";
+import V3PoolWallets from "@/app/v3/network/pools/address/positions/page";
+import V3Tokens from "@/app/v3/network/tokens/page";
+import V3Token from "@/app/v3/network/tokens/address/page";
+import V3Wallets from "@/app/v3/network/wallets/page";
+import V3Wallet from "@/app/v3/network/wallets/address/page";
+import V3TimeMachine from "@/app/v3/network/wallets/address/time-machine/page";
+import V3WalletPoolPosition from "@/app/v3/network/wallets/address/poolAddress/page";
+import V3Buckets from "@/app/v3/network/pools/address/buckets/page";
+import V3Bucket from "@/app/v3/network/pools/address/buckets/index/page";
+import V3Auctions from "@/app/v3/network/auctions/page";
+import V3Auction from "@/app/v3/network/auctions/auction_uid/page";
+import V3Grants from "@/app/v3/network/grants/page";
+import V3ReserveAuction from "@/app/v3/network/reserve-auctions/uid/page";
+import V3Notifications from "@/app/v3/network/notifications/page";
 import V3Homepage from "@/app/v3/page";
-import V3Pools from "@/app/v3/pools/page";
-import V3Pool from "@/app/v3/pools/address/page";
-import V3PoolWallets from "@/app/v3/pools/address/positions/page";
-import V3Tokens from "@/app/v3/tokens/page";
-import V3Token from "@/app/v3/tokens/address/page";
-import V3Wallets from "@/app/v3/wallets/page";
-import V3Wallet from "@/app/v3/wallets/address/page";
-import V3TimeMachine from "@/app/v3/wallets/address/time-machine/page";
-import V3WalletPoolPosition from "@/app/v3/wallets/address/poolAddress/page";
-import V3Buckets from "@/app/v3/pools/address/buckets/page";
-import V3Bucket from "@/app/v3/pools/address/buckets/index/page";
-import V3Auctions from "@/app/v3/auctions/page";
-import V3Auction from "@/app/v3/auctions/auction_uid/page";
-import V3Grants from "@/app/v3/grants/page";
-import V3ReserveAuction from "@/app/v3/reserve-auctions/uid/page";
-import V3Notifications from "@/app/v3/notifications/page";
 
 const AjnaRoutes = () => {
   const routes = {
@@ -84,7 +86,7 @@ const AjnaRoutes = () => {
       { path: "/notifications", element: <Notifications /> },
     ],
     v3: [
-      { path: "", element: <V3Homepage /> },
+      { path: "", element: <V3NetworkHomepage /> },
       { path: "/pools", element: <V3Pools /> },
       { path: "/pools/:address", element: <V3Pool /> },
       { path: "/pools/:address/positions", element: <V3PoolWallets /> },
@@ -124,12 +126,17 @@ const AjnaRoutes = () => {
 
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<SimpleRedirect replace to="/ethereum" />} />
-        {allRoutes.map((route) => route)}
+      <Route path="/">
+        <Route element={<LayoutSimple />}>
+          <Route index element={<V3Homepage />} />
+        </Route>
+
+        <Route element={<Layout />}>{allRoutes.map((route) => route)}</Route>
 
         {/* Catch all */}
-        <Route path="*" element={<Error404 />} />
+        <Route element={<LayoutSimple />}>
+          <Route path="*" element={<Error404 />} />
+        </Route>
       </Route>
     </Routes>
   );

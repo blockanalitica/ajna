@@ -8,7 +8,7 @@ import { smartLocationParts } from "@/utils/url";
 
 const clickOutsideEvents = ["mousedown", "touchstart"];
 
-export const useFetch = (path, query, options) => {
+export const useFetch = (path, query, options, noNetwork = false) => {
   const location = useLocation();
   const { version, network } = smartLocationParts(location);
 
@@ -16,8 +16,12 @@ export const useFetch = (path, query, options) => {
   if (qs) {
     qs = `?${qs}`;
   }
-
-  const url = urlJoin(version, network, path, "/", qs);
+  let url;
+  if (noNetwork === true) {
+    url = urlJoin(version, path, "/", qs);
+  } else {
+    url = urlJoin(version, network, path, "/", qs);
+  }
 
   const settings = {
     retry: (failureCount, error) => {
