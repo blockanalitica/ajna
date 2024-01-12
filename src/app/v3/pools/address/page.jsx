@@ -92,7 +92,7 @@ const Pool = () => {
       </section>
 
       <div className="flex flex-col sm:flex-row justify-between">
-        <div className="flex items-center  mb-5">
+        <div className="flex items-center mb-5">
           <PoolName
             collateralSymbol={pool.collateral_token_symbol}
             quoteSymbol={pool.quote_token_symbol}
@@ -124,6 +124,12 @@ const Pool = () => {
           </Tag>
         </div>
       </div>
+
+      {pool.collateral_token_is_estimated_price ? (
+        <div className="text-xs text-gray-13 text-end mb-5">
+          USD prices are an estimation as we couldn't fetch the actual price
+        </div>
+      ) : null}
 
       <div>
         {pool.erc === "erc721" && pool.allowed_token_ids?.length > 0 ? (

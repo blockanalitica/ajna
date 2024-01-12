@@ -73,6 +73,10 @@ const TokensPage = () => {
         isLoading={isLoading}
         placeholderRows={5}
       />
+
+      <div className="text-xs text-gray-13 text-end pt-5">
+        * price is an estimation as we couldn't fetch the actual price
+      </div>
     </>
   );
 };
