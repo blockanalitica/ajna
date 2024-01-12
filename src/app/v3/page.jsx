@@ -38,12 +38,12 @@ const Page = () => {
   };
 
   return (
-    <>
-      <nav className="mb-10">
-        <div className="flex items-center justify-between">
-          <Link to="/">
-            <img src={ajnaLogo} width="130" height="24" alt="Ajna" className="h-auto" />
-          </Link>
+    <div>
+      <nav className="flex flex-col md:flex-row items-center justify-center md:justify-between mb-5">
+        <Link to="/" className="mb-5">
+          <img src={ajnaLogo} width="130" height="24" alt="Ajna" className="h-auto" />
+        </Link>
+        <div className="mb-5">
           <DisplaySwitch onChange={onDisplaySwitchChange} activeOption={daysAgo} />
         </div>
       </nav>
@@ -59,7 +59,7 @@ const Page = () => {
       />
 
       <HistoricGraphs days_ago={daysAgo} />
-    </>
+    </div>
   );
 };
 

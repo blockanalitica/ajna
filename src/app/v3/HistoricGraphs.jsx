@@ -2,12 +2,11 @@ import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import { useFetch } from "@/hooks";
 import { useState } from "react";
 import CardBackground from "@/components/card/CardBackground";
-import Graph from "@/components/graph/Graph";
 import { prefillSerieDates } from "@/utils/graph";
 import { compact } from "@/utils/number";
-import { tooltipLabelNumber, tooltipTitleDateTime } from "@/utils/graph";
-import _ from "lodash";
-import { NETWORKS_NAME_MAP } from "@/networks";
+import FancyGraph from "@/components/graph/FancyGraph";
+import Value from "@/components/value/Value";
+import { DateTime } from "luxon";
 
 const HistoricGraphs = ({ daysAgo }) => {
   const [displayOption, setDisplayOption] = useState("tvl");
@@ -39,19 +38,13 @@ const HistoricGraphs = ({ daysAgo }) => {
       { key: "collateral_usd", value: "Collateral" },
     ];
 
-    const grouped = _.groupBy(data, "network");
-
-    const series = [];
-    Object.entries(grouped).forEach(([key, rows]) => {
-      const serie = rows.map((row) => ({
-        x: row["date"],
-        y: row[displayOption],
-      }));
-      series.push({
-        label: NETWORKS_NAME_MAP[key],
+    const serie = data.map((row) => ({ x: row.date, y: row[displayOption] }));
+    const series = [
+      {
+        label: "earn",
         data: prefillSerieDates(serie),
-      });
-    });
+      },
+    ];
 
     const options = {
       interaction: {
@@ -66,50 +59,55 @@ const HistoricGraphs = ({ daysAgo }) => {
         },
         y: {
           ticks: {
-            callback: (value) => "$" + compact(value, 2, true),
-          },
-        },
-      },
-      plugins: {
-        legend: {
-          display: true,
-        },
-        tooltip: {
-          callbacks: {
-            title: (tooltipItems) => {
-              return tooltipTitleDateTime(tooltipItems, false, false, "LLL dd, y");
-            },
-            label: (tooltipItem) => {
-              return tooltipLabelNumber(tooltipItem, "$");
-            },
+            callback: (value) => compact(value, 2, true),
           },
         },
       },
     };
 
+    const valueFormatter = (data) => {
+      return <Value value={data.y} prefix="$" big compact />;
+    };
+
+    const subvalueFormatter = (data) => {
+      const value = data.x;
+
+      let date;
+      if (typeof value == "number") {
+        date = DateTime.fromMillis(value);
+      } else {
+        date = DateTime.fromISO(value);
+      }
+      const format = "LLL dd, y";
+      return `${date.toFormat(format)}`;
+    };
+    const headerRight = (
+      <DisplaySwitch
+        options={displayOptions}
+        onChange={setDisplayOption}
+        activeOption={displayOption}
+        small
+      />
+    );
+
     content = (
-      <>
-        <div className="mb-4 flex justify-center items-start">
-          <DisplaySwitch
-            options={displayOptions}
-            onChange={setDisplayOption}
-            activeOption={displayOption}
-            small
-          />
-        </div>
-        <Graph
-          type="line"
-          key={`graph-${displayOption}`}
-          series={series}
-          options={options}
-        />
-      </>
+      <FancyGraph
+        type={displayOption === "volume" ? "bar" : "line"}
+        key={`graph-${displayOption}`}
+        series={series}
+        options={options}
+        valueFormatter={valueFormatter}
+        subvalueFormatter={subvalueFormatter}
+        headerRight={headerRight}
+      />
     );
   }
 
   return (
-    <div className="flex items-center justify-center">
-      <CardBackground className="md:w-2/3 ">{content}</CardBackground>
+    <div className="md:flex items-center justify-center">
+      <CardBackground className="md:w-2/3 justify-self-center">
+        {content}
+      </CardBackground>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faXmark, faHouse } from "@fortawesome/free-solid-svg-icons";
 import { faBell } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classnames from "classnames";
@@ -30,6 +30,10 @@ const Navbar = () => {
     ];
   } else {
     navigation = [
+      {
+        name: <FontAwesomeIcon icon={faHouse} />,
+        href: "/",
+      },
       { name: "Pools", href: buildLink("pools"), current: rootSegment === "pools" },
       { name: "Tokens", href: buildLink("tokens"), current: rootSegment === "tokens" },
       {
@@ -42,7 +46,6 @@ const Navbar = () => {
         href: buildLink("wallets"),
         current: rootSegment === "wallets",
       },
-
       {
         name: <FontAwesomeIcon icon={faBell} />,
         href: buildLink("notifications"),
