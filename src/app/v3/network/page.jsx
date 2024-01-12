@@ -1,3 +1,4 @@
+import { useLocation } from "react-router-dom";
 import { useQueryParams } from "@/hooks";
 import TotalStats from "./TotalStats";
 import TopPools from "./TopPools";
@@ -6,8 +7,11 @@ import HistoryStatsGraph from "./HistoryStatsGraph";
 import HistoryVolumeGraph from "./HistoryVolumeGraph";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import CardBackground from "@/components/card/CardBackground";
+import { smartLocationParts } from "@/utils/url";
 
 const Page = () => {
+  const location = useLocation();
+  const { network } = smartLocationParts(location);
   const { queryParams, setQueryParams } = useQueryParams();
   const daysAgo = parseInt(queryParams.get("daysAgo")) || 1;
 
@@ -25,10 +29,10 @@ const Page = () => {
 
       <div className="flex flex-col-reverse md:flex-row md:gap-4">
         <CardBackground className="md:w-1/2 mb-10">
-          <HistoryStatsGraph />
+          <HistoryStatsGraph key={`hist-stats-${network}`} />
         </CardBackground>
         <CardBackground className="md:w-1/2 mb-10">
-          <HistoryVolumeGraph />
+          <HistoryVolumeGraph key={`hist-volume-${network}`} />
         </CardBackground>
       </div>
 
