@@ -5,6 +5,7 @@ import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 import GenericPlaceholder from "@/components/GenericPlaceholder";
 import Tag from "@/components/tags/Tag";
+import Info from "@/components/info/Info";
 import Value from "@/components/value/Value";
 import TokenInfo from "./TokenInfo";
 import TokenArbitragePools from "./TokenArbitragePools";
@@ -51,8 +52,18 @@ const TokenPage = () => {
           {token.is_estimated_price ? "*" : ""}
         </Tag>
         {token.is_estimated_price ? (
-          <div className="text-xs text-gray-13 text-end pt-5">
-            * price is an estimation as we couldn't fetch the actual price
+          <div className="text-xs text-gray-13 text-end mb-5">
+            * price is an estimation
+            <Info className="ms-2" title="USD Price">
+              <p className="mb-2">
+                USD price marked with * is an estimation as we couldn't fetch the actual
+                price.
+              </p>
+              <p className="mb-2">
+                We estimate the price based on the formula below from all the pools:
+              </p>
+              <code>MAX(LUP * &lt;quote token USD price&gt;)</code>
+            </Info>
           </div>
         ) : null}
       </div>

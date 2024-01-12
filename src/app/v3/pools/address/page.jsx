@@ -127,7 +127,17 @@ const Pool = () => {
 
       {pool.collateral_token_is_estimated_price ? (
         <div className="text-xs text-gray-13 text-end mb-5">
-          USD prices are an estimation as we couldn't fetch the actual price
+          USD prices are an estimation
+          <Info className="ms-2" title="USD Prices">
+            <p className="mb-2">
+              Current USD prices are an estimation as we couldn't fetch the actual
+              price.
+            </p>
+            <p className="mb-2">
+              We estimate the price based on the formula below from all the pools:
+            </p>
+            <code>MAX(LUP * &lt;quote token USD price&gt;)</code>
+          </Info>
         </div>
       ) : null}
 
