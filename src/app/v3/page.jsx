@@ -58,7 +58,7 @@ const Page = () => {
         className="mb-10"
       />
 
-      <HistoricGraphs days_ago={daysAgo} />
+      {isLoading ? null : <HistoricGraphs days_ago={daysAgo} totals={totals} />}
     </div>
   );
 };

@@ -8,7 +8,7 @@ import FancyGraph from "@/components/graph/FancyGraph";
 import Value from "@/components/value/Value";
 import { DateTime } from "luxon";
 
-const HistoricGraphs = ({ daysAgo }) => {
+const HistoricGraphs = ({ daysAgo, totals }) => {
   const [displayOption, setDisplayOption] = useState("tvl");
   const actualDaysAgo = daysAgo > 7 ? daysAgo : 30;
   const { data, error, isLoading } = useFetch(
@@ -39,6 +39,8 @@ const HistoricGraphs = ({ daysAgo }) => {
     ];
 
     const serie = data.map((row) => ({ x: row.date, y: row[displayOption] }));
+    serie.push({ x: DateTime.now().toISODate(), y: totals[displayOption] });
+
     const series = [
       {
         label: "earn",
