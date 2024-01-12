@@ -34,12 +34,15 @@ const TokensTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
     {
       header: "Price",
       cell: ({ row }) => (
-        <Value
-          value={row.underlying_price}
-          prefix="$"
-          dashIfZero
-          decimals={row.underlying_price < 1 ? 5 : 2}
-        />
+        <>
+          <Value
+            value={row.underlying_price}
+            prefix="$"
+            dashIfZero
+            decimals={row.underlying_price < 1 ? 5 : 2}
+          />
+          {row.is_estimated_price ? "*" : ""}
+        </>
       ),
       smallCell: ({ row }) => (
         <>

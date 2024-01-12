@@ -92,7 +92,7 @@ const Pool = () => {
       </section>
 
       <div className="flex flex-col sm:flex-row justify-between">
-        <div className="flex items-center  mb-5">
+        <div className="flex items-center mb-5">
           <PoolName
             collateralSymbol={pool.collateral_token_symbol}
             quoteSymbol={pool.quote_token_symbol}
@@ -124,6 +124,22 @@ const Pool = () => {
           </Tag>
         </div>
       </div>
+
+      {pool.collateral_token_is_estimated_price ? (
+        <div className="text-xs text-gray-13 text-end mb-5">
+          USD prices are an estimation
+          <Info className="ms-2" title="USD Prices">
+            <p className="mb-2">
+              Current USD prices are an estimation as we couldn't fetch the actual
+              price.
+            </p>
+            <p className="mb-2">
+              We estimate the price based on the formula below from all the pools:
+            </p>
+            <code>MAX(LUP * &lt;quote token USD price&gt;)</code>
+          </Info>
+        </div>
+      ) : null}
 
       <div>
         {pool.erc === "erc721" && pool.allowed_token_ids?.length > 0 ? (
