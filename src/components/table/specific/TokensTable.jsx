@@ -4,6 +4,7 @@ import CryptoIcon from "@/components/icon/CryptoIcon";
 import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
 import ValueChange from "@/components/value/ValueChange";
+import { shortenText } from "@/utils/text";
 
 const TokensTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
   const buildLink = useLinkBuilder();
@@ -26,7 +27,7 @@ const TokensTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
         </>
       ),
       smallCell: ({ row }) => (
-        <span className="hidden sm:inline-block ml-8">{row.name}</span>
+        <span className="hidden sm:inline-block ml-8">{shortenText(row.name, 40)}</span>
       ),
       cellSize: "minmax(120px, auto)",
       sticky: true,
