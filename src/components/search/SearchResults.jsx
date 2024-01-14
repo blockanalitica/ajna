@@ -2,6 +2,7 @@ import { useFetch, useLinkBuilder } from "@/hooks";
 import CryptoIcon from "@/components/icon/CryptoIcon";
 import Value from "@/components/value/Value";
 import ResultTable from "./ResultTable";
+import { shortenText } from "@/utils/text";
 
 const SearchResults = ({ searchTerm }) => {
   const buildLink = useLinkBuilder();
@@ -48,7 +49,7 @@ const SearchResults = ({ searchTerm }) => {
         <>
           <CryptoIcon name={row.symbol} />
           <span className="ml-2">
-            {row.name}
+            {shortenText(row.name, 40)}
             <span className="text-gray-13 ml-2">({row.symbol})</span>
           </span>
         </>
