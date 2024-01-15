@@ -1,6 +1,5 @@
 import classnames from "classnames";
 import _ from "lodash";
-import { useMediaQuery } from "@/hooks";
 import Pagination from "@/components/pagination/Pagination";
 import GenericEmptyPlaceholder from "@/components/GenericEmptyPlaceholder";
 import { Link } from "react-router-dom";
@@ -29,12 +28,6 @@ const Table = ({
   placeholderFooter,
   ...rest
 }) => {
-  const media = {
-    sm: useMediaQuery("sm"),
-    md: useMediaQuery("md"),
-    lg: useMediaQuery("lg"),
-    xl: useMediaQuery("xl"),
-  };
   if (isLoading) {
     return (
       <TablePlaceholder
@@ -54,9 +47,6 @@ const Table = ({
 
   const cellSizes = columns
     .map((column) => {
-      if (column.visibleAfter && !media[column.visibleAfter]) {
-        return null;
-      }
       return column.cellSize || "1fr";
     })
     .join(" ");
@@ -90,12 +80,6 @@ const Table = ({
             <>
               <div className={classnames("contents text-gray-4 text-sm")}>
                 {columns.map((column, colIndex) => {
-                  const isVisible = column.visibleAfter
-                    ? media[column.visibleAfter]
-                    : true;
-                  if (!isVisible) {
-                    return null;
-                  }
                   return (
                     <HeaderCell
                       key={`col-${colIndex}`}
@@ -127,12 +111,6 @@ const Table = ({
                     to={_.isFunction(linkTo) ? linkTo(row) : linkTo}
                   >
                     {columns.map((column, colIndex) => {
-                      const isVisible = column.visibleAfter
-                        ? media[column.visibleAfter]
-                        : true;
-                      if (!isVisible) {
-                        return null;
-                      }
                       return (
                         <div
                           key={`row-${rowKey}-${colIndex}`}
