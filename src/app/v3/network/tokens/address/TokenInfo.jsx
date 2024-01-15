@@ -18,7 +18,7 @@ const TokenInfo = ({ address, daysAgo, className, ...rest }) => {
 
   const { results } = data;
 
-  const stats = [
+  const statsRow1 = [
     {
       title: "Deposited",
       value: (
@@ -88,6 +88,9 @@ const TokenInfo = ({ address, daysAgo, className, ...rest }) => {
         </>
       ),
     },
+  ];
+
+  const statsRow2 = [
     {
       title: "TVL",
       value: (
@@ -115,7 +118,12 @@ const TokenInfo = ({ address, daysAgo, className, ...rest }) => {
     },
   ];
 
-  return <Stats data={stats} className={className} {...rest} />;
+  return (
+    <div className={className} {...rest}>
+      <Stats data={statsRow1} className="mb-5" />
+      <Stats data={statsRow2} />
+    </div>
+  );
 };
 
 export default TokenInfo;
