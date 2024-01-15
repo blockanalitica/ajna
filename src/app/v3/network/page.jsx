@@ -27,7 +27,7 @@ const Page = () => {
 
       <TotalStats className="mb-10" daysAgo={daysAgo} />
 
-      <div className="flex flex-col-reverse md:flex-row md:gap-4">
+      <div className="flex flex-col md:flex-row md:gap-4">
         <CardBackground className="md:w-1/2 mb-10">
           <HistoryStatsGraph key={`hist-stats-${network}`} />
         </CardBackground>
