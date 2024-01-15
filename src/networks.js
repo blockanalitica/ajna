@@ -1,6 +1,6 @@
 export const NETWORKS_ICON_MAP = {
   ethereum: "eth",
-  goerli: "eth",
+  goerli: "goerli",
   base: "base",
   arbitrum: "arb",
   optimism: "op",
