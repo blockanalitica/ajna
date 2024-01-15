@@ -15,51 +15,39 @@ const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
 
   const location = useLocation();
-  const { paths, version, network } = smartLocationParts(location);
+  const { paths, network } = smartLocationParts(location);
   const rootSegment = paths && paths.length > 0 ? paths[0] : null;
-  let navigation = [];
-  if (version === "v1") {
-    navigation = [
-      { name: "Pools", href: buildLink("pools"), current: rootSegment === "pools" },
-      { name: "Tokens", href: buildLink("tokens"), current: rootSegment === "tokens" },
-      {
-        name: "Auctions",
-        href: buildLink("auctions"),
-        current: rootSegment === "auctions",
-      },
-    ];
-  } else {
-    navigation = [
-      {
-        name: <FontAwesomeIcon icon={faHouse} />,
-        href: "/",
-      },
-      { name: "Pools", href: buildLink("pools"), current: rootSegment === "pools" },
-      { name: "Tokens", href: buildLink("tokens"), current: rootSegment === "tokens" },
-      {
-        name: "Auctions",
-        href: buildLink("auctions"),
-        current: rootSegment === "auctions",
-      },
-      {
-        name: "Wallets",
-        href: buildLink("wallets"),
-        current: rootSegment === "wallets",
-      },
-      {
-        name: <FontAwesomeIcon icon={faBell} />,
-        href: buildLink("notifications"),
-        current: rootSegment === "notifications",
-      },
-    ];
 
-    if (["goerli", "ethereum"].includes(network)) {
-      navigation.splice(4, 0, {
-        name: "Grants",
-        href: buildLink("grants"),
-        current: rootSegment === "grants",
-      });
-    }
+  const navigation = [
+    {
+      name: <FontAwesomeIcon icon={faHouse} />,
+      href: "/",
+    },
+    { name: "Pools", href: buildLink("pools"), current: rootSegment === "pools" },
+    { name: "Tokens", href: buildLink("tokens"), current: rootSegment === "tokens" },
+    {
+      name: "Auctions",
+      href: buildLink("auctions"),
+      current: rootSegment === "auctions",
+    },
+    {
+      name: "Wallets",
+      href: buildLink("wallets"),
+      current: rootSegment === "wallets",
+    },
+    {
+      name: <FontAwesomeIcon icon={faBell} />,
+      href: buildLink("notifications"),
+      current: rootSegment === "notifications",
+    },
+  ];
+
+  if (["goerli", "ethereum"].includes(network)) {
+    navigation.splice(4, 0, {
+      name: "Grants",
+      href: buildLink("grants"),
+      current: rootSegment === "grants",
+    });
   }
 
   return (

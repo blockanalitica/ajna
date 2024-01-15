@@ -4,15 +4,6 @@ import SimpleRedirect from "@/components/simpleRedirect/SimpleRedirect";
 import Layout from "@/app/layout";
 import LayoutSimple from "@/app/layoutSimple";
 import Error404 from "@/app/404";
-import Homepage from "@/app/page";
-import Pools from "@/app/pools/page";
-import Pool from "@/app/pools/address/page";
-import PoolBorrowers from "@/app/pools/address/borrowers/page";
-import PoolLenders from "@/app/pools/address/lenders/page";
-import Tokens from "@/app/tokens/page";
-import Token from "@/app/tokens/address/page";
-import Auctions from "@/app/auctions/page";
-import Grants from "@/app/grants/page";
 import V2Homepage from "@/app/v2/page";
 import V2Pools from "@/app/v2/pools/page";
 import V2Pool from "@/app/v2/pools/address/page";
@@ -51,17 +42,6 @@ import V3Homepage from "@/app/v3/page";
 
 const AjnaRoutes = () => {
   const routes = {
-    v1: [
-      { path: "", element: <Homepage /> },
-      { path: "/pools", element: <Pools /> },
-      { path: "/pools/:address", element: <Pool /> },
-      { path: "/pools/:address/borrowers", element: <PoolBorrowers /> },
-      { path: "/pools/:address/lenders", element: <PoolLenders /> },
-      { path: "/tokens", element: <Tokens /> },
-      { path: "/tokens/:address", element: <Token /> },
-      { path: "/auctions", element: <Auctions /> },
-      { path: "/grants", element: <Grants /> },
-    ],
     v2: [
       { path: "", element: <V2Homepage /> },
       { path: "/pools", element: <V2Pools /> },
