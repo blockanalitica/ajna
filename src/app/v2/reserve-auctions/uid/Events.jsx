@@ -84,7 +84,7 @@ const ReserveAuctionEventFormatter = ({ type, event, quoteTokenSymbol, network }
 const Events = ({ uid, quoteTokenSymbol }) => {
   const location = useLocation();
   const { network } = smartLocationParts(location);
-  const pageSize = 10;
+  const pageSize = 5;
   const [page, setPage] = useState(1);
 
   const {
