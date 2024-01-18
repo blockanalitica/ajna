@@ -22,16 +22,6 @@ export const NETWORKS = {
     { name: "Goerli", key: "goerli", icon: "ETH" },
   ],
   v3: [
-    {
-      name: NETWORKS_NAME_MAP["ethereum"],
-      key: "ethereum",
-      icon: NETWORKS_ICON_MAP["ethereum"],
-    },
-    {
-      name: NETWORKS_NAME_MAP["goerli"],
-      key: "goerli",
-      icon: NETWORKS_ICON_MAP["goerli"],
-    },
     { name: NETWORKS_NAME_MAP["base"], key: "base", icon: NETWORKS_ICON_MAP["base"] },
     {
       name: NETWORKS_NAME_MAP["arbitrum"],
