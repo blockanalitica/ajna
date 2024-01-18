@@ -49,4 +49,32 @@ export const NETWORKS = {
       icon: NETWORKS_ICON_MAP["polygon"],
     },
   ],
+  v4: [
+    {
+      name: NETWORKS_NAME_MAP["ethereum"],
+      key: "ethereum",
+      icon: NETWORKS_ICON_MAP["ethereum"],
+    },
+    {
+      name: NETWORKS_NAME_MAP["goerli"],
+      key: "goerli",
+      icon: NETWORKS_ICON_MAP["goerli"],
+    },
+    { name: NETWORKS_NAME_MAP["base"], key: "base", icon: NETWORKS_ICON_MAP["base"] },
+    {
+      name: NETWORKS_NAME_MAP["arbitrum"],
+      key: "arbitrum",
+      icon: NETWORKS_ICON_MAP["arbitrum"],
+    },
+    {
+      name: NETWORKS_NAME_MAP["optimism"],
+      key: "optimism",
+      icon: NETWORKS_ICON_MAP["optimism"],
+    },
+    {
+      name: NETWORKS_NAME_MAP["polygon"],
+      key: "polygon",
+      icon: NETWORKS_ICON_MAP["polygon"],
+    },
+  ],
 };

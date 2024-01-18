@@ -88,6 +88,29 @@ const AjnaRoutes = () => {
       { path: "/grants", element: <V3Grants /> },
       { path: "/notifications", element: <V3Notifications /> },
     ],
+    v4: [
+      { path: "", element: <V3NetworkHomepage /> },
+      { path: "/pools", element: <V3Pools /> },
+      { path: "/pools/:address", element: <V3Pool /> },
+      { path: "/pools/:address/positions", element: <V3PoolWallets /> },
+      { path: "/pools/:address/buckets", element: <V3Buckets /> },
+      { path: "/pools/:address/buckets/:index", element: <V3Bucket /> },
+      { path: "/tokens", element: <V3Tokens /> },
+      { path: "/tokens/:address", element: <V3Token /> },
+      { path: "/wallets", element: <V3Wallets /> },
+      { path: "/wallets/:address", element: <V3Wallet /> },
+      { path: "/wallets/:address/time-machine", element: <V3TimeMachine /> },
+      { path: "/wallets/:address/:poolAddress", element: <V3WalletPoolPosition /> },
+      { path: "/auctions", element: <V3Auctions /> },
+      { path: "/auctions/:auction_uid", element: <V3Auction /> },
+      {
+        path: "/reserve-auctions",
+        element: <SimpleRedirect replace to="/auctions" beSmart />,
+      },
+      { path: "/reserve-auctions/:uid", element: <V3ReserveAuction /> },
+      { path: "/grants", element: <V3Grants /> },
+      { path: "/notifications", element: <V3Notifications /> },
+    ],
   };
 
   const allRoutes = [];
