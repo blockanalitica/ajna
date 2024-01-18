@@ -8,7 +8,29 @@ const NetworksInfo = ({ data, isLoading, className }) => {
     return <StatsPlaceholder className={className} numStats={4} size="lg" />;
   }
 
-  const stats = [
+  const statsRow1 = [
+    {
+      title: "TVL",
+      value: <Value value={data.tvl} prefix="$" />,
+      smallValue: <ValueChange value={data.tvl - data.prev_tvl} prefix="$" />,
+    },
+    {
+      title: "🔥 Total Ajna Burned 🔥",
+      value: <Value value={data.total_ajna_burned} suffix="AJNA" />,
+      smallValue: (
+        <>
+          {data.prev_total_ajna_burned ? (
+            <ValueChange
+              value={data.total_ajna_burned - data.prev_total_ajna_burned}
+              suffix="AJNA"
+            />
+          ) : null}
+        </>
+      ),
+    },
+  ];
+
+  const statsRow2 = [
     {
       title: "Total Deposited",
       value: <Value value={data.supply_usd} prefix="$" />,
@@ -31,14 +53,14 @@ const NetworksInfo = ({ data, isLoading, className }) => {
         />
       ),
     },
-    {
-      title: "TVL",
-      value: <Value value={data.tvl} prefix="$" />,
-      smallValue: <ValueChange value={data.tvl - data.prev_tvl} prefix="$" />,
-    },
   ];
 
-  return <Stats data={stats} className={className} />;
+  return (
+    <div className={className}>
+      <Stats data={statsRow1} className="mb-5" />
+      <Stats data={statsRow2} />
+    </div>
+  );
 };
 
 export default NetworksInfo;
