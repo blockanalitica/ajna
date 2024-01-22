@@ -1,9 +1,5 @@
 import classnames from "classnames";
-import {
-  compact as compactNumber,
-  formatToDecimals,
-  resolveSmallNumbers,
-} from "@/utils/number";
+import { compact as compactNumber, formatToDecimals } from "@/utils/number";
 import CryptoIcon from "@/components/icon/CryptoIcon";
 import Tooltip from "@/components/tooltip/Tooltip";
 
@@ -47,13 +43,6 @@ function Value({
     value = formatToDecimals(value, numDecimals);
   }
 
-  const { prefix: prefixPrefix, value: newValue } = resolveSmallNumbers(
-    rawValue,
-    numDecimals,
-  );
-  if (newValue !== null) {
-    value = newValue;
-  }
   const tooltipPrefix = `${prefix !== "$" ? " " : ""}${prefix ? prefix : ""}`;
   const tooltipSuffix = `${suffix !== "%" ? " " : ""}${suffix ? suffix : ""}`;
   const tooltipMessage = `${tooltipPrefix}${rawValue}${tooltipSuffix}`;
@@ -68,7 +57,6 @@ function Value({
         })}
         {...rest}
       >
-        {prefixPrefix}
         {prefix ? (
           <>
             {icon && prefix !== "$" ? (
