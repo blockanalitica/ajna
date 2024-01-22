@@ -14,7 +14,7 @@ const Notice = () => {
       </div>
       <div>
         You're visiting an old version of the protocol. For the new version, go{" "}
-        <Link className="underline hover:text-purple-6" to="/ethereum">
+        <Link className="underline hover:text-purple-6" to="/">
           here
         </Link>
         .
