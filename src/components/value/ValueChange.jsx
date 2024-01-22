@@ -1,10 +1,6 @@
 import CryptoIcon from "@/components/icon/CryptoIcon";
 import Tooltip from "@/components/tooltip/Tooltip";
-import {
-  compact as compactNumber,
-  formatToDecimals,
-  resolveSmallNumbers,
-} from "@/utils/number";
+import { compact as compactNumber, formatToDecimals } from "@/utils/number";
 import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classnames from "classnames";
@@ -87,14 +83,6 @@ function ValueChange({
     value = normalValue;
   }
 
-  const { prefix: prefixPrefix, value: newValue } = resolveSmallNumbers(
-    theValue,
-    numDecimals,
-  );
-  if (newValue !== null) {
-    value = newValue;
-  }
-
   const tooltipPrefix = `${prefix !== "$" ? " " : ""} ${prefix ? prefix : ""}`;
   const tooltipSuffix = `${suffix !== "%" ? " " : ""}${suffix ? suffix : ""}`;
   const tooltipMessage = `${tooltipPrefix}${theValue}${tooltipSuffix}`;
@@ -102,7 +90,7 @@ function ValueChange({
   return (
     <>
       <span className={classNames} {...rest}>
-        {iconPlace} {prefixPrefix}
+        {iconPlace}
         {prefix ? (
           <>
             {prefix !== "$" && icon ? (
