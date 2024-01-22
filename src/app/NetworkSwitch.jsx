@@ -28,7 +28,7 @@ const NetworkSwitch = ({ className }) => {
     return null;
   }
 
-  const versionPrefix = version !== "v3" ? `/${version}` : "";
+  const versionPrefix = version !== "v4" ? `/${version}` : "";
 
   return (
     <div className={classnames("relative", className)}>

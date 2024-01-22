@@ -15,7 +15,7 @@ const RootLayout = () => {
     <main>
       <div className="mx-auto max-w-80 px-4">
         <Navbar />
-        {version !== "v3" ? <Notice /> : null}
+        {version !== "v4" ? <Notice /> : null}
 
         <Sentry.ErrorBoundary
           fallback={
