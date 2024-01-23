@@ -6,7 +6,7 @@ import MauTuHistoricGraph from "./MauTuHistoricGraph";
 import GenericEmptyPlaceholder from "@/components/GenericEmptyPlaceholder";
 import { faChartBar } from "@fortawesome/free-solid-svg-icons";
 
-const HistoricRateGraphs = ({ address, daysAgo, collateralSymbol, quoteSymbol }) => {
+const HistoricRateGraphs = ({ address, daysAgo }) => {
   const [displayOption, setDisplayOption] = useState("apr");
 
   const actualDaysAgo = daysAgo > 7 ? daysAgo : 30;

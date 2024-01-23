@@ -23,7 +23,7 @@ const Stats = ({ data, className, ...rest }) => {
       {...rest}
     >
       {data.map(({ title, value, smallValue }) => (
-        <Kpi title={title} value={value} smallValue={smallValue} />
+        <Kpi key={title} title={title} value={value} smallValue={smallValue} />
       ))}
     </section>
   );

@@ -66,8 +66,8 @@ const AtRisk = () => {
           Price Change
           <Info className="ms-2" title="Price Change">
             Percentage of how much the ratio of loans dept / collateral needs to drop
-            before it's below LUP value at which point it means it's available to be
-            liquidated.
+            before it&apos;s below LUP value at which point it means it&apos;s available
+            to be liquidated.
           </Info>
         </span>
       ),

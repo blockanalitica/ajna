@@ -130,7 +130,7 @@ const Pool = () => {
           USD prices are an estimation
           <Info className="ms-2" title="USD Prices">
             <p className="mb-2">
-              Current USD prices are an estimation as we couldn't fetch the actual
+              Current USD prices are an estimation as we couldn&apos;t fetch the actual
               price.
             </p>
             <p className="mb-2">

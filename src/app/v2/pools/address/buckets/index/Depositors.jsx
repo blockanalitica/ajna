@@ -5,7 +5,7 @@ import Table from "@/components/table/Table";
 import Address from "@/components/address/Address";
 import Value from "@/components/value/Value";
 
-const Depositors = ({ searchTerm, ...rest }) => {
+const Depositors = ({ ...rest }) => {
   const { address, index } = useParams();
   const buildLink = useLinkBuilder();
   const pageSize = 10;
