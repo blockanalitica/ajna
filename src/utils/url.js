@@ -10,9 +10,9 @@ export const smartLocationParts = (location) => {
   let otherPaths = paths;
 
   if (paths.length > 0) {
-    const v3networkOptions = NETWORKS["v4"].map((n) => n.key);
+    const v4networkOptions = NETWORKS["v4"].map((n) => n.key);
 
-    if (v3networkOptions.includes(paths[0])) {
+    if (v4networkOptions.includes(paths[0])) {
       version = "v4";
       network = paths[0];
       otherPaths = paths.slice(1);

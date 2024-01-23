@@ -21,24 +21,24 @@ import Auction from "@/app/v2/auctions/auction_uid/page";
 import V2Grants from "@/app/v2/grants/page";
 import ReserveAuction from "@/app/v2/reserve-auctions/uid/page";
 import Notifications from "@/app/v2/notifications/page";
-import V3NetworkHomepage from "@/app/v3/network/page";
-import V3Pools from "@/app/v3/network/pools/page";
-import V3Pool from "@/app/v3/network/pools/address/page";
-import V3PoolWallets from "@/app/v3/network/pools/address/positions/page";
-import V3Tokens from "@/app/v3/network/tokens/page";
-import V3Token from "@/app/v3/network/tokens/address/page";
-import V3Wallets from "@/app/v3/network/wallets/page";
-import V3Wallet from "@/app/v3/network/wallets/address/page";
-import V3TimeMachine from "@/app/v3/network/wallets/address/time-machine/page";
-import V3WalletPoolPosition from "@/app/v3/network/wallets/address/poolAddress/page";
-import V3Buckets from "@/app/v3/network/pools/address/buckets/page";
-import V3Bucket from "@/app/v3/network/pools/address/buckets/index/page";
-import V3Auctions from "@/app/v3/network/auctions/page";
-import V3Auction from "@/app/v3/network/auctions/auction_uid/page";
-import V3Grants from "@/app/v3/network/grants/page";
-import V3ReserveAuction from "@/app/v3/network/reserve-auctions/uid/page";
-import V3Notifications from "@/app/v3/network/notifications/page";
-import V3Homepage from "@/app/v3/page";
+import V4NetworkHomepage from "@/app/v4/network/page";
+import V4Pools from "@/app/v4/network/pools/page";
+import V4Pool from "@/app/v4/network/pools/address/page";
+import V4PoolWallets from "@/app/v4/network/pools/address/positions/page";
+import V4Tokens from "@/app/v4/network/tokens/page";
+import V4Token from "@/app/v4/network/tokens/address/page";
+import V4Wallets from "@/app/v4/network/wallets/page";
+import V4Wallet from "@/app/v4/network/wallets/address/page";
+import V4TimeMachine from "@/app/v4/network/wallets/address/time-machine/page";
+import V4WalletPoolPosition from "@/app/v4/network/wallets/address/poolAddress/page";
+import V4Buckets from "@/app/v4/network/pools/address/buckets/page";
+import V4Bucket from "@/app/v4/network/pools/address/buckets/index/page";
+import V4Auctions from "@/app/v4/network/auctions/page";
+import V4Auction from "@/app/v4/network/auctions/auction_uid/page";
+import V4Grants from "@/app/v4/network/grants/page";
+import V4ReserveAuction from "@/app/v4/network/reserve-auctions/uid/page";
+import V4Notifications from "@/app/v4/network/notifications/page";
+import V4Homepage from "@/app/v4/page";
 
 const AjnaRoutes = () => {
   const routes = {
@@ -66,50 +66,50 @@ const AjnaRoutes = () => {
       { path: "/notifications", element: <Notifications /> },
     ],
     v3: [
-      { path: "", element: <V3NetworkHomepage /> },
-      { path: "/pools", element: <V3Pools /> },
-      { path: "/pools/:address", element: <V3Pool /> },
-      { path: "/pools/:address/positions", element: <V3PoolWallets /> },
-      { path: "/pools/:address/buckets", element: <V3Buckets /> },
-      { path: "/pools/:address/buckets/:index", element: <V3Bucket /> },
-      { path: "/tokens", element: <V3Tokens /> },
-      { path: "/tokens/:address", element: <V3Token /> },
-      { path: "/wallets", element: <V3Wallets /> },
-      { path: "/wallets/:address", element: <V3Wallet /> },
-      { path: "/wallets/:address/time-machine", element: <V3TimeMachine /> },
-      { path: "/wallets/:address/:poolAddress", element: <V3WalletPoolPosition /> },
-      { path: "/auctions", element: <V3Auctions /> },
-      { path: "/auctions/:auction_uid", element: <V3Auction /> },
+      { path: "", element: <V4NetworkHomepage /> },
+      { path: "/pools", element: <V4Pools /> },
+      { path: "/pools/:address", element: <V4Pool /> },
+      { path: "/pools/:address/positions", element: <V4PoolWallets /> },
+      { path: "/pools/:address/buckets", element: <V4Buckets /> },
+      { path: "/pools/:address/buckets/:index", element: <V4Bucket /> },
+      { path: "/tokens", element: <V4Tokens /> },
+      { path: "/tokens/:address", element: <V4Token /> },
+      { path: "/wallets", element: <V4Wallets /> },
+      { path: "/wallets/:address", element: <V4Wallet /> },
+      { path: "/wallets/:address/time-machine", element: <V4TimeMachine /> },
+      { path: "/wallets/:address/:poolAddress", element: <V4WalletPoolPosition /> },
+      { path: "/auctions", element: <V4Auctions /> },
+      { path: "/auctions/:auction_uid", element: <V4Auction /> },
       {
         path: "/reserve-auctions",
         element: <SimpleRedirect replace to="/auctions" beSmart />,
       },
-      { path: "/reserve-auctions/:uid", element: <V3ReserveAuction /> },
-      { path: "/grants", element: <V3Grants /> },
-      { path: "/notifications", element: <V3Notifications /> },
+      { path: "/reserve-auctions/:uid", element: <V4ReserveAuction /> },
+      { path: "/grants", element: <V4Grants /> },
+      { path: "/notifications", element: <V4Notifications /> },
     ],
     v4: [
-      { path: "", element: <V3NetworkHomepage /> },
-      { path: "/pools", element: <V3Pools /> },
-      { path: "/pools/:address", element: <V3Pool /> },
-      { path: "/pools/:address/positions", element: <V3PoolWallets /> },
-      { path: "/pools/:address/buckets", element: <V3Buckets /> },
-      { path: "/pools/:address/buckets/:index", element: <V3Bucket /> },
-      { path: "/tokens", element: <V3Tokens /> },
-      { path: "/tokens/:address", element: <V3Token /> },
-      { path: "/wallets", element: <V3Wallets /> },
-      { path: "/wallets/:address", element: <V3Wallet /> },
-      { path: "/wallets/:address/time-machine", element: <V3TimeMachine /> },
-      { path: "/wallets/:address/:poolAddress", element: <V3WalletPoolPosition /> },
-      { path: "/auctions", element: <V3Auctions /> },
-      { path: "/auctions/:auction_uid", element: <V3Auction /> },
+      { path: "", element: <V4NetworkHomepage /> },
+      { path: "/pools", element: <V4Pools /> },
+      { path: "/pools/:address", element: <V4Pool /> },
+      { path: "/pools/:address/positions", element: <V4PoolWallets /> },
+      { path: "/pools/:address/buckets", element: <V4Buckets /> },
+      { path: "/pools/:address/buckets/:index", element: <V4Bucket /> },
+      { path: "/tokens", element: <V4Tokens /> },
+      { path: "/tokens/:address", element: <V4Token /> },
+      { path: "/wallets", element: <V4Wallets /> },
+      { path: "/wallets/:address", element: <V4Wallet /> },
+      { path: "/wallets/:address/time-machine", element: <V4TimeMachine /> },
+      { path: "/wallets/:address/:poolAddress", element: <V4WalletPoolPosition /> },
+      { path: "/auctions", element: <V4Auctions /> },
+      { path: "/auctions/:auction_uid", element: <V4Auction /> },
       {
         path: "/reserve-auctions",
         element: <SimpleRedirect replace to="/auctions" beSmart />,
       },
-      { path: "/reserve-auctions/:uid", element: <V3ReserveAuction /> },
-      { path: "/grants", element: <V3Grants /> },
-      { path: "/notifications", element: <V3Notifications /> },
+      { path: "/reserve-auctions/:uid", element: <V4ReserveAuction /> },
+      { path: "/grants", element: <V4Grants /> },
+      { path: "/notifications", element: <V4Notifications /> },
     ],
   };
 
@@ -131,7 +131,7 @@ const AjnaRoutes = () => {
     <Routes>
       <Route path="/">
         <Route element={<LayoutSimple />}>
-          <Route index element={<V3Homepage />} />
+          <Route index element={<V4Homepage />} />
         </Route>
 
         <Route element={<Layout />}>{allRoutes.map((route) => route)}</Route>
