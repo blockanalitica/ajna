@@ -22,9 +22,6 @@ const config = () => {
         "@": resolve(__dirname, "./src"),
       },
     },
-    server: {
-      port: 3000,
-    },
     build: {
       sourcemap: true,
     },
