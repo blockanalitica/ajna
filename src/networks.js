@@ -17,10 +17,7 @@ export const NETWORKS_NAME_MAP = {
 };
 
 export const NETWORKS = {
-  v2: [
-    { name: "Ethereum", key: "ethereum", icon: "ETH" },
-    { name: "Goerli", key: "goerli", icon: "ETH" },
-  ],
+  v2: [{ name: "Ethereum", key: "ethereum", icon: "ETH" }],
   v3: [
     { name: NETWORKS_NAME_MAP["base"], key: "base", icon: NETWORKS_ICON_MAP["base"] },
     {
