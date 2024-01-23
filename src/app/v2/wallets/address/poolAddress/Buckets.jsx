@@ -4,7 +4,7 @@ import { useFetch } from "@/hooks";
 import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
 
-const Buckets = ({ address, poolAddress, quoteTokenSymbol, ...rest }) => {
+const Buckets = ({ address, poolAddress, quoteTokenSymbol }) => {
   const pageSize = 10;
   const [page, setPage] = useState(1);
 

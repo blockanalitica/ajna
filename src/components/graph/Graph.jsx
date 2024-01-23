@@ -18,7 +18,7 @@ const Graph = ({ series, type = "line", options, labels, ...rest }) => {
     orderSeries: false, // custom option. If true, orderes series by label
     aspectRatio: 2,
     responsive: true,
-    onResize: (chart, size) => {
+    onResize: (chart) => {
       const ratio = chart.config.options.aspectRatio;
       if (window.innerWidth < 576 && ratio !== 1.5) {
         chart.config.options.oldAspectRatio = ratio;

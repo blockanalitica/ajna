@@ -1,4 +1,3 @@
-import React from "react";
 import { Navigate, useParams, generatePath, useLocation } from "react-router-dom";
 import { smartLocationParts } from "@/utils/url";
 import urlJoin from "url-join";

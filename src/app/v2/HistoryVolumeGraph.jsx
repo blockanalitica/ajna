@@ -5,7 +5,7 @@ import { DateTime } from "luxon";
 import { compact } from "@/utils/number";
 import { prefillSerieDates } from "@/utils/graph";
 
-const HistoryVolumeGraph = ({ daysAgo, className, ...rest }) => {
+const HistoryVolumeGraph = () => {
   const {
     data = [],
     error,

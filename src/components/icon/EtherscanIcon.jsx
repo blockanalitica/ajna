@@ -1,6 +1,6 @@
 import CryptoIcon from "./CryptoIcon";
 
-const EtherscanIcon = ({ network, size = "24", ...rest }) => {
+const EtherscanIcon = ({ network, size = 16 }) => {
   let alt = "etherscan.io";
 
   switch (network) {
@@ -23,7 +23,7 @@ const EtherscanIcon = ({ network, size = "24", ...rest }) => {
     // pass
   }
 
-  return <CryptoIcon name="etherscan" alt={alt} size={16} />;
+  return <CryptoIcon name="etherscan" alt={alt} size={size} />;
 };
 
 export default EtherscanIcon;

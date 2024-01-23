@@ -79,8 +79,8 @@ const TokensPage = () => {
         * price is an estimation
         <Info className="ms-2" title="USD Price">
           <p className="mb-2">
-            USD price marked with * is an estimation as we couldn't fetch the actual
-            price.
+            USD price marked with * is an estimation as we couldn&apos;t fetch the
+            actual price.
           </p>
           <p className="mb-2">
             We estimate the price based on the formula below from all the pools:

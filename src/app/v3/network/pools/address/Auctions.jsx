@@ -6,7 +6,7 @@ import AuctionsSettled from "./AuctionsSettled";
 import ReserveAuctionsExpired from "./ReserveAuctionsExpired";
 import ReserveAuctionsActive from "./ReserveAuctionsActive";
 
-const Auctions = ({ poolAddress, ...rest }) => {
+const Auctions = ({ poolAddress }) => {
   const [activeTab, setActiveTab] = useState("kicker");
 
   const onTabChange = (value) => {

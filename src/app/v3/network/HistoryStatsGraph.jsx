@@ -7,7 +7,7 @@ import { compact } from "@/utils/number";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import { prefillSerieDates } from "@/utils/graph";
 
-const HistoryStatsGraph = ({ daysAgo, className, ...rest }) => {
+const HistoryStatsGraph = () => {
   const [displayOption, setDisplayOption] = useState("tvl");
 
   const {
