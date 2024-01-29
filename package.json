@@ -54,7 +54,8 @@
     "react-select": "^5.8.0",
     "slugify": "^1.6.5",
     "strftime": "^0.10.1",
-    "url-join": "^5.0.0"
+    "url-join": "^5.0.0",
+    "vite-plugin-radar": "^0.9.3"
   },
   "devDependencies": {
     "@sentry/vite-plugin": "^2.10.2",
@@ -63,8 +64,8 @@
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.16",
     "eslint": "8.56.0",
-    "eslint-config-react-app": "7.0.1",
     "eslint-config-prettier": "^9.0.0",
+    "eslint-config-react-app": "7.0.1",
     "eslint-plugin-flowtype": "^8.0.3",
     "eslint-plugin-import": "2.29.1",
     "eslint-plugin-jsx-a11y": "^6.8.0",

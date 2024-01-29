@@ -1,14 +1,20 @@
 import { defineConfig } from "vite";
 import { resolve } from "path";
 import react from "@vitejs/plugin-react";
-import VitePluginAjna from "./src/vite-plugin-simpleanalytics";
+import { VitePluginRadar } from "vite-plugin-radar";
 import { sentryVitePlugin } from "@sentry/vite-plugin";
 
 const config = () => {
   return defineConfig({
     plugins: [
       react(),
-      VitePluginAjna(),
+      VitePluginRadar({
+        simpleanalytics: {
+          enabled: true,
+          hostname: "ajna.blockanalitica.com",
+        },
+      }),
+
       // sentry plugin must be last!
       sentryVitePlugin({
         org: "block-analitica-doo",
