@@ -153,7 +153,7 @@ const Borrowers = ({ address, daysAgo, search }) => {
       cell: ({ row }) => (
         <>
           {row.health_rate ? (
-            <Value value={row.health_rate} decimals={3} />
+            <Value value={row.health_rate} />
           ) : (
             <FontAwesomeIcon icon={faInfinity} />
           )}

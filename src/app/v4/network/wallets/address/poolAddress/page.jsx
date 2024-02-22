@@ -130,7 +130,7 @@ const WalletPoolPosition = () => {
           ) : (
             <>
               {data.health_rate ? (
-                <Value value={data.health_rate} decimals={3} />
+                <Value value={data.health_rate} />
               ) : (
                 <FontAwesomeIcon icon={faInfinity} />
               )}
