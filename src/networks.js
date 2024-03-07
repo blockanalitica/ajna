@@ -5,6 +5,7 @@ export const NETWORKS_ICON_MAP = {
   arbitrum: "arb",
   optimism: "op",
   polygon: "polygon_pos",
+  blast: "blast",
 };
 
 export const NETWORKS_NAME_MAP = {
@@ -14,6 +15,7 @@ export const NETWORKS_NAME_MAP = {
   arbitrum: "Arbitrum One",
   optimism: "Optimism",
   polygon: "Polygon PoS",
+  blast: "Blast",
 };
 
 export const NETWORKS = {
@@ -62,6 +64,11 @@ export const NETWORKS = {
       name: NETWORKS_NAME_MAP["polygon"],
       key: "polygon",
       icon: NETWORKS_ICON_MAP["polygon"],
+    },
+    {
+      name: NETWORKS_NAME_MAP["blast"],
+      key: "blast",
+      icon: NETWORKS_ICON_MAP["blast"],
     },
   ],
 };
