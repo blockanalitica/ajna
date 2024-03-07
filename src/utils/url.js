@@ -50,6 +50,12 @@ export const generateEtherscanUrl = (network, address, path = "address") => {
     case "polygon":
       domain = "polygonscan.com";
       break;
+    case "blast":
+      domain = "blastscan.io";
+      break;
+    case "gnosis":
+      domain = "gnosisscan.io";
+      break;
     default:
     // pass
   }

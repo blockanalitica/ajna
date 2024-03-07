@@ -6,6 +6,7 @@ export const NETWORKS_ICON_MAP = {
   optimism: "op",
   polygon: "polygon_pos",
   blast: "blast",
+  gnosis: "gnosis",
 };
 
 export const NETWORKS_NAME_MAP = {
@@ -16,6 +17,7 @@ export const NETWORKS_NAME_MAP = {
   optimism: "Optimism",
   polygon: "Polygon PoS",
   blast: "Blast",
+  gnosis: "Gnosis",
 };
 
 export const NETWORKS = {
@@ -49,11 +51,17 @@ export const NETWORKS = {
       key: "goerli",
       icon: NETWORKS_ICON_MAP["goerli"],
     },
-    { name: NETWORKS_NAME_MAP["base"], key: "base", icon: NETWORKS_ICON_MAP["base"] },
     {
       name: NETWORKS_NAME_MAP["arbitrum"],
       key: "arbitrum",
       icon: NETWORKS_ICON_MAP["arbitrum"],
+    },
+    { name: NETWORKS_NAME_MAP["base"], key: "base", icon: NETWORKS_ICON_MAP["base"] },
+
+    {
+      name: NETWORKS_NAME_MAP["polygon"],
+      key: "polygon",
+      icon: NETWORKS_ICON_MAP["polygon"],
     },
     {
       name: NETWORKS_NAME_MAP["optimism"],
@@ -61,9 +69,9 @@ export const NETWORKS = {
       icon: NETWORKS_ICON_MAP["optimism"],
     },
     {
-      name: NETWORKS_NAME_MAP["polygon"],
-      key: "polygon",
-      icon: NETWORKS_ICON_MAP["polygon"],
+      name: NETWORKS_NAME_MAP["gnosis"],
+      key: "gnosis",
+      icon: NETWORKS_ICON_MAP["gnosis"],
     },
     {
       name: NETWORKS_NAME_MAP["blast"],

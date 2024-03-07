@@ -19,6 +19,12 @@ const EtherscanIcon = ({ network, size = 16 }) => {
     case "polygon":
       alt = "polygonscan.com";
       break;
+    case "blast":
+      alt = "blastscan.io";
+      break;
+    case "gnosis":
+      alt = "gnosisscan.io";
+      break;
     default:
     // pass
   }
