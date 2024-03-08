@@ -1,6 +1,5 @@
 export const NETWORKS_ICON_MAP = {
   ethereum: "eth",
-  goerli: "goerli",
   base: "base",
   arbitrum: "arb",
   optimism: "op",
@@ -11,7 +10,6 @@ export const NETWORKS_ICON_MAP = {
 
 export const NETWORKS_NAME_MAP = {
   ethereum: "Ethereum Mainnet",
-  goerli: "Ethereum Goerli",
   base: "Base",
   arbitrum: "Arbitrum One",
   optimism: "Optimism",
@@ -45,11 +43,6 @@ export const NETWORKS = {
       name: NETWORKS_NAME_MAP["ethereum"],
       key: "ethereum",
       icon: NETWORKS_ICON_MAP["ethereum"],
-    },
-    {
-      name: NETWORKS_NAME_MAP["goerli"],
-      key: "goerli",
-      icon: NETWORKS_ICON_MAP["goerli"],
     },
     {
       name: NETWORKS_NAME_MAP["arbitrum"],
