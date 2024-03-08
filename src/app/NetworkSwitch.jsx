@@ -12,16 +12,9 @@ const NetworkSwitch = ({ className }) => {
   const { network, version } = smartLocationParts(location);
 
   let networkOptions = NETWORKS[version];
-  if (import.meta.env.PROD) {
-    networkOptions = networkOptions.filter((obj) => {
-      return obj.key !== "goerli";
-    });
-  }
 
   const [open, setOpen] = useState(false);
 
-  // Select current network for the full pool of networks in order for us to be able
-  // to select goerli network in production via URL vithout exposing it in the selector
   const currentNetwork = networkOptions.find((obj) => obj.key === network);
 
   if (!currentNetwork) {

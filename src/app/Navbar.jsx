@@ -42,7 +42,7 @@ const Navbar = () => {
     },
   ];
 
-  if (["goerli", "ethereum"].includes(network)) {
+  if (["ethereum"].includes(network)) {
     navigation.splice(4, 0, {
       name: "Grants",
       href: buildLink("grants"),
