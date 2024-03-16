@@ -58,6 +58,7 @@ const FundingProposals = () => {
       pageSize={pageSize}
       totalRecords={count}
       onPageChange={setPage}
+      linkTo={(row) => `https://grants.ajnafi.com/proposal/${row.proposal_id}`}
     />
   );
 };
