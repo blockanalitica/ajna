@@ -134,12 +134,12 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
               <Address address={data.kicker} />
             </Link>
           </EventValue>
-          <EventValue title="Reciever">
+          <EventValue title="Receiver">
             <Link
-              to={buildLink(`wallets/${data.reciever}`)}
+              to={buildLink(`wallets/${data.receiver}`)}
               className="text-purple-6 hover:underline"
             >
-              <Address address={data.reciever} />
+              <Address address={data.receiver} />
             </Link>
           </EventValue>
           <EventValue title="Amount">
@@ -264,6 +264,21 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
       break;
 
     case "Flashloan":
+      content = (
+        <EventData>
+          <EventValue title="Receiver">
+            <Link
+              to={buildLink(`wallets/${data.receiver}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.receiver} />
+            </Link>
+          </EventValue>
+          <EventValue title="Amount">
+            <Value value={data.amount} suffix={data.token_symbol} />
+          </EventValue>
+        </EventData>
+      );
       break;
 
     case "IncreaseLPAllowance":
