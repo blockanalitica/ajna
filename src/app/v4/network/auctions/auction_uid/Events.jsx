@@ -75,7 +75,7 @@ const AuctionEventFormatter = ({
             <Value value={event.data.collateral} suffix={collateralTokenSymbol} small />
           </EventValue>
           <EventValue title="Bond Change">
-            <Value value={event.data.bondChange} suffix={quoteTokenSymbol} small />
+            <Value value={event.data.bond_change} suffix={quoteTokenSymbol} small />
           </EventValue>
         </EventData>
       );
@@ -99,7 +99,7 @@ const AuctionEventFormatter = ({
             <Value value={event.data.collateral} suffix={collateralTokenSymbol} small />
           </EventValue>
           <EventValue title="Bond Change">
-            <Value value={event.data.bondChange} suffix={quoteTokenSymbol} small />
+            <Value value={event.data.bond_change} suffix={quoteTokenSymbol} small />
           </EventValue>
         </EventData>
       );
