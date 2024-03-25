@@ -51,7 +51,7 @@ const PoolInfo = ({ data, ...rest }) => {
       ),
     },
     {
-      title: "Collateral",
+      title: "Collateral Pledged",
       value: (
         <>
           <Value

@@ -46,12 +46,10 @@ const TotalStats = ({ daysAgo, className, ...rest }) => {
     },
     {
       title: "Total collateral",
-      value: <Value value={results.total_pledged_collateral || 0} prefix="$" />,
+      value: <Value value={results.total_collateral || 0} prefix="$" />,
       smallValue: (
         <ValueChange
-          value={
-            results.total_pledged_collateral - results.prev_total_pledged_collateral
-          }
+          value={results.total_collateral - results.prev_total_collateral}
           prefix="$"
         />
       ),

@@ -44,17 +44,47 @@ const PoolsTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
       cellSize: "minmax(120px, auto)",
       sticky: true,
     },
+    // {
+    //   header: "Collateral Pledged",
+    //   cell: ({ row }) => (
+    //     <>
+    //       {isPriceUsd ? (
+    //         <Value value={row.pledged_collateral_usd} prefix="$" />
+    //       ) : (
+    //         <Value
+    //           value={row.pledged_collateral}
+    //           suffix={row.collateral_token_symbol}
+    //         />
+    //       )}
+    //     </>
+    //   ),
+    //   smallCell: ({ row }) => (
+    //     <>
+    //       {isPriceUsd ? (
+    //         <ValueChange
+    //           value={row.pledged_collateral_usd - row.prev_pledged_collateral_usd}
+    //           prefix="$"
+    //         />
+    //       ) : (
+    //         <ValueChange
+    //           value={row.pledged_collateral - row.prev_pledged_collateral}
+    //           suffix={row.collateral_token_symbol}
+    //         />
+    //       )}
+    //     </>
+    //   ),
+    //   headerAlign: "end",
+    //   cellAlign: "end",
+    //   orderField: isPriceUsd ? "pledged_collateral_usd" : "pledged_collateral",
+    // },
     {
       header: "Collateral",
       cell: ({ row }) => (
         <>
           {isPriceUsd ? (
-            <Value value={row.pledged_collateral_usd} prefix="$" />
+            <Value value={row.collateral_usd} prefix="$" />
           ) : (
-            <Value
-              value={row.pledged_collateral}
-              suffix={row.collateral_token_symbol}
-            />
+            <Value value={row.collateral} suffix={row.collateral_token_symbol} />
           )}
         </>
       ),
@@ -62,12 +92,12 @@ const PoolsTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
         <>
           {isPriceUsd ? (
             <ValueChange
-              value={row.pledged_collateral_usd - row.prev_pledged_collateral_usd}
+              value={row.collateral_usd - row.prev_collateral_usd}
               prefix="$"
             />
           ) : (
             <ValueChange
-              value={row.pledged_collateral - row.prev_pledged_collateral}
+              value={row.collateral - row.prev_collateral}
               suffix={row.collateral_token_symbol}
             />
           )}
@@ -75,8 +105,9 @@ const PoolsTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
       ),
       headerAlign: "end",
       cellAlign: "end",
-      orderField: isPriceUsd ? "pledged_collateral_usd" : "pledged_collateral",
+      orderField: isPriceUsd ? "collateral_usd" : "collateral",
     },
+
     {
       header: "Quote",
       cell: ({ row }) => (

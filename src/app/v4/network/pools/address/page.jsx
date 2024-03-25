@@ -167,13 +167,13 @@ const Pool = () => {
               <div>
                 <div className="flex space-x-2">
                   <Value
-                    value={pool.pledged_collateral_usd}
+                    value={pool.collateral_usd}
                     small
                     prefix="$"
                     className="text-gray-10"
                   />
                   <Value
-                    value={pool.pledged_collateral}
+                    value={pool.collateral}
                     suffix={pool.collateral_token_symbol}
                   />
                 </div>
@@ -431,14 +431,39 @@ const Pool = () => {
 
       <div className="flex flex-col-reverse lg:flex-row lg:gap-4">
         <CardBackground className="lg:w-1/3 grid grid-cols-1 place-content-between mb-5">
-          <div className="flex justify-between">
-            <h3 className="text-sm font-bold text-gray-1 font-syncopate uppercase mb-5">
-              Buckets
-            </h3>
-            <div className="text-purple-6 hover:underline">
-              <Link to={"buckets"}>View more</Link>
+          <div>
+            <div className="flex justify-between">
+              <h3 className="text-sm font-bold text-gray-1 font-syncopate uppercase mb-5">
+                Buckets
+              </h3>
+              <div className="text-purple-6 hover:underline">
+                <Link to={"buckets"}>View more</Link>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex justify-between items-center mb-2">
+                <div className="flex items-center">
+                  <span className="text-sm">Collateral in buckets</span>
+                </div>
+                <div>
+                  <div className="flex space-x-2">
+                    <Value
+                      value={pool.collateral_usd - pool.pledged_collateral_usd}
+                      small
+                      prefix="$"
+                      className="text-gray-10"
+                    />
+                    <Value
+                      value={pool.collateral - pool.pledged_collateral}
+                      suffix={pool.collateral_token_symbol}
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+
           <div className="grid grid-cols-2 gap-4 mt-4">
             <Kpi
               title="Market Price"
