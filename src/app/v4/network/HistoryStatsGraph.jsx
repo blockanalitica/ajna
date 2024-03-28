@@ -59,7 +59,8 @@ const HistoryStatsGraph = () => {
     { key: "tvl", value: "TVL" },
     { key: "deposit", value: "Deposited" },
     { key: "debt", value: "Borrowed" },
-    { key: "collateral", value: "Collateral" },
+    // { key: "collateral", value: "Collateral" },
+    { key: "pledged_collateral", value: "Collateral" },
   ];
 
   const headerRight = (

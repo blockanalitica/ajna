@@ -77,6 +77,37 @@ const PoolsTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
       cellAlign: "end",
       orderField: isPriceUsd ? "pledged_collateral_usd" : "pledged_collateral",
     },
+    // {
+    //   header: "Collateral",
+    //   cell: ({ row }) => (
+    //     <>
+    //       {isPriceUsd ? (
+    //         <Value value={row.collateral_usd} prefix="$" />
+    //       ) : (
+    //         <Value value={row.collateral} suffix={row.collateral_token_symbol} />
+    //       )}
+    //     </>
+    //   ),
+    //   smallCell: ({ row }) => (
+    //     <>
+    //       {isPriceUsd ? (
+    //         <ValueChange
+    //           value={row.collateral_usd - row.prev_collateral_usd}
+    //           prefix="$"
+    //         />
+    //       ) : (
+    //         <ValueChange
+    //           value={row.collateral - row.prev_collateral}
+    //           suffix={row.collateral_token_symbol}
+    //         />
+    //       )}
+    //     </>
+    //   ),
+    //   headerAlign: "end",
+    //   cellAlign: "end",
+    //   orderField: isPriceUsd ? "collateral_usd" : "collateral",
+    // },
+
     {
       header: "Quote",
       cell: ({ row }) => (

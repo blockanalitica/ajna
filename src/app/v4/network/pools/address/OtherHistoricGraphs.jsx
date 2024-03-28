@@ -46,7 +46,9 @@ const OtherHistoricGraphs = ({
     if (displayOption === "volume" || displayOption === "tvl") {
       prefix = "$";
     } else {
-      suffix = displayOption === "pledged_collateral" ? collateralSymbol : quoteSymbol;
+      suffix = ["pledged_collateral", "collateral"].includes(displayOption)
+        ? collateralSymbol
+        : quoteSymbol;
     }
 
     return <Value value={value} suffix={suffix} prefix={prefix} big compact />;
