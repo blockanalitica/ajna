@@ -40,8 +40,8 @@ const HistoricGraphs = ({ address, daysAgo, collateralSymbol, quoteSymbol }) => 
     { key: "tvl", value: "TVL" },
     { key: "pool_size", value: "Deposited" },
     { key: "debt", value: "Borrowed" },
-    // { key: "pledged_collateral", value: "Pledged Collateral" },
-    { key: "collateral", value: "Collateral" },
+    { key: "pledged_collateral", value: "Collateral" },
+    // { key: "collateral", value: "Collateral" },
     { key: "volume", value: "Volume" },
   ];
 

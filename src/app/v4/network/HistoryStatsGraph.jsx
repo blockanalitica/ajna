@@ -59,9 +59,8 @@ const HistoryStatsGraph = () => {
     { key: "tvl", value: "TVL" },
     { key: "deposit", value: "Deposited" },
     { key: "debt", value: "Borrowed" },
-    { key: "collateral", value: "Collateral" },
-    // We might want to change to show only pledged collateral. Backend supports it.
-    // { key: "pledged_collateral", value: "Pledged Collateral" },
+    // { key: "collateral", value: "Collateral" },
+    { key: "pledged_collateral", value: "Collateral" },
   ];
 
   const headerRight = (
