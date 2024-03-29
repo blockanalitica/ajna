@@ -1,23 +1,13 @@
-import { useState } from "react";
 import { useFetch } from "@/hooks";
 import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
 
 const FundingProposals = () => {
-  const pageSize = 10;
-  const [page, setPage] = useState(1);
-
-  const {
-    data = [],
-    error,
-    isLoading,
-  } = useFetch("/grants/", { p: page, p_size: pageSize, type: "funding" });
+  const { data = [], error, isLoading } = useFetch("/grants/", { type: "funding" });
 
   if (error) {
     return <p>Failed to load data</p>;
   }
-
-  const { results, count } = data;
 
   const columns = [
     {
@@ -30,17 +20,32 @@ const FundingProposals = () => {
     {
       header: "Title",
       cell: ({ row }) => <>{row.description.title}</>,
+      smallCell: ({ row }) => (
+        <div className="d-flex">
+          Requested: <Value value={row.total_tokens_requested} suffix="AJNA" />
+        </div>
+      ),
       cellSize: "3fr",
     },
     {
-      header: "Screening Votes",
-      cell: ({ row }) => <Value value={row.screening_votes_received} />,
+      header: "Votes For",
+      cell: ({ row }) => (
+        <Value className="text-green-8" value={row.funding_votes_positive} />
+      ),
       headerAlign: "end",
       cellAlign: "end",
     },
     {
-      header: "Amount requested",
-      cell: ({ row }) => <Value value={row.total_tokens_requested} suffix="AJNA" />,
+      header: "Votes Against",
+      cell: ({ row }) => (
+        <Value className="text-red-8" value={row.funding_votes_negative} />
+      ),
+      headerAlign: "end",
+      cellAlign: "end",
+    },
+    {
+      header: "Total Votes",
+      cell: ({ row }) => <Value value={row.funding_votes_received} />,
       headerAlign: "end",
       cellAlign: "end",
     },
@@ -48,16 +53,12 @@ const FundingProposals = () => {
 
   return (
     <Table
-      data={results}
+      data={data}
       isLoading={isLoading}
-      keyField="uid"
+      keyField="proposal_id"
       columns={columns}
       emptyTitle="No Proposals"
       emptyContent="There are no proposals"
-      currentPage={page}
-      pageSize={pageSize}
-      totalRecords={count}
-      onPageChange={setPage}
       linkTo={(row) => `https://grants.ajnafi.com/proposal/${row.proposal_id}`}
     />
   );
