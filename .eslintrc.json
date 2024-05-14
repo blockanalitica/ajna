@@ -9,7 +9,6 @@
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
     "plugin:react-hooks/recommended",
-    "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended"
   ],
   "ignorePatterns": [
@@ -19,7 +18,6 @@
     "postcss.config.js",
     "tailwind.config.js"
   ],
-  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module",
@@ -34,15 +32,13 @@
     "react-refresh",
     "react",
     "react-hooks",
-    "prettier",
-    "@typescript-eslint"
+    "prettier"
   ],
   "rules": {
     "react-refresh/only-export-components": ["warn", { "allowConstantExport": true }],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/prop-types": "off",
-    "prettier/prettier": "error",
-    "@typescript-eslint/ban-ts-comment": "off"
+    "prettier/prettier": "error"
   }
 }
