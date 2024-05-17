@@ -41,7 +41,7 @@ const PoolInfo = ({ data, ...rest }) => {
         <>
           <CurrencyValue
             value={data.debt}
-            scurrencySymbol={data.quote_token_symbol}
+            currencySymbol={data.quote_token_symbol}
             currencyAddress={data.quote_token_address}
             big
           />

@@ -308,7 +308,6 @@ const Pool = () => {
                 <Value
                   value={pool.total_ajna_burned}
                   prefix={"🔥 "}
-                  icon={false}
                   className="text-xl"
                 />
               }
@@ -316,7 +315,6 @@ const Pool = () => {
                 <ValueChange
                   value={pool.total_ajna_burned - pool.prev_total_ajna_burned}
                   prefix={"🔥 "}
-                  icon={false}
                 />
               }
             />
