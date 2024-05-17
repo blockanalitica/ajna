@@ -45,7 +45,9 @@ const TokenArbitragePools = ({ address, daysAgo, ...rest }) => {
       cell: ({ row }) => (
         <PoolName
           collateralSymbol={row.collateral_token_symbol}
+          collateralAddress={row.collateral_token_address}
           quoteSymbol={row.quote_token_symbol}
+          quoteAddress={row.quote_token_address}
         />
       ),
       cellSize: "minmax(120px, auto)",

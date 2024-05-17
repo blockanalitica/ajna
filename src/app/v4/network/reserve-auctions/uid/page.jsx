@@ -42,7 +42,9 @@ const ReserveAuction = () => {
         <div className="flex text-xl md:text-1xl xl:text-2xl items-center font-syncopate uppercase gap-x-3">
           <PoolName
             collateralSymbol={data.collateral_token_symbol}
+            collateralAddress={data.collateral_token_address}
             quoteSymbol={data.quote_token_symbol}
+            quoteAddress={data.quote_token_address}
             size="xl"
           />
           Reserve Auction

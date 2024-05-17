@@ -6,7 +6,7 @@ function PoolName({
   collateralAddress,
   quoteSymbol,
   quoteAddress,
-  className,
+  className = null,
   size = "md",
 }) {
   let iconSize = "24";
