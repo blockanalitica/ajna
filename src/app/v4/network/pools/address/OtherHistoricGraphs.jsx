@@ -46,7 +46,7 @@ const OtherHistoricGraphs = ({
     const value = data.y;
 
     if (displayOption === "volume" || displayOption === "tvl") {
-      return <Value value={value} prefix="$" big compact />;
+      return <Value value={value} prefix="$" compact />;
     } else {
       if (["pledged_collateral", "collateral"].includes(displayOption)) {
         return (

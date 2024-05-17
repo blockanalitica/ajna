@@ -21,29 +21,10 @@ const CurrencyValue = ({
     />
   );
   if (trend) {
-    return (
-      <ValueChange
-        {...rest}
-        value={value}
-        suffix={suffix}
-        icon={false}
-        small={small}
-        big={big}
-        iconSize={iconSize ? iconSize : "14"}
-      />
-    );
+    return <ValueChange {...rest} value={value} suffix={suffix} small={small} />;
   }
 
-  return (
-    <Value
-      {...rest}
-      value={value}
-      suffix={suffix}
-      icon={false}
-      small={small}
-      big={big}
-    />
-  );
+  return <Value {...rest} value={value} suffix={suffix} small={small} />;
 };
 
 export default CurrencyValue;

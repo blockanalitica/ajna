@@ -202,12 +202,12 @@ const PoolsTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
         <div className="flex flex-col items-end">
           <CurrencyValue
             value={row.total_ajna_burned}
-            currencySybmol="AJNA"
+            currencySymbol="AJNA"
             currencyAddress={AJNA_TOKEN_ADDRESS}
           />
           <CurrencyValue
             value={row.total_ajna_burned - row.prev_total_ajna_burned}
-            currencySybmol="AJNA"
+            currencySymbol="AJNA"
             currencyAddress={AJNA_TOKEN_ADDRESS}
             small
             trend
