@@ -20,22 +20,24 @@ const CryptoIcon = ({
   alt = null,
   ext = "png",
   variant = null,
+  network = null,
   ...rest
 }) => {
   const location = useLocation();
-  const { network } = smartLocationParts(location);
+  const { network: smartNetwork } = smartLocationParts(location);
   const [error, setError] = useState(null);
 
   const src = useMemo(() => {
     if (address) {
+      const net = network ? network : smartNetwork;
       const variantSuffix = variant ? `-${variant}` : "";
-      return `${ICONS_BASE_URL}/tokens/${network}/${address.toLowerCase()}${variantSuffix}/icon.${ext}`;
+      return `${ICONS_BASE_URL}/tokens/${net}/${address.toLowerCase()}${variantSuffix}/icon.${ext}`;
     }
     if (name) {
       return `${ICONS_BASE_URL}/crypto/${ext}/${(name || "").toLowerCase()}.${ext}`;
     }
     return placeholderIcon;
-  }, [name, address, ext, network, variant]);
+  }, [name, address, ext, network, smartNetwork, variant]);
 
   return (
     <div

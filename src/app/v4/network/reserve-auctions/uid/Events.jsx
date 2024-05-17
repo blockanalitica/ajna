@@ -59,6 +59,7 @@ const ReserveAuctionEventFormatter = ({
               value={event.data.starting_price}
               currencySymbol="AJNA"
               currencyAddress={AJNA_TOKEN_ADDRESS}
+              network="ethereum"
             />
           </EventValue>
         </EventData>
@@ -86,6 +87,7 @@ const ReserveAuctionEventFormatter = ({
               value={event.data.ajna_burned}
               currencySymbol="AJNA"
               currencyAddress={AJNA_TOKEN_ADDRESS}
+              network="ethereum"
             />
           </EventValue>
           <EventValue title="Auction Price">
@@ -93,6 +95,7 @@ const ReserveAuctionEventFormatter = ({
               value={event.data.auction_price}
               currencySymbol="AJNA"
               currencyAddress={AJNA_TOKEN_ADDRESS}
+              network="ethereum"
             />
           </EventValue>
         </EventData>

@@ -204,11 +204,13 @@ const PoolsTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
             value={row.total_ajna_burned}
             currencySymbol="AJNA"
             currencyAddress={AJNA_TOKEN_ADDRESS}
+            network="ethereum"
           />
           <CurrencyValue
             value={row.total_ajna_burned - row.prev_total_ajna_burned}
             currencySymbol="AJNA"
             currencyAddress={AJNA_TOKEN_ADDRESS}
+            network="ethereum"
             small
             trend
           />

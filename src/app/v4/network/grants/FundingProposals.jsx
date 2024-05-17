@@ -29,6 +29,7 @@ const FundingProposals = () => {
             value={row.total_tokens_requested}
             currencySymbol="AJNA"
             currencyAddress={AJNA_TOKEN_ADDRESS}
+            network="ethereum"
           />
         </div>
       ),

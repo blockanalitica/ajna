@@ -111,6 +111,7 @@ const ReserveAuction = () => {
                   value={data.take_count > 0 ? data.last_take_price : 0}
                   currencySymbol="AJNA"
                   currencyAddress={AJNA_TOKEN_ADDRESS}
+                  network="ethereum"
                   dashIfZero
                 />
               }

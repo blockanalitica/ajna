@@ -40,6 +40,7 @@ const ReserveAuctionStats = ({ data, ...rest }) => {
           value={data.ajna_burned}
           currencySymbol="AJNA"
           currencyAddress={AJNA_TOKEN_ADDRESS}
+          network="ethereum"
           big
         />
       ),

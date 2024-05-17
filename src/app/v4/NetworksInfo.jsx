@@ -23,6 +23,7 @@ const NetworksInfo = ({ data, isLoading, className }) => {
           value={data.total_ajna_burned}
           currencySymbol="AJNA"
           currencyAddress={AJNA_TOKEN_ADDRESS}
+          network="ethereum"
         />
       ),
       smallValue: (
@@ -32,6 +33,7 @@ const NetworksInfo = ({ data, isLoading, className }) => {
               value={data.total_ajna_burned - data.prev_total_ajna_burned}
               currencySymbol="AJNA"
               currencyAddress={AJNA_TOKEN_ADDRESS}
+              network="ethereum"
               trend
             />
           ) : null}

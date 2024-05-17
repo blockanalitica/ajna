@@ -65,6 +65,7 @@ const ExpiredReserveAuctions = () => {
           value={row.take_count > 0 ? row.last_take_price : 0}
           currencySymbol="AJNA"
           currencyAddress={AJNA_TOKEN_ADDRESS}
+          network="ethereum"
           dashIfZero
         />
       ),
@@ -86,6 +87,7 @@ const ExpiredReserveAuctions = () => {
           value={row.ajna_burned}
           currencySymbol="AJNA"
           currencyAddress={AJNA_TOKEN_ADDRESS}
+          network="ethereum"
         />
       ),
       headerAlign: "end",
