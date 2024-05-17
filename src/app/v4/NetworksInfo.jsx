@@ -1,7 +1,9 @@
 import Stats from "@/components/stats/Stats";
 import StatsPlaceholder from "@/components/stats/StatsPlaceholder";
 import Value from "@/components/value/Value";
+import CurrencyValue from "@/components/value/CurrencyValue";
 import ValueChange from "@/components/value/ValueChange";
+import { AJNA_TOKEN_ADDRESS } from "@/utils/constants";
 
 const NetworksInfo = ({ data, isLoading, className }) => {
   if (isLoading) {
@@ -16,13 +18,21 @@ const NetworksInfo = ({ data, isLoading, className }) => {
     },
     {
       title: "🔥 Total Ajna Burned 🔥",
-      value: <Value value={data.total_ajna_burned} suffix="AJNA" />,
+      value: (
+        <CurrencyValue
+          value={data.total_ajna_burned}
+          currencySymbol="AJNA"
+          currencyAddress={AJNA_TOKEN_ADDRESS}
+        />
+      ),
       smallValue: (
         <>
           {data.prev_total_ajna_burned ? (
-            <ValueChange
+            <CurrencyValue
               value={data.total_ajna_burned - data.prev_total_ajna_burned}
-              suffix="AJNA"
+              currencySymbol="AJNA"
+              currencyAddress={AJNA_TOKEN_ADDRESS}
+              trend
             />
           ) : null}
         </>

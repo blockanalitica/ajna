@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import GenericPlaceholder from "@/components/GenericPlaceholder";
 import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 import CardBackground from "@/components/card/CardBackground";
-import Value from "@/components/value/Value";
+import CurrencyValue from "@/components/value/CurrencyValue";
 import { useFetch, useQueryParams } from "@/hooks";
 import Kpi from "@/components/kpis/Kpi";
 import PoolName from "@/components/poolName/PoolName";
@@ -32,7 +32,9 @@ const Bucket = () => {
 
   const {
     collateral_token_symbol: collateralTokenSymbol,
+    collateral_token_address: collateralTokenAddress,
     quote_token_symbol: quoteTokenSymbol,
+    quote_token_address: quoteTokenAddress,
     bucket_index: bucketIndex,
     bucket_price: bucketPrice,
     is_utilized: isUtilized,
@@ -48,7 +50,9 @@ const Bucket = () => {
       <div className="flex flex-col sm:flex-row items-center">
         <PoolName
           collateralSymbol={collateralTokenSymbol}
+          collateralAddress={collateralTokenAddress}
           quoteSymbol={quoteTokenSymbol}
+          quoteAddress={quoteTokenAddress}
           size="xl"
           className="font-syncopate mb-5"
         />
@@ -67,15 +71,33 @@ const Bucket = () => {
           <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
             <Kpi
               title="Deposit"
-              value={<Value value={deposit} suffix={quoteTokenSymbol} />}
+              value={
+                <CurrencyValue
+                  value={deposit}
+                  currencySymbol={quoteTokenSymbol}
+                  currencyAddress={quoteTokenAddress}
+                />
+              }
             />
             <Kpi
               title="Collateral"
-              value={<Value value={collateral} suffix={collateralTokenSymbol} />}
+              value={
+                <CurrencyValue
+                  value={collateral}
+                  currencySymbol={collateralTokenSymbol}
+                  currencyAddress={collateralTokenAddress}
+                />
+              }
             />
             <Kpi
               title="Price"
-              value={<Value value={bucketPrice} suffix={quoteTokenSymbol} />}
+              value={
+                <CurrencyValue
+                  value={bucketPrice}
+                  currencySymbol={quoteTokenSymbol}
+                  currencyAddress={quoteTokenAddress}
+                />
+              }
             />
             <Kpi
               title="Utilized"
@@ -94,7 +116,9 @@ const Bucket = () => {
           <HistoricGraphs
             daysAgo={daysAgo}
             collateralTokenSymbol={collateralTokenSymbol}
+            collateralTokenAddress={collateralTokenAddress}
             quoteTokenSymbol={quoteTokenSymbol}
+            quoteTokenAddress={quoteTokenAddress}
           />
         </CardBackground>
       </div>

@@ -5,7 +5,14 @@ import OtherHistoricGraphs from "./OtherHistoricGraphs";
 import GenericEmptyPlaceholder from "@/components/GenericEmptyPlaceholder";
 import { faChartBar } from "@fortawesome/free-solid-svg-icons";
 
-const HistoricGraphs = ({ address, daysAgo, collateralSymbol, quoteSymbol }) => {
+const HistoricGraphs = ({
+  address,
+  daysAgo,
+  collateralSymbol,
+  collateralAddress,
+  quoteSymbol,
+  quoteAddress,
+}) => {
   const [displayOption, setDisplayOption] = useState("tvl");
 
   const actualDaysAgo = daysAgo > 7 ? daysAgo : 30;
@@ -60,7 +67,9 @@ const HistoricGraphs = ({ address, daysAgo, collateralSymbol, quoteSymbol }) => 
       headerRight={headerRight}
       displayOption={displayOption}
       collateralSymbol={collateralSymbol}
+      collateralAddress={collateralAddress}
       quoteSymbol={quoteSymbol}
+      quoteAddress={quoteAddress}
       daysAgo={actualDaysAgo}
     />
   );

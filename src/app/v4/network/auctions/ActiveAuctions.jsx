@@ -3,6 +3,7 @@ import { faGavel } from "@fortawesome/free-solid-svg-icons";
 import { useFetch, usePageTitle, useLinkBuilder } from "@/hooks";
 import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
+import CurrencyValue from "@/components/value/CurrencyValue";
 import HoursMinutes from "@/components/dateTime/HoursMinutes";
 import { DateTime } from "luxon";
 import { parseUTCDateTime } from "@/utils/datetime";
@@ -38,7 +39,9 @@ const ActiveAuctions = () => {
       cell: ({ row }) => (
         <PoolName
           collateralSymbol={row.collateral_token_symbol}
+          collateralAddress={row.collateral_token_address}
           quoteSymbol={row.quote_token_symbol}
+          quoteAddress={row.quote_token_address}
         />
       ),
       cellSize: "1.5fr",
@@ -67,7 +70,13 @@ const ActiveAuctions = () => {
     },
     {
       header: "LUP",
-      cell: ({ row }) => <Value value={row.lup} suffix={row.quote_token_symbol} />,
+      cell: ({ row }) => (
+        <CurrencyValue
+          value={row.lup}
+          currencySymbol={row.quote_token_symbol}
+          currencyAddress={row.quote_token_address}
+        />
+      ),
       smallCell: ({ row }) => <Value value={row.lup_usd} prefix="$" />,
       headerAlign: "end",
       cellAlign: "end",
@@ -76,7 +85,11 @@ const ActiveAuctions = () => {
     {
       header: "Collateral Remaining",
       cell: ({ row }) => (
-        <Value value={row.collateral_remaining} suffix={row.collateral_token_symbol} />
+        <CurrencyValue
+          value={row.collateral_remaining}
+          currencySymbol={row.collateral_token_symbol}
+          currencyAddress={row.collateral_token_address}
+        />
       ),
       smallCell: ({ row }) => <Value value={row.collateral_remaining_usd} prefix="$" />,
       headerAlign: "end",
@@ -85,7 +98,11 @@ const ActiveAuctions = () => {
     {
       header: "Debt Remaining",
       cell: ({ row }) => (
-        <Value value={row.debt_remaining} suffix={row.quote_token_symbol} />
+        <CurrencyValue
+          value={row.debt_remaining}
+          currencySymbol={row.quote_token_symbol}
+          currencyAddress={row.quote_token_address}
+        />
       ),
       smallCell: ({ row }) => <Value value={row.debt_remaining_usd} prefix="$" />,
       headerAlign: "end",

@@ -10,6 +10,7 @@ import CopyToClipboard from "@/components/copyToClipboard/CopyToClipboard";
 import { generateEtherscanUrl, smartLocationParts } from "@/utils/url";
 import Stats from "@/components/stats/Stats";
 import Value from "@/components/value/Value";
+import CurrencyValue from "@/components/value/CurrencyValue";
 import ValueChange from "@/components/value/ValueChange";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import EtherscanIcon from "@/components/icon/EtherscanIcon";
@@ -52,14 +53,17 @@ const WalletPoolPosition = () => {
       title: "Deposited",
       value: (
         <>
-          <Value
+          <CurrencyValue
             value={data.supply}
-            suffix={data.quote_token_symbol}
+            currencySymbol={data.quote_token_symbol}
+            currencyAddress={data.quote_token_address}
             className="pe-3"
           />
-          <ValueChange
+          <CurrencyValue
             value={data.supply - data.prev_supply}
-            suffix={data.quote_token_symbol}
+            currencySymbol={data.quote_token_symbol}
+            currencyAddress={data.quote_token_address}
+            trend
           />
         </>
       ),
@@ -74,10 +78,17 @@ const WalletPoolPosition = () => {
       title: "Borrowed",
       value: (
         <>
-          <Value value={data.debt} suffix={data.quote_token_symbol} className="pe-3" />
-          <ValueChange
+          <CurrencyValue
+            value={data.debt}
+            currencySymbol={data.quote_token_symbol}
+            currencyAddress={data.quote_token_address}
+            className="pe-3"
+          />
+          <CurrencyValue
             value={data.debt - data.prev_debt}
-            suffix={data.quote_token_symbol}
+            currencySymbol={data.quote_token_symbol}
+            currencyAddress={data.quote_token_address}
+            trend
           />
         </>
       ),
@@ -92,14 +103,17 @@ const WalletPoolPosition = () => {
       title: "Collateral",
       value: (
         <>
-          <Value
+          <CurrencyValue
             value={data.collateral}
-            suffix={data.collateral_token_symbol}
+            currencySymbol={data.collateral_token_symbol}
+            currencyAddress={data.collateral_token_address}
             className="pe-3"
           />
-          <ValueChange
+          <CurrencyValue
             value={data.collateral - data.prev_collateral}
-            suffix={data.collateral_token_symbol}
+            currencySymbol={data.collateral_token_symbol}
+            currencyAddress={data.collateral_token_address}
+            trend
           />
         </>
       ),
@@ -151,7 +165,9 @@ const WalletPoolPosition = () => {
       <h1 className="text-xl md:text-1xl xl:text-2xl mb-5 flex gap-x-3">
         <PoolName
           collateralSymbol={data.collateral_token_symbol}
+          collateralAddress={data.collateral_token_address}
           quoteSymbol={data.quote_token_symbol}
+          quoteAddress={data.quote_token_address}
           size="xl"
         />
         <div>
@@ -186,14 +202,21 @@ const WalletPoolPosition = () => {
           <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
             <Kpi
               title="LUP"
-              value={<Value value={data.lup} suffix={data.quote_token_symbol} />}
+              value={
+                <CurrencyValue
+                  value={data.lup}
+                  currencySymbol={data.quote_token_symbol}
+                  currencyAddress={data.quote_token_address}
+                />
+              }
             />
             <Kpi
               title="Neutral Price"
               value={
-                <Value
+                <CurrencyValue
                   value={data.neutral_price}
-                  suffix={data.quote_token_symbol}
+                  currencySymbol={data.quote_token_symbol}
+                  currencyAddress={data.quote_token_address}
                   dashIfZero
                 />
               }
@@ -201,7 +224,11 @@ const WalletPoolPosition = () => {
             <Kpi
               title="Threshold Price"
               value={
-                <Value value={data.threshold_price} suffix={data.quote_token_symbol} />
+                <CurrencyValue
+                  value={data.threshold_price}
+                  currencySymbol={data.quote_token_symbol}
+                  currencyAddress={data.quote_token_address}
+                />
               }
             />
             <Kpi
@@ -219,7 +246,9 @@ const WalletPoolPosition = () => {
             address={address}
             poolAddress={poolAddress}
             collateralTokenSymbol={data.collateral_token_symbol}
+            collateralTokenAddress={data.collateral_token_address}
             quoteTokenSymbol={data.quote_token_symbol}
+            quoteTokenAddress={data.quote_token_address}
           />
         </CardBackground>
       </div>
@@ -230,6 +259,7 @@ const WalletPoolPosition = () => {
             address={address}
             poolAddress={poolAddress}
             quoteTokenSymbol={data.quote_token_symbol}
+            quoteTokenAddress={data.quote_token_address}
           />
         </div>
         <div className="md:w-2/3 grid grid-cols-1 mb-10">

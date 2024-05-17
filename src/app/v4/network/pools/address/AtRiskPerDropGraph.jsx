@@ -1,13 +1,13 @@
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import { useState } from "react";
 import FancyGraph from "@/components/graph/FancyGraph";
-import Value from "@/components/value/Value";
+import CurrencyValue from "@/components/value/CurrencyValue";
 import { faChartBar } from "@fortawesome/free-solid-svg-icons";
 import GenericEmptyPlaceholder from "@/components/GenericEmptyPlaceholder";
 import { compact } from "@/utils/number";
 import { sortArray } from "@/utils/array";
 
-const AtRiskPerDropGraph = ({ data, collateralSymbol }) => {
+const AtRiskPerDropGraph = ({ data, collateralSymbol, collateralAddress }) => {
   const [displayOption, setDisplayOption] = useState("desc");
   const seriesData = [];
 
@@ -60,9 +60,15 @@ const AtRiskPerDropGraph = ({ data, collateralSymbol }) => {
 
   const valueFormatter = (data) => {
     const value = data.y;
-    let prefix = "";
-    let suffix = collateralSymbol;
-    return <Value value={value} suffix={suffix} prefix={prefix} big compact />;
+    return (
+      <CurrencyValue
+        value={value}
+        currencySymbol={collateralSymbol}
+        currencyAddress={collateralAddress}
+        big
+        compact
+      />
+    );
   };
 
   const subvalueFormatter = (data) => {

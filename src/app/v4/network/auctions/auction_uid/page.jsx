@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { generateEtherscanUrl, smartLocationParts } from "@/utils/url";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import Tag from "@/components/tags/Tag";
-import Value from "@/components/value/Value";
+import CurrencyValue from "@/components/value/CurrencyValue";
 import ExternalLink from "@/components/externalLink/ExternalLink";
 import CopyToClipboard from "@/components/copyToClipboard/CopyToClipboard";
 import CardBackground from "@/components/card/CardBackground";
@@ -41,7 +41,9 @@ const Auction = () => {
       <div className="flex flex-col sm:flex-row text-2xl items-center font-syncopate uppercase gap-2 mb-5">
         <PoolName
           collateralSymbol={data.collateral_token_symbol}
+          collateralAddress={data.collateral_token_address}
           quoteSymbol={data.quote_token_symbol}
+          quoteAddress={data.quote_token_address}
           size="xl"
         />
         Auction
@@ -52,7 +54,11 @@ const Auction = () => {
           <div className="inline-block">
             <Tag className="flex">
               <span className="pr-2">LUP:</span>
-              <Value value={data.lup} suffix={data.quote_token_symbol} />
+              <CurrencyValue
+                value={data.lup}
+                currencySymbol={data.quote_token_symbol}
+                currencyAddress={data.quote_token_address}
+              />
             </Tag>
           </div>
           <SecondaryButton
@@ -142,7 +148,11 @@ const Auction = () => {
               <Kpi
                 title="Neutral Price"
                 value={
-                  <Value value={data.neutral_price} suffix={data.quote_token_symbol} />
+                  <CurrencyValue
+                    value={data.neutral_price}
+                    currencySymbol={data.quote_token_symbol}
+                    currencyAddress={data.quote_token_address}
+                  />
                 }
               />
             </div>
@@ -158,7 +168,9 @@ const Auction = () => {
           <Events
             auction_uid={auction_uid}
             quoteTokenSymbol={data.quote_token_symbol}
+            quoteTokenAddress={data.quote_token_address}
             collateralTokenSymbol={data.collateral_token_symbol}
+            collateralTokenAddress={data.collateral_token_address}
           />
         </div>
       </div>

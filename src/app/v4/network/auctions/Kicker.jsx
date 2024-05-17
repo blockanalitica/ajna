@@ -5,6 +5,7 @@ import { smartLocationParts } from "@/utils/url";
 import { Link, useLocation } from "react-router-dom";
 import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
+import CurrencyValue from "@/components/value/CurrencyValue";
 import SecondaryButton from "@/components/button/SecondaryButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
@@ -42,7 +43,9 @@ const Kicker = () => {
       cell: ({ row }) => (
         <PoolName
           collateralSymbol={row.collateral_token_symbol}
+          collateralAddress={row.collateral_token_address}
           quoteSymbol={row.quote_token_symbol}
+          quoteAddress={row.quote_token_address}
         />
       ),
     },
@@ -59,7 +62,13 @@ const Kicker = () => {
     },
     {
       header: "Debt",
-      cell: ({ row }) => <Value value={row.debt} suffix={row.quote_token_symbol} />,
+      cell: ({ row }) => (
+        <CurrencyValue
+          value={row.debt}
+          currencySymbol={row.quote_token_symbol}
+          currencyAddress={row.quote_token_address}
+        />
+      ),
       smallCell: ({ row }) => <Value value={row.debt_usd} prefix="$" />,
       headerAlign: "end",
       cellAlign: "end",
@@ -67,7 +76,11 @@ const Kicker = () => {
     {
       header: "Neutral Price",
       cell: ({ row }) => (
-        <Value value={row.neutral_price} suffix={row.quote_token_symbol} />
+        <CurrencyValue
+          value={row.neutral_price}
+          currencySymbol={row.quote_token_symbol}
+          currencyAddress={row.quote_token_address}
+        />
       ),
       headerAlign: "end",
       cellAlign: "end",
@@ -75,21 +88,35 @@ const Kicker = () => {
     {
       header: "Threshold Price",
       cell: ({ row }) => (
-        <Value value={row.threshold_price} suffix={row.quote_token_symbol} />
+        <CurrencyValue
+          value={row.threshold_price}
+          currencySymbol={row.quote_token_symbol}
+          currencyAddress={row.quote_token_address}
+        />
       ),
       headerAlign: "end",
       cellAlign: "end",
     },
     {
       header: "LUP",
-      cell: ({ row }) => <Value value={row.lup} suffix={row.quote_token_symbol} />,
+      cell: ({ row }) => (
+        <CurrencyValue
+          value={row.lup}
+          currencySymbol={row.quote_token_symbol}
+          currencyAddress={row.quote_token_address}
+        />
+      ),
       headerAlign: "end",
       cellAlign: "end",
     },
     {
       header: "Collateral",
       cell: ({ row }) => (
-        <Value value={row.collateral} suffix={row.collateral_token_symbol} />
+        <CurrencyValue
+          value={row.collateral}
+          currencySymbol={row.collateral_token_symbol}
+          currencyAddress={row.collateral_token_address}
+        />
       ),
       smallCell: ({ row }) => <Value value={row.collateral_usd} prefix="$" />,
       headerAlign: "end",

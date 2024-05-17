@@ -1,5 +1,6 @@
 import _ from "lodash";
 import Value from "@/components/value/Value";
+import CurrencyValue from "@/components/value/CurrencyValue";
 import ValueChange from "@/components/value/ValueChange";
 import { faArrowRightLong } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -21,7 +22,14 @@ const EventData = ({ children }) => {
   return <div className="flex flex-row space-x-4">{children}</div>;
 };
 
-const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol }) => {
+const EventFormatter = ({
+  type,
+  data,
+  quoteTokenSymbol,
+  quoteTokenAddress,
+  collateralTokenSymbol,
+  collateralTokenAddress,
+}) => {
   const buildLink = useLinkBuilder();
   let content;
 
@@ -38,7 +46,11 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
             </Link>
           </EventValue>
           <EventValue title="Amount">
-            <Value value={data.amount} suffix={collateralTokenSymbol} />
+            <CurrencyValue
+              value={data.amount}
+              currencySymbol={collateralTokenSymbol}
+              currencyAddress={collateralTokenAddress}
+            />
           </EventValue>
           <EventValue title="Bucket">{data.index}</EventValue>
         </EventData>
@@ -60,7 +72,11 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
             </Link>
           </EventValue>
           <EventValue title="Amount">
-            <Value value={data.amount} suffix={quoteTokenSymbol} />
+            <CurrencyValue
+              value={data.amount}
+              currencySymbol={quoteTokenSymbol}
+              currencyAddress={quoteTokenAddress}
+            />
           </EventValue>
           <EventValue title="Bucket">{data.index}</EventValue>
         </EventData>
@@ -117,7 +133,11 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
             </Link>
           </EventValue>
           <EventValue title="Collateral">
-            <Value value={data.collateral} suffix={collateralTokenSymbol} />
+            <CurrencyValue
+              value={data.collateral}
+              currencySymbol={collateralTokenSymbol}
+              currencyAddress={collateralTokenAddress}
+            />
           </EventValue>
         </EventData>
       );
@@ -143,7 +163,11 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
             </Link>
           </EventValue>
           <EventValue title="Amount">
-            <Value value={data.amount} suffix={quoteTokenSymbol} />
+            <CurrencyValue
+              value={data.amount}
+              currencySymbol={quoteTokenSymbol}
+              currencyAddress={quoteTokenAddress}
+            />
           </EventValue>
         </EventData>
       );
@@ -154,7 +178,11 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
         <EventData>
           <EventValue title="Index">{data.index}</EventValue>
           <EventValue title="LP Forfeited">
-            <Value value={data.lpForfeited} suffix={quoteTokenSymbol} />
+            <CurrencyValue
+              value={data.lpForfeited}
+              currencySymbol={quoteTokenSymbol}
+              currencyAddress={quoteTokenAddress}
+            />
           </EventValue>
         </EventData>
       );
@@ -173,13 +201,25 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
             </Link>
           </EventValue>
           <EventValue title="Debt">
-            <Value value={data.amount} suffix={quoteTokenSymbol} />
+            <CurrencyValue
+              value={data.amount}
+              currencySymbol={quoteTokenSymbol}
+              currencyAddress={quoteTokenAddress}
+            />
           </EventValue>
           <EventValue title="Collateral">
-            <Value value={data.collateral} suffix={collateralTokenSymbol} />
+            <CurrencyValue
+              value={data.collateral}
+              currencySymbol={collateralTokenSymbol}
+              currencyAddress={collateralTokenAddress}
+            />
           </EventValue>
           <EventValue title="Bond Change">
-            <Value value={data.bondChange} suffix={quoteTokenSymbol} />
+            <CurrencyValue
+              value={data.bondChange}
+              currencySymbol={quoteTokenSymbol}
+              currencyAddress={quoteTokenAddress}
+            />
           </EventValue>
           <EventValue title="Bucket">{data.index}</EventValue>
         </EventData>
@@ -207,10 +247,18 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
           </EventValue>
 
           <EventValue title="Kicker LP Awarded">
-            <Value value={data.lpAwardedKicker} suffix={quoteTokenSymbol} />
+            <CurrencyValue
+              value={data.lpAwardedKicker}
+              currencySymbol={quoteTokenSymbol}
+              currencyAddress={quoteTokenAddress}
+            />
           </EventValue>
           <EventValue title="Taker LP Awarded">
-            <Value value={data.lpAwardedTaker} suffix={quoteTokenSymbol} />
+            <CurrencyValue
+              value={data.lpAwardedTaker}
+              currencySymbol={quoteTokenSymbol}
+              currencyAddress={quoteTokenAddress}
+            />
           </EventValue>
         </EventData>
       );
@@ -231,10 +279,18 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
             </Link>
           </EventValue>
           <EventValue title="Amount Borrowed">
-            <Value value={data.amountBorrowed} suffix={quoteTokenSymbol} />
+            <CurrencyValue
+              value={data.amountBorrowed}
+              currencySymbol={quoteTokenSymbol}
+              currencyAddress={quoteTokenAddress}
+            />
           </EventValue>
           <EventValue title="Collateral Pledged">
-            <Value value={data.collateralPledged} suffix={collateralTokenSymbol} />
+            <CurrencyValue
+              value={data.collateralPledged}
+              currencySymbol={collateralTokenSymbol}
+              currencyAddress={collateralTokenAddress}
+            />
           </EventValue>
         </EventData>
       );
@@ -252,7 +308,11 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
             </Link>
           </EventValue>
           <EventValue title="Amount Borrowed">
-            <Value value={data.amountBorrowed} suffix={quoteTokenSymbol} />
+            <CurrencyValue
+              value={data.amountBorrowed}
+              currencySymbol={quoteTokenSymbol}
+              currencyAddress={quoteTokenAddress}
+            />
           </EventValue>
           {data.tokenIdsPledged?.length > 0 ? (
             <EventValue title="Token Ids Pledged">
@@ -275,7 +335,11 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
             </Link>
           </EventValue>
           <EventValue title="Amount">
-            <Value value={data.amount} suffix={data.token_symbol} />
+            <CurrencyValue
+              value={data.amount}
+              currencySymbol={data.token_symbol}
+              currencyAddress={data.token_address}
+            />
           </EventValue>
         </EventData>
       );
@@ -300,7 +364,12 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
             <EventValue title="Indexes">
               {_.zip(data.indexes, data.amounts).map(([index, amount]) => (
                 <div className="me-2 inline-block" key={index}>
-                  {index}: <Value value={amount} suffix={quoteTokenSymbol} />
+                  {index}:{" "}
+                  <CurrencyValue
+                    value={amount}
+                    currencySymbol={quoteTokenSymbol}
+                    currencyAddress={quoteTokenAddress}
+                  />
                 </div>
               ))}
             </EventValue>
@@ -322,13 +391,25 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
             </Link>
           </EventValue>
           <EventValue title="Debt">
-            <Value value={data.debt} suffix={quoteTokenSymbol} />
+            <CurrencyValue
+              value={data.debt}
+              currencySymbol={quoteTokenSymbol}
+              currencyAddress={quoteTokenAddress}
+            />
           </EventValue>
           <EventValue title="Collateral">
-            <Value value={data.collateral} suffix={collateralTokenSymbol} />
+            <CurrencyValue
+              value={data.collateral}
+              currencySymbol={collateralTokenSymbol}
+              currencyAddress={collateralTokenAddress}
+            />
           </EventValue>
           <EventValue title="Bond">
-            <Value value={data.bond} suffix={quoteTokenSymbol} />
+            <CurrencyValue
+              value={data.bond}
+              currencySymbol={quoteTokenSymbol}
+              currencyAddress={quoteTokenAddress}
+            />
           </EventValue>
         </EventData>
       );
@@ -338,10 +419,18 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
       content = (
         <EventData>
           <EventValue title="Auction Price">
-            <Value value={data.auctionPrice} suffix={quoteTokenSymbol} />
+            <CurrencyValue
+              value={data.auctionPrice}
+              currencySymbol={quoteTokenSymbol}
+              currencyAddress={quoteTokenAddress}
+            />
           </EventValue>
           <EventValue title="Claimable Reserves Remaining">
-            <Value value={data.claimableReservesRemaining} suffix={quoteTokenSymbol} />
+            <CurrencyValue
+              value={data.claimableReservesRemaining}
+              currencySymbol={quoteTokenSymbol}
+              currencyAddress={quoteTokenAddress}
+            />
           </EventValue>
         </EventData>
       );
@@ -374,7 +463,11 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
             </Link>
           </EventValue>
           <EventValue title="Collateral Merged">
-            <Value value={data.collateralMerged} suffix={collateralTokenSymbol} />
+            <CurrencyValue
+              value={data.collateralMerged}
+              currencySymbol={collateralTokenSymbol}
+              currencyAddress={collateralTokenAddress}
+            />
           </EventValue>
           <EventValue title="To Index Lps">
             <Value value={data.toIndexLps} />
@@ -395,7 +488,11 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
             </Link>
           </EventValue>
           <EventValue title="Amount">
-            <Value value={data.amount} suffix={quoteTokenSymbol} />
+            <CurrencyValue
+              value={data.amount}
+              currencySymbol={quoteTokenSymbol}
+              currencyAddress={quoteTokenAddress}
+            />
           </EventValue>
           <EventValue title="Bucket">
             {data.from}
@@ -422,7 +519,11 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
             </Link>
           </EventValue>
           <EventValue title="Amount">
-            <Value value={data.amount} suffix={collateralTokenSymbol} />
+            <CurrencyValue
+              value={data.amount}
+              currencySymbol={collateralTokenSymbol}
+              currencyAddress={collateralTokenAddress}
+            />
           </EventValue>
           <EventValue title="Bucket">{data.index}</EventValue>
         </EventData>
@@ -441,7 +542,11 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
             </Link>
           </EventValue>
           <EventValue title="Amount">
-            <Value value={data.amount} suffix={quoteTokenSymbol} />
+            <CurrencyValue
+              value={data.amount}
+              currencySymbol={quoteTokenSymbol}
+              currencyAddress={quoteTokenAddress}
+            />
           </EventValue>
           <EventValue title="Bucket">{data.index}</EventValue>
         </EventData>
@@ -460,10 +565,18 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
             </Link>
           </EventValue>
           <EventValue title="Quote Repaid">
-            <Value value={data.quoteRepaid} suffix={quoteTokenSymbol} />
+            <CurrencyValue
+              value={data.quoteRepaid}
+              currencySymbol={quoteTokenSymbol}
+              currencyAddress={quoteTokenAddress}
+            />
           </EventValue>
           <EventValue title="Collateral Pulled">
-            <Value value={data.collateralPulled} suffix={collateralTokenSymbol} />
+            <CurrencyValue
+              value={data.collateralPulled}
+              currencySymbol={collateralTokenSymbol}
+              currencyAddress={collateralTokenAddress}
+            />
           </EventValue>
         </EventData>
       );
@@ -473,10 +586,18 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
       content = (
         <EventData>
           <EventValue title="Auction Price">
-            <Value value={data.auctionPrice} suffix={quoteTokenSymbol} />
+            <CurrencyValue
+              value={data.auctionPrice}
+              currencySymbol={quoteTokenSymbol}
+              currencyAddress={quoteTokenAddress}
+            />
           </EventValue>
           <EventValue title="Claimable Reserves Remaining">
-            <Value value={data.claimableReservesRemaining} suffix={quoteTokenSymbol} />
+            <CurrencyValue
+              value={data.claimableReservesRemaining}
+              currencySymbol={quoteTokenSymbol}
+              currencyAddress={quoteTokenAddress}
+            />
           </EventValue>
           <EventValue title="Current Burn Epoch">{data.currentBurnEpoch}</EventValue>
         </EventData>
@@ -524,7 +645,11 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
             </Link>
           </EventValue>
           <EventValue title="Settled Debt">
-            <Value value={data.settledDebt} suffix={quoteTokenSymbol} />
+            <CurrencyValue
+              value={data.settledDebt}
+              currencySymbol={quoteTokenSymbol}
+              currencyAddress={quoteTokenAddress}
+            />
           </EventValue>
         </EventData>
       );
@@ -542,13 +667,25 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
             </Link>
           </EventValue>
           <EventValue title="Debt">
-            <Value value={data.amount} suffix={quoteTokenSymbol} />
+            <CurrencyValue
+              value={data.amount}
+              currencySymbol={quoteTokenSymbol}
+              currencyAddress={quoteTokenAddress}
+            />
           </EventValue>
           <EventValue title="Collateral">
-            <Value value={data.collateral} suffix={collateralTokenSymbol} />
+            <CurrencyValue
+              value={data.collateral}
+              currencySymbol={collateralTokenSymbol}
+              currencyAddress={collateralTokenAddress}
+            />
           </EventValue>
           <EventValue title="Bond Change">
-            <Value value={data.bondChange} suffix={quoteTokenSymbol} />
+            <CurrencyValue
+              value={data.bondChange}
+              currencySymbol={quoteTokenSymbol}
+              currencyAddress={quoteTokenAddress}
+            />
           </EventValue>
         </EventData>
       );
@@ -574,7 +711,11 @@ const EventFormatter = ({ type, data, quoteTokenSymbol, collateralTokenSymbol })
             </Link>
           </EventValue>
           <EventValue title="LP">
-            <Value value={data.lp} suffix={quoteTokenSymbol} />
+            <CurrencyValue
+              value={data.lp}
+              currencySymbol={quoteTokenSymbol}
+              currencyAddress={quoteTokenAddress}
+            />
           </EventValue>
           {data.indexes?.length > 0 ? (
             <EventValue title="Indexes">{data.indexes.join(", ")}</EventValue>

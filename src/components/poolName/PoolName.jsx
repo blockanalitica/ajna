@@ -1,7 +1,14 @@
 import classnames from "classnames";
 import CryptoIcon from "@/components/icon/CryptoIcon";
 
-function PoolName({ collateralSymbol, quoteSymbol, className, size = "md" }) {
+function PoolName({
+  collateralSymbol,
+  collateralAddress,
+  quoteSymbol,
+  quoteAddress,
+  className,
+  size = "md",
+}) {
   let iconSize = "24";
   let rightIconClasses = "";
   let textClasses = "";
@@ -27,9 +34,15 @@ function PoolName({ collateralSymbol, quoteSymbol, className, size = "md" }) {
   return (
     <div className={classnames("flex items-center", className)}>
       <span className="flex">
-        <CryptoIcon name={collateralSymbol} size={iconSize} className="z-10" />
         <CryptoIcon
-          name={quoteSymbol}
+          address={collateralAddress}
+          alt={collateralSymbol}
+          size={iconSize}
+          className="z-10"
+        />
+        <CryptoIcon
+          address={quoteAddress}
+          alt={quoteSymbol}
           size={iconSize}
           className={classnames("relative z-0", rightIconClasses)}
         />

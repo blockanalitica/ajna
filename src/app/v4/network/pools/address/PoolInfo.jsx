@@ -1,5 +1,6 @@
 import Stats from "@/components/stats/Stats";
 import Value from "@/components/value/Value";
+import CurrencyValue from "@/components/value/CurrencyValue";
 import ValueChange from "@/components/value/ValueChange";
 
 const PoolInfo = ({ data, ...rest }) => {
@@ -8,11 +9,18 @@ const PoolInfo = ({ data, ...rest }) => {
       title: "Deposited",
       value: (
         <>
-          <Value value={data.pool_size} suffix={data.quote_token_symbol} big />
-          <ValueChange
+          <CurrencyValue
+            value={data.pool_size}
+            currencySymbol={data.quote_token_symbol}
+            currencyAddress={data.quote_token_address}
+            big
+          />
+          <CurrencyValue
             value={data.pool_size - data.prev_pool_size}
-            suffix={data.quote_token_symbol}
+            currencySymbol={data.quote_token_symbol}
+            currencyAddress={data.quote_token_address}
             className="text-lg ms-2"
+            trend
           />
         </>
       ),
@@ -31,11 +39,18 @@ const PoolInfo = ({ data, ...rest }) => {
       title: "Borrowed",
       value: (
         <>
-          <Value value={data.debt} suffix={data.quote_token_symbol} big />
-          <ValueChange
+          <CurrencyValue
+            value={data.debt}
+            scurrencySymbol={data.quote_token_symbol}
+            currencyAddress={data.quote_token_address}
+            big
+          />
+          <CurrencyValue
             value={data.debt - data.prev_debt}
-            suffix={data.quote_token_symbol}
+            currencySymbol={data.quote_token_symbol}
+            currencyAddress={data.quote_token_address}
             className="text-lg ms-2"
+            trend
           />
         </>
       ),
@@ -54,15 +69,18 @@ const PoolInfo = ({ data, ...rest }) => {
       title: "Collateral",
       value: (
         <>
-          <Value
+          <CurrencyValue
             value={data.pledged_collateral}
-            suffix={data.collateral_token_symbol}
+            currencySymbol={data.collateral_token_symbol}
+            currencyAddress={data.collateral_token_address}
             big
           />
-          <ValueChange
+          <CurrencyValue
             value={data.pledged_collateral - data.prev_pledged_collateral}
-            suffix={data.collateral_token_symbol}
+            currencySymbol={data.collateral_token_symbol}
+            currencyAddress={data.collateral_token_address}
             className="text-lg ms-2"
+            trend
           />
         </>
       ),

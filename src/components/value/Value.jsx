@@ -1,6 +1,5 @@
 import classnames from "classnames";
 import { compact as compactNumber, formatToDecimals } from "@/utils/number";
-import CryptoIcon from "@/components/icon/CryptoIcon";
 import Tooltip from "@/components/tooltip/Tooltip";
 
 function Value({
@@ -12,15 +11,15 @@ function Value({
   compact100k = false,
   hideIfZero,
   dashIfZero,
-  icon = true,
   className,
-  id,
   small = false,
-  big = false,
-  iconSize = "16",
+  tooltip = null,
   ...rest
 }) {
-  value = Number(value);
+  if (typeof value !== "number") {
+    value = Number(value);
+  }
+
   if (
     value === undefined ||
     value === null ||
@@ -43,54 +42,20 @@ function Value({
     value = formatToDecimals(value, numDecimals);
   }
 
-  const tooltipPrefix = `${prefix !== "$" ? " " : ""}${prefix ? prefix : ""}`;
-  const tooltipSuffix = `${suffix !== "%" ? " " : ""}${suffix ? suffix : ""}`;
-  const tooltipMessage = `${tooltipPrefix}${rawValue}${tooltipSuffix}`;
+  const tooltipMessage = tooltip ? tooltip : rawValue;
 
   return (
-    <>
-      <span
-        id={id}
-        className={classnames("inline-flex items-center static", className, {
-          "text-sm": small,
-          "lh-sm": small,
-        })}
-        {...rest}
-      >
-        {prefix ? (
-          <>
-            {icon && prefix !== "$" ? (
-              <>
-                <CryptoIcon
-                  name={prefix}
-                  className="me-1"
-                  size={small ? "14" : big ? "24" : iconSize}
-                />
-              </>
-            ) : (
-              prefix
-            )}
-          </>
-        ) : null}
-        <Tooltip message={tooltipMessage}>{value}</Tooltip>
-        {suffix ? (
-          <>
-            {icon && suffix !== "%" ? (
-              <CryptoIcon
-                name={suffix}
-                className="ms-1"
-                size={small ? "14" : big ? "24" : iconSize}
-              />
-            ) : (
-              <>
-                {suffix !== "%" ? <>&nbsp;</> : ""}
-                {suffix}
-              </>
-            )}
-          </>
-        ) : null}
-      </span>
-    </>
+    <span
+      className={classnames("inline-flex items-center static", className, {
+        "text-sm": small,
+        "lh-sm": small,
+      })}
+      {...rest}
+    >
+      {prefix ? prefix : null}
+      <Tooltip message={tooltipMessage}>{value}</Tooltip>
+      {suffix ? suffix : null}
+    </span>
   );
 }
 

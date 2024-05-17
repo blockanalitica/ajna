@@ -5,12 +5,17 @@ import { useState } from "react";
 import GenericEmptyPlaceholder from "@/components/GenericEmptyPlaceholder";
 import { faChartBar } from "@fortawesome/free-solid-svg-icons";
 import FancyGraph from "@/components/graph/FancyGraph";
-import Value from "@/components/value/Value";
+import CurrencyValue from "@/components/value/CurrencyValue";
 import { prefillSerieDates } from "@/utils/graph";
 import { compact } from "@/utils/number";
 import { DateTime } from "luxon";
 
-const HistoricGraphs = ({ quoteTokenSymbol, collateralTokenSymbol }) => {
+const HistoricGraphs = ({
+  quoteTokenSymbol,
+  quoteTokenAddress,
+  collateralTokenSymbol,
+  collateralTokenAddress,
+}) => {
   const { address, index } = useParams();
   const [displayOption, setDisplayOption] = useState("deposit");
 
@@ -71,9 +76,25 @@ const HistoricGraphs = ({ quoteTokenSymbol, collateralTokenSymbol }) => {
 
   const valueFormatter = (data) => {
     const value = data.y;
-    const suffix =
-      displayOption === "deposit" ? quoteTokenSymbol : collateralTokenSymbol;
-    return <Value value={value} suffix={suffix} big compact />;
+
+    if (displayOption === "deposit") {
+      return (
+        <CurrencyValue
+          value={value}
+          currencySymbol={quoteTokenSymbol}
+          currencyAddress={quoteTokenAddress}
+          big
+        />
+      );
+    }
+    return (
+      <CurrencyValue
+        value={value}
+        currencySymbol={collateralTokenSymbol}
+        currencyAddress={collateralTokenAddress}
+        big
+      />
+    );
   };
 
   const subvalueFormatter = (data) => {

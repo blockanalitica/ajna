@@ -4,9 +4,11 @@ import { useLinkBuilder } from "@/hooks";
 import InlineSelect from "@/components/select/InlineSelect";
 import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
+import CurrencyValue from "@/components/value/CurrencyValue";
 import ValueChange from "@/components/value/ValueChange";
 import Tag from "@/components/tags/Tag";
 import PoolName from "@/components/poolName/PoolName";
+import { AJNA_TOKEN_ADDRESS } from "@/utils/constants";
 
 const PoolsTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
   const buildLink = useLinkBuilder();
@@ -26,7 +28,9 @@ const PoolsTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
       cell: ({ row }) => (
         <PoolName
           collateralSymbol={row.collateral_token_symbol}
+          collateralAddress={row.collateral_token_address}
           quoteSymbol={row.quote_token_symbol}
+          quoteAddress={row.quote_token_address}
         />
       ),
       smallCell: ({ row }) => (
@@ -51,9 +55,10 @@ const PoolsTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
           {isPriceUsd ? (
             <Value value={row.pledged_collateral_usd} prefix="$" />
           ) : (
-            <Value
+            <CurrencyValue
               value={row.pledged_collateral}
-              suffix={row.collateral_token_symbol}
+              currencySymbol={row.collateral_token_symbol}
+              currencyAddress={row.collateral_token_address}
             />
           )}
         </>
@@ -66,9 +71,11 @@ const PoolsTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
               prefix="$"
             />
           ) : (
-            <ValueChange
+            <CurrencyValue
               value={row.pledged_collateral - row.prev_pledged_collateral}
-              suffix={row.collateral_token_symbol}
+              currencySymbol={row.collateral_token_symbol}
+              currencyAddress={row.collateral_token_address}
+              trend
             />
           )}
         </>
@@ -77,37 +84,6 @@ const PoolsTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
       cellAlign: "end",
       orderField: isPriceUsd ? "pledged_collateral_usd" : "pledged_collateral",
     },
-    // {
-    //   header: "Collateral",
-    //   cell: ({ row }) => (
-    //     <>
-    //       {isPriceUsd ? (
-    //         <Value value={row.collateral_usd} prefix="$" />
-    //       ) : (
-    //         <Value value={row.collateral} suffix={row.collateral_token_symbol} />
-    //       )}
-    //     </>
-    //   ),
-    //   smallCell: ({ row }) => (
-    //     <>
-    //       {isPriceUsd ? (
-    //         <ValueChange
-    //           value={row.collateral_usd - row.prev_collateral_usd}
-    //           prefix="$"
-    //         />
-    //       ) : (
-    //         <ValueChange
-    //           value={row.collateral - row.prev_collateral}
-    //           suffix={row.collateral_token_symbol}
-    //         />
-    //       )}
-    //     </>
-    //   ),
-    //   headerAlign: "end",
-    //   cellAlign: "end",
-    //   orderField: isPriceUsd ? "collateral_usd" : "collateral",
-    // },
-
     {
       header: "Quote",
       cell: ({ row }) => (
@@ -115,7 +91,11 @@ const PoolsTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
           {isPriceUsd ? (
             <Value value={row.pool_size_usd} prefix="$" />
           ) : (
-            <Value value={row.pool_size} suffix={row.quote_token_symbol} />
+            <CurrencyValue
+              value={row.pool_size}
+              currencySymbol={row.quote_token_symbol}
+              currencyAddress={row.quote_token_address}
+            />
           )}
         </>
       ),
@@ -127,9 +107,11 @@ const PoolsTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
               prefix="$"
             />
           ) : (
-            <ValueChange
+            <CurrencyValue
               value={row.pool_size - row.prev_pool_size}
-              suffix={row.quote_token_symbol}
+              currencyAddress={row.quote_token_address}
+              currencySymbol={row.quote_token_symbol}
+              trend
             />
           )}
         </>
@@ -145,7 +127,11 @@ const PoolsTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
           {isPriceUsd ? (
             <Value value={row.debt_usd} prefix="$" />
           ) : (
-            <Value value={row.debt} suffix={row.quote_token_symbol} />
+            <CurrencyValue
+              value={row.debt}
+              currencySymbol={row.quote_token_symbol}
+              currencyAddress={row.quote_token_address}
+            />
           )}
         </>
       ),
@@ -154,9 +140,10 @@ const PoolsTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
           {isPriceUsd ? (
             <ValueChange value={row.debt_usd - row.prev_debt_usd} prefix="$" />
           ) : (
-            <ValueChange
+            <CurrencyValue
               value={row.debt - row.prev_debt}
-              suffix={row.quote_token_symbol}
+              currencySymbol={row.quote_token_symbol}
+              currencyAddress={row.quote_token_address}
             />
           )}
         </>
@@ -170,7 +157,7 @@ const PoolsTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
       cell: ({ row }) => (
         <div className="flex flex-col items-end">
           <Value value={row.tvl} prefix="$" dashIfZero />
-          <ValueChange value={row.tvl - row.prev_tvl} small prefix={"$"} />
+          <ValueChange value={row.tvl - row.prev_tvl} small prefix="$" />
         </div>
       ),
       headerAlign: "end",
@@ -185,7 +172,7 @@ const PoolsTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
           <ValueChange
             value={(row.lend_rate - row.prev_lend_rate) * 100}
             small
-            suffix={"%"}
+            suffix="%"
           />
         </div>
       ),
@@ -201,7 +188,7 @@ const PoolsTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
           <ValueChange
             value={(row.borrow_rate - row.prev_borrow_rate) * 100}
             small
-            suffix={"%"}
+            suffix="%"
           />
         </div>
       ),
@@ -213,10 +200,17 @@ const PoolsTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
       header: "🔥",
       cell: ({ row }) => (
         <div className="flex flex-col items-end">
-          <Value value={row.total_ajna_burned} suffix="AJNA" />
-          <ValueChange
+          <CurrencyValue
+            value={row.total_ajna_burned}
+            currencySybmol="AJNA"
+            currencyAddress={AJNA_TOKEN_ADDRESS}
+          />
+          <CurrencyValue
             value={row.total_ajna_burned - row.prev_total_ajna_burned}
+            currencySybmol="AJNA"
+            currencyAddress={AJNA_TOKEN_ADDRESS}
             small
+            trend
           />
         </div>
       ),

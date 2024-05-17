@@ -1,4 +1,5 @@
 import Value from "@/components/value/Value";
+import CurrencyValue from "@/components/value/CurrencyValue";
 import Stats from "@/components/stats/Stats";
 
 const AuctionStats = ({ data, ...rest }) => {
@@ -9,15 +10,22 @@ const AuctionStats = ({ data, ...rest }) => {
         <div className="flex flex-row md:flex-col lg:flex-row">
           {!data.settled ? (
             <div>
-              <Value
+              <CurrencyValue
                 value={data.collateral_remaining}
-                suffix={data.collateral_token_symbol}
+                currencySymbol={data.collateral_token_symbol}
+                currencyAddress={data.collateral_token_address}
+                big
               />
               <span className="px-1">/</span>
             </div>
           ) : null}
 
-          <Value value={data.collateral} suffix={data.collateral_token_symbol} big />
+          <CurrencyValue
+            value={data.collateral}
+            currencySymbol={data.collateral_token_symbol}
+            currencyAddress={data.collateral_token_address}
+            big
+          />
         </div>
       ),
       smallValue: (
@@ -38,11 +46,21 @@ const AuctionStats = ({ data, ...rest }) => {
         <div className="flex flex-row md:flex-col lg:flex-row">
           {!data.settled ? (
             <div>
-              <Value value={data.debt_remaining} suffix={data.quote_token_symbol} />
+              <CurrencyValue
+                value={data.debt_remaining}
+                currencySymbol={data.quote_token_symbol}
+                currencyAddress={data.quote_token_address}
+                big
+              />
               <span className="px-1">/</span>
             </div>
           ) : null}
-          <Value value={data.debt} suffix={data.quote_token_symbol} />
+          <CurrencyValue
+            value={data.debt}
+            currencySymbol={data.quote_token_symbol}
+            currencyAddress={data.quote_token_address}
+            big
+          />
         </div>
       ),
       smallValue: (
@@ -59,7 +77,14 @@ const AuctionStats = ({ data, ...rest }) => {
     },
     {
       title: "Bond",
-      value: <Value value={data.bond} suffix={data.quote_token_symbol} big />,
+      value: (
+        <CurrencyValue
+          value={data.bond}
+          currencySymbol={data.quote_token_symbol}
+          currencyAddress={data.quote_token_address}
+          big
+        />
+      ),
       smallValue: (
         <>
           <Value value={data.bond_usd} prefix="$" />*

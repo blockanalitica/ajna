@@ -69,13 +69,15 @@ const Events = ({ address, block, ...rest }) => {
           >
             <span className="flex">
               <CryptoIcon
-                name={row.collateral_token_symbol}
+                alt={row.collateral_token_symbol}
+                address={row.collateral_token_address}
                 className="z-10"
                 size="22"
               />
               <CryptoIcon
                 size="22"
-                name={row.quote_token_symbol}
+                alt={row.quote_token_symbol}
+                address={row.quote_token_address}
                 className="relative left-[-11px] z-0"
               />
             </span>
@@ -91,7 +93,9 @@ const Events = ({ address, block, ...rest }) => {
           type={row.name}
           data={row.data}
           quoteTokenSymbol={row.quote_token_symbol}
+          quoteTokenAddress={row.quote_token_address}
           collateralTokenSymbol={row.collateral_token_symbol}
+          collateralTokenAddress={row.collateral_token_address}
         />
       ),
       cellSize: "2.5fr",

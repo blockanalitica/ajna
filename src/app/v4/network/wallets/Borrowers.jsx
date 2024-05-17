@@ -44,7 +44,9 @@ const Borrowers = ({ searchTerm }) => {
     },
     {
       header: "Tokens Borrowed",
-      cell: ({ row }) => <TokenIcons tokens={row.tokens} />,
+      // cell: ({ row }) => <TokenIcons tokens={row.tokens} />,
+      cell: ({ row }) => <TokenIcons tokenAddresses={row.token_addresses} />,
+
       headerAlign: "center",
       cellAlign: "center",
     },

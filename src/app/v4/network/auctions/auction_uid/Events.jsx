@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useFetch } from "@/hooks";
 import { DateTime } from "luxon";
 import Table from "@/components/table/Table";
-import Value from "@/components/value/Value";
+import CurrencyValue from "@/components/value/CurrencyValue";
 import DateTimeAgo from "@/components/dateTime/DateTimeAgo";
 import EtherscanIcon from "@/components/icon/EtherscanIcon";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -31,7 +31,9 @@ const AuctionEventFormatter = ({
   type,
   event,
   quoteTokenSymbol,
+  quoteTokenAddress,
   collateralTokenSymbol,
+  collateralTokenAddress,
   network,
 }) => {
   let content;
@@ -47,13 +49,28 @@ const AuctionEventFormatter = ({
             <CopyToClipboard className="mx-2" text={event.data.kicker} size="sm" />
           </EventValue>
           <EventValue title="Debt">
-            <Value value={event.data.debt} suffix={quoteTokenSymbol} small />
+            <CurrencyValue
+              value={event.data.debt}
+              currencySymbol={quoteTokenSymbol}
+              currencyAddress={quoteTokenAddress}
+              small
+            />
           </EventValue>
           <EventValue title="Collateral">
-            <Value value={event.data.collateral} suffix={collateralTokenSymbol} small />
+            <CurrencyValue
+              value={event.data.collateral}
+              currencySymbol={collateralTokenSymbol}
+              currencyAddress={collateralTokenAddress}
+              small
+            />
           </EventValue>
           <EventValue title="Bond">
-            <Value value={event.data.bond} suffix={quoteTokenSymbol} small />
+            <CurrencyValue
+              value={event.data.bond}
+              currencySymbol={quoteTokenSymbol}
+              currencyAddress={quoteTokenAddress}
+              small
+            />
           </EventValue>
         </EventData>
       );
@@ -69,13 +86,28 @@ const AuctionEventFormatter = ({
             <CopyToClipboard className="mx-2" text={event.data.taker} size="sm" />
           </EventValue>
           <EventValue title="Debt">
-            <Value value={event.data.amount} suffix={quoteTokenSymbol} small />
+            <CurrencyValue
+              value={event.data.amount}
+              currencySymbol={quoteTokenSymbol}
+              currencyAddress={quoteTokenAddress}
+              small
+            />
           </EventValue>
           <EventValue title="Collateral">
-            <Value value={event.data.collateral} suffix={collateralTokenSymbol} small />
+            <CurrencyValue
+              value={event.data.collateral}
+              currencySymbol={collateralTokenSymbol}
+              currencyAddress={collateralTokenAddress}
+              small
+            />
           </EventValue>
           <EventValue title="Bond Change">
-            <Value value={event.data.bond_change} suffix={quoteTokenSymbol} small />
+            <CurrencyValue
+              value={event.data.bond_change}
+              currencySymbol={quoteTokenSymbol}
+              currencyAddress={quoteTokenAddress}
+              small
+            />
           </EventValue>
         </EventData>
       );
@@ -93,13 +125,28 @@ const AuctionEventFormatter = ({
           </EventValue>
           <EventValue title="Bucket Index">{event.data.index}</EventValue>
           <EventValue title="Debt">
-            <Value value={event.data.amount} suffix={quoteTokenSymbol} small />
+            <CurrencyValue
+              value={event.data.amount}
+              currencySymbol={quoteTokenSymbol}
+              currencyAddress={quoteTokenAddress}
+              small
+            />
           </EventValue>
           <EventValue title="Collateral">
-            <Value value={event.data.collateral} suffix={collateralTokenSymbol} small />
+            <CurrencyValue
+              value={event.data.collateral}
+              currencySymbol={collateralTokenSymbol}
+              currencyAddress={collateralTokenAddress}
+              small
+            />
           </EventValue>
           <EventValue title="Bond Change">
-            <Value value={event.data.bond_change} suffix={quoteTokenSymbol} small />
+            <CurrencyValue
+              value={event.data.bond_change}
+              currencySymbol={quoteTokenSymbol}
+              currencyAddress={quoteTokenAddress}
+              small
+            />
           </EventValue>
         </EventData>
       );
@@ -109,7 +156,12 @@ const AuctionEventFormatter = ({
       content = (
         <EventData>
           <EventValue title="Collateral">
-            <Value value={event.data.collateral} suffix={collateralTokenSymbol} small />
+            <CurrencyValue
+              value={event.data.collateral}
+              currencySymbol={collateralTokenSymbol}
+              currencyAddress={collateralTokenAddress}
+              small
+            />
           </EventValue>
         </EventData>
       );
@@ -119,7 +171,12 @@ const AuctionEventFormatter = ({
       content = (
         <EventData>
           <EventValue title="Collateral">
-            <Value value={event.data.collateral} suffix={collateralTokenSymbol} small />
+            <CurrencyValue
+              value={event.data.collateral}
+              currencySymbol={collateralTokenSymbol}
+              currencyAddress={collateralTokenAddress}
+              small
+            />
           </EventValue>
           <EventValue title="Index">{event.data.index}</EventValue>
         </EventData>
@@ -130,7 +187,12 @@ const AuctionEventFormatter = ({
       content = (
         <EventData>
           <EventValue title="Settled Debt">
-            <Value value={event.data.settled_debt} suffix={quoteTokenSymbol} small />
+            <CurrencyValue
+              value={event.data.settled_debt}
+              currencySymbol={quoteTokenSymbol}
+              currencyAddress={quoteTokenAddress}
+              small
+            />
           </EventValue>
         </EventData>
       );
@@ -143,7 +205,13 @@ const AuctionEventFormatter = ({
   return <>{content}</>;
 };
 
-const Events = ({ auction_uid, quoteTokenSymbol, collateralTokenSymbol }) => {
+const Events = ({
+  auction_uid,
+  quoteTokenSymbol,
+  quoteTokenAddress,
+  collateralTokenSymbol,
+  collateralTokenAddress,
+}) => {
   const location = useLocation();
   const { network } = smartLocationParts(location);
   const pageSize = 10;
@@ -178,7 +246,9 @@ const Events = ({ auction_uid, quoteTokenSymbol, collateralTokenSymbol }) => {
           type={row.event}
           event={row}
           quoteTokenSymbol={quoteTokenSymbol}
+          quoteTokenAddress={quoteTokenAddress}
           collateralTokenSymbol={collateralTokenSymbol}
+          collateralTokenAddress={collateralTokenAddress}
           network={network}
         />
       ),

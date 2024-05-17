@@ -7,7 +7,7 @@ import SecondaryButton from "@/components/button/SecondaryButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { generateEtherscanUrl, smartLocationParts } from "@/utils/url";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
-import Value from "@/components/value/Value";
+import CurrencyValue from "@/components/value/CurrencyValue";
 import ExternalLink from "@/components/externalLink/ExternalLink";
 import CopyToClipboard from "@/components/copyToClipboard/CopyToClipboard";
 import CardBackground from "@/components/card/CardBackground";
@@ -16,6 +16,7 @@ import Events from "./Events";
 import ReserveAuctionStats from "./ReserveAuctionStats";
 import PoolName from "@/components/poolName/PoolName";
 import Kpi from "@/components/kpis/Kpi";
+import { AJNA_TOKEN_ADDRESS } from "@/utils/constants";
 
 const ReserveAuction = () => {
   const { uid } = useParams();
@@ -104,9 +105,10 @@ const ReserveAuction = () => {
             <Kpi
               title="Last Take price"
               value={
-                <Value
+                <CurrencyValue
                   value={data.take_count > 0 ? data.last_take_price : 0}
-                  suffix="AJNA"
+                  currencySymbol="AJNA"
+                  currencyAddress={AJNA_TOKEN_ADDRESS}
                   dashIfZero
                 />
               }
@@ -117,7 +119,11 @@ const ReserveAuction = () => {
           <h3 className="text-lg font-bold text-gray-1 font-syncopate uppercase mb-4">
             Activity
           </h3>
-          <Events uid={uid} quoteTokenSymbol={data.quote_token_symbol} />
+          <Events
+            uid={uid}
+            quoteTokenSymbol={data.quote_token_symbol}
+            quoteTokenAddress={data.quote_token_address}
+          />
         </div>
       </div>
     </>

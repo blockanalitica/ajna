@@ -6,6 +6,7 @@ import { useFetch, useLinkBuilder } from "@/hooks";
 import Table from "@/components/table/Table";
 import Address from "@/components/address/Address";
 import Value from "@/components/value/Value";
+import CurrencyValue from "@/components/value/CurrencyValue";
 import ValueChange from "@/components/value/ValueChange";
 import InlineSelect from "@/components/select/InlineSelect";
 import Info from "@/components/info/Info";
@@ -73,7 +74,11 @@ const Borrowers = ({ address, daysAgo, search }) => {
           {isPriceUsd ? (
             <Value value={row.collateral_usd} prefix="$" />
           ) : (
-            <Value value={row.collateral} suffix={row.collateral_token_symbol} />
+            <CurrencyValue
+              value={row.collateral}
+              currencySymbol={row.collateral_token_symbol}
+              currencyAddress={row.collateral_token_address}
+            />
           )}
         </>
       ),
@@ -85,9 +90,11 @@ const Borrowers = ({ address, daysAgo, search }) => {
               prefix="$"
             />
           ) : (
-            <ValueChange
+            <CurrencyValue
               value={row.collateral - row.prev_collateral}
-              suffix={row.collateral_token_symbol}
+              currencySymbol={row.collateral_token_symbol}
+              currencyAddress={row.collateral_token_address}
+              trend
             />
           )}
         </>
@@ -103,7 +110,11 @@ const Borrowers = ({ address, daysAgo, search }) => {
           {isPriceUsd ? (
             <Value value={row.debt_usd} prefix="$" />
           ) : (
-            <Value value={row.debt} suffix={row.quote_token_symbol} />
+            <CurrencyValue
+              value={row.debt}
+              currencySymbol={row.quote_token_symbol}
+              currencyAddress={row.quote_token_address}
+            />
           )}
         </>
       ),
@@ -112,9 +123,11 @@ const Borrowers = ({ address, daysAgo, search }) => {
           {isPriceUsd ? (
             <ValueChange value={row.debt_usd - row.prev_debt_usd} prefix="$" />
           ) : (
-            <ValueChange
+            <CurrencyValue
               value={row.debt - row.prev_debt}
-              suffix={row.quote_token_symbol}
+              currencySymbol={row.quote_token_symbol}
+              currencyAddress={row.quote_token_address}
+              trend
             />
           )}
         </>

@@ -1,13 +1,13 @@
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import { useState } from "react";
 import FancyGraph from "@/components/graph/FancyGraph";
-import Value from "@/components/value/Value";
+import CurrencyValue from "@/components/value/CurrencyValue";
 import { compact } from "@/utils/number";
 import { faChartLine } from "@fortawesome/free-solid-svg-icons";
 import { sortArray } from "@/utils/array";
 import GenericEmptyPlaceholder from "@/components/GenericEmptyPlaceholder";
 
-const AtRiskCumulativeGraph = ({ data, collateralSymbol }) => {
+const AtRiskCumulativeGraph = ({ data, collateralSymbol, collateralAddress }) => {
   const [displayOption, setDisplayOption] = useState("desc");
   const seriesData = [];
   let total = 0;
@@ -63,9 +63,15 @@ const AtRiskCumulativeGraph = ({ data, collateralSymbol }) => {
 
   const valueFormatter = (data) => {
     const value = data.y;
-    let prefix = "";
-    let suffix = collateralSymbol;
-    return <Value value={value} suffix={suffix} prefix={prefix} big compact />;
+    return (
+      <CurrencyValue
+        value={value}
+        currencySymbol={collateralSymbol}
+        currencyAddress={collateralAddress}
+        big
+        compact
+      />
+    );
   };
 
   const subvalueFormatter = (data) => {

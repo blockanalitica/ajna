@@ -11,6 +11,7 @@ import Info from "@/components/info/Info";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import Tag from "@/components/tags/Tag";
 import Value from "@/components/value/Value";
+import CurrencyValue from "@/components/value/CurrencyValue";
 import ValueChange from "@/components/value/ValueChange";
 import Tabs from "@/components/tabs/Tabs";
 import Address from "@/components/address/Address";
@@ -95,7 +96,9 @@ const Pool = () => {
         <div className="flex items-center mb-5">
           <PoolName
             collateralSymbol={pool.collateral_token_symbol}
+            collateralAddress={pool.collateral_token_address}
             quoteSymbol={pool.quote_token_symbol}
+            quoteAddress={pool.quote_token_address}
             size="xl"
             className="font-syncopate"
           />
@@ -109,13 +112,18 @@ const Pool = () => {
         <div className="flex items-center mb-5">
           <Tag className="flex">
             <CryptoIcon
-              name={pool.collateral_token_symbol}
+              address={pool.collateral_token_address}
+              alt={pool.collateral_token_symbol}
               size="20"
-              className="mr-1"
+              className="mr-2"
             />
             1 {pool.collateral_token_symbol}
             <span className="px-1">=</span>
-            <Value value={pool.lup} suffix={pool.quote_token_symbol} icon={false} />
+            <CurrencyValue
+              value={pool.lup}
+              currencySymbol={pool.quote_token_symbol}
+              currencyAddress={pool.quote_token_address}
+            />
             <div>
               <Info className="ms-2" title="Token price">
                 Token price is based on Lowest Utilized Price
@@ -146,6 +154,8 @@ const Pool = () => {
           <AllowedTokenIds
             tokenIds={pool.allowed_token_ids}
             collateralTokenSymbol={pool.collateral_token_symbol}
+            // collateralTokenSymbol="dasf"
+            collateralTokenAddress={pool.collateral_token_address}
             className="mb-5"
           />
         ) : null}
@@ -172,9 +182,10 @@ const Pool = () => {
                     prefix="$"
                     className="text-gray-10"
                   />
-                  <Value
+                  <CurrencyValue
                     value={pool.collateral}
-                    suffix={pool.collateral_token_symbol}
+                    currencySymbol={pool.collateral_token_symbol}
+                    currencyAddress={pool.collateral_token_address}
                   />
                 </div>
               </div>
@@ -190,9 +201,10 @@ const Pool = () => {
                   prefix="$"
                   className="text-gray-10"
                 />
-                <Value
+                <CurrencyValue
                   value={pool.quote_token_balance}
-                  suffix={pool.quote_token_symbol}
+                  currencySymbol={pool.quote_token_symbol}
+                  currencyAddress={pool.quote_token_address}
                 />
               </div>
             </div>
@@ -201,7 +213,8 @@ const Pool = () => {
               <div className="flex justify-between w-full items-center mb-1">
                 <span className="text-sm flex items-center">
                   <CryptoIcon
-                    name={pool.collateral_token_symbol}
+                    alt={pool.collateral_token_symbol}
+                    address={pool.collateral_token_address}
                     size={16}
                     className="mr-1"
                   />
@@ -224,7 +237,8 @@ const Pool = () => {
               <div className="flex justify-between w-full items-center">
                 <span className="text-sm flex items-center">
                   <CryptoIcon
-                    name={pool.quote_token_symbol}
+                    alt={pool.quote_token_symbol}
+                    address={pool.quote_token_address}
                     size={16}
                     className="mr-1"
                   />
@@ -272,16 +286,19 @@ const Pool = () => {
             <Kpi
               title="Reserves"
               value={
-                <Value
+                <CurrencyValue
                   value={pool.reserves ? pool.reserves : 0}
                   className="text-xl"
-                  suffix={pool.quote_token_symbol}
+                  currencySymbol={pool.quote_token_symbol}
+                  currencyAddress={pool.quote_token_address}
                 />
               }
               smallValue={
-                <ValueChange
+                <CurrencyValue
                   value={pool.reserves - pool.prev_reserves}
-                  suffix={pool.quote_token_symbol}
+                  currencySymbol={pool.quote_token_symbol}
+                  currencyAddress={pool.quote_token_address}
+                  trend
                 />
               }
             />
@@ -311,7 +328,9 @@ const Pool = () => {
             address={address}
             daysAgo={daysAgo}
             collateralSymbol={pool.collateral_token_symbol}
+            collateralAddress={pool.collateral_token_address}
             quoteSymbol={pool.quote_token_symbol}
+            quoteAddress={pool.quote_token_address}
           />
         </CardBackground>
       </div>
@@ -332,7 +351,11 @@ const Pool = () => {
             </h3>
             <div className="flex justify-between items-center mb-2">
               <span className="text-sm">Min. debt amount</span>
-              <Value value={pool.min_debt_amount} suffix={pool.quote_token_symbol} />
+              <CurrencyValue
+                value={pool.min_debt_amount}
+                currencySymbol={pool.quote_token_symbol}
+                currencyAddress={pool.quote_token_address}
+              />
             </div>
             <div className="flex justify-between items-center mb-2">
               <span className="text-sm">Utilization</span>
@@ -454,9 +477,10 @@ const Pool = () => {
                       prefix="$"
                       className="text-gray-10"
                     />
-                    <Value
+                    <CurrencyValue
                       value={pool.collateral - pool.pledged_collateral}
-                      suffix={pool.collateral_token_symbol}
+                      currencySymbol={pool.collateral_token_symbol}
+                      currencyAddress={pool.collateral_token_address}
                     />
                   </div>
                 </div>
@@ -469,20 +493,23 @@ const Pool = () => {
               title="Market Price"
               value={
                 <div className="flex flex-col">
-                  <Value
+                  <CurrencyValue
                     value={currentCollateralPrice}
-                    suffix={pool.quote_token_symbol}
+                    currencySymbol={pool.quote_token_symbol}
+                    currencyAddress={pool.quote_token_address}
                     compact100k={true}
                     compact={false}
                     dashIfZero
                   />
 
-                  <ValueChange
+                  <CurrencyValue
                     value={currentCollateralPrice - prevCollateralPrice}
-                    suffix={pool.quote_token_symbol}
+                    currencySymbol={pool.quote_token_symbol}
+                    currencyAddress={pool.quote_token_address}
                     compact100k={true}
                     compact={false}
                     className="text-sm"
+                    trend
                   />
                 </div>
               }
@@ -510,12 +537,19 @@ const Pool = () => {
               }
               value={
                 <div className="flex flex-col">
-                  <Value value={pool.lup} suffix={pool.quote_token_symbol} dashIfZero />
+                  <CurrencyValue
+                    value={pool.lup}
+                    currencySymbol={pool.quote_token_symbol}
+                    currencyAddress={pool.quote_token_address}
+                    dashIfZero
+                  />
 
-                  <ValueChange
+                  <CurrencyValue
                     value={pool.lup - pool.prev_lup}
-                    suffix={pool.quote_token_symbol}
+                    currencySymbol={pool.quote_token_symbol}
+                    currencyAddress={pool.quote_token_address}
                     className="text-sm"
+                    trend
                   />
                 </div>
               }
@@ -533,12 +567,19 @@ const Pool = () => {
               }
               value={
                 <div className="flex flex-col">
-                  <Value value={pool.htp} suffix={pool.quote_token_symbol} dashIfZero />
+                  <CurrencyValue
+                    value={pool.htp}
+                    currencySymbol={pool.quote_token_symbol}
+                    currencyAddress={pool.quote_token_address}
+                    dashIfZero
+                  />
 
-                  <ValueChange
+                  <CurrencyValue
                     value={pool.htp - pool.prev_htp}
-                    suffix={pool.quote_token_symbol}
+                    currencySymbol={pool.quote_token_symbol}
+                    currencyAddress={pool.quote_token_address}
                     className="text-sm"
+                    trend
                   />
                 </div>
               }
@@ -556,12 +597,19 @@ const Pool = () => {
               }
               value={
                 <div className="flex flex-col">
-                  <Value value={pool.hpb} suffix={pool.quote_token_symbol} dashIfZero />
+                  <CurrencyValue
+                    value={pool.hpb}
+                    currencySymbol={pool.quote_token_symbol}
+                    currencyAddress={pool.quote_token_address}
+                    dashIfZero
+                  />
 
-                  <ValueChange
-                    value={pool.hpb - pool.prev_hpb}
-                    suffix={pool.quote_token_symbol}
+                  <CurrencyValue
+                    CurrencyValue={pool.hpb - pool.prev_hpb}
+                    currencySymbol={pool.quote_token_symbol}
+                    currencyAddress={pool.quote_token_address}
                     className="text-sm"
+                    trend
                   />
                 </div>
               }
@@ -601,6 +649,7 @@ const Pool = () => {
       <AtRiskGraphs
         poolAddress={address}
         collateralSymbol={pool.collateral_token_symbol}
+        collateralAddress={pool.collateral_token_address}
       />
     </>
   );

@@ -38,7 +38,7 @@ const Depositors = ({ searchTerm }) => {
     },
     {
       header: "Tokens Supplied",
-      cell: ({ row }) => <TokenIcons tokens={row.tokens} />,
+      cell: ({ row }) => <TokenIcons tokenAddresses={row.token_addresses} />,
       headerAlign: "center",
       cellAlign: "center",
     },

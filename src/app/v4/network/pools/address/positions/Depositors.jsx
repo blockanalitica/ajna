@@ -4,6 +4,8 @@ import { DateTime } from "luxon";
 import Table from "@/components/table/Table";
 import Address from "@/components/address/Address";
 import Value from "@/components/value/Value";
+import CurrencyValue from "@/components/value/CurrencyValue";
+
 import ValueChange from "@/components/value/ValueChange";
 import InlineSelect from "@/components/select/InlineSelect";
 import Info from "@/components/info/Info";
@@ -67,7 +69,11 @@ const Depositors = ({ address, daysAgo, search }) => {
           {isPriceUsd ? (
             <Value value={row.supply_usd} prefix="$" />
           ) : (
-            <Value value={row.supply} suffix={row.quote_token_symbol} />
+            <CurrencyValue
+              value={row.supply}
+              currencySymbol={row.quote_token_symbol}
+              currencyAddress={row.quote_token_address}
+            />
           )}
         </>
       ),
@@ -76,9 +82,11 @@ const Depositors = ({ address, daysAgo, search }) => {
           {isPriceUsd ? (
             <ValueChange value={row.supply_usd - row.prev_supply_usd} prefix="$" />
           ) : (
-            <ValueChange
+            <CurrencyValue
               value={row.supply - row.prev_supply}
-              suffix={row.quote_token_symbol}
+              currencySymbol={row.quote_token_symbol}
+              currencyAddress={row.quote_token_address}
+              trend
             />
           )}
         </>

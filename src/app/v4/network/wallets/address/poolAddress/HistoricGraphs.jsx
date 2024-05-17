@@ -4,7 +4,7 @@ import { useState } from "react";
 import GenericEmptyPlaceholder from "@/components/GenericEmptyPlaceholder";
 import { faChartBar } from "@fortawesome/free-solid-svg-icons";
 import FancyGraph from "@/components/graph/FancyGraph";
-import Value from "@/components/value/Value";
+import CurrencyValue from "@/components/value/CurrencyValue";
 import { compact } from "@/utils/number";
 import { DateTime } from "luxon";
 import { parseUTCDateTime } from "@/utils/datetime";
@@ -13,7 +13,9 @@ const HistoricGraphs = ({
   address,
   poolAddress,
   collateralTokenSymbol,
+  collateralTokenAddress,
   quoteTokenSymbol,
+  quoteTokenAddress,
 }) => {
   const [displayOption, setDisplayOption] = useState("supply");
 
@@ -114,9 +116,28 @@ const HistoricGraphs = ({
 
   const valueFormatter = (data) => {
     const value = data.y;
-    const suffix =
-      displayOption === "collateral" ? collateralTokenSymbol : quoteTokenSymbol;
-    return <Value value={value} suffix={suffix} big compact />;
+
+    if (displayOption === "collateral") {
+      return (
+        <CurrencyValue
+          value={value}
+          currencySymbol={collateralTokenSymbol}
+          currencyAddress={collateralTokenAddress}
+          big
+          compact
+        />
+      );
+    } else {
+      return (
+        <CurrencyValue
+          value={value}
+          currencySymbol={quoteTokenSymbol}
+          currencyAddress={quoteTokenAddress}
+          big
+          compact
+        />
+      );
+    }
   };
 
   const subvalueFormatter = (data) => {

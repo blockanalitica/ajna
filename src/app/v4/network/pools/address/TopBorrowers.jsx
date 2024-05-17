@@ -2,8 +2,7 @@ import { Link } from "react-router-dom";
 import { useFetch, useLinkBuilder } from "@/hooks";
 import Table from "@/components/table/Table";
 import Address from "@/components/address/Address";
-import Value from "@/components/value/Value";
-import ValueChange from "@/components/value/ValueChange";
+import CurrencyValue from "@/components/value/CurrencyValue";
 
 const TopBorrowers = ({ address, daysAgo }) => {
   const buildLink = useLinkBuilder();
@@ -34,12 +33,18 @@ const TopBorrowers = ({ address, daysAgo }) => {
     {
       header: "Collateral",
       cell: ({ row }) => (
-        <Value value={row.collateral} suffix={row.collateral_token_symbol} />
+        <CurrencyValue
+          value={row.collateral}
+          currencySymbol={row.collateral_token_symbol}
+          currencyAddress={row.collateral_token_address}
+        />
       ),
       smallCell: ({ row }) => (
-        <ValueChange
+        <CurrencyValue
           value={row.collateral - row.prev_collateral}
-          suffix={row.collateral_token_symbol}
+          currencySymbol={row.collateral_token_symbol}
+          currencyAddress={row.collateral_token_address}
+          trend
         />
       ),
       headerAlign: "end",
@@ -47,9 +52,20 @@ const TopBorrowers = ({ address, daysAgo }) => {
     },
     {
       header: "Debt",
-      cell: ({ row }) => <Value value={row.debt} suffix={row.quote_token_symbol} />,
+      cell: ({ row }) => (
+        <CurrencyValue
+          value={row.debt}
+          currencySymbol={row.quote_token_symbol}
+          currencyAddress={row.quote_token_address}
+        />
+      ),
       smallCell: ({ row }) => (
-        <ValueChange value={row.debt - row.prev_debt} suffix={row.quote_token_symbol} />
+        <CurrencyValue
+          value={row.debt - row.prev_debt}
+          currencySymbol={row.quote_token_symbol}
+          currencyAddress={row.quote_token_address}
+          trend
+        />
       ),
       headerAlign: "end",
       cellAlign: "end",

@@ -60,7 +60,9 @@ const Events = ({ address, poolAddress, ...rest }) => {
           type={row.name}
           data={row.data}
           quoteTokenSymbol={row.quote_token_symbol}
+          quoteTokenAddress={row.quote_token_address}
           collateralTokenSymbol={row.collateral_token_symbol}
+          collateralTokenAddress={row.collateral_token_address}
         />
       ),
       cellSize: "2.5fr",
