@@ -73,7 +73,7 @@ const HistoryStatsGraph = () => {
   );
 
   const valueFormatter = (data) => {
-    return <Value value={data.y} prefix="$" big compact />;
+    return <Value value={data.y} prefix="$" compact />;
   };
 
   const subvalueFormatter = (data) => {

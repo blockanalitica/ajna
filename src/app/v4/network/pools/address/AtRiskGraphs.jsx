@@ -3,7 +3,7 @@ import CardBackground from "@/components/card/CardBackground";
 import AtRiskCumulativeGraph from "./AtRiskCumulativeGraph";
 import AtRiskPerDropGraph from "./AtRiskPerDropGraph";
 
-const AtRiskGraphs = ({ poolAddress, collateralSymbol }) => {
+const AtRiskGraphs = ({ poolAddress, collateralSymbol, collateralAddress }) => {
   const { data, error, isLoading } = useFetch(`/pools/${poolAddress}/at-risk/`);
   if (error) {
     return <p>Failed to load data</p>;
@@ -15,15 +15,24 @@ const AtRiskGraphs = ({ poolAddress, collateralSymbol }) => {
       </div>
     );
   }
+
   return (
     <div>
       <h1 className="text-xl md:text-1xl xl:text-2xl">Collateral at Risk</h1>
       <div className="flex flex flex-col lg:flex-row lg:gap-4 mt-5">
         <CardBackground className="lg:w-1/2 mb-5">
-          <AtRiskCumulativeGraph data={data} collateralSymbol={collateralSymbol} />
+          <AtRiskCumulativeGraph
+            data={data}
+            collateralSymbol={collateralSymbol}
+            collateralAddress={collateralAddress}
+          />
         </CardBackground>
         <CardBackground className="lg:w-1/2 mb-5">
-          <AtRiskPerDropGraph data={data} collateralSymbol={collateralSymbol} />
+          <AtRiskPerDropGraph
+            data={data}
+            collateralSymbol={collateralSymbol}
+            collateralAddress={collateralAddress}
+          />
         </CardBackground>
       </div>
     </div>

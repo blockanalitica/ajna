@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useFetch } from "@/hooks";
 import { DateTime } from "luxon";
 import Table from "@/components/table/Table";
-import Value from "@/components/value/Value";
+import CurrencyValue from "@/components/value/CurrencyValue";
 import DateTimeAgo from "@/components/dateTime/DateTimeAgo";
 import EtherscanIcon from "@/components/icon/EtherscanIcon";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,6 +13,7 @@ import ExternalLink from "@/components/externalLink/ExternalLink";
 import { smartLocationParts } from "@/utils/url";
 import Address from "@/components/address/Address";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+import { AJNA_TOKEN_ADDRESS } from "@/utils/constants";
 
 const EventValue = ({ title, children }) => {
   return (
@@ -27,7 +28,13 @@ const EventData = ({ children }) => {
   return <div className="flex flex-row space-x-4">{children}</div>;
 };
 
-const ReserveAuctionEventFormatter = ({ type, event, quoteTokenSymbol, network }) => {
+const ReserveAuctionEventFormatter = ({
+  type,
+  event,
+  quoteTokenSymbol,
+  quoteTokenAddress,
+  network,
+}) => {
   let content;
   switch (type) {
     case "Kick":
@@ -41,10 +48,19 @@ const ReserveAuctionEventFormatter = ({ type, event, quoteTokenSymbol, network }
             <CopyToClipboard className="mx-3" text={event.data.kicker} />
           </EventValue>
           <EventValue title="Claimable Reserves">
-            <Value value={event.data.claimable_reserves} suffix={quoteTokenSymbol} />
+            <CurrencyValue
+              value={event.data.claimable_reserves}
+              currencySymbol={quoteTokenSymbol}
+              currencyAddress={quoteTokenAddress}
+            />
           </EventValue>
           <EventValue title="Starting Price">
-            <Value value={event.data.starting_price} suffix="AJNA" />
+            <CurrencyValue
+              value={event.data.starting_price}
+              currencySymbol="AJNA"
+              currencyAddress={AJNA_TOKEN_ADDRESS}
+              network="ethereum"
+            />
           </EventValue>
         </EventData>
       );
@@ -60,13 +76,27 @@ const ReserveAuctionEventFormatter = ({ type, event, quoteTokenSymbol, network }
             <CopyToClipboard className="mx-3" text={event.data.taker} />
           </EventValue>
           <EventValue title="Quote Purchased">
-            <Value value={event.data.quote_purchased} suffix={quoteTokenSymbol} />
+            <CurrencyValue
+              value={event.data.quote_purchased}
+              currencySymbol={quoteTokenSymbol}
+              currencyAddress={quoteTokenAddress}
+            />
           </EventValue>
           <EventValue title="Ajna Burned">
-            <Value value={event.data.ajna_burned} suffix="AJNA" />
+            <CurrencyValue
+              value={event.data.ajna_burned}
+              currencySymbol="AJNA"
+              currencyAddress={AJNA_TOKEN_ADDRESS}
+              network="ethereum"
+            />
           </EventValue>
           <EventValue title="Auction Price">
-            <Value value={event.data.auction_price} suffix="AJNA" />
+            <CurrencyValue
+              value={event.data.auction_price}
+              currencySymbol="AJNA"
+              currencyAddress={AJNA_TOKEN_ADDRESS}
+              network="ethereum"
+            />
           </EventValue>
         </EventData>
       );
@@ -78,7 +108,7 @@ const ReserveAuctionEventFormatter = ({ type, event, quoteTokenSymbol, network }
   return <>{content}</>;
 };
 
-const Events = ({ uid, quoteTokenSymbol }) => {
+const Events = ({ uid, quoteTokenSymbol, quoteTokenAddress }) => {
   const location = useLocation();
   const { network } = smartLocationParts(location);
   const pageSize = 5;
@@ -112,6 +142,7 @@ const Events = ({ uid, quoteTokenSymbol }) => {
           type={row.event}
           event={row}
           quoteTokenSymbol={quoteTokenSymbol}
+          quoteTokenAddress={quoteTokenAddress}
           network={network}
         />
       ),

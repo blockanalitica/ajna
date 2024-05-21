@@ -3,7 +3,12 @@ import classnames from "classnames";
 import CryptoIcon from "@/components/icon/CryptoIcon";
 import Tag from "@/components/tags/Tag";
 
-const AllowedTokenIds = ({ tokenIds, collateralTokenSymbol, className }) => {
+const AllowedTokenIds = ({
+  tokenIds,
+  collateralTokenSymbol,
+  collateralTokenAddress,
+  className,
+}) => {
   const [showAll, setShowAll] = useState(false);
 
   let tokens = tokenIds;
@@ -13,7 +18,7 @@ const AllowedTokenIds = ({ tokenIds, collateralTokenSymbol, className }) => {
 
   return (
     <Tag className={classnames("flex items-center gap-2 w-fit", className)}>
-      <CryptoIcon name={collateralTokenSymbol} />
+      <CryptoIcon address={collateralTokenAddress} alt={collateralTokenSymbol} />
       <div>Allowed IDs</div>
 
       <div className="flex flex-wrap gap-1">

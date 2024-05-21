@@ -1,5 +1,6 @@
-import Value from "@/components/value/Value";
+import CurrencyValue from "@/components/value/CurrencyValue";
 import Stats from "@/components/stats/Stats";
+import { AJNA_TOKEN_ADDRESS } from "@/utils/constants";
 
 const ReserveAuctionStats = ({ data, ...rest }) => {
   const stats = [
@@ -13,22 +14,36 @@ const ReserveAuctionStats = ({ data, ...rest }) => {
         <>
           {!data.type === "active" ? (
             <>
-              <Value
+              <CurrencyValue
                 value={data.claimable_reserves_remaining}
-                suffix={data.quote_token_symbol}
+                currencySymbol={data.quote_token_symbol}
+                currencyAddress={data.quote_token_address}
                 big
               />
               <span className="px-1">/</span>
             </>
           ) : null}
 
-          <Value value={data.claimable_reserves} suffix={data.quote_token_symbol} big />
+          <CurrencyValue
+            value={data.claimable_reserves}
+            currencySymbol={data.quote_token_symbol}
+            currencyAddress={data.quote_token_address}
+            big
+          />
         </>
       ),
     },
     {
       title: "🔥 Ajna Burned 🔥",
-      value: <Value value={data.ajna_burned} suffix="AJNA" big />,
+      value: (
+        <CurrencyValue
+          value={data.ajna_burned}
+          currencySymbol="AJNA"
+          currencyAddress={AJNA_TOKEN_ADDRESS}
+          network="ethereum"
+          big
+        />
+      ),
     },
     {
       title: "# Takes",

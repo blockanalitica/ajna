@@ -2,9 +2,9 @@ import { useState } from "react";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 import { useFetch } from "@/hooks";
 import Table from "@/components/table/Table";
-import Value from "@/components/value/Value";
+import CurrencyValue from "@/components/value/CurrencyValue";
 
-const Buckets = ({ address, poolAddress, quoteTokenSymbol }) => {
+const Buckets = ({ address, poolAddress, quoteTokenSymbol, quoteTokenAddress }) => {
   const pageSize = 10;
   const [page, setPage] = useState(1);
 
@@ -26,12 +26,24 @@ const Buckets = ({ address, poolAddress, quoteTokenSymbol }) => {
   const columns = [
     {
       header: "Price",
-      cell: ({ row }) => <Value value={row.bucket_price} suffix={quoteTokenSymbol} />,
+      cell: ({ row }) => (
+        <CurrencyValue
+          value={row.bucket_price}
+          currencySymbol={quoteTokenSymbol}
+          currencyAddress={quoteTokenAddress}
+        />
+      ),
       smallCell: ({ row }) => <>Index: {row.bucket_index}</>,
     },
     {
       header: "Deposit",
-      cell: ({ row }) => <Value value={row.deposit} suffix={quoteTokenSymbol} />,
+      cell: ({ row }) => (
+        <CurrencyValue
+          value={row.deposit}
+          currencySymbol={quoteTokenSymbol}
+          currencyAddress={quoteTokenAddress}
+        />
+      ),
     },
   ];
 

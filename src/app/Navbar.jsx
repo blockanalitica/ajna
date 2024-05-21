@@ -57,9 +57,9 @@ const Navbar = () => {
           <img src={ajnaLogo} width="130" height="24" alt="Ajna" className="h-auto" />
         </Link>
         <div className="hidden md:flex space-x-4">
-          {navigation.map((item) => (
+          {navigation.map((item, index) => (
             <Link
-              key={item.name}
+              key={index}
               to={item.href}
               className={classnames(
                 "rounded-md px-4 py-2 text-l font-medium hover:text-ajna-aqua",

@@ -6,6 +6,7 @@ import CardOpaque from "@/components/card/CardOpaque";
 import Address from "@/components/address/Address";
 import PoolName from "@/components/poolName/PoolName";
 import Value from "@/components/value/Value";
+import CurrencyValue from "@/components/value/CurrencyValue";
 import Pagination from "@/components/pagination/Pagination";
 import DateTimeAgo from "@/components/dateTime/DateTimeAgo";
 
@@ -26,9 +27,10 @@ const NotificationFormatter = ({ notification }) => {
               <Address address={notification.data.actor} />
             </Link>
             added
-            <Value
+            <CurrencyValue
               value={notification.data.amount}
-              suffix={notification.collateral_token_symbol}
+              currencySymbol={notification.collateral_token_symbol}
+              currencyAddress={notification.collateral_token_address}
             />
             <span className="text-gray-6">
               (<Value value={notification.data.amount_usd} prefix="$" />)
@@ -40,7 +42,9 @@ const NotificationFormatter = ({ notification }) => {
             >
               <PoolName
                 collateralSymbol={notification.collateral_token_symbol}
+                collateralAddress={notification.collateral_token_address}
                 quoteSymbol={notification.quote_token_symbol}
+                quoteAddress={notification.quote_token_address}
                 size="sm"
               />
             </Link>
@@ -63,9 +67,10 @@ const NotificationFormatter = ({ notification }) => {
               <Address address={notification.data.wallet_address} />
             </Link>
             added
-            <Value
+            <CurrencyValue
               value={notification.data.amount}
-              suffix={notification.quote_token_symbol}
+              currencySymbol={notification.quote_token_symbol}
+              currencyAddress={notification.quote_token_address}
             />
             <span className="text-gray-6">
               (<Value value={notification.data.amount_usd} prefix="$" />)
@@ -77,7 +82,9 @@ const NotificationFormatter = ({ notification }) => {
             >
               <PoolName
                 collateralSymbol={notification.collateral_token_symbol}
+                collateralAddress={notification.collateral_token_address}
                 quoteSymbol={notification.quote_token_symbol}
+                quoteAddress={notification.quote_token_address}
                 size="sm"
               />
             </Link>
@@ -105,7 +112,9 @@ const NotificationFormatter = ({ notification }) => {
             >
               <PoolName
                 collateralSymbol={notification.collateral_token_symbol}
+                collateralAddress={notification.collateral_token_address}
                 quoteSymbol={notification.quote_token_symbol}
+                quoteAddress={notification.quote_token_address}
                 size="sm"
               />
             </Link>
@@ -132,7 +141,9 @@ const NotificationFormatter = ({ notification }) => {
             >
               <PoolName
                 collateralSymbol={notification.collateral_token_symbol}
+                collateralAddress={notification.collateral_token_address}
                 quoteSymbol={notification.quote_token_symbol}
+                quoteAddress={notification.quote_token_address}
                 size="sm"
               />
             </Link>
@@ -155,9 +166,10 @@ const NotificationFormatter = ({ notification }) => {
               <Address address={notification.data.wallet_address} />
             </Link>
             drawed
-            <Value
+            <CurrencyValue
               value={notification.data.amount}
-              suffix={notification.quote_token_symbol}
+              currencySymbol={notification.quote_token_symbol}
+              currencyAddress={notification.quote_token_address}
             />
             <span className="text-gray-6">
               (<Value value={notification.data.amount_usd} prefix="$" />)
@@ -169,7 +181,9 @@ const NotificationFormatter = ({ notification }) => {
             >
               <PoolName
                 collateralSymbol={notification.collateral_token_symbol}
+                collateralAddress={notification.collateral_token_address}
                 quoteSymbol={notification.quote_token_symbol}
+                quoteAddress={notification.quote_token_address}
                 size="sm"
               />
             </Link>
@@ -185,7 +199,9 @@ const NotificationFormatter = ({ notification }) => {
           <div className="gap-x-1 flex flex-wrap items-end mb-2">
             <PoolName
               collateralSymbol={notification.collateral_token_symbol}
+              collateralAddress={notification.collateral_token_address}
               quoteSymbol={notification.quote_token_symbol}
+              quoteAddress={notification.quote_token_address}
               size="sm"
             />
             wallet
@@ -209,18 +225,20 @@ const NotificationFormatter = ({ notification }) => {
             <div>
               <div className="text-gray-6 text-xs">Collateral</div>
               <div className="text-sm flex items-center">
-                <Value
+                <CurrencyValue
                   value={notification.data.collateral}
-                  suffix={notification.collateral_token_symbol}
+                  currencySymbol={notification.collateral_token_symbol}
+                  currencyAddress={notification.collateral_token_address}
                 />
               </div>
             </div>
             <div>
               <div className="text-gray-6 text-xs">Debt</div>
               <div className="text-sm flex items-center">
-                <Value
+                <CurrencyValue
                   value={notification.data.debt}
-                  suffix={notification.quote_token_symbol}
+                  currencySymbol={notification.quote_token_symbol}
+                  currencyAddress={notification.quote_token_address}
                 />
               </div>
             </div>

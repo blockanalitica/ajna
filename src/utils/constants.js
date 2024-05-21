@@ -72,3 +72,5 @@ export const BUCKET_EVENTS = [
 ];
 
 export const POOL_EVENTS = [];
+
+export const AJNA_TOKEN_ADDRESS = "0x9a96ec9b57fb64fbc60b423d1f4da7691bd35079";

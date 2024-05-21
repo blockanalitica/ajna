@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useFetch, useLinkBuilder } from "@/hooks";
 import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
+import CurrencyValue from "@/components/value/CurrencyValue";
 import DateTimeAgo from "@/components/dateTime/DateTimeAgo";
 import { parseUTCDateTime } from "@/utils/datetime";
 import Address from "@/components/address/Address";
@@ -40,7 +41,9 @@ const SettledAuctionsTable = ({ daysAgo }) => {
       cell: ({ row }) => (
         <PoolName
           collateralSymbol={row.collateral_token_symbol}
+          collateralAddress={row.collateral_token_address}
           quoteSymbol={row.quote_token_symbol}
+          quoteAddress={row.quote_token_address}
         />
       ),
     },
@@ -51,7 +54,11 @@ const SettledAuctionsTable = ({ daysAgo }) => {
     {
       header: "Collateral",
       cell: ({ row }) => (
-        <Value value={row.collateral} suffix={row.collateral_token_symbol} />
+        <CurrencyValue
+          value={row.collateral}
+          currencySymbol={row.collateral_token_symbol}
+          currencyAddress={row.collateral_token_address}
+        />
       ),
       smallCell: ({ row }) => <Value value={row.collateral_usd} prefix="$" />,
       headerAlign: "end",
@@ -60,7 +67,13 @@ const SettledAuctionsTable = ({ daysAgo }) => {
     },
     {
       header: "Debt",
-      cell: ({ row }) => <Value value={row.debt} suffix={row.quote_token_symbol} />,
+      cell: ({ row }) => (
+        <CurrencyValue
+          value={row.debt}
+          currencySymbol={row.quote_token_symbol}
+          currencyAddress={row.quote_token_address}
+        />
+      ),
       smallCell: ({ row }) => <Value value={row.debt_usd} prefix="$" />,
       headerAlign: "end",
       cellAlign: "end",

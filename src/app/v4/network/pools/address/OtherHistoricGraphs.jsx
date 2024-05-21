@@ -1,5 +1,6 @@
 import FancyGraph from "@/components/graph/FancyGraph";
 import Value from "@/components/value/Value";
+import CurrencyValue from "@/components/value/CurrencyValue";
 import { prefillSerieDates } from "@/utils/graph";
 import { compact } from "@/utils/number";
 import { DateTime } from "luxon";
@@ -9,7 +10,9 @@ const OtherHistoricGraphs = ({
   headerRight,
   displayOption,
   collateralSymbol,
+  collateralAddress,
   quoteSymbol,
+  quoteAddress,
   daysAgo,
 }) => {
   const serie = data.map((row) => ({ x: row.date, y: row.amount }));
@@ -41,17 +44,32 @@ const OtherHistoricGraphs = ({
 
   const valueFormatter = (data) => {
     const value = data.y;
-    let prefix = "";
-    let suffix = "";
-    if (displayOption === "volume" || displayOption === "tvl") {
-      prefix = "$";
-    } else {
-      suffix = ["pledged_collateral", "collateral"].includes(displayOption)
-        ? collateralSymbol
-        : quoteSymbol;
-    }
 
-    return <Value value={value} suffix={suffix} prefix={prefix} big compact />;
+    if (displayOption === "volume" || displayOption === "tvl") {
+      return <Value value={value} prefix="$" compact />;
+    } else {
+      if (["pledged_collateral", "collateral"].includes(displayOption)) {
+        return (
+          <CurrencyValue
+            value={value}
+            currencySymbol={collateralSymbol}
+            currencyAddress={collateralAddress}
+            big
+            compact
+          />
+        );
+      } else {
+        return (
+          <CurrencyValue
+            value={value}
+            currencySymbol={quoteSymbol}
+            currencyAddress={quoteAddress}
+            big
+            compact
+          />
+        );
+      }
+    }
   };
 
   const subvalueFormatter = (data) => {

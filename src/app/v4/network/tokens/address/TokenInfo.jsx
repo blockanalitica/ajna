@@ -1,6 +1,7 @@
 import Stats from "@/components/stats/Stats";
 import StatsPlaceholder from "@/components/stats/StatsPlaceholder";
 import Value from "@/components/value/Value";
+import CurrencyValue from "@/components/value/CurrencyValue";
 import ValueChange from "@/components/value/ValueChange";
 import { useFetch } from "@/hooks";
 
@@ -23,11 +24,18 @@ const TokenInfo = ({ address, daysAgo, className, ...rest }) => {
       title: "Deposited",
       value: (
         <>
-          <Value value={results.lended_amount} suffix={results.symbol} big />
-          <ValueChange
+          <CurrencyValue
+            value={results.lended_amount}
+            currencySymbol={results.symbol}
+            currencyAddress={results.underlying_address}
+            big
+          />
+          <CurrencyValue
             value={results.lended_amount - results.prev_lended_amount}
-            suffix={results.symbol}
+            currencySymbol={results.symbol}
+            currencyAddress={results.underlying_address}
             className="text-lg ms-2"
+            trend
           />
         </>
       ),
@@ -46,11 +54,18 @@ const TokenInfo = ({ address, daysAgo, className, ...rest }) => {
       title: "Borrowed",
       value: (
         <>
-          <Value value={results.borrowed_amount} suffix={results.symbol} big />
-          <ValueChange
+          <CurrencyValue
+            value={results.borrowed_amount}
+            currencySymbol={results.symbol}
+            currencyAddress={results.underlying_address}
+            big
+          />
+          <CurrencyValue
             value={results.borrowed_amount - results.prev_borrowed_amount}
-            suffix={results.symbol}
+            currencySymbol={results.symbol}
+            currencyAddress={results.underlying_address}
             className="text-lg ms-2"
+            trend
           />
         </>
       ),
@@ -69,10 +84,17 @@ const TokenInfo = ({ address, daysAgo, className, ...rest }) => {
       title: "Collateral",
       value: (
         <>
-          <Value value={results.collateral_amount} suffix={results.symbol} big />
-          <ValueChange
+          <CurrencyValue
+            value={results.collateral_amount}
+            currencySymbol={results.symbol}
+            currencyAddress={results.underlying_address}
+            big
+          />
+          <CurrencyValue
             value={results.collateral_amount - results.prev_collateral_amount}
-            suffix={results.symbol}
+            currencySymbol={results.symbol}
+            currencyAddress={results.underlying_address}
+            trend
             className="text-lg ms-2"
           />
         </>

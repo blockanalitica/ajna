@@ -63,7 +63,9 @@ const PoolWallets = () => {
         <div className="flex items-center">
           <PoolName
             collateralSymbol={pool.collateral_token_symbol}
+            collateralAddress={pool.collateral_token_address}
             quoteSymbol={pool.quote_token_symbol}
+            quoteAddress={pool.quote_token_address}
             size="xl"
             className="font-syncopate"
           />

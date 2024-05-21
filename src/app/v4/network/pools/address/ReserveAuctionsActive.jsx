@@ -2,9 +2,10 @@ import { useState } from "react";
 import { faGavel } from "@fortawesome/free-solid-svg-icons";
 import { useFetch, useLinkBuilder } from "@/hooks";
 import Table from "@/components/table/Table";
-import Value from "@/components/value/Value";
+import CurrencyValue from "@/components/value/CurrencyValue";
 import HoursMinutes from "@/components/dateTime/HoursMinutes";
 import { parseUTCDateTime } from "@/utils/datetime";
+import { AJNA_TOKEN_ADDRESS } from "@/utils/constants";
 
 const ReserveAuctionsActive = ({ poolAddress }) => {
   const buildLink = useLinkBuilder();
@@ -41,15 +42,20 @@ const ReserveAuctionsActive = ({ poolAddress }) => {
     {
       header: "Claimable Reserves Remaining",
       cell: ({ row }) => (
-        <Value
+        <CurrencyValue
           value={row.claimable_reserves_remaining}
-          suffix={row.quote_token_symbol}
+          currencySymbol={row.quote_token_symbol}
+          currencyAddress={row.quote_token_address}
         />
       ),
       smallCell: ({ row }) => (
         <>
           <span className="pe-1">Total:</span>
-          <Value value={row.claimable_reserves} suffix={row.quote_token_symbol} />
+          <CurrencyValue
+            value={row.claimable_reserves}
+            currencySymbol={row.quote_token_symbol}
+            currencyAddress={row.quote_token_address}
+          />
         </>
       ),
       headerAlign: "end",
@@ -59,9 +65,11 @@ const ReserveAuctionsActive = ({ poolAddress }) => {
     {
       header: "Last Take Price",
       cell: ({ row }) => (
-        <Value
+        <CurrencyValue
           value={row.take_count > 0 ? row.last_take_price : 0}
-          suffix="AJNA"
+          currencySymbol="AJNA"
+          currencyAddress={AJNA_TOKEN_ADDRESS}
+          network="ethereum"
           dashIfZero
         />
       ),
@@ -78,7 +86,14 @@ const ReserveAuctionsActive = ({ poolAddress }) => {
     },
     {
       header: "🔥",
-      cell: ({ row }) => <Value value={row.ajna_burned} suffix="AJNA" />,
+      cell: ({ row }) => (
+        <CurrencyValue
+          value={row.ajna_burned}
+          currencySymbol="AJNA"
+          currencyAddress={AJNA_TOKEN_ADDRESS}
+          network="ethereum"
+        />
+      ),
       headerAlign: "end",
       cellAlign: "end",
       orderField: "ajna_burned",

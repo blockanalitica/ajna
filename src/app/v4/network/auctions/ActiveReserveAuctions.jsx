@@ -2,10 +2,11 @@ import { useState } from "react";
 import { faGavel } from "@fortawesome/free-solid-svg-icons";
 import { useFetch, usePageTitle, useLinkBuilder } from "@/hooks";
 import Table from "@/components/table/Table";
-import Value from "@/components/value/Value";
+import CurrencyValue from "@/components/value/CurrencyValue";
 import PoolName from "@/components/poolName/PoolName";
 import HoursMinutes from "@/components/dateTime/HoursMinutes";
 import { parseUTCDateTime } from "@/utils/datetime";
+import { AJNA_TOKEN_ADDRESS } from "@/utils/constants";
 
 const ActiveReserveAuctions = () => {
   usePageTitle("Active Reserve Auctions");
@@ -36,7 +37,9 @@ const ActiveReserveAuctions = () => {
       cell: ({ row }) => (
         <PoolName
           collateralSymbol={row.collateral_token_symbol}
+          collateralAddress={row.collateral_token_address}
           quoteSymbol={row.quote_token_symbol}
+          quoteAddress={row.quote_token_address}
         />
       ),
       orderField: "pool_address",
@@ -53,15 +56,20 @@ const ActiveReserveAuctions = () => {
     {
       header: "Claimable Reserves Remaining",
       cell: ({ row }) => (
-        <Value
+        <CurrencyValue
           value={row.claimable_reserves_remaining}
-          suffix={row.quote_token_symbol}
+          currencySymbol={row.quote_token_symbol}
+          currencyAddress={row.quote_token_address}
         />
       ),
       smallCell: ({ row }) => (
         <>
           <span className="pe-1">Total:</span>
-          <Value value={row.claimable_reserves} suffix={row.quote_token_symbol} />
+          <CurrencyValue
+            value={row.claimable_reserves}
+            currencySymbol={row.quote_token_symbol}
+            currencyAddress={row.quote_token_address}
+          />
         </>
       ),
       headerAlign: "end",
@@ -71,9 +79,11 @@ const ActiveReserveAuctions = () => {
     {
       header: "Last Take Price",
       cell: ({ row }) => (
-        <Value
+        <CurrencyValue
           value={row.take_count > 0 ? row.last_take_price : 0}
-          suffix="AJNA"
+          currencySymbol="AJNA"
+          currencyAddress={AJNA_TOKEN_ADDRESS}
+          network="ethereum"
           dashIfZero
         />
       ),
@@ -83,7 +93,14 @@ const ActiveReserveAuctions = () => {
     },
     {
       header: "🔥",
-      cell: ({ row }) => <Value value={row.ajna_burned} suffix="AJNA" />,
+      cell: ({ row }) => (
+        <CurrencyValue
+          value={row.ajna_burned}
+          currencySymbol="AJNA"
+          currencyAddress={AJNA_TOKEN_ADDRESS}
+          network="ethereum"
+        />
+      ),
       headerAlign: "end",
       cellAlign: "end",
       orderField: "ajna_burned",

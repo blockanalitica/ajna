@@ -22,7 +22,7 @@ const TokensTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
       header: "Name",
       cell: ({ row }) => (
         <>
-          <CryptoIcon name={row.symbol} />
+          <CryptoIcon address={row.underlying_address} alt={row.symbol} />
           <span className="font-medium ml-2">{row.symbol}</span>
         </>
       ),

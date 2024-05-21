@@ -36,7 +36,14 @@ const Events = ({ ...rest }) => {
     return <p>Failed to load data</p>;
   }
 
-  const { results, count } = data;
+  const {
+    results,
+    count,
+    collateral_token_symbol: collateralTokenSymbol,
+    collateral_token_address: collateralTokenAddress,
+    quote_token_symbol: quoteTokenSymbol,
+    quote_token_address: quoteTokenAddress,
+  } = data;
 
   const eventTypeOptions = [{ key: "all", value: "All" }];
   BUCKET_EVENTS.forEach((key) => {
@@ -61,8 +68,10 @@ const Events = ({ ...rest }) => {
         <EventFormatter
           type={row.name}
           data={row.data}
-          quoteTokenSymbol={row.quote_token_symbol}
-          collateralTokenSymbol={row.collateral_token_symbol}
+          quoteTokenSymbol={quoteTokenSymbol}
+          quoteTokenAddress={quoteTokenAddress}
+          collateralTokenSymbol={collateralTokenSymbol}
+          collateralTokenAddress={collateralTokenAddress}
         />
       ),
       cellSize: "2.5fr",

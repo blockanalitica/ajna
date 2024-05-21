@@ -10,6 +10,7 @@ import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 import { useFetch } from "@/hooks";
 import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
+import CurrencyValue from "@/components/value/CurrencyValue";
 import SearchInput from "@/components/search/SearchInput";
 import PoolName from "@/components/poolName/PoolName";
 
@@ -46,6 +47,8 @@ const Buckets = () => {
     count,
     collateral_token_symbol: collateralTokenSymbol,
     quote_token_symbol: quoteTokenSymbol,
+    collateral_token_address: collateralTokenAddress,
+    quote_token_address: quoteTokenAddress,
   } = data;
 
   const columns = [
@@ -61,7 +64,11 @@ const Buckets = () => {
     {
       header: "Bucket Price",
       cell: ({ row }) => (
-        <Value value={row.bucket_price} suffix={row.quote_token_symbol} />
+        <CurrencyValue
+          value={row.bucket_price}
+          currencySymbol={row.quote_token_symbol}
+          currencyAddress={row.quote_token_address}
+        />
       ),
       smallCell: ({ row }) => (
         <Value value={row.bucket_price * row.quote_token_underlying_price} prefix="$" />
@@ -73,7 +80,11 @@ const Buckets = () => {
     {
       header: "Collateral",
       cell: ({ row }) => (
-        <Value value={row.collateral} suffix={row.collateral_token_symbol} />
+        <CurrencyValue
+          value={row.collateral}
+          currencySymbol={row.collateral_token_symbol}
+          currencyAddress={row.collateral_token_address}
+        />
       ),
       smallCell: ({ row }) => (
         <Value
@@ -87,7 +98,13 @@ const Buckets = () => {
     },
     {
       header: "Quote",
-      cell: ({ row }) => <Value value={row.deposit} suffix={row.quote_token_symbol} />,
+      cell: ({ row }) => (
+        <CurrencyValue
+          value={row.deposit}
+          currencySymbol={row.quote_token_symbol}
+          currencyAddress={row.quote_token_address}
+        />
+      ),
       smallCell: ({ row }) => (
         <Value value={row.deposit * row.quote_token_underlying_price} prefix="$" />
       ),
@@ -119,6 +136,8 @@ const Buckets = () => {
             <PoolName
               collateralSymbol={collateralTokenSymbol}
               quoteSymbol={quoteTokenSymbol}
+              collateralAddress={collateralTokenAddress}
+              quoteAddress={quoteTokenAddress}
               size="xl"
               className="font-syncopate"
             />

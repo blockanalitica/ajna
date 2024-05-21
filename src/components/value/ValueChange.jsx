@@ -1,4 +1,3 @@
-import CryptoIcon from "@/components/icon/CryptoIcon";
 import Tooltip from "@/components/tooltip/Tooltip";
 import { compact as compactNumber, formatToDecimals } from "@/utils/number";
 import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
@@ -16,13 +15,13 @@ function ValueChange({
   reverse = false,
   compact = true,
   compact100k = false,
-  icon = true,
   small = false,
-  big = false,
-  iconSize = "14",
+  tooltip = null,
   ...rest
 }) {
-  value = Number(value);
+  if (typeof value !== "number") {
+    value = Number(value);
+  }
   if (value === undefined || value === null || isNaN(value)) {
     if (hideIfZero && value === 0) {
       return "";
@@ -65,8 +64,9 @@ function ValueChange({
     "text-sm": small,
   });
 
+  const rawValue = value;
   value = Math.abs(value);
-  const theValue = value;
+
   const showCompactNum = compact100k === true && value >= 100000;
 
   const normalValue = formatToDecimals(value, numDecimals);
@@ -83,45 +83,15 @@ function ValueChange({
     value = normalValue;
   }
 
-  const tooltipPrefix = `${prefix !== "$" ? " " : ""} ${prefix ? prefix : ""}`;
-  const tooltipSuffix = `${suffix !== "%" ? " " : ""}${suffix ? suffix : ""}`;
-  const tooltipMessage = `${tooltipPrefix}${theValue}${tooltipSuffix}`;
+  const tooltipMessage = tooltip ? tooltip : rawValue;
 
   return (
-    <>
-      <span className={classNames} {...rest}>
-        {iconPlace}
-        {prefix ? (
-          <>
-            {prefix !== "$" && icon ? (
-              <>
-                <CryptoIcon
-                  name={prefix}
-                  className="me-1"
-                  size={small ? "14" : big ? "25" : iconSize}
-                />
-              </>
-            ) : (
-              prefix
-            )}
-          </>
-        ) : null}
-        <Tooltip message={tooltipMessage}>{value}</Tooltip>
-        {suffix ? (
-          <>
-            {icon && suffix !== "%" ? (
-              <CryptoIcon
-                name={suffix}
-                className="ms-1"
-                size={small ? "14" : big ? "25" : iconSize}
-              />
-            ) : (
-              suffix
-            )}
-          </>
-        ) : null}
-      </span>
-    </>
+    <span className={classNames} {...rest}>
+      {iconPlace}
+      {prefix ? prefix : null}
+      <Tooltip message={tooltipMessage}>{value}</Tooltip>
+      {suffix ? suffix : null}
+    </span>
   );
 }
 

@@ -4,8 +4,9 @@ import { DateTime } from "luxon";
 import DateTimeAgo from "@/components/dateTime/DateTimeAgo";
 import { faGavel } from "@fortawesome/free-solid-svg-icons";
 import Table from "@/components/table/Table";
-import Value from "@/components/value/Value";
+import CurrencyValue from "@/components/value/CurrencyValue";
 import PoolName from "@/components/poolName/PoolName";
+import { AJNA_TOKEN_ADDRESS } from "@/utils/constants";
 
 const ExpiredReserveAuctions = () => {
   usePageTitle("Expired Reserve Auctions");
@@ -36,7 +37,9 @@ const ExpiredReserveAuctions = () => {
       cell: ({ row }) => (
         <PoolName
           collateralSymbol={row.collateral_token_symbol}
+          collateralAddress={row.collateral_token_address}
           quoteSymbol={row.quote_token_symbol}
+          quoteAddress={row.quote_token_address}
         />
       ),
       cellSize: "1.5fr",
@@ -45,7 +48,11 @@ const ExpiredReserveAuctions = () => {
     {
       header: "Claimed Reserves",
       cell: ({ row }) => (
-        <Value value={row.claimable_reserves} suffix={row.quote_token_symbol} />
+        <CurrencyValue
+          value={row.claimable_reserves}
+          currencySymbol={row.quote_token_symbol}
+          currencyAddress={row.quote_token_address}
+        />
       ),
       headerAlign: "end",
       cellAlign: "end",
@@ -54,9 +61,11 @@ const ExpiredReserveAuctions = () => {
     {
       header: "Last Take Price",
       cell: ({ row }) => (
-        <Value
+        <CurrencyValue
           value={row.take_count > 0 ? row.last_take_price : 0}
-          suffix="AJNA"
+          currencySymbol="AJNA"
+          currencyAddress={AJNA_TOKEN_ADDRESS}
+          network="ethereum"
           dashIfZero
         />
       ),
@@ -73,7 +82,14 @@ const ExpiredReserveAuctions = () => {
     },
     {
       header: "🔥",
-      cell: ({ row }) => <Value value={row.ajna_burned} suffix="AJNA" />,
+      cell: ({ row }) => (
+        <CurrencyValue
+          value={row.ajna_burned}
+          currencySymbol="AJNA"
+          currencyAddress={AJNA_TOKEN_ADDRESS}
+          network="ethereum"
+        />
+      ),
       headerAlign: "end",
       cellAlign: "end",
       orderField: "ajna_burned",

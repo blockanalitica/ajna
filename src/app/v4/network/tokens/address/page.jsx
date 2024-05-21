@@ -41,12 +41,18 @@ const TokenPage = () => {
         <DisplaySwitch onChange={onDisplaySwitchChange} activeOption={daysAgo} />
       </section>
       <div className="flex mb-5">
-        <CryptoIcon name={token.symbol} size="30" />
+        <CryptoIcon address={address.toLowerCase()} alt={token.symbol} size="30" />
         <h1 className="ml-4 text-2xl">{token.symbol}</h1>
       </div>
       <div className="flex justify-between">
         <Tag className="flex mb-5">
-          <CryptoIcon name={token.symbol} size="20" className="mr-1" />1 {token.symbol}
+          <CryptoIcon
+            address={address.toLowerCase()}
+            alt={token.symbol}
+            size="20"
+            className="mr-2"
+          />
+          1 {token.symbol}
           <span className="px-1">=</span>
           <Value value={token.underlying_price} prefix="$" compact={false} />
           {token.is_estimated_price ? "*" : ""}

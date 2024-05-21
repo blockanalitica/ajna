@@ -50,6 +50,8 @@ const PoolEvents = ({ address, ...rest }) => {
     count,
     collateral_token_symbol: collateralTokenSymbol,
     quote_token_symbol: quoteTokenSymbol,
+    collateral_token_address: collateralTokenAddress,
+    quote_token_address: quoteTokenAddress,
   } = data;
 
   const columns = [
@@ -66,7 +68,9 @@ const PoolEvents = ({ address, ...rest }) => {
           type={row.name}
           data={row.data}
           quoteTokenSymbol={quoteTokenSymbol}
+          quoteTokenAddress={quoteTokenAddress}
           collateralTokenSymbol={collateralTokenSymbol}
+          collateralTokenAddress={collateralTokenAddress}
         />
       ),
       cellSize: "2.5fr",

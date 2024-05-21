@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Table from "@/components/table/Table";
 import Address from "@/components/address/Address";
 import Value from "@/components/value/Value";
-import ValueChange from "@/components/value/ValueChange";
+import CurrencyValue from "@/components/value/CurrencyValue";
 import Info from "@/components/info/Info";
 
 const TopDepositors = ({ address, daysAgo }) => {
@@ -36,11 +36,19 @@ const TopDepositors = ({ address, daysAgo }) => {
     },
     {
       header: "Deposited",
-      cell: ({ row }) => <Value value={row.supply} suffix={row.quote_token_symbol} />,
+      cell: ({ row }) => (
+        <CurrencyValue
+          value={row.supply}
+          currencySymbol={row.quote_token_symbol}
+          currencyAddress={row.quote_token_address}
+        />
+      ),
       smallCell: ({ row }) => (
-        <ValueChange
+        <CurrencyValue
           value={row.supply - row.prev_supply}
-          suffix={row.quote_token_symbol}
+          currencySymbol={row.quote_token_symbol}
+          currencyAddress={row.quote_token_address}
+          trend
         />
       ),
       headerAlign: "end",

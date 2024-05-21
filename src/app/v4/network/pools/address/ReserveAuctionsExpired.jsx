@@ -4,7 +4,8 @@ import DateTimeAgo from "@/components/dateTime/DateTimeAgo";
 import { faGavel } from "@fortawesome/free-solid-svg-icons";
 import { useFetch, useLinkBuilder } from "@/hooks";
 import Table from "@/components/table/Table";
-import Value from "@/components/value/Value";
+import CurrencyValue from "@/components/value/CurrencyValue";
+import { AJNA_TOKEN_ADDRESS } from "@/utils/constants";
 
 const ReserveAuctionsExpired = ({ poolAddress }) => {
   const buildLink = useLinkBuilder();
@@ -32,7 +33,11 @@ const ReserveAuctionsExpired = ({ poolAddress }) => {
     {
       header: "Claimed Reserves",
       cell: ({ row }) => (
-        <Value value={row.claimable_reserves} suffix={row.quote_token_symbol} />
+        <CurrencyValue
+          value={row.claimable_reserves}
+          currencySymbol={row.quote_token_symbol}
+          currencyAddress={row.quote_token_address}
+        />
       ),
       headerAlign: "end",
       cellAlign: "end",
@@ -41,9 +46,11 @@ const ReserveAuctionsExpired = ({ poolAddress }) => {
     {
       header: "Last Take Price",
       cell: ({ row }) => (
-        <Value
+        <CurrencyValue
           value={row.take_count > 0 ? row.last_take_price : 0}
-          suffix="AJNA"
+          currencySymbol="AJNA"
+          currencyAddress={AJNA_TOKEN_ADDRESS}
+          network="ethereum"
           dashIfZero
         />
       ),
@@ -60,7 +67,14 @@ const ReserveAuctionsExpired = ({ poolAddress }) => {
     },
     {
       header: "🔥",
-      cell: ({ row }) => <Value value={row.ajna_burned} suffix="AJNA" />,
+      cell: ({ row }) => (
+        <CurrencyValue
+          value={row.ajna_burned}
+          currencySymbol="AJNA"
+          currencyAddress={AJNA_TOKEN_ADDRESS}
+          network="ethereum"
+        />
+      ),
       headerAlign: "end",
       cellAlign: "end",
       orderField: "ajna_burned",

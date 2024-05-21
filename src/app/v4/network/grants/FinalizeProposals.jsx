@@ -1,6 +1,8 @@
 import { useFetch } from "@/hooks";
 import Table from "@/components/table/Table";
 import Value from "@/components/value/Value";
+import CurrencyValue from "@/components/value/CurrencyValue";
+import { AJNA_TOKEN_ADDRESS } from "@/utils/constants";
 
 const FinalizeProposals = () => {
   const { data = [], error, isLoading } = useFetch("/grants/", { type: "finalize" });
@@ -22,7 +24,13 @@ const FinalizeProposals = () => {
       cell: ({ row }) => <>{row.description.title}</>,
       smallCell: ({ row }) => (
         <div className="d-flex">
-          Requested: <Value value={row.total_tokens_requested} suffix="AJNA" />
+          Requested:{" "}
+          <CurrencyValue
+            value={row.total_tokens_requested}
+            currencySymbol="AJNA"
+            currencyAddress={AJNA_TOKEN_ADDRESS}
+            network="ethereum"
+          />
         </div>
       ),
       cellSize: "3fr",
