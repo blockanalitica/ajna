@@ -6,6 +6,7 @@ export const NETWORKS_ICON_MAP = {
   polygon: "polygon_pos",
   blast: "blast",
   gnosis: "gnosis",
+  mode: "mode",
 };
 
 export const NETWORKS_NAME_MAP = {
@@ -16,6 +17,7 @@ export const NETWORKS_NAME_MAP = {
   polygon: "Polygon PoS",
   blast: "Blast",
   gnosis: "Gnosis",
+  mode: "Mode",
 };
 
 export const NETWORKS = {
@@ -50,7 +52,6 @@ export const NETWORKS = {
       icon: NETWORKS_ICON_MAP["arbitrum"],
     },
     { name: NETWORKS_NAME_MAP["base"], key: "base", icon: NETWORKS_ICON_MAP["base"] },
-
     {
       name: NETWORKS_NAME_MAP["polygon"],
       key: "polygon",
@@ -70,6 +71,11 @@ export const NETWORKS = {
       name: NETWORKS_NAME_MAP["blast"],
       key: "blast",
       icon: NETWORKS_ICON_MAP["blast"],
+    },
+    {
+      name: NETWORKS_NAME_MAP["mode"],
+      key: "mode",
+      icon: NETWORKS_ICON_MAP["mode"],
     },
   ],
 };
