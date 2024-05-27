@@ -13,7 +13,7 @@ import Info from "@/components/info/Info";
 import DateTimeAgo from "@/components/dateTime/DateTimeAgo";
 import Tag from "@/components/tags/Tag";
 
-const Borrowers = ({ address, daysAgo, search }) => {
+const Borrowers = ({ address, daysAgo, search, onlyClosed }) => {
   const buildLink = useLinkBuilder();
   const pageSize = 10;
   const [page, setPage] = useState(1);
@@ -30,6 +30,7 @@ const Borrowers = ({ address, daysAgo, search }) => {
     order,
     days_ago: daysAgo,
     type: "borrower",
+    closed: onlyClosed,
     search,
   });
 

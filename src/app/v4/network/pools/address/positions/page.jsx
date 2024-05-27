@@ -9,6 +9,8 @@ import SearchInput from "@/components/search/SearchInput";
 import Tabs from "@/components/tabs/Tabs";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import PoolName from "@/components/poolName/PoolName";
+import TableFilter from "@/components/table/TableFilter";
+import Checkbox from "@/components/checkbox/Checkbox";
 
 const PoolWallets = () => {
   usePageTitle("Positions");
@@ -17,6 +19,7 @@ const PoolWallets = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const activeTab = queryParams.get("type") || "depositor";
   const daysAgo = parseInt(queryParams.get("daysAgo")) || 1;
+  const onlyClosed = queryParams.get("closed");
 
   const onTabChange = (value) => {
     setQueryParams({ type: value });
@@ -29,6 +32,14 @@ const PoolWallets = () => {
 
   const onDisplaySwitchChange = (value) => {
     setQueryParams({ daysAgo: value });
+  };
+
+  const onOnlyClosedChanged = (checked) => {
+    if (checked === true) {
+      setQueryParams({ closed: "1" });
+    } else {
+      setQueryParams({ closed: null });
+    }
   };
 
   const { data = {}, error, isLoading } = useFetch(`/pools/${address}/`);
@@ -44,11 +55,25 @@ const PoolWallets = () => {
   const tabs = {
     depositor: {
       title: "Depositors",
-      content: <Depositors address={address} daysAgo={daysAgo} search={searchTerm} />,
+      content: (
+        <Depositors
+          address={address}
+          daysAgo={daysAgo}
+          search={searchTerm}
+          onlyClosed={onlyClosed}
+        />
+      ),
     },
     borrower: {
       title: "Borrowers",
-      content: <Borrowers address={address} daysAgo={daysAgo} search={searchTerm} />,
+      content: (
+        <Borrowers
+          address={address}
+          daysAgo={daysAgo}
+          search={searchTerm}
+          onlyClosed={onlyClosed}
+        />
+      ),
     },
   };
 
@@ -70,11 +95,20 @@ const PoolWallets = () => {
             className="font-syncopate"
           />
         </div>
-        <SearchInput
-          placeholder="Search wallets"
-          value={searchTerm}
-          onChange={handleSearchChange}
-        />
+        <div className="flex gap-2">
+          <TableFilter filtersApplied={onlyClosed === "1"}>
+            <Checkbox
+              label="Show only closed positions"
+              checked={onlyClosed === "1"}
+              onChange={(checked) => onOnlyClosedChanged(checked)}
+            />
+          </TableFilter>
+          <SearchInput
+            placeholder="Search wallets"
+            value={searchTerm}
+            onChange={handleSearchChange}
+          />
+        </div>
       </div>
 
       <Tabs tabs={tabs} activeTab={activeTab} onTabChange={onTabChange} />
