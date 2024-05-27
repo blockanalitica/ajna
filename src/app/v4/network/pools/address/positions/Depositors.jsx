@@ -5,13 +5,12 @@ import Table from "@/components/table/Table";
 import Address from "@/components/address/Address";
 import Value from "@/components/value/Value";
 import CurrencyValue from "@/components/value/CurrencyValue";
-
 import ValueChange from "@/components/value/ValueChange";
 import InlineSelect from "@/components/select/InlineSelect";
 import Info from "@/components/info/Info";
 import DateTimeAgo from "@/components/dateTime/DateTimeAgo";
 
-const Depositors = ({ address, daysAgo, search }) => {
+const Depositors = ({ address, daysAgo, search, onlyClosed }) => {
   const buildLink = useLinkBuilder();
   const pageSize = 10;
   const [page, setPage] = useState(1);
@@ -28,6 +27,7 @@ const Depositors = ({ address, daysAgo, search }) => {
     order,
     days_ago: daysAgo,
     type: "depositor",
+    closed: onlyClosed,
     search,
   });
 

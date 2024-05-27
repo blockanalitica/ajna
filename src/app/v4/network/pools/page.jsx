@@ -4,7 +4,8 @@ import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 import SearchInput from "@/components/search/SearchInput";
 import PoolsTable from "@/components/table/specific/PoolsTable";
-import Filters from "./Filters";
+import TableFilter from "@/components/table/TableFilter";
+import Checkbox from "@/components/checkbox/Checkbox";
 
 const Pools = () => {
   usePageTitle("Pools");
@@ -50,6 +51,14 @@ const Pools = () => {
     onPageChange(1);
   };
 
+  const onCheckboxChange = (type, checked) => {
+    if (checked === true) {
+      setQueryParams({ filter: type });
+    } else {
+      setQueryParams({ filter: null });
+    }
+  };
+
   return (
     <>
       <section className="flex items-center justify-center sm:justify-end md:justify-between mb-10">
@@ -60,7 +69,24 @@ const Pools = () => {
       <div className="flex flex-col sm:flex-row justify-between items-center">
         <h1 className="text-xl md:text-1xl xl:text-2xl mb-5">Pools</h1>
         <div className="flex items-center mb-5 gap-4">
-          <Filters />
+          <TableFilter filtersApplied={filter !== null}>
+            <Checkbox
+              label="Added in last 24h"
+              checked={filter === "new"}
+              onChange={(checked) => onCheckboxChange("new", checked)}
+            />
+            <Checkbox
+              label="Has active liquidations"
+              checked={filter === "liquidation"}
+              onChange={(checked) => onCheckboxChange("liquidation", checked)}
+            />
+            <Checkbox
+              label="Arbitrage pools"
+              checked={filter === "arbitrage"}
+              onChange={(checked) => onCheckboxChange("arbitrage", checked)}
+            />
+          </TableFilter>
+
           <SearchInput
             placeholder="Search pools"
             value={searchTerm}
