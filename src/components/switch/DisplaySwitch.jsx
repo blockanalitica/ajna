@@ -6,14 +6,25 @@ const DisplaySwitch = ({
   activeOption,
   options,
   small = false,
+  newOptions = false,
 }) => {
   if (!options) {
-    options = [
-      { key: 1, value: "24H" },
-      { key: 7, value: "7D" },
-      { key: 30, value: "30D" },
-      { key: 365, value: "1Y" },
-    ];
+    if (newOptions === true) {
+      options = [
+        { key: 1, value: "24h" },
+        { key: 7, value: "7d" },
+        { key: 30, value: "1m" },
+        { key: 90, value: "3m" },
+        { key: 9999, value: "All" },
+      ];
+    } else {
+      options = [
+        { key: 1, value: "24H" },
+        { key: 7, value: "7D" },
+        { key: 30, value: "30D" },
+        { key: 365, value: "1Y" },
+      ];
+    }
   }
 
   const onOptionClick = (option) => {

@@ -5,12 +5,13 @@ import { DateTime } from "luxon";
 import { compact } from "@/utils/number";
 import { prefillSerieDates } from "@/utils/graph";
 
-const HistoryVolumeGraph = () => {
+const HistoryVolumeGraph = ({ daysAgo }) => {
+  const actualDaysAgo = daysAgo > 7 ? daysAgo : 30;
   const {
     data = [],
     error,
     isLoading,
-  } = useFetch("/stats/history/", { type: "volume" });
+  } = useFetch("/stats/history/", { type: "volume", days_ago: actualDaysAgo });
 
   if (error) {
     return <p>Failed to load data</p>;

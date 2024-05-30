@@ -14,7 +14,7 @@ const SettledAuctions = () => {
         <div className="text-xs text-gray-13 text-end pe-4">
           USD prices are caclualted using market price at kick time
         </div>
-        <DisplaySwitch onChange={setDaysAgo} activeOption={daysAgo} />
+        <DisplaySwitch onChange={setDaysAgo} activeOption={daysAgo} newOptions />
       </div>
 
       <SettledAuctionsOverview daysAgo={daysAgo} className="mb-4" />

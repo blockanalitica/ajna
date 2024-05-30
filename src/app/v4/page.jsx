@@ -44,7 +44,11 @@ const Page = () => {
           <img src={ajnaLogo} width="130" height="24" alt="Ajna" className="h-auto" />
         </Link>
         <div className="mb-5">
-          <DisplaySwitch onChange={onDisplaySwitchChange} activeOption={daysAgo} />
+          <DisplaySwitch
+            onChange={onDisplaySwitchChange}
+            activeOption={daysAgo}
+            newOptions
+          />
         </div>
       </nav>
 
@@ -58,7 +62,7 @@ const Page = () => {
         className="mb-10"
       />
 
-      {isLoading ? null : <HistoricGraphs days_ago={daysAgo} totals={totals} />}
+      {isLoading ? null : <HistoricGraphs daysAgo={daysAgo} totals={totals} />}
     </div>
   );
 };
