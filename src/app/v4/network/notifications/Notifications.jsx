@@ -37,7 +37,7 @@ const NotificationFormatter = ({ notification }) => {
             </span>
             collateral to bucket {notification.data.index} in
             <Link
-              to={buildLink(`/pool/${notification.pool_address}`)}
+              to={buildLink(`/pools/${notification.pool_address}`)}
               className="text-purple-6 hover:underline"
             >
               <PoolName
@@ -77,7 +77,7 @@ const NotificationFormatter = ({ notification }) => {
             </span>
             quote token to
             <Link
-              to={buildLink(`/pool/${notification.pool_address}`)}
+              to={buildLink(`/pools/${notification.pool_address}`)}
               className="text-purple-6 hover:underline"
             >
               <PoolName
@@ -107,7 +107,7 @@ const NotificationFormatter = ({ notification }) => {
             </Link>
             kicked in
             <Link
-              to={buildLink(`/pool/${notification.pool_address}`)}
+              to={buildLink(`/pools/${notification.pool_address}`)}
               className="text-purple-6 hover:underline"
             >
               <PoolName
@@ -136,7 +136,7 @@ const NotificationFormatter = ({ notification }) => {
             </Link>
             has been settled in
             <Link
-              to={buildLink(`/pool/${notification.pool_address}`)}
+              to={buildLink(`/pools/${notification.pool_address}`)}
               className="text-purple-6 hover:underline"
             >
               <PoolName
@@ -176,7 +176,7 @@ const NotificationFormatter = ({ notification }) => {
             </span>
             debt in
             <Link
-              to={buildLink(`/pool/${notification.pool_address}`)}
+              to={buildLink(`/pools/${notification.pool_address}`)}
               className="text-purple-6 hover:underline"
             >
               <PoolName
@@ -217,7 +217,7 @@ const NotificationFormatter = ({ notification }) => {
             </Link>
             is at risk of being liquidated
             <Link
-              to={buildLink(`/pool/${notification.pool_address}`)}
+              to={buildLink(`/pools/${notification.pool_address}`)}
               className="text-purple-6 hover:underline"
             ></Link>
           </div>

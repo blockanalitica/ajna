@@ -101,9 +101,12 @@ const SettledAuctionsGraph = ({ daysAgo, totalCollateralUsd, totalDebtUsd }) => 
           unit: xUnit,
         },
         // Add 1 day to daysAgo as backend will return whole day from daysAgo day
-        min: DateTime.now()
-          .minus({ days: daysAgo + 1 })
-          .toJSDate(),
+        min:
+          daysAgo !== 9999
+            ? DateTime.now()
+                .minus({ days: daysAgo + 1 })
+                .toJSDate()
+            : null,
         max: DateTime.now().toJSDate(),
       },
       y: {

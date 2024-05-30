@@ -159,7 +159,7 @@ const WalletPoolPosition = () => {
     <>
       <section className="flex items-center justify-between mb-10">
         <Breadcrumbs />
-        <DisplaySwitch onChange={setDaysAgo} activeOption={daysAgo} />
+        <DisplaySwitch onChange={setDaysAgo} activeOption={daysAgo} newOptions />
       </section>
 
       <h1 className="text-xl md:text-1xl xl:text-2xl mb-5 flex gap-x-3">

@@ -46,7 +46,11 @@ const Wallet = () => {
     <>
       <section className="flex items-center justify-center sm:justify-end md:justify-between mb-10">
         <Breadcrumbs />
-        <DisplaySwitch onChange={onDisplaySwitchChange} activeOption={daysAgo} />
+        <DisplaySwitch
+          onChange={onDisplaySwitchChange}
+          activeOption={daysAgo}
+          newOptions
+        />
       </section>
 
       <div className="flex flex-col sm:flex-row justify-between items-center mb-5">

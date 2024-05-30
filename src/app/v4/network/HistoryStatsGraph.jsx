@@ -7,14 +7,15 @@ import { compact } from "@/utils/number";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import { prefillSerieDates } from "@/utils/graph";
 
-const HistoryStatsGraph = () => {
+const HistoryStatsGraph = ({ daysAgo }) => {
   const [displayOption, setDisplayOption] = useState("tvl");
+  const actualDaysAgo = daysAgo > 7 ? daysAgo : 30;
 
   const {
     data = [],
     error,
     isLoading,
-  } = useFetch("/stats/history/", { type: displayOption });
+  } = useFetch("/stats/history/", { type: displayOption, days_ago: actualDaysAgo });
 
   if (error) {
     return <p>Failed to load data</p>;
