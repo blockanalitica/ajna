@@ -4,7 +4,7 @@ import Tabs from "@/components/tabs/Tabs";
 import FundingProposals from "./FundingProposals";
 import FinalizeProposals from "./FinalizeProposals";
 
-const PoolsPage = () => {
+const GrantsPage = () => {
   usePageTitle("Grants");
   const { queryParams, setQueryParams } = useQueryParams();
   const activeTab = queryParams.get("tab") || "funding";
@@ -36,4 +36,4 @@ const PoolsPage = () => {
   );
 };
 
-export default PoolsPage;
+export default GrantsPage;

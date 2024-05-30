@@ -36,6 +36,7 @@ import V4Bucket from "@/app/v4/network/pools/address/buckets/index/page";
 import V4Auctions from "@/app/v4/network/auctions/page";
 import V4Auction from "@/app/v4/network/auctions/auction_uid/page";
 import V4Grants from "@/app/v4/network/grants/page";
+import V4Activity from "@/app/v4/network/activity/page";
 import V4ReserveAuction from "@/app/v4/network/reserve-auctions/uid/page";
 import V4Notifications from "@/app/v4/network/notifications/page";
 import V4Homepage from "@/app/v4/page";
@@ -109,6 +110,7 @@ const AjnaRoutes = () => {
       },
       { path: "/reserve-auctions/:uid", element: <V4ReserveAuction /> },
       { path: "/grants", element: <V4Grants /> },
+      { path: "/activity", element: <V4Activity /> },
       { path: "/notifications", element: <V4Notifications /> },
     ],
   };
