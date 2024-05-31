@@ -77,6 +77,21 @@ const ActiveReserveAuctions = () => {
       orderField: "claimable_reserves_remaining",
     },
     {
+      header: "Est. Auction Price",
+      cell: ({ row }) => (
+        <CurrencyValue
+          value={row.auction_price}
+          currencySymbol="AJNA"
+          currencyAddress={AJNA_TOKEN_ADDRESS}
+          network="ethereum"
+          dashIfZero
+        />
+      ),
+      headerAlign: "end",
+      cellAlign: "end",
+      orderField: "last_take_price",
+    },
+    {
       header: "Last Take Price",
       cell: ({ row }) => (
         <CurrencyValue
