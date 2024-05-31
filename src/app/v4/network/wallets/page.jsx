@@ -6,6 +6,7 @@ import Tabs from "@/components/tabs/Tabs";
 import Borrowers from "./Borrowers";
 import Depositors from "./Depositors";
 import AtRisk from "./AtRisk";
+import Activity from "./Activity";
 
 const WalletsPage = () => {
   usePageTitle("Wallets");
@@ -27,6 +28,10 @@ const WalletsPage = () => {
       title: "At Risk",
       content: <AtRisk />,
     },
+    activity: {
+      title: "Activity",
+      content: <Activity />,
+    },
   };
 
   const onTabChange = (value) => {
@@ -46,7 +51,7 @@ const WalletsPage = () => {
 
       <div className="flex flex-col sm:flex-row justify-between items-center">
         <h1 className="text-xl md:text-1xl xl:text-2xl mb-5">Wallets</h1>
-        {activeTab !== "at-risk" ? (
+        {activeTab !== "at-risk" && activeTab !== "activity" ? (
           <SearchInput
             placeholder="Search wallets"
             value={searchTerm}
