@@ -1,5 +1,4 @@
 import { useQueryParams, usePageTitle } from "@/hooks";
-import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import CardBackground from "@/components/card/CardBackground";
 import ActivityStats from "./ActivityStats";
