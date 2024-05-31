@@ -53,6 +53,13 @@ const EventFormatter = ({
             />
           </EventValue>
           <EventValue title="Bucket">{data.index}</EventValue>
+          <EventValue title="Bucket Price">
+            <CurrencyValue
+              value={data.bucket_price}
+              currencySymbol={quoteTokenSymbol}
+              currencyAddress={quoteTokenAddress}
+            />
+          </EventValue>
         </EventData>
       );
       break;
@@ -79,6 +86,13 @@ const EventFormatter = ({
             />
           </EventValue>
           <EventValue title="Bucket">{data.index}</EventValue>
+          <EventValue title="Bucket Price">
+            <CurrencyValue
+              value={data.bucket_price}
+              currencySymbol={quoteTokenSymbol}
+              currencyAddress={quoteTokenAddress}
+            />
+          </EventValue>
         </EventData>
       );
       break;
@@ -177,6 +191,13 @@ const EventFormatter = ({
       content = (
         <EventData>
           <EventValue title="Index">{data.index}</EventValue>
+          <EventValue title="Bucket Price">
+            <CurrencyValue
+              value={data.bucket_price}
+              currencySymbol={quoteTokenSymbol}
+              currencyAddress={quoteTokenAddress}
+            />
+          </EventValue>
           <EventValue title="LP Forfeited">
             <CurrencyValue
               value={data.lpForfeited}
@@ -222,6 +243,13 @@ const EventFormatter = ({
             />
           </EventValue>
           <EventValue title="Bucket">{data.index}</EventValue>
+          <EventValue title="Bucket Price">
+            <CurrencyValue
+              value={data.bucket_price}
+              currencySymbol={quoteTokenSymbol}
+              currencyAddress={quoteTokenAddress}
+            />
+          </EventValue>
         </EventData>
       );
       break;
@@ -526,6 +554,13 @@ const EventFormatter = ({
             />
           </EventValue>
           <EventValue title="Bucket">{data.index}</EventValue>
+          <EventValue title="Bucket Price">
+            <CurrencyValue
+              value={data.bucket_price}
+              currencySymbol={quoteTokenSymbol}
+              currencyAddress={quoteTokenAddress}
+            />
+          </EventValue>
         </EventData>
       );
       break;
@@ -549,6 +584,13 @@ const EventFormatter = ({
             />
           </EventValue>
           <EventValue title="Bucket">{data.index}</EventValue>
+          <EventValue title="Bucket Price">
+            <CurrencyValue
+              value={data.bucket_price}
+              currencySymbol={quoteTokenSymbol}
+              currencyAddress={quoteTokenAddress}
+            />
+          </EventValue>
         </EventData>
       );
       break;
