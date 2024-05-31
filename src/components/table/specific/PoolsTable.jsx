@@ -144,6 +144,7 @@ const PoolsTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
               value={row.debt - row.prev_debt}
               currencySymbol={row.quote_token_symbol}
               currencyAddress={row.quote_token_address}
+              trend
             />
           )}
         </>
