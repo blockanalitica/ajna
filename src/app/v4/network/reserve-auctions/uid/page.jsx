@@ -104,6 +104,20 @@ const ReserveAuction = () => {
             </div>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
+            {data.type === "active" ? (
+              <Kpi
+                title="Est. Auction Price"
+                value={
+                  <CurrencyValue
+                    value={data.auction_price}
+                    currencySymbol="AJNA"
+                    currencyAddress={AJNA_TOKEN_ADDRESS}
+                    network="ethereum"
+                    dashIfZero
+                  />
+                }
+              />
+            ) : null}
             <Kpi
               title="Last Take price"
               value={
