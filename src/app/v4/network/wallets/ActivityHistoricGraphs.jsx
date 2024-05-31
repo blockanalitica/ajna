@@ -8,7 +8,7 @@ import { prefillSerieDates } from "@/utils/graph";
 import { compact } from "@/utils/number";
 import { DateTime } from "luxon";
 
-const HistoricGraphs = ({ daysAgo }) => {
+const ActivityHistoricGraphs = ({ daysAgo }) => {
   const [displayOption, setDisplayOption] = useState("active");
   const actualDaysAgo = daysAgo > 7 ? daysAgo : 30;
 
@@ -28,10 +28,11 @@ const HistoricGraphs = ({ daysAgo }) => {
           ticks: {
             callback: (value) => compact(value, 2, true),
           },
+          beginAtZero: displayOption !== "total",
         },
       },
     }),
-    [actualDaysAgo],
+    [actualDaysAgo, displayOption],
   );
 
   const subvalueFormatter = useCallback(
@@ -115,4 +116,4 @@ const HistoricGraphs = ({ daysAgo }) => {
   );
 };
 
-export default HistoricGraphs;
+export default ActivityHistoricGraphs;
