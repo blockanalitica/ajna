@@ -158,7 +158,6 @@ const Pool = () => {
           <AllowedTokenIds
             tokenIds={pool.allowed_token_ids}
             collateralTokenSymbol={pool.collateral_token_symbol}
-            // collateralTokenSymbol="dasf"
             collateralTokenAddress={pool.collateral_token_address}
             className="mb-5"
           />
@@ -166,6 +165,7 @@ const Pool = () => {
       </div>
 
       <PoolInfo data={pool} className="mb-5" />
+
       <div className="flex flex-col-reverse lg:flex-row lg:gap-4">
         <CardBackground className="lg:w-1/3 grid grid-cols-1 place-content-between mb-5">
           <div>

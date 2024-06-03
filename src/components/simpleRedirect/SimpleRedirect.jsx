@@ -9,7 +9,8 @@ function SimpleRedirect(props) {
 
   if (beSmart === true) {
     const { version, network } = smartLocationParts(location);
-    to = urlJoin("/", version, network, to);
+    const actualVersion = version === "v4" ? "" : version;
+    to = urlJoin("/", actualVersion, network, to);
   }
 
   const redirectWithParams = generatePath(to, params);

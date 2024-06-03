@@ -4,7 +4,7 @@ import TotalStats from "./TotalStats";
 import TopPools from "./TopPools";
 import TopTokens from "./TopTokens";
 import HistoryStatsGraph from "./HistoryStatsGraph";
-import HistoryVolumeGraph from "./HistoryVolumeGraph";
+import HistoricGraphs from "./HistoricGraphs";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import CardBackground from "@/components/card/CardBackground";
 import { smartLocationParts } from "@/utils/url";
@@ -36,7 +36,7 @@ const Page = () => {
           <HistoryStatsGraph key={`hist-stats-${network}`} daysAgo={daysAgo} />
         </CardBackground>
         <CardBackground className="md:w-1/2 mb-10">
-          <HistoryVolumeGraph key={`hist-volume-${network}`} daysAgo={daysAgo} />
+          <HistoricGraphs key={`hist-graphs-${network}`} daysAgo={daysAgo} />
         </CardBackground>
       </div>
 

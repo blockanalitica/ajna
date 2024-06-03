@@ -10,7 +10,7 @@ export const NETWORKS_ICON_MAP = {
 };
 
 export const NETWORKS_NAME_MAP = {
-  ethereum: "Ethereum Mainnet",
+  ethereum: "Ethereum",
   base: "Base",
   arbitrum: "Arbitrum One",
   optimism: "Optimism",
