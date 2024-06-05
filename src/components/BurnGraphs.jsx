@@ -6,6 +6,8 @@ import { AJNA_TOKEN_ADDRESS } from "@/utils/constants";
 import DisplaySwitch from "@/components/switch/DisplaySwitch";
 import Value from "@/components/value/Value";
 import { DateTime } from "luxon";
+import GenericEmptyPlaceholder from "@/components/GenericEmptyPlaceholder";
+import { faChartBar } from "@fortawesome/free-solid-svg-icons";
 
 const BurnGraphs = ({ data, headerRight }) => {
   const [displayOption, setDisplayOption] = useState("token");
@@ -89,6 +91,16 @@ const BurnGraphs = ({ data, headerRight }) => {
     }
     return `${date.toFormat("LLL dd, y HH:mm")} UTC`;
   }, []);
+
+  if (!data || (data && data.length === 0)) {
+    return (
+      <GenericEmptyPlaceholder
+        title="No data"
+        content="There is no data"
+        icon={faChartBar}
+      />
+    );
+  }
 
   return (
     <div className="min-h-[20rem]">

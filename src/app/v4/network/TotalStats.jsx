@@ -54,11 +54,23 @@ const TotalStats = ({ daysAgo, className, ...rest }) => {
         />
       ),
     },
+  ];
+  const statsBottom = [
     {
       title: "TVL",
       value: <Value value={results.total_tvl || 0} prefix="$" />,
       smallValue: (
         <ValueChange value={results.total_tvl - results.prev_total_tvl} prefix="$" />
+      ),
+    },
+    {
+      title: "Total reserves",
+      value: <Value value={results.total_reserves || 0} prefix="$" />,
+      smallValue: (
+        <ValueChange
+          value={results.total_reserves - results.prev_reserves_usd}
+          prefix="$"
+        />
       ),
     },
     {
@@ -73,9 +85,10 @@ const TotalStats = ({ daysAgo, className, ...rest }) => {
   ];
 
   return (
-    <>
-      <Stats data={stats} className={className} {...rest} />
-    </>
+    <div className={className}>
+      <Stats data={stats} className="mb-4" {...rest} />
+      <Stats data={statsBottom} className="" {...rest} />
+    </div>
   );
 };
 
