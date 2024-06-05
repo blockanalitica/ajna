@@ -4,6 +4,7 @@ import { useState } from "react";
 import OtherHistoricGraphs from "./OtherHistoricGraphs";
 import GenericEmptyPlaceholder from "@/components/GenericEmptyPlaceholder";
 import { faChartBar } from "@fortawesome/free-solid-svg-icons";
+import BurnGraphs from "@/components/BurnGraphs";
 
 const HistoricGraphs = ({
   address,
@@ -50,6 +51,7 @@ const HistoricGraphs = ({
     { key: "pledged_collateral", value: "Collateral" },
     // { key: "collateral", value: "Collateral" },
     { key: "volume", value: "Volume" },
+    { key: "burn", value: "Burn" },
   ];
 
   const headerRight = (
@@ -62,16 +64,22 @@ const HistoricGraphs = ({
   );
 
   return (
-    <OtherHistoricGraphs
-      data={data}
-      headerRight={headerRight}
-      displayOption={displayOption}
-      collateralSymbol={collateralSymbol}
-      collateralAddress={collateralAddress}
-      quoteSymbol={quoteSymbol}
-      quoteAddress={quoteAddress}
-      daysAgo={actualDaysAgo}
-    />
+    <>
+      {displayOption === "burn" ? (
+        <BurnGraphs data={data} headerRight={headerRight} />
+      ) : (
+        <OtherHistoricGraphs
+          data={data}
+          headerRight={headerRight}
+          displayOption={displayOption}
+          collateralSymbol={collateralSymbol}
+          collateralAddress={collateralAddress}
+          quoteSymbol={quoteSymbol}
+          quoteAddress={quoteAddress}
+          daysAgo={actualDaysAgo}
+        />
+      )}
+    </>
   );
 };
 
