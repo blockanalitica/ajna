@@ -49,42 +49,6 @@ const PoolsTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
       sticky: true,
     },
     {
-      header: "Collateral",
-      cell: ({ row }) => (
-        <>
-          {isPriceUsd ? (
-            <Value value={row.pledged_collateral_usd} prefix="$" />
-          ) : (
-            <CurrencyValue
-              value={row.pledged_collateral}
-              currencySymbol={row.collateral_token_symbol}
-              currencyAddress={row.collateral_token_address}
-            />
-          )}
-        </>
-      ),
-      smallCell: ({ row }) => (
-        <>
-          {isPriceUsd ? (
-            <ValueChange
-              value={row.pledged_collateral_usd - row.prev_pledged_collateral_usd}
-              prefix="$"
-            />
-          ) : (
-            <CurrencyValue
-              value={row.pledged_collateral - row.prev_pledged_collateral}
-              currencySymbol={row.collateral_token_symbol}
-              currencyAddress={row.collateral_token_address}
-              trend
-            />
-          )}
-        </>
-      ),
-      headerAlign: "end",
-      cellAlign: "end",
-      orderField: isPriceUsd ? "pledged_collateral_usd" : "pledged_collateral",
-    },
-    {
       header: "Quote",
       cell: ({ row }) => (
         <>
@@ -197,6 +161,41 @@ const PoolsTable = ({ currentPage = 1, pageSize = 10, ...rest }) => {
       cellAlign: "end",
       orderField: "borrow_rate",
     },
+
+    {
+      header: "Reserves",
+      cell: ({ row }) => (
+        <>
+          {isPriceUsd ? (
+            <Value value={row.reserves_usd} prefix="$" />
+          ) : (
+            <CurrencyValue
+              value={row.reserves}
+              currencySymbol={row.quote_token_symbol}
+              currencyAddress={row.quote_token_address}
+            />
+          )}
+        </>
+      ),
+      smallCell: ({ row }) => (
+        <>
+          {isPriceUsd ? (
+            <ValueChange value={row.reserves_usd - row.prev_reserves_usd} prefix="$" />
+          ) : (
+            <CurrencyValue
+              value={row.reserves - row.prev_reserves}
+              currencySymbol={row.quote_token_symbol}
+              currencyAddress={row.quote_token_address}
+              trend
+            />
+          )}
+        </>
+      ),
+      headerAlign: "end",
+      cellAlign: "end",
+      orderField: isPriceUsd ? "debt_usd" : "debt",
+    },
+
     {
       header: "🔥",
       cell: ({ row }) => (
