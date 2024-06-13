@@ -62,6 +62,16 @@ const NetworksTable = ({ data, ...rest }) => {
       cellAlign: "end",
       orderField: "tvl",
     },
+    {
+      header: "Reserves",
+      cell: ({ row }) => <Value value={row.reserves_usd} prefix="$" dashIfZero />,
+      smallCell: ({ row }) => (
+        <ValueChange value={row.reserves_usd - row.prev_reserves_usd} prefix="$" />
+      ),
+      headerAlign: "end",
+      cellAlign: "end",
+      orderField: "reserves_usd",
+    },
   ];
 
   return (

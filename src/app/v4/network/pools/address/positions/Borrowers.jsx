@@ -159,8 +159,8 @@ const Borrowers = ({ address, daysAgo, search, onlyClosed }) => {
         <span>
           Health Rate
           <Info className="ms-2" title="Health Rate">
-            Calculated as LUP / (loan debt / loan collateral). If value is &lt;1, loan
-            is undercollateralized and can be Kicked into auction.
+            Calculated as LUP / (loan debt / loan collateral * 0.04). If value is &lt;1,
+            loan is undercollateralized and can be Kicked into auction.
           </Info>
         </span>
       ),
