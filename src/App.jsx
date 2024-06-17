@@ -3,6 +3,8 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { Settings as DTSettings } from "luxon";
 import AjnaRoutes from "@/routes";
 import axios from "axios";
+import "core-js/es/array/at";
+import "core-js/es/string/replace-all";
 
 axios.defaults.baseURL = import.meta.env.VITE_API_ENDPOINT;
 axios.defaults.headers.common["Content-Type"] = "application/json";
