@@ -65,6 +65,29 @@ const EventFormatter = ({
       break;
 
     case "AddCollateralNFT":
+      content = (
+        <EventData>
+          <EventValue title="Actor">
+            <Link
+              to={buildLink(`wallets/${data.actor}`)}
+              className="text-purple-6 hover:underline"
+            >
+              <Address address={data.actor} />
+            </Link>
+          </EventValue>
+          <EventValue title="Bucket">{data.index}</EventValue>
+          <EventValue title="LP Awarded">
+            <CurrencyValue
+              value={data.lpAwarded}
+              currencySymbol={quoteTokenSymbol}
+              currencyAddress={quoteTokenAddress}
+            />
+          </EventValue>
+          {data.tokenIds?.length > 0 ? (
+            <EventValue title="Token Ids">{data.tokenIds.join(", ")}</EventValue>
+          ) : null}
+        </EventData>
+      );
       break;
 
     case "AddQuoteToken":
