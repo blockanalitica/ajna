@@ -60,7 +60,7 @@ const TopDepositors = ({ address, daysAgo }) => {
           Share
           <Info className="ms-2" title="Deposit Share">
             Share (in %) of the total deposit into the pool. Calculated as wallet
-            deposit in USD divided by total pool size in USD.
+            deposit divided by total pool buckets deposit (quote + collateral).
           </Info>
         </span>
       ),
