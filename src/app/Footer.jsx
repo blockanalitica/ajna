@@ -13,6 +13,14 @@ const Footer = () => (
         </ExternalLink>
         <span>|</span>
         <span>© 2023. All rights reserved.</span>
+        <span>|</span>
+
+        <ExternalLink
+          href="https://blockanalitica.com/terms-of-service/"
+          className="hover:text-purple-6"
+        >
+          Terms of Service
+        </ExternalLink>
       </div>
 
       <div className="flex space-x-4">
