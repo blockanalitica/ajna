@@ -7,6 +7,7 @@ export const NETWORKS_ICON_MAP = {
   blast: "blast",
   gnosis: "gnosis",
   mode: "mode",
+  rari: "rari",
 };
 
 export const NETWORKS_NAME_MAP = {
@@ -18,6 +19,7 @@ export const NETWORKS_NAME_MAP = {
   blast: "Blast",
   gnosis: "Gnosis",
   mode: "Mode",
+  rari: "RARI",
 };
 
 export const NETWORKS = {
@@ -76,6 +78,11 @@ export const NETWORKS = {
       name: NETWORKS_NAME_MAP["mode"],
       key: "mode",
       icon: NETWORKS_ICON_MAP["mode"],
+    },
+    {
+      name: NETWORKS_NAME_MAP["rari"],
+      key: "rari",
+      icon: NETWORKS_ICON_MAP["rari"],
     },
   ],
 };

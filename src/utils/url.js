@@ -56,6 +56,9 @@ export const generateEtherscanUrl = (network, address, path = "address") => {
     case "gnosis":
       domain = "gnosisscan.io";
       break;
+    case "rari":
+      domain = "mainnet.explorer.rarichain.org";
+      break;
     default:
     // pass
   }
