@@ -25,6 +25,9 @@ const EtherscanIcon = ({ network, size = 16 }) => {
     case "gnosis":
       alt = "gnosisscan.io";
       break;
+    case "rari":
+      alt = "mainnet.explorer.rarichain.org";
+      break;
     default:
     // pass
   }
