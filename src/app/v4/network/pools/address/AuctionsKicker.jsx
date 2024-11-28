@@ -123,7 +123,7 @@ const AuctionsKicker = ({ poolAddress }) => {
 
   const footerRow = (
     <div className="text-xs text-gray-13 text-end">
-      USD prices are caclualted using market price at current time
+      USD prices are calculated using market price at current time
     </div>
   );
 

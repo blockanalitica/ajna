@@ -157,7 +157,7 @@ const Auction = () => {
               />
             </div>
             <div className="text-xs text-gray-13 text-end pt-5">
-              * price is caclualted using USD market price at kick time
+              * price is calculated using USD market price at kick time
             </div>
           </div>
         </CardBackground>

@@ -12,7 +12,7 @@ const SettledAuctions = () => {
     <>
       <div className="flex justify-center sm:justify-end mb-4 items-center">
         <div className="text-xs text-gray-13 text-end pe-4">
-          USD prices are caclualted using market price at kick time
+          USD prices are calculated using market price at kick time
         </div>
         <DisplaySwitch onChange={setDaysAgo} activeOption={daysAgo} newOptions />
       </div>
