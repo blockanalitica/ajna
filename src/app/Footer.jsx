@@ -1,7 +1,8 @@
-import { faMedium, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ExternalLink from "@/components/externalLink/ExternalLink";
 import baLogo from "@/assets/images/logos/BlockAnalitica-Logo-white.svg";
+import substack from "@/assets/images/logos/substack.svg";
 
 const Footer = () => (
   <footer className="mt-20 mb-10">
@@ -28,13 +29,13 @@ const Footer = () => (
           href="https://twitter.com/BlockAnalitica"
           className="w-10 h-10 bg-gray-21 rounded-full hover:bg-gray-18 flex items-center justify-center"
         >
-          <FontAwesomeIcon icon={faTwitter} />
+          <FontAwesomeIcon icon={faXTwitter} />
         </ExternalLink>
         <ExternalLink
-          href="https://medium.com/block-analitica"
+          href="https://blockanalitica.substack.com/"
           className="w-10 h-10 bg-gray-21 rounded-full hover:bg-gray-18 flex items-center justify-center"
         >
-          <FontAwesomeIcon icon={faMedium} />
+          <img alt="Substack" src={substack} width="15" height="15" />
         </ExternalLink>
       </div>
     </div>
