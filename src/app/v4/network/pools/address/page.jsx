@@ -142,11 +142,12 @@ const Pool = () => {
           USD prices are an estimation
           <Info className="ms-2" title="USD Prices">
             <p className="mb-2">
-              Current USD prices are an estimation as we couldn't fetch the actual
+              Current USD prices are an estimation as we couldn&apos;t fetch the actual
               price.
             </p>
             <p className="mb-2">
-              For stablecoins, we use $1 and for others we estimate the price based on the formula below from all the pools:
+              For stablecoins, we use $1 and for others we estimate the price based on
+              the formula below from all the pools:
             </p>
             <code>MIN(HPB * &lt;quote token USD price&gt;)</code>
           </Info>
