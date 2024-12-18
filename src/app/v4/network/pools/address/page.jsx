@@ -146,9 +146,10 @@ const Pool = () => {
               price.
             </p>
             <p className="mb-2">
-              We estimate the price based on the formula below from all the pools:
+              For stablecoins, we use $1 and for others we estimate the price based on
+              the formula below from all the pools:
             </p>
-            <code>MAX(LUP * &lt;quote token USD price&gt;)</code>
+            <code>MIN(HPB * &lt;quote token USD price&gt;)</code>
           </Info>
         </div>
       ) : null}

@@ -18,9 +18,9 @@ export const sortArray = (array, order) => {
 
   return [...array].sort((a, b) => {
     if (direction === "asc") {
-      return a[field] > b[field] ? 1 : -1;
+      return Number(a[field]) > Number(b[field]) ? 1 : -1;
     } else {
-      return a[field] < b[field] ? 1 : -1;
+      return Number(a[field]) < Number(b[field]) ? 1 : -1;
     }
   });
 };
