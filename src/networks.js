@@ -8,7 +8,7 @@ export const NETWORKS_ICON_MAP = {
   gnosis: "gnosis",
   mode: "mode",
   rari: "rari",
-  avalanche: "avalanche",
+  avalanche: "avax",
 };
 
 export const NETWORKS_NAME_MAP = {
