@@ -59,6 +59,9 @@ export const generateEtherscanUrl = (network, address, path = "address") => {
     case "rari":
       domain = "mainnet.explorer.rarichain.org";
       break;
+    case "avalanche":
+      domain = "snowtrace.io";
+      break;
     default:
     // pass
   }
