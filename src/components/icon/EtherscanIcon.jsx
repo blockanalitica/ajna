@@ -28,6 +28,9 @@ const EtherscanIcon = ({ network, size = 16 }) => {
     case "rari":
       alt = "mainnet.explorer.rarichain.org";
       break;
+    case "avalanche":
+      alt = "snowtrace.io";
+      break;
     default:
     // pass
   }

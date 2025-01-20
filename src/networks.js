@@ -8,6 +8,7 @@ export const NETWORKS_ICON_MAP = {
   gnosis: "gnosis",
   mode: "mode",
   rari: "rari",
+  avalanche: "avax",
 };
 
 export const NETWORKS_NAME_MAP = {
@@ -20,6 +21,7 @@ export const NETWORKS_NAME_MAP = {
   gnosis: "Gnosis",
   mode: "Mode",
   rari: "RARI",
+  avalanche: "Avalanche",
 };
 
 export const NETWORKS = {
@@ -83,6 +85,11 @@ export const NETWORKS = {
       name: NETWORKS_NAME_MAP["rari"],
       key: "rari",
       icon: NETWORKS_ICON_MAP["rari"],
+    },
+    {
+      name: NETWORKS_NAME_MAP["avalanche"],
+      key: "avalanche",
+      icon: NETWORKS_ICON_MAP["avalanche"],
     },
   ],
 };
