@@ -9,6 +9,7 @@ export const NETWORKS_ICON_MAP = {
   mode: "mode",
   rari: "rari",
   avalanche: "avax",
+  linea: "linea",
 };
 
 export const NETWORKS_NAME_MAP = {
@@ -22,6 +23,7 @@ export const NETWORKS_NAME_MAP = {
   mode: "Mode",
   rari: "RARI",
   avalanche: "Avalanche",
+  linea: "Linea",
 };
 
 export const NETWORKS = {
@@ -90,6 +92,11 @@ export const NETWORKS = {
       name: NETWORKS_NAME_MAP["avalanche"],
       key: "avalanche",
       icon: NETWORKS_ICON_MAP["avalanche"],
+    },
+    {
+      name: NETWORKS_NAME_MAP["linea"],
+      key: "linea",
+      icon: NETWORKS_ICON_MAP["linea"],
     },
   ],
 };

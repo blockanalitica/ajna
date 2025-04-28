@@ -31,6 +31,9 @@ const EtherscanIcon = ({ network, size = 16 }) => {
     case "avalanche":
       alt = "snowtrace.io";
       break;
+    case "linea":
+      alt = "lineascan.build";
+      break;
     default:
     // pass
   }
