@@ -62,6 +62,9 @@ export const generateEtherscanUrl = (network, address, path = "address") => {
     case "avalanche":
       domain = "snowtrace.io";
       break;
+    case "linea":
+      domain = "lineascan.build";
+      break;
     default:
     // pass
   }

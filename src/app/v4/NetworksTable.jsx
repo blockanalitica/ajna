@@ -80,7 +80,7 @@ const NetworksTable = ({ data, ...rest }) => {
       keyField="network"
       columns={columns}
       linkTo={(row) => row.network}
-      placeholderRows={5}
+      placeholderRows={11}
       {...rest}
     />
   );
