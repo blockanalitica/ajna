@@ -1,5 +1,64 @@
 # Changelog
 
+## [1.2.0](https://github.com/blockanalitica/ajna/compare/v1.1.0...v1.2.0) (2025-05-22)
+
+
+### Features
+
+* ability to filter by only closed positions on pool ([#210](https://github.com/blockanalitica/ajna/issues/210)) ([415059d](https://github.com/blockanalitica/ajna/commit/415059d71945485d4d296df59aa472e32b0f3a2f))
+* add rari ([#223](https://github.com/blockanalitica/ajna/issues/223)) ([e83b377](https://github.com/blockanalitica/ajna/commit/e83b37769a7383afe91ad6039d9e9b4cf463176f))
+* added avalanche chain ([#228](https://github.com/blockanalitica/ajna/issues/228)) ([386ceb8](https://github.com/blockanalitica/ajna/commit/386ceb8ccd1d1e4ffb4f2a80e5e64603db20f85a))
+* added blast ([#199](https://github.com/blockanalitica/ajna/issues/199)) ([796f991](https://github.com/blockanalitica/ajna/commit/796f9915b0008bb5ccf24ec200663f8aef17dfe9))
+* added Flashloan to event formatter ([#203](https://github.com/blockanalitica/ajna/issues/203)) ([e9ebc49](https://github.com/blockanalitica/ajna/commit/e9ebc4921404ce6bf1d8e4d3f6f8bfd089b8e893))
+* added gnosis ([#200](https://github.com/blockanalitica/ajna/issues/200)) ([9ed86d9](https://github.com/blockanalitica/ajna/commit/9ed86d9284b3a364be5daae46caae613105cb550))
+* added linea ([#229](https://github.com/blockanalitica/ajna/issues/229)) ([6fcee4c](https://github.com/blockanalitica/ajna/commit/6fcee4c9dea07571eeed3faa6c8a14d5d390fb8f))
+* added Mode network ([#209](https://github.com/blockanalitica/ajna/issues/209)) ([96dcd05](https://github.com/blockanalitica/ajna/commit/96dcd0552a79ec76d09b18701ecfc9e05a877207))
+* added ToS link ([#222](https://github.com/blockanalitica/ajna/issues/222)) ([b29f8a6](https://github.com/blockanalitica/ajna/commit/b29f8a692131fb461a83d50328bb99d7d52e17a8))
+* bucket price in events ([#214](https://github.com/blockanalitica/ajna/issues/214)) ([2595c20](https://github.com/blockanalitica/ajna/commit/2595c20c5b155b56a484e0b7969f72fd129b9b65))
+* burn charts ([#216](https://github.com/blockanalitica/ajna/issues/216)) ([23263ed](https://github.com/blockanalitica/ajna/commit/23263ed27a3c684151f0bc4734192135b0dddfbd))
+* hemi ([#230](https://github.com/blockanalitica/ajna/issues/230)) ([e42ea16](https://github.com/blockanalitica/ajna/commit/e42ea16f3c4f4f3b8c035770995f793a4f9cbe2e))
+* Icons based on address ([#208](https://github.com/blockanalitica/ajna/issues/208)) ([a380db2](https://github.com/blockanalitica/ajna/commit/a380db2c1a2423083ea7ace459c4663c29b151d0))
+* link proposals to ajnafi ([#202](https://github.com/blockanalitica/ajna/issues/202)) ([b722e8d](https://github.com/blockanalitica/ajna/commit/b722e8d60ac95abacd9de4a40fda884b515f5bba))
+* new days ago options ([#211](https://github.com/blockanalitica/ajna/issues/211)) ([edf32a5](https://github.com/blockanalitica/ajna/commit/edf32a527726300f2ee9040cc7f3e9c84c0769b5))
+* overall page ([#181](https://github.com/blockanalitica/ajna/issues/181)) ([0b50514](https://github.com/blockanalitica/ajna/commit/0b50514c7cc288c25c69c482a6d356dc52bb4ef9))
+* removed goerli ([#201](https://github.com/blockanalitica/ajna/issues/201)) ([f1e740d](https://github.com/blockanalitica/ajna/commit/f1e740dabeae7bb896e5b76d232d276743f9e67e))
+* removed v1 code ([#184](https://github.com/blockanalitica/ajna/issues/184)) ([829faf4](https://github.com/blockanalitica/ajna/commit/829faf4ab0889df333501109ec5c16b924ff4a0c))
+* removed v2 goerli and changed dev server port to default ([#194](https://github.com/blockanalitica/ajna/issues/194)) ([d0419f2](https://github.com/blockanalitica/ajna/commit/d0419f2f6f0ca7489bad6d2860ea27d9df13178d))
+* replaced medium with substack and twitter with x ([#226](https://github.com/blockanalitica/ajna/issues/226)) ([a7fe6d8](https://github.com/blockanalitica/ajna/commit/a7fe6d861c0c94acedf94e39618d6260b991698d))
+* show estimated auction price on active reserve auction ([#215](https://github.com/blockanalitica/ajna/issues/215)) ([8306a92](https://github.com/blockanalitica/ajna/commit/8306a92d53d446e50ae9e1c1a66c9e73d85781f2))
+* show notice about token estimated USD price ([#180](https://github.com/blockanalitica/ajna/issues/180)) ([b745fa2](https://github.com/blockanalitica/ajna/commit/b745fa2b11a7e312d8fc974d8c9861758e88a7f4))
+* show reserves ([#217](https://github.com/blockanalitica/ajna/issues/217)) ([f1eba3a](https://github.com/blockanalitica/ajna/commit/f1eba3aea107f50fe4d8f825b651432faa0d62be))
+* show reserves on homepage, fix health rate tooltip ([#218](https://github.com/blockanalitica/ajna/issues/218)) ([fa58e5d](https://github.com/blockanalitica/ajna/commit/fa58e5da24bcbb67676889ed8debbdbcb536e357))
+* show total ajna burned on homepage ([#187](https://github.com/blockanalitica/ajna/issues/187)) ([0998962](https://github.com/blockanalitica/ajna/commit/0998962c03bd366c2afccc543324771c4078e259))
+* switch v4 as default ([#190](https://github.com/blockanalitica/ajna/issues/190)) ([3841c81](https://github.com/blockanalitica/ajna/commit/3841c81561a8fc93a53d338c04eb8eab0fed90f8))
+* v4 ([#189](https://github.com/blockanalitica/ajna/issues/189)) ([47d3e3e](https://github.com/blockanalitica/ajna/commit/47d3e3e04cede1ba5aba9e7e33871d34e148fa05))
+* wallet activity ([#212](https://github.com/blockanalitica/ajna/issues/212)) ([41c5872](https://github.com/blockanalitica/ajna/commit/41c587235ecb81e29ffcdea0f1bc3a913c03fd75))
+
+
+### Bug Fixes
+
+* added polyfills ([#219](https://github.com/blockanalitica/ajna/issues/219)) ([14873bd](https://github.com/blockanalitica/ajna/commit/14873bdb82b02a1b54f7750f31a2f141c3d4f088))
+* at risk graph and estimation text ([#227](https://github.com/blockanalitica/ajna/issues/227)) ([af9d155](https://github.com/blockanalitica/ajna/commit/af9d155bce7a6679f032c445aebb9fb3ef3ff72a))
+* auction take event bond change ([#204](https://github.com/blockanalitica/ajna/issues/204)) ([25fa62e](https://github.com/blockanalitica/ajna/commit/25fa62e6d10c3bd18bc42ef0d411b60ed3ffa02d))
+* changed goerli icon ([#186](https://github.com/blockanalitica/ajna/issues/186)) ([86c3572](https://github.com/blockanalitica/ajna/commit/86c3572319f0a18fce790779601b2398fc3e6c3f))
+* collateral pledged ([#205](https://github.com/blockanalitica/ajna/issues/205)) ([f6df565](https://github.com/blockanalitica/ajna/commit/f6df565a9c30cb5de9a026252c2a75200c81e31c))
+* debt trend value in pool table ([#213](https://github.com/blockanalitica/ajna/issues/213)) ([491b4dc](https://github.com/blockanalitica/ajna/commit/491b4dcb828bc64c18a2141d3cac7ee634113199))
+* deposit share text and NFT event parser ([#221](https://github.com/blockanalitica/ajna/issues/221)) ([c33236d](https://github.com/blockanalitica/ajna/commit/c33236d046ff405aa676140b4ac65ba57d59c4eb))
+* Fixed typo caclualted --&gt; calculated ([#224](https://github.com/blockanalitica/ajna/issues/224)) ([2afc02b](https://github.com/blockanalitica/ajna/commit/2afc02bc56fc2b936b91b3bf592e358041211d90))
+* for small numbers use scientific notation ([#191](https://github.com/blockanalitica/ajna/issues/191)) ([9e581b2](https://github.com/blockanalitica/ajna/commit/9e581b23898669a237d3c9ae2092c71a70afd1f8))
+* grants ([#206](https://github.com/blockanalitica/ajna/issues/206)) ([5bdecc8](https://github.com/blockanalitica/ajna/commit/5bdecc8ae6d2bfe3d23d5835a3a26751afaa9b08))
+* link to correct etherscan network ([#177](https://github.com/blockanalitica/ajna/issues/177)) ([4849c83](https://github.com/blockanalitica/ajna/commit/4849c834b66f183abc3ce93d0297e4b58140f581))
+* mobile navigation ([#179](https://github.com/blockanalitica/ajna/issues/179)) ([cc99422](https://github.com/blockanalitica/ajna/commit/cc994222274e996396f3f7e4c2823462b8351293))
+* network page charts cache ([#182](https://github.com/blockanalitica/ajna/issues/182)) ([52ae011](https://github.com/blockanalitica/ajna/commit/52ae0116eb485a317b2ce8f7c08419f4768aeaac))
+* NFT event parser ([#220](https://github.com/blockanalitica/ajna/issues/220)) ([e07f204](https://github.com/blockanalitica/ajna/commit/e07f204bef4ac2b1e150c30773170f6522b4a786))
+* notice redirect ([#192](https://github.com/blockanalitica/ajna/issues/192)) ([1e40447](https://github.com/blockanalitica/ajna/commit/1e40447cbb30ac68e09eafdf06c053d3297fe010))
+* pool table reserves order ([bf6e96e](https://github.com/blockanalitica/ajna/commit/bf6e96e6cde485f7978c57d37878cd61aebab722))
+* reduce number of events shown on reserve auctions ([#188](https://github.com/blockanalitica/ajna/issues/188)) ([f21821f](https://github.com/blockanalitica/ajna/commit/f21821ff658a2d86b36792208d7e14133c44e569))
+* renamed v3 to v4 ([5e757f3](https://github.com/blockanalitica/ajna/commit/5e757f395e036cef8fd218e94dd2d139abfb2a99))
+* show health rate as normal value ([#198](https://github.com/blockanalitica/ajna/issues/198)) ([4468c93](https://github.com/blockanalitica/ajna/commit/4468c936ead91edaacbcf4bfe9c3b5066a5a2a9b))
+* token name lenght ([#183](https://github.com/blockanalitica/ajna/issues/183)) ([70f0c56](https://github.com/blockanalitica/ajna/commit/70f0c56a44b5710c42cebe1f762fdd3f6986c8fe))
+* token stats into two rows, graph positioning, removed visibleAfter ([#185](https://github.com/blockanalitica/ajna/issues/185)) ([7e6b42a](https://github.com/blockanalitica/ajna/commit/7e6b42ac836c84ab9450a3a7a74cf5db94a13932))
+
 ## [1.1.0](https://github.com/blockanalitica/ajna/compare/v1.0.0...v1.1.0) (2024-01-11)
 
 
