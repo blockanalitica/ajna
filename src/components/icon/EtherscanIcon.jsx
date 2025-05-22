@@ -34,6 +34,9 @@ const EtherscanIcon = ({ network, size = 16 }) => {
     case "linea":
       alt = "lineascan.build";
       break;
+    case "hemi":
+      alt = "explorer.hemi.xyz";
+      break;
     default:
     // pass
   }

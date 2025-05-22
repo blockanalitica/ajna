@@ -65,6 +65,9 @@ export const generateEtherscanUrl = (network, address, path = "address") => {
     case "linea":
       domain = "lineascan.build";
       break;
+    case "hemi":
+      domain = "explorer.hemi.xyz";
+      break;
     default:
     // pass
   }
